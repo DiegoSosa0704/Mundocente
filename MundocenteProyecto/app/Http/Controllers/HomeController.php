@@ -13,6 +13,10 @@ use Mundocente\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento']]);
+    }
     /**
      * Nos lleva al landingpage/index de la aplicación 
      *
