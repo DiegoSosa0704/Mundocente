@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'HomeController@index');
 Route::get('login', 'HomeController@login');
 Route::get('publications', 'HomeController@publications');
@@ -41,3 +42,4 @@ Route::get('logingoogle', 'SessionController@sesiongoogle');
 
 Route::get('authlinkedin', 'SessionController@authlinkedin');
 Route::get('loginlinkedin', 'SessionController@sesionlinkedin');
+

@@ -17,6 +17,11 @@ class HomeController extends Controller
     public function __construct(){
         $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento']]);
     }
+
+
+    public function find(Route $route){
+        $this->notFount($this->route);
+    }
     /**
      * Nos lleva al landingpage/index de la aplicación 
      *
