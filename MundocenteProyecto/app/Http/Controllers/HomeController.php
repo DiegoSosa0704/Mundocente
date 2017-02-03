@@ -119,9 +119,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function publicarinvitacion()
+    public function publicarSolicitud()
     {
-        return view('formularios.formularioinvitacion');
+        return view('formularios.formulario-solicitud');
     }
 
 

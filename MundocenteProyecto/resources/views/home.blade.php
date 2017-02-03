@@ -9,15 +9,12 @@
     {!!Html::style('semantic/out/semantic.min.css')!!}
     {!!Html::style('css/style-index.css')!!}
     {!!Html::style('css/scrollbar.css')!!}
-    
-
-
-    
     {!!Html::script('js/jquery.min.js')!!}
     {!!Html::script('js/ScrollMagic.min.js')!!}
     {!!Html::script('js/init.js')!!}
     {!!Html::script('semantic/out/semantic.min.js')!!}
     {!!Html::script('js/jquery.scrollme.js')!!}
+    {!!Html::script('js/parallax.min.js')!!}
 
 
 
@@ -651,5 +648,8 @@
     function moverbannerderecha() {
         $('.shape').shape('flip right');
     }
+
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
 </script>
 </html>

@@ -4,25 +4,51 @@
 
 
 
-            
-                <h1 class="ui header center aligned" style="padding-top: 15%;padding-left: 5%;">Búsqueda</h1>
-                <div class="ui two column centered stackable grid">
-                    <div class="column">
-                        <div class="ui form">
-                            <div class="field">
-                                <div class="ui fluid action input">
-                                    <input type="text" placeholder="Escriba palabras para buscar revistas, eventos, etc.">
-                                    <div class="ui button">Buscar</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!--Contenido-->
+    <div class="pusher" style="background-color: #EEEEEE;">
+        <div class="ui container center aligned">
+            <h1 class="ui center aligned header">Busqueda Avanzada</h1>
+            <div>
+                <div class="line"></div>
+                <div data-width="79" data-height="27"
+                     style="display: inline-block; vertical-align: middle; line-height: 0; width: 79px; height: 27px;">
+                    <svg height="27" width="79">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.2 26.4">
+                            <path fill="none" stroke="#A54686" stroke-width="2" d="
+                            M57.3,13.1c-3.2,10.4,10.4,16.1,16.8,8.7c7.1-8.2,0.6-17.8-7-20.1c-19.6-5.2-31.9,18-49,23.1C9.3,27.5-1.7,20.4,1.6,9.8
+                            c3.8-12.4,23.3-9,19.3,4"></path>
+                        </svg>
+                    </svg>
                 </div>
-              
-            
-        
+                <div class="line"></div>
+            </div>
+            <div class="ui piled very padded left aligned segment">
+                <img class="ui middle aligned small image" src="images/icono.png" style="width: 15%">
+                <div class="ui action input" style="width: 80%">
+                    <input type="text" placeholder="Search...">
+                    <select class="ui selection dropdown">
+                        <option selected="" value="all">Todo</option>
+                        <option value="articles">Revistas</option>
+                        <option value="products">Convocatorias</option>
+                        <option value="products">Eventos</option>
+                        <option value="products">Solicitudes</option>
+                    </select>
+                    <div type="submit" class="ui button">Search</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
+    <script type="text/javascript">
+        $('.ui.sidebar')
+            .sidebar('attach events', '.menu.fixed .launch.item')
+        ;
+        $('.combo.dropdown')
+            .dropdown({
+                action: 'combo'
+            })
+        ;
+    </script>
 
 
 @stop

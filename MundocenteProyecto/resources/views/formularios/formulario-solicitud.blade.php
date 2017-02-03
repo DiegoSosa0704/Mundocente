@@ -33,23 +33,6 @@
                 <div class="two fields">
                     <div class="field">
                         <div class="required grouped fields">
-                            <label>Sector educativo</label>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="sector">
-                                    <label>Universitario</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="sector">
-                                    <label>Preescolar, básica y media</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="required grouped fields">
                             <label>Tipo de invitación</label>
                             <div class="field">
                                 <div class="ui radio checkbox">
@@ -61,6 +44,23 @@
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="request">
                                     <label>Ser evaluador de un proyecto</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="required grouped fields">
+                            <label>Sector educativo</label>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="sector">
+                                    <label>Universitario</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="sector">
+                                    <label>Preescolar, básica y media</label>
                                 </div>
                             </div>
                         </div>

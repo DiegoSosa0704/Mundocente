@@ -18,7 +18,7 @@ Route::get('publications', 'HomeController@publications');
 Route::get('edit-perfil', 'HomeController@editarmiperfil');
 Route::get('publicar-convocatoria', 'HomeController@publicarconvocatoria');
 Route::get('publicar-revista', 'HomeController@publicarrevista');
-Route::get('publicar-invitacion', 'HomeController@publicarinvitacion');
+Route::get('publicar-solicitud', 'HomeController@publicarSolicitud');
 Route::get('publicar-evento', 'HomeController@publicarevento');
 Route::get('signup', 'HomeController@registrar');
 

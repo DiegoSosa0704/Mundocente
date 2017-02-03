@@ -47,9 +47,18 @@
         <img src="images/logo.png">
     </div>
     <div class="item item_profile">
-        <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
+        <img class="ui tiny centered circular image" src="{{--{!!Auth::user()->photo_url!!}--}}images/user.png">
         <div class="ui aligned center inverted tiny header" >{!!Auth::user()->name!!}</div>
     </div>
+    <div class="ui category search item">
+        <div class="ui inverted transparent icon input">
+            <input class="prompt" type="text" placeholder="Buscar publicaciones">
+            <i class="search link icon"></i>
+        </div>
+    </div>
+    <a class=" item" href="publications">
+        <i class="grid layout icon"></i> Búsqueda avanzada
+    </a>
     <div class="ui dropdown item">
         Perfil
         <i  class="ui dropdown icon"></i>
@@ -60,9 +69,6 @@
             <a class="item" href="logout"><i class="close icon"></i>Salir</a>
         </div>
     </div>
-    <a class=" item" href="publications">
-        <i class="grid layout icon"></i> Búsqueda
-    </a>
     <div class="item">
         <i class="home icon"></i>
         <div class="header">Publicar</div>
@@ -70,7 +76,7 @@
             <a class="item" href="publicar-revista">Revista</a>
             <a class="item" href="publicar-convocatoria">Convocatorias</a>
             <a class="item" href="publicar-evento">Eventos</a>
-            <a class="item" href="publicar-invitacion">Solicitud</a>
+            <a class="item" href="publicar-solicitud">Solicitud</a>
         </div>
     </div>
      <a class=" item" href="publications">
