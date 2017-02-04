@@ -15,7 +15,7 @@ use Mundocente\User;
 class UserController extends Controller
 {
 
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +39,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,34 +49,33 @@ class UserController extends Controller
             ->where('email', $request['email'])
             ->count();
 
-        if($usersQuantity==1){
-            
+        if ($usersQuantity == 1) {
+
             return view('registro', ['existe' => '1']);
-        }else{
-                 User::create([
-                    'name'=>$request['username'],
-                    'email'=>$request['email'],
-                    'rol'=>'seeker',
-                    'password'=>bcrypt($request['password']),
-                    'recibe_not'=>'no',
-                    'nivel_formacion'=>'ninguno',
-                    'photo_url'=>'images/user.png',
-                    
-                ]);
-             if(Auth::attempt(['email'=>$request['email'], 'password'=> $request['password']])){
-            return Redirect::to('publications');
+        } else {
+            User::create([
+                'name' => $request['username'],
+                'email' => $request['email'],
+                'last_name' => $request['lastName'],
+                'rol' => 'seeker',
+                'password' => bcrypt($request['password']),
+                'recibe_not' => 'no',
+                'nivel_formacion' => 'ninguno',
+                'photo_url' => 'images/user.png',
+
+            ]);
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+                return Redirect::to('publications');
             }
         }
 
-       
 
-        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -87,7 +86,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -98,8 +97,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -110,7 +109,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

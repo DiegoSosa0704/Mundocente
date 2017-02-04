@@ -47,8 +47,8 @@
         <img src="images/logo.png">
     </div>
     <div class="item item_profile">
-        <img class="ui tiny centered circular image" src="{{--{!!Auth::user()->photo_url!!}--}}images/user.png">
-        <div class="ui aligned center inverted tiny header" >{!!Auth::user()->name!!}</div>
+        <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
+        <div class="ui aligned center inverted tiny header" >{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</div>
     </div>
     <div class="ui category search item">
         <div class="ui inverted transparent icon input">

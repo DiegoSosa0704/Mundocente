@@ -16,93 +16,6 @@
     {!!Html::script('js/jquery.scrollme.js')!!}
     {!!Html::script('js/parallax.min.js')!!}
 
-
-    <style>
-        @media only screen and (max-width: 767px) {
-            .ui.tiny.modal {
-                width: 95%;
-                margin: 0 0 0 -47.5%;
-            }
-        }
-
-        @media only screen and (min-width: 768px) {
-            .ui.tiny.modal {
-                width: 50%;
-                margin: 0 0 0 -25%;
-            }
-        }
-
-        @media only screen and (min-width: 992px) {
-            .ui.tiny.modal {
-                width: 300px;
-                margin: 0 0 0 -150px;
-            }
-        }
-
-        @media only screen and (min-width: 1200px) {
-            .ui.tiny.modal {
-                width: 400px;
-                margin: 0 0 0 -200px;
-            }
-        }
-
-        @media only screen and (min-width: 1920px) {
-            .ui.tiny.modal {
-                width: 500px;
-                margin: 0 0 0 -250px;
-            }
-        }
-    </style>
-
-    <script>
-        $(document)
-            .ready(function () {
-                $('.ui.form')
-                    .form({
-                        fields: {
-                            username: {
-                                identifier: 'username',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Ingresar nombres y apellidos'
-                                    }
-                                ]
-                            },
-                            email: {
-                                identifier: 'email',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Please enter your e-mail'
-                                    },
-                                    {
-                                        type: 'email',
-                                        prompt: 'Please enter a valid e-mail'
-                                    }
-                                ]
-                            },
-                            password: {
-                                identifier: 'password',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Please enter your password'
-                                    },
-                                    {
-                                        type: 'length[6]',
-                                        prompt: 'Your password must be at least 6 characters'
-                                    }
-                                ]
-                            }
-                        }
-                    })
-                ;
-            })
-        ;
-    </script>
-
-
 </head>
 
 <body id="inicio">
@@ -122,10 +35,10 @@
         <div class="right menu">
             <div class="item">
                 <a class="ui button primary item-menu" style="background-color: #242533"
-                   onclick="mostrarModelregistro()">Registrarse</a>
+                   id="showModelSignup">Registrarse</a>
             </div>
             <div class="item">
-                <a class="ui button primary item-menu" style="background-color: #A54686" onclick="mostrarModellogin()">Iniciar
+                <a class="ui button primary item-menu" style="background-color: #A54686" id="showModelLogin">Iniciar
                     sesión</a>
             </div>
         </div>
@@ -186,7 +99,8 @@
             <div class="title">
                 <h1 class="ui header inverted" style="font-size: 4em; color: #F2EDE4;">
                     Mundocente
-                    <div class="sub header" style="color: #CC4452; font-size: 0.45em;">La Web de los docentes investigadores
+                    <div class="sub header" style="color: #CC4452; font-size: 0.45em;">La Web de los docentes
+                        investigadores
                     </div>
                 </h1>
                 <a class="ui large grey inverted button">Registrarse <i class="right arrow icon"></i></a>
@@ -357,35 +271,8 @@
 <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
         <div class="ui stackable inverted divided grid">
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 1</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 2</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 3</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <h4 class="ui inverted header">Footer Header</h4>
+            <div class="column">
+                <h4 class="ui inverted header">Iniciativa apoyada por: </h4>
                 <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
             </div>
         </div>
@@ -401,7 +288,6 @@
 </div>
 
 <!--**************************  model login -->
-
 <div class="ui tiny modal login">
     <i class="close icon"></i>
     <div class="content">
@@ -459,17 +345,21 @@
     <div class="content">
         {!!Form::open(['route'=>'user.store', 'method'=> 'POST', 'class'=>'ui form'])!!}
         <div class="field"><a href="/"><img src="images/logo.png" class="ui centered medium image"></a></div>
-        <div class="ui field">
+        <div class="field">
             <div class="ui left icon input">
                 <i class="user icon"></i>
-
-                {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombres y Apellidos'])!!}
+                {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombre'])!!}
             </div>
         </div>
-        <div class="ui field">
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                {!!Form::text('lastName', null, ['type' => 'text', 'placeholder' => 'Apellidos'])!!}
+            </div>
+        </div>
+        <div class="field">
             <div class="ui left icon input">
                 <i class="mail icon"></i>
-
                 {!!Form::text('email', null, ['type' => 'text', 'placeholder' => 'Correo Electrónico'])!!}
             </div>
         </div>
@@ -511,33 +401,62 @@
     </div>
 </div>
 
-<!--**************************  Fin model registro -->
-
-
 </body>
 
 <script type="text/javascript">
-
-    function mostrarModellogin() {
-        $('.ui.login')
-            .modal()
-            .modal('show')
-        ;
-    }
-
-    function mostrarModelregistro() {
+    $('.ui.form')
+        .form({
+            fields: {
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Ingresar nombres y apellidos'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your e-mail'
+                        },
+                        {
+                            type: 'email',
+                            prompt: 'Please enter a valid e-mail'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        },
+                        {
+                            type: 'length[6]',
+                            prompt: 'Your password must be at least 6 characters'
+                        }
+                    ]
+                }
+            }
+        })
+    ;
+    $('#showModelSignup').on('click', function () {
         $('.ui.registro')
             .modal()
             .modal('show')
         ;
-    }
-    function moverbannerizquierda() {
-        $('.shape').shape('flip left');
-    }
-    function moverbannerderecha() {
-        $('.shape').shape('flip right');
-    }
-
+    });
+    $('#showModelLogin').on('click', function () {
+        $('.ui.login')
+            .modal()
+            .modal('show')
+        ;
+    });
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
 </script>
