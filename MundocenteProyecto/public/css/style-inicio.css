@@ -56,6 +56,36 @@ body {
     width: 75%;
 }
 
+/* Formularios Publicaciones */
+
+.pusher .ui.segment .ui.form .ui.label.color_1 {
+    background-color: #AD5691;
+}
+
+.pusher .ui.segment .ui.form .ui.label.color_2 {
+    background-color: #96407A;
+
+}
+
+.pusher .ui.segment .ui.form .ui.label.color_3 {
+    background-color: #793362
+}
+
+.pusher .ui.segment .ui.form .message {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.pusher .ui.segment .ui.form .button_load{
+    background-color: #272838;
+    color: #EEEEEE;
+}
+
+.pusher .ui.segment .ui.form .ui.grid .button_submit{
+    background-color: #43a047;
+}
+
+
 /* Mobile */
 @media only screen and (max-width: 767px) {
     div.pusher {
@@ -135,35 +165,6 @@ body {
         width: 1358px;
         padding-left: 18rem;
     }
-}
-
-/* Formularios Publicaciones */
-
-.pusher .ui.segment .ui.form .ui.label.color_1 {
-    background-color: #AD5691;
-}
-
-.pusher .ui.segment .ui.form .ui.label.color_2 {
-    background-color: #96407A;
-
-}
-
-.pusher .ui.segment .ui.form .ui.label.color_3 {
-    background-color: #793362
-}
-
-.pusher .ui.segment .ui.form .message {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.pusher .ui.segment .ui.form .button_load{
-    background-color: #272838;
-    color: #EEEEEE;
-}
-
-.pusher .ui.segment .ui.form .ui.grid .button_submit{
-    background-color: #43a047;
 }
 
 
