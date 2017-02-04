@@ -17,47 +17,81 @@
     {!!Html::script('js/parallax.min.js')!!}
 
 
+    <style>
+        @media only screen and (max-width: 767px) {
+            .ui.tiny.modal {
+                width: 95%;
+                margin: 0 0 0 -47.5%;
+            }
+        }
 
+        @media only screen and (min-width: 768px) {
+            .ui.tiny.modal {
+                width: 50%;
+                margin: 0 0 0 -25%;
+            }
+        }
 
+        @media only screen and (min-width: 992px) {
+            .ui.tiny.modal {
+                width: 300px;
+                margin: 0 0 0 -150px;
+            }
+        }
 
-<script>
+        @media only screen and (min-width: 1200px) {
+            .ui.tiny.modal {
+                width: 400px;
+                margin: 0 0 0 -200px;
+            }
+        }
+
+        @media only screen and (min-width: 1920px) {
+            .ui.tiny.modal {
+                width: 500px;
+                margin: 0 0 0 -250px;
+            }
+        }
+    </style>
+
+    <script>
         $(document)
-            .ready(function() {
+            .ready(function () {
                 $('.ui.form')
                     .form({
                         fields: {
-                             username: {
-                                identifier  : 'username',
+                            username: {
+                                identifier: 'username',
                                 rules: [
                                     {
-                                        type   : 'empty',
-                                        prompt : 'Ingresar nombres y apellidos'
+                                        type: 'empty',
+                                        prompt: 'Ingresar nombres y apellidos'
                                     }
                                 ]
                             },
                             email: {
-                                identifier  : 'email',
+                                identifier: 'email',
                                 rules: [
                                     {
-                                        type   : 'empty',
-                                        prompt : 'Please enter your e-mail'
+                                        type: 'empty',
+                                        prompt: 'Please enter your e-mail'
                                     },
                                     {
-                                        type   : 'email',
-                                        prompt : 'Please enter a valid e-mail'
+                                        type: 'email',
+                                        prompt: 'Please enter a valid e-mail'
                                     }
                                 ]
                             },
                             password: {
-                                identifier  : 'password',
+                                identifier: 'password',
                                 rules: [
                                     {
-                                        type   : 'empty',
-                                        prompt : 'Please enter your password'
+                                        type: 'empty',
+                                        prompt: 'Please enter your password'
                                     },
                                     {
-                                        type   : 'length[6]',
-                                        prompt : 'Your password must be at least 6 characters'
+                                        type: 'length[6]',
+                                        prompt: 'Your password must be at least 6 characters'
                                     }
                                 ]
                             }
@@ -69,10 +103,6 @@
     </script>
 
 
-
-       
-
-
 </head>
 
 <body id="inicio">
@@ -82,17 +112,21 @@
     <div class="ui container">
         <a class="toc item"><i class="sidebar icon"></i></a>
         <div class="item">
-            <a href="#"><div class="logo"></div></a>
+            <a href="#">
+                <div class="logo"></div>
+            </a>
         </div>
         <a class="item-menu item" href="#banner">Inicio</a>
         <a class="item-menu item" href="#services">Servicios</a>
         <a class="item-menu item" href="#contact">Contáctenos</a>
         <div class="right menu">
             <div class="item">
-                <a class="ui button primary item-menu" style="background-color: #242533" onclick="mostrarModelregistro()">Registrarse</a>
+                <a class="ui button primary item-menu" style="background-color: #242533"
+                   onclick="mostrarModelregistro()">Registrarse</a>
             </div>
             <div class="item">
-                <a class="ui button primary item-menu" style="background-color: #A54686"  onclick="mostrarModellogin()">Iniciar sesión</a>
+                <a class="ui button primary item-menu" style="background-color: #A54686" onclick="mostrarModellogin()">Iniciar
+                    sesión</a>
             </div>
         </div>
     </div>
@@ -115,14 +149,14 @@
             <li class="layer" data-depth="0.03">
                 <ul class="rope depth-10">
                     <li class="hanger position-3">
-                        <div class="board cloud-10 swing-5"></div>
+                        <div class="board cloud-5 swing-5"></div>
                     </li>
                 </ul>
             </li>
             <li class="layer" data-depth="0.08">
                 <ul class="rope depth-20">
                     <li class="hanger position-7">
-                        <div class="board cloud-6 swing-4"></div>
+                        <div class="board cloud-7 swing-4"></div>
                     </li>
                 </ul>
             </li>
@@ -152,7 +186,8 @@
             <div class="title">
                 <h1 class="ui header inverted" style="font-size: 4em; color: #F2EDE4;">
                     Mundocente
-                    <div class="sub header" style="color: #F1AFDC; font-size: 0.45em;">La Web de los docentes investigadores
+                    <div class="sub header" style="color: #F1AFDC; font-size: 0.45em;">La Web de los docentes
+                        investigadores
                     </div>
                 </h1>
                 <a class="ui large grey inverted button" href="signup">Registrarse <i class="right arrow icon"></i></a>
@@ -366,245 +401,118 @@
     </div>
 </div>
 
-<!--<div class="ui vertical footer ">
-    <div class="ui container">
-        <div class="ui stackable inverted divided equal height grid">
-            <div class="three wide column">
-                <h4 class="ui inverted header">About</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Sitemap</a>
-                    <a href="#" class="item">Contact Us</a>
-                    <a href="#" class="item">Religious Ceremonies</a>
-                    <a href="#" class="item">Gazebo Plans</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">Services</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Banana Pre-Order</a>
-                    <a href="#" class="item">DNA FAQ</a>
-                    <a href="#" class="item">How To Access</a>
-                    <a href="#" class="item">Favorite X-Men</a>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <h4 class="ui inverted header">Footer Header</h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--**************************  model login -->
 
-<div class="ui basic modal login">
-  <div class="ui middle center aligned grid">
-    <div class="column">
-        <div class="ui raised padded segment">
-           <div class="content-image">
-                <img src="images/icono.jpg" class="image" width="130px" height="130px">
-            </div>
-              {!!Form::open(['route'=>'session.store', 'method'=> 'POST', 'class'=>'ui form'])!!}
-                <div class="ui field">
-                    <div class="ui left icon input">
-                        <i class="mail icon"></i>
-                        {!!Form::text('email', null, ['type' => 'text', 'placeholder' => 'Correo Electrónico'])!!}
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        {!!Form::password('password', ['type' => 'password', 'placeholder' => 'Contraseña'])!!}
-                    </div>
-                </div>
-                
-                {!!Form::submit('Ingresar', ['class'=>'ui fluid primary large submit button', 'style'=>'background-color: #CC4452;'])!!}
-                
-                <div class="ui error message"></div>
-
-                
-
-            {!!Form::close()!!}
-
-            <h5 class="ui horizontal divider header">
-                o
-            </h5>
-            <div class="ui stackable center aligned grid">
-                <div class="row" style="padding-bottom: 5px;">
-                    <a class="ui facebook button" href="authfacebook">
-                        <i class="facebook icon"></i>
-                        Inicie sesión con Facebook
-                    </a>
-                </div>
-                <div class="row" style="padding-top: 5px;">
-                    <a class="ui google plus button" href="authgoogle">
-                        <i class="google plus icon"></i>
-                        Inicie sesión con Google +
-                    </a>
-                </div>
-                <div class="row" style="padding-top: 5px;">
-                    <a class="ui linkedin button" href="authlinkedin">
-                        <i class="linkedin icon"></i>
-                        Regístrese con LinkedIn
-                    </a>
-                </div>
+<div class="ui tiny modal login">
+    <i class="close icon"></i>
+    <div class="content">
+        {!!Form::open(['route'=>'session.store', 'method'=> 'POST', 'class'=>'ui form'])!!}
+        <div class="field"><a href="/"><img src="images/logo.png" class="ui centered medium image"></a></div>
+        <div class="ui field">
+            <div class="ui left icon input">
+                <i class="mail icon"></i>
+                {!!Form::text('email', null, ['type' => 'text', 'placeholder' => 'Correo Electrónico'])!!}
             </div>
         </div>
-        <div class="ui  message">
-            ¿No se ha registrado? <a href="signup"> Regístrese</a>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                {!!Form::password('password', ['type' => 'password', 'placeholder' => 'Contraseña'])!!}
+            </div>
+        </div>
+        {!!Form::submit('Ingresar', ['class'=>'ui fluid primary large submit button', 'style'=>'background-color: #96407A;'])!!}
+        <div class="ui error message"></div>
+        @include('errors.error_login')
+        {!!Form::close()!!}
+        <h5 class="ui horizontal divider header">
+            o
+        </h5>
+        <div class="ui stackable center aligned grid">
+            <div class="row" style="padding-bottom: 5px;">
+                <a class="ui facebook button" href="authfacebook">
+                    <i class="facebook icon"></i>
+                    Inicie sesión con Facebook
+                </a>
+            </div>
+            <div class="row" style="padding-top: 5px; padding-bottom: 5px;">
+                <a class="ui google plus button" href="authgoogle">
+                    <i class="google plus icon"></i>
+                    Inicie sesión con Google +
+                </a>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+                <a class="ui linkedin button" href="authlinkedin">
+                    <i class="linkedin icon"></i>
+                    Regístrese con LinkedIn
+                </a>
+            </div>
         </div>
     </div>
-</div>
-  <div class="actions">
-    <div class="ui red basic cancel button">
-      <i class="remove icon"></i>
-      Cancelar
+    <div class="ui info message">
+        ¿No está registrado? <a href="signup">Registrarse</a>
     </div>
-  </div>
 </div>
-
-
-<!--**************************  Fin model login -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--**************************  model registro -->
+<div class="ui tiny modal registro">
+    <i class="close icon"></i>
+    <div class="content">
+        {!!Form::open(['route'=>'user.store', 'method'=> 'POST', 'class'=>'ui form'])!!}
+        <div class="field"><a href="/"><img src="images/logo.png" class="ui centered medium image"></a></div>
+        <div class="ui field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
 
-<div class="ui basic modal registro">
-  <div class="ui middle center aligned grid">
-    <div class="column">
-        <div class="ui raised padded segment">
-           <div class="content-image">
-                <img src="images/icono.jpg" class="image" width="130px" height="130px">
-            </div>
-            {!!Form::open(['route'=>'user.store', 'method'=> 'POST', 'class'=>'ui form'])!!}
-
-            <div class="ui field">
-                    <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        
-                        {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombres y Apellidos'])!!}
-                    </div>
-                </div>
-                <div class="ui field">
-                    <div class="ui left icon input">
-                        <i class="mail icon"></i>
-                        
-                        {!!Form::text('email', null, ['type' => 'text', 'placeholder' => 'Correo Electrónico'])!!}
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        
-                        {!!Form::password('password', ['type' => 'password', 'placeholder' => 'Contraseña'])!!}
-                    </div>
-                </div>
-                
-                {!!Form::submit('Registrar', ['class'=>'ui fluid primary large submit button', 'style'=>'background-color: #CC4452;'])!!}
-                <div class="ui error message"></div>
-
-                
-
-                
-
-               
-
-            {!!Form::close()!!}
-            <h5 class="ui horizontal divider header">
-                o
-            </h5>
-            <div class="ui stackable center aligned grid">
-                <div class="row" style="padding-bottom: 5px;">
-                    <a class="ui facebook button" href="authfacebook">
-                        <i class="facebook icon"></i>
-                        Regístrese con Facebook
-                    </a>
-                </div>
-                <div class="row" style="padding-top: 5px; padding-bottom: 5px;">
-                    <a class="ui google plus button" href="authgoogle">
-                        <i class="google plus icon"></i>
-                        Regístrese con Google +
-                    </a>
-                </div>
-                <div class="row" style="padding-top: 5px;">
-                    <a class="ui linkedin button" href="authlinkedin">
-                        <i class="linkedin icon"></i>
-                        Regístrese con LinkedIn
-                    </a>
-                </div>
+                {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombres y Apellidos'])!!}
             </div>
         </div>
-        <div class="ui  message">
-            ¿Ya tienes cuanta? <a href="login">Ingresa aquí</a>
+        <div class="ui field">
+            <div class="ui left icon input">
+                <i class="mail icon"></i>
+
+                {!!Form::text('email', null, ['type' => 'text', 'placeholder' => 'Correo Electrónico'])!!}
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                {!!Form::password('password', ['type' => 'password', 'placeholder' => 'Contraseña'])!!}
+            </div>
+        </div>
+        {!!Form::submit('Registrar', ['class'=>'ui fluid primary large submit button', 'style'=>'background-color: #96407A;'])!!}
+        <div class="ui error message"></div>
+        {!!Form::close()!!}
+        <h5 class="ui horizontal divider header">
+            o
+        </h5>
+        <div class="ui stackable center aligned grid">
+            <div class="row" style="padding-bottom: 5px;">
+                <a class="ui facebook button" href="authfacebook">
+                    <i class="facebook icon"></i>
+                    Regístrese con Facebook
+                </a>
+            </div>
+            <div class="row" style="padding-top: 5px; padding-bottom: 5px;">
+                <a class="ui google plus button" href="authgoogle">
+                    <i class="google plus icon"></i>
+                    Regístrese con Google +
+                </a>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+                <a class="ui linkedin button" href="authlinkedin">
+                    <i class="linkedin icon"></i>
+                    Regístrese con LinkedIn
+                </a>
+            </div>
         </div>
     </div>
-</div>
-  <div class="actions">
-    <div class="ui red basic cancel button">
-      <i class="remove icon"></i>
-      Cancelar
+    <div class="ui info message">
+        ¿Ya tienes cuanta? <a href="login">Ingresa aquí</a>
     </div>
-  </div>
 </div>
-
 
 <!--**************************  Fin model registro -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>
@@ -626,19 +534,14 @@
 
     function mostrarModellogin() {
         $('.ui.login')
-        .modal({
-            inverted: true
-          })
+            .modal()
             .modal('show')
         ;
     }
 
     function mostrarModelregistro() {
         $('.ui.registro')
-        .modal({
-            inverted: true
-          })
-
+            .modal()
             .modal('show')
         ;
     }

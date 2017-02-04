@@ -23,32 +23,84 @@
                 <div class="line"></div>
             </div>
             <div class="ui piled very padded left aligned segment">
-                <img class="ui middle aligned small image" src="images/icono.png" style="width: 15%">
-                <div class="ui action input" style="width: 80%">
-                    <input type="text" placeholder="Search...">
-                    <select class="ui selection dropdown">
-                        <option selected="" value="all">Todo</option>
-                        <option value="articles">Revistas</option>
-                        <option value="products">Convocatorias</option>
-                        <option value="products">Eventos</option>
-                        <option value="products">Solicitudes</option>
-                    </select>
-                    <div type="submit" class="ui button">Search</div>
+                <div class="ui padded grid">
+                    <div class="three wide column" style="padding-right: 0;">
+                        <img class="ui image" src="images/icono.png" style="width: 110px; padding: 0">
+                    </div>
+                    <div class="ui thirteen wide column form" style="padding-left: 0;">
+                        <div class="field">
+                            <label>Busqueda Rapida: </label>
+                            <div class="ui action input" style="">
+                                <input type="text" placeholder="Palabras clave...">
+                                <select class="ui selection dropdown">
+                                    <option selected="" value="all">Todo</option>
+                                    <option value="articles">Revistas</option>
+                                    <option value="products">Convocatorias</option>
+                                    <option value="products">Eventos</option>
+                                    <option value="products">Solicitudes</option>
+                                </select>
+                                <div type="submit" class="ui button">Buscar</div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" onclick="showAdvancedSearch()">
+                                <label>Busqueda avanzada</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="revistasfiltro" class="ui raised segment" style="display: none;">
+                    <div class="ui internally celled left aligned stackable equal width grid">
+                        <div class="row">
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                        </div>
+                        <div class="row very relaxed">
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                            <div class="column">
+                                <button type="button" name="button" class="ui fluid button"></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script type="text/javascript">
-        $('.ui.sidebar')
-            .sidebar('attach events', '.menu.fixed .launch.item')
-        ;
-        $('.combo.dropdown')
-            .dropdown({
-                action: 'combo'
-            })
-        ;
-    </script>
-
+        <script type="text/javascript">
+            function showAdvancedSearch(){
+                $('#revistasfiltro').transition('fade');
+            }
+            $('.ui.sidebar')
+                .sidebar('attach events', '.menu.fixed .launch.item')
+            ;
+            $('.combo.dropdown')
+                .dropdown({
+                    action: 'combo'
+                })
+            ;
+        </script>
 
 @stop
