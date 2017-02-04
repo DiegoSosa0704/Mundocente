@@ -69,12 +69,9 @@
             <a class="item" href="logout"><i class="close icon"></i>Salir</a>
         </div>
     </div>
-<<<<<<< HEAD
     <a class=" item" href="publications">
         <i class="search icon"></i> Búsqueda
     </a>
-=======
->>>>>>> 8e4eb2580680973230bab7359630ff1d077643ae
     <div class="item">
         <i class="write icon"></i>
         <div class="header">Publicar</div>

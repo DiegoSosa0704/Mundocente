@@ -87,36 +87,7 @@
     </script>
 </head>
 <body>
-<<<<<<< HEAD
-<!--<div class="three fields">
-    <div class="required field">
-        <label>Gran área</label>
-        <select name="large_area" class="ui multiple search dropdown">
-            <option value="">Gran área</option>
-            <option value="name-1">Gran área-1</option>
-            <option value="name-2">Gran área-2</option>
-        </select>
-    </div>
-    <div class="required field">
-        <label>Área</label>
-        <select name="area" class="ui multiple search dropdown">
-            <option value="">Área</option>
-            <option value="lvl-1">Área-1</option>
-            <option value="lvl-2">Área-2</option>
-        </select>
-    </div>
-    <div class="required field">
-        <label>Disciplina</label>
-        <select name="discipline" class="ui multiple search dropdown">
-            <option value="">Disciplina</option>
-            <option value="discipline-1">Disciplina-1</option>
-            <option value="discipline-2">Disciplina-2</option>
-        </select>
-    </div>
-</div>-->
 <br>
-=======
->>>>>>> 8e4eb2580680973230bab7359630ff1d077643ae
 <div class="ui middle aligned center aligned grid">
     <div class="column">
         <div class="ui raised padded segment">
