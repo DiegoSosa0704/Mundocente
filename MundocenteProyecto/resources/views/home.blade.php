@@ -103,7 +103,7 @@
                         investigadores
                     </div>
                 </h1>
-                <a class="ui large grey inverted button">Registrarse <i class="right arrow icon"></i></a>
+                <a class="ui large grey inverted button" href="signup">Registrarse <i class="right arrow icon"></i></a>
             </div>
         </div>
     </div>

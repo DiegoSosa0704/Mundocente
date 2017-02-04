@@ -50,16 +50,7 @@
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
         <div class="ui aligned center inverted tiny header" >{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</div>
     </div>
-    <div class="ui category search item">
-        <div class="ui inverted transparent icon input">
-            <input class="prompt" type="text" placeholder="Buscar publicaciones">
-            <i class="search link icon"></i>
-        </div>
-    </div>
-    <a class=" item" href="publications">
-        <i class="grid layout icon"></i> Búsqueda avanzada
-    </a>
-    <div class="ui dropdown item">
+      <div class="ui dropdown item">
         Perfil
         <i  class="ui dropdown icon"></i>
         <div class="menu">
@@ -69,9 +60,17 @@
             <a class="item" href="logout"><i class="close icon"></i>Salir</a>
         </div>
     </div>
+    <div class="ui category search item">
+        <div class="ui inverted transparent icon input">
+            <input class="prompt" type="text" placeholder="Buscar publicaciones">
+            <i class="search link icon"></i>
+        </div>
+    </div>
     <a class=" item" href="publications">
-        <i class="search icon"></i> Búsqueda
+        <i class="grid layout icon"></i> Búsqueda avanzada
     </a>
+  
+    
     <div class="item">
         <i class="write icon"></i>
         <div class="header">Publicar</div>
