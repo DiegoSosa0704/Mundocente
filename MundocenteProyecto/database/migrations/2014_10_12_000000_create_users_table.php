@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->enum('recibe_not', ['si', 'no']);
             $table->enum('nivel_formacion', ['ninguno','universitario', 'especializacion', 'maestria', 'doctorado', 'post_doctorado']);
             $table->string('photo_url');
+            $table->enum('state_user', ['avtivo', 'inactivo']);
             $table->rememberToken();
             $table->timestamps();
         });

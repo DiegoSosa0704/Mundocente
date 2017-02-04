@@ -151,16 +151,86 @@
                 </ul>
             </li>
         </ul>
-        <div class="ui vertical masthead left aligned">
-            <div class="title">
-                <h1 class="ui header inverted" style="font-size: 4em; color: #F2EDE4;">
-                    Mundocente
-                    <div class="sub header" style="color: #F1AFDC; font-size: 0.45em;">La Web de los docentes investigadores
-                    </div>
-                </h1>
-                <a class="ui large grey inverted button" href="signup">Registrarse <i class="right arrow icon"></i></a>
+        <div class="ui vertical masthead left aligned shape">
+            <div class="title sides">
+
+            <!-- Mensaje uno -->
+
+                
+                    <h1 class="ui header side active inverted" style="color: #F2EDE4;">
+                        Mundocente
+                        <br>
+
+                        <div class="sub header" style="color: #F1AFDC;">La Web de los docentes investigadores
+                        </div>
+                    </h1>
+                    
+                
+                
+
+
+
+                  <!-- Mensaje dos -->
+            
+                
+                    <h1 class="ui header side inverted" style="color: #F2EDE4;">
+                        Revistas Científicas
+                        <br>
+                        <div class="sub header" style="color: #F1AFDC;">Ahorre tiempo buscando las revistas científicas de su área de interés.
+                        </div>
+                    </h1>
+
+
+
+                 <!-- Mensaje tres -->
+            
+                
+                    <h1 class="ui header side inverted" style="color: #F2EDE4;">
+                        Convocatorias docentes
+                        <br>
+                        <div class="sub header" style="color: #F1AFDC;">Entérese oportunamente sobre las convocatorias laborales<p></p> del ámbito docente
+                        </div>
+                    </h1>
+
+
+
+                       <!-- Mensaje cutro -->
+            
+                
+                    <h1 class="ui header side inverted" style="color: #F2EDE4;">
+                        Eventos académicos
+                        <br>
+                        <div class="sub header" style="color: #F1AFDC;">Encuentre congresos, seminarios, conferencias y demás<p></p> eventos académicos de su interés
+                        </div>
+                    </h1>
+
+
+
+                       <!-- Mensaje cinco -->
+            
+                
+                    <h1 class="ui header side inverted" style="color: #F2EDE4;">
+                        Invitaciones a participar en proyectos
+                        <br>
+                        <div class="sub header" style="color: #F1AFDC;">Vincúlese a proyectos académicos de diversas <p></p>instituciones de educación.
+                            Participe como par evaluador de proyectos
+                        </div>
+                    </h1>
+                    
+                    <br>
+                    <a class="ui large grey inverted button" href="signup">Registrarse <i class="right arrow icon"></i></a>
+                
+
+
             </div>
+            
         </div>
+
+
+
+        
+
+
     </div>
 </div>
 

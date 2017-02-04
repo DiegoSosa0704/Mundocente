@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <img src="images/icono.jpg" width="200" height="200">
+                <img src="https://scontent-mia1-2.xx.fbcdn.net/v/t1.0-9/12346425_448898681983077_8392152602814686152_n.jpg?oh=26bf00533df3ec281c6158e6084f9fe6&oe=594AE197" width="200" height="200">
                 <div class="title">Esta ruta no existe</div>
             </div>
         </div>

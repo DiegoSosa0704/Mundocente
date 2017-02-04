@@ -29,10 +29,10 @@
         <img src="images/nombre.png" style="height: 38px">
     </div>
     <a class="item">
-        <i class="grid layout icon"></i> Búsqueda
+        <i class="search icon"></i> Búsqueda
     </a>
     <div class="item">
-        <i class="home icon"></i> Publicar
+        <i class="write icon"></i> Publicar
         <div class="menu">
             <a class=" item">Revista</a>
             <a class="item">Convocatorias</a>
@@ -61,10 +61,10 @@
         </div>
     </div>
     <a class=" item" href="publications">
-        <i class="grid layout icon"></i> Búsqueda
+        <i class="search icon"></i> Búsqueda
     </a>
     <div class="item">
-        <i class="home icon"></i>
+        <i class="write icon"></i>
         <div class="header">Publicar</div>
         <div class="menu">
             <a class="item" href="publicar-revista">Revista</a>
