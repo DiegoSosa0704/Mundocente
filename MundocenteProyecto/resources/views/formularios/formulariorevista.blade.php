@@ -376,11 +376,6 @@
     $('.ui.sidebar')
         .sidebar('attach events', '.menu.fixed .launch.item')
     ;
-    $('.dropdown')
-        .dropdown({
-            transition: 'scale'
-        })
-    ;
 </script>
 
 @stop

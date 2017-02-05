@@ -136,6 +136,15 @@ class HomeController extends Controller
         return view('formularios.formularioevento');
     }
 
+    /**
+     * Nos lleva a la página de publicar convocatoria
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showResult()
+    {
+        return view('result');
+    }
 
 
     /**

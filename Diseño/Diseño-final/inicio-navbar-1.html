@@ -17,57 +17,92 @@
         background-color: #EEEEEE;
     }
 
-    .ui.sidebar {
-        overflow: visible !important;
+    .ui.menu.sidebar {
+        background-color: #242533;
+    }
+
+    .ui.menu.sidebar .item > img,
+    .ui.fixed.sticky.menu {
+        height: 38px;
     }
 
     .ui.fixed.sticky.menu {
         height: 100% !important;
-        top: 65px;
+        background-color: #242533;
+        margin-top: 60px;
+    }
+
+
+    .ui.fixed.sticky.menu .item.item_profile {
+        background: url(../images/fondo-user-2.png) no-repeat 0% 0%/cover;
     }
 
     .ui.fixed.top.menu {
-        padding: 5px 0;
+        background-color: #DFDADD;
     }
 
     .ui.fixed.top.menu img {
         height: 40px;
     }
 
+    .pusher .ui.container {
+        margin: 30px 0;
+    }
+
+    .pusher .ui.container > h1 {
+        margin-bottom: 0;
+        color: #242533;
+    }
+
+    .pusher .ui.container .ui.form h4,
+    .pusher .ui.container .ui.form label {
+        color: #242533;
+    }
+
+    .line {
+        background: #A54686;
+        display: inline-block;
+        height: 0.15587em;
+        max-width: 10em;
+        width: 75%;
+    }
+
     /* Mobile */
     @media only screen and (max-width: 767px) {
+        div.pusher {
+            background-color: #EEEEEE;
+            margin-top: 50px;
+        }
+
         .ui.fixed.sticky.menu,
-        .ui.fixed.top.menu img{
+        .ui.fixed.top.menu img {
             display: none;
         }
 
-        .ui.menu.sidebar {
-            overflow: visible !important;
+        .line {
+            max-width: 7em;
         }
     }
 
     /* Tablet */
 
     @media only screen and (min-width: 768px) and (max-width: 991px) {
+        div.pusher {
+            background-color: #EEEEEE;
+            margin-top: 50px;
+        }
+
         .ui.fixed.sticky.menu,
         .ui.fixed.top.menu img {
             display: none;
-        }
-
-        .ui.menu.sidebar {
-            overflow: visible !important;
         }
     }
 
     /* Small Monitor */
 
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
-        .ui.top.menu.fixed .item.launch{
-            display: none;
-        }
-
-        .ui.top.menu.fixed .menu .item{
-            display: block;
+        div.pusher {
+            background-color: #EEEEEE;
         }
 
         .pusher .ui.container {
@@ -77,45 +112,34 @@
 
     /* Large Monitor */
 
-    @media only screen and (min-width: 1200px) {
-        .ui.top.menu.fixed .item.launch{
-            display: none;
-        }
-
-        .ui.top.menu.fixed .menu .item{
-            display: block;
+    @media only screen and (min-width: 1200px) and (max-width: 1407px) {
+        div.pusher {
+            background-color: #EEEEEE;
         }
 
         .pusher .ui.container {
+            width: 1127px;
+            padding-left: 18rem;
+        }
+    }
+
+    /*Large Monitor 2*/
+
+    @media only screen and (min-width: 1408px) {
+        div.pusher {
+            background-color: #EEEEEE;
+        }
+
+        .pusher .ui.container {
+            width: 1358px;
             padding-left: 18rem;
         }
     }
 
     div.pusher {
         background-color: #EEEEEE;
-        padding-top: 90px;
+        padding-top: 70px;
     }
-
-    .main-content-menu.ui.fixed.secondary.menu {
-        border-bottom: 1px solid rgba(34,36,38,.15);
-        background: #DFDADD;
-        box-shadow: 0 3px 5px 0 rgba(34,36,38,.15);
-    }
-
-    .main-content-menu .right.menu .dropdown.item {
-        padding: 0px;
-        background-color: transparent !important;
-    }
-
-    .main-content-menu .right.menu .dropdown.item .dropdown.icon {
-        margin-right: 5px;
-    }
-
-    .main-content-logo {
-        margin: 10px 25px;
-        max-height: 45px;
-    }
-
 </style>
 <!--Menu Sidebar -->
 <div class="ui left sidebar inverted vertical menu">
@@ -136,80 +160,108 @@
     </div>
 </div>
 <!--Menu visible-->
-<div class="ui vertical inverted large fixed pointing sticky menu" >
-    <div class="item" style="background: url(../images/fondo-user.png) no-repeat 0% 0%/cover;">
-        <img class="ui tiny centered circular image" src="../images/user.jpg">
-        <div class="ui aligned center inverted tiny header" >Nombre Usuario</div>
+<div class="ui vertical inverted large fixed pointing sticky menu">
+    <div class="item item_profile">
+        <img class="ui tiny centered circular image" src="../images/user.png">
+        <div class="ui aligned center inverted tiny header">Nombre</div>
     </div>
-    <div class="ui category search item">
-        <div class="ui inverted transparent icon input">
-            <input class="prompt" type="text" placeholder="Search animals...">
-            <i class="search link icon"></i>
-        </div>
-    </div>
+    <a class=" item" href="publications">
+        <i class="grid layout icon"></i> Búsqueda avanzada
+    </a>
     <div class="ui dropdown item">
-        Cuenta
-        <i  class="ui middle aligned dropdown icon"></i>
+        Perfil
+        <i class="ui dropdown icon"></i>
         <div class="menu">
-            <a class="item"><i class="user icon"></i>Cuenta</a>
+            <a class="item" href="edit-perfil"><i class="user icon"></i>Cuenta</a>
             <a class="item"><i class="star icon"></i>Favoritos</a>
-            <a class="item"><i class="close icon"></i>Salir</a>
+            <a class="item"><i class="bookmark icon"></i>Guardados</a>
+            <a class="item" href="logout"><i class="close icon"></i>Salir</a>
         </div>
     </div>
-    <a class="item">
-        <i class="grid layout icon"></i> Busqueda
+    <a class=" item" href="publications">
+        <i class="search icon"></i> Búsqueda
     </a>
     <div class="item">
-        <i class="home icon"></i>
+        <i class="write icon"></i>
         <div class="header">Publicar</div>
         <div class="menu">
-            <a class="item">Revista</a>
-            <a class="active item">Convocatorias</a>
-            <a class="item">Eventos</a>
-            <a class="item">Invitación</a>
+            <a class="item" href="publicar-revista">Revista</a>
+            <a class="item" href="publicar-convocatoria">Convocatorias</a>
+            <a class="item" href="publicar-evento">Eventos</a>
+            <a class="item" href="publicar-solicitud">Solicitud</a>
         </div>
     </div>
+    <a class=" item" href="publications">
+        <i class="alarm icon"></i> Notificaciones (2)
+    </a>
 </div>
 <!--Top menu fixed-->
-<div class="main-content-menu ui fixed secondary menu">
-    <img src="../images/logo.png" class="main-content-logo"/>
-    <div class="menu">
+
+<div class="ui secondary raised top fixed menu" style="height: 65px;">
+    <div class="item item_logo">
+        <img src="../images/logo.png" class="ui centered image" style="height: 46px">
+    </div>
+    <div class="item" style="width:60%;">
+        <div class="ui action input" style="width: 200%;">
+            <input type="text" placeholder="Palabras clave...">
+            <select class="ui selection dropdown">
+                <option value="all">Todo</option>
+                <option value="paper">Revistas</option>
+                <option value="announcement">Convocatorias</option>
+                <option value="event">Eventos</option>
+                <option value="request">Solicitudes</option>
+            </select>
+            <div type="submit" class="ui teal button" style="background-color: #AD5691">Buscar</div>
+        </div>
+    </div>
+    <div class="right menu" style="padding-right: 30px">
         <div class="item">
-            <div class="ui right action left icon input">
-                <i class="search icon"></i>
-                <input type="text" placeholder="Search">
-                <div class="ui basic floating dropdown button">
-                    <div class="text">This Page</div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">This Organization</div>
-                        <div class="item">Entire Site</div>
-                    </div>
+            <div class="ui floating labeled icon dropdown teal button"  style="background-color: #AD5691">
+                <i class="dropdown icon"></i>
+                <span>Cuenta</span>
+                <div class="menu transition hidden">
+                    <a class="item" href="edit-perfil"><i class="user icon"></i>Cuenta</a>
+                    <a class="item"><i class="star icon"></i>Favoritos</a>
+                    <a class="item"><i class="bookmark icon"></i>Guardados</a>
+                    <a class="item" href="logout"><i class="close icon"></i>Salir</a>
                 </div>
             </div>
         </div>
-        <div class="ui category search item">
-            <div class="ui transparent icon input">
-                <input class="prompt" type="text" placeholder="Search animals...">
-                <i class="search link icon"></i>
+    </div>
+</div>
+
+<!--<div class="main-content-menu ui fixed inverted secondary menu">
+    <div class="item">
+        <img src="../images/logo.png" class="ui centered image" style="height: 40px;">
+    </div>
+    <div class="item">
+        <div class="ui action input" style="width: 700px;">
+            <input type="text" placeholder="Palabras clave...">
+            <select class="ui selection dropdown">
+                <option value="all">Todo</option>
+                <option value="paper">Revistas</option>
+                <option value="announcement">Convocatorias</option>
+                <option value="event">Eventos</option>
+                <option value="request">Solicitudes</option>
+            </select>
+            <div type="submit" class="ui teal button">Buscar</div>
+        </div>
+    </div>
+    <div class="right menu" style="padding-right: 30px">
+        <div class="item">
+            <div class="ui floating labeled icon dropdown teal button">
+                <i class="dropdown icon"></i>
+                <span>Cuenta</span>
+                <div class="menu transition hidden" tabindex="-1">
+                    <div class="item active selected" data-value="drop">Drop</div>
+                    <div class="item" data-value="horizontal flip">Horizontal Flip</div>
+                    <div class="item" data-value="fade up">Fade Up</div>
+                    <div class="item" data-value="scale">Scale</div>
+                </div>
             </div>
         </div>
     </div>
-    <!--<div class="right menu">
-        <div class="ui dropdown item">
-            <span style="margin-right: 10px; font-weight: bolder">User Name</span>
-            <img src="../images/user.jpg" class="main-content-avatar ui circular image"/>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="main-content-username-credential item">example@email.com</div>
-                <div class="item"><i class="setting icon"></i>Settings</div>
-                <div class="item"><i class="privacy icon"></i>Change password</div>
-                <div class="divider"></div>
-                <div class="item"><i class="sign out icon"></i>Logout</div>
-            </div>
-        </div>
-    </div>-->
-</div>
+</div>-->
 <!--Menu top fixed visible-->
 <!--<div class="ui large fixed inverted top menu">
     <img src="../images/logo.png">
@@ -284,12 +336,6 @@
         .sidebar('attach events', '.menu.fixed .launch.item');
     $('.ui .dropdown').dropdown();
 
-   /* $('.ui.sidebar')
-        .sidebar('attach events', '.menu.fixed .launch.item')
-    ;
-    $('.ui.sidebar')
-        .sidebar('attach events', '.button.fixed .item')
-    ;*/
     function showAdvancedSearch() {
         $('#revistasfiltro').transition('fade');
     }
@@ -300,7 +346,8 @@
 
     $('.dropdown')
         .dropdown({
-            transition: 'scale'
+            // you can use any ui transition
+            transition: 'fade'
         })
     ;
     $('.demo.menu .item').tab({history: false});

@@ -850,11 +850,6 @@
         $('.ui.sidebar')
             .sidebar('attach events', '.menu.fixed .launch.item')
         ;
-        $('.dropdown')
-            .dropdown({
-                transition: 'scale'
-            })
-        ;
 
         /*INPUT FILE */
         var fileExtentionRange = '.zip .rar .tar .pdf .doc .docx .xls .xlsx .ppt .pptx';

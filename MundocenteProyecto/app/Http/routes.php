@@ -23,6 +23,10 @@ Route::get('publicar-evento', 'HomeController@publicarevento');
 Route::get('signup', 'HomeController@registrar');
 
 
+/*Resultado*/
+Route::get('result', 'HomeController@showResult');
+
+
 
 
 Route::resource('user', 'UserController');
