@@ -22,15 +22,16 @@
             <!--Contenido Segment -->
             <div class="ui piled very padded left aligned segment">
                 <form class="ui form" id="form">
-                    <h4 class="ui dividing header">Información general</h4>
+                    <h4 class="ui dividing header">Datos personales</h4>
                     <div class="equal width fields">
                         <div class="field">
                             <label>Foto de perfil</label>
-                            
+
                             <span>
                                 <label for="file" class="ui inverted button button_load">
                                     <input type="file" id="file" style="display:none">
-                                    <img class="ui middle aligned small circular image" src="{!!Auth::user()->photo_url!!}">
+                                    <img class="ui middle aligned small circular image"
+                                         src="{!!Auth::user()->photo_url!!}">
                                     Cargar Foto
                                 </label>
                             </span>
@@ -42,92 +43,6 @@
                             <input name="name" type="text" placeholder="Nombres" value="{!!Auth::user()->name!!}">
                         </div>
                     </div>
-                    <div class="required field">
-                        <label>Currículo</label>
-                        <div class="ui info compact small message">
-                            <p>Debe ingresar al menos uno de los dos campos correspondientes a currículo.</p>
-                        </div>
-                        <div class="two fields">
-                            <div class="required field">
-                                <input name="link_curriculum" placeholder="Enlace a currículo en la web" type="url">
-                            </div>
-                            <div class="required field">
-                                <div class="ui action input">
-                                    <input type="text" name="load_curriculum" id="_attachmentName"
-                                           placeholder="Archivo currículo">
-                                    <label for="attachmentName" class="ui icon button btn-file">
-                                        Cargar
-                                        <input type="file" id="attachmentName" name="attachmentName"
-                                               style="display: none">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="ui dividing header">Estudios</h4>
-                    <div class="required field">
-                        <label>Áreas de formación</label>
-                         <div class="three fields">
-                            <div class="required field">
-                                <label>Gran área</label>
-                                <select name="large_area" class="ui multiple dropdown">
-                                    <option value="">Gran área</option>
-                                    <option value="name-1">Gran área-1</option>
-                                    <option value="name-2">Gran área-2</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label>Área</label>
-                                <select name="area" class="ui multiple dropdown">
-                                    <option value="">Área</option>
-                                    <option value="lvl-1">Área-1</option>
-                                    <option value="lvl-2">Área-2</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label>Disciplina</label>
-                                <select name="discipline" class="ui multiple dropdown">
-                                    <option value="">Disciplina</option>
-                                    <option value="discipline-1">Disciplina-1</option>
-                                    <option value="discipline-2">Disciplina-2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="required grouped fields">
-                        <label>Máximo nivel de formación (titulado)</label>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Universitario</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Especializacíon</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Maestría</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Doctorado</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Post-doctorado</label>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="ui dividing header">Vinculación laboral</h4>
                     <div class="two fields">
                         <div class="required field">
                             <label>País</label>
@@ -394,6 +309,7 @@
                             </select>
                         </div>
                     </div>
+                    <h4 class="ui dividing header">Vinculación laboral y estudios</h4>
                     <div class="required field">
                         <label>Intitución en que labora</label>
                         <div class="ui info compact small message">
@@ -417,31 +333,198 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="ui dividing header">Áreas de interés</h4>
-                    <div class="three fields">
-                        <div class="required field">
-                            <label>Gran área</label>
-                            <select name="large_area" class="ui multiple dropdown">
-                                <option value="">Gran área</option>
-                                <option value="name-1">Gran área-1</option>
-                                <option value="name-2">Gran área-2</option>
-                            </select>
+                    <div class="required field">
+                        <label>Currículo</label>
+                        <div class="ui info compact small message">
+                            <p>Debe ingresar al menos uno de los dos campos correspondientes a currículo.</p>
                         </div>
-                        <div class="required field">
-                            <label>Área</label>
-                            <select name="area" class="ui multiple dropdown">
-                                <option value="">Área</option>
-                                <option value="lvl-1">Área-1</option>
-                                <option value="lvl-2">Área-2</option>
-                            </select>
+                        <div class="two fields">
+                            <div class="required field">
+                                <input name="link_curriculum" placeholder="Enlace a currículo en la web" type="url">
+                            </div>
+                            <div class="required field">
+                                <div class="ui action input">
+                                    <input type="text" name="load_curriculum" id="_attachmentName"
+                                           placeholder="Archivo currículo">
+                                    <label for="attachmentName" class="ui icon button btn-file">
+                                        Cargar
+                                        <input type="file" id="attachmentName" name="attachmentName"
+                                               style="display: none">
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="required field">
-                            <label>Disciplina</label>
-                            <select name="discipline" class="ui multiple dropdown">
-                                <option value="">Disciplina</option>
-                                <option value="discipline-1">Disciplina-1</option>
-                                <option value="discipline-2">Disciplina-2</option>
-                            </select>
+                    </div>
+                    <div class="required grouped fields">
+                        <label>Máximo nivel de formación (titulado)</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="level_training">
+                                <label>Universitario</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="level_training">
+                                <label>Especializacíon</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="level_training">
+                                <label>Maestría</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="level_training">
+                                <label>Doctorado</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="level_training">
+                                <label>Post-doctorado</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Áreas de formación</label>
+                        <div class="ui three fields segment">
+                            <div class="required field">
+                                <label>Gran área</label>
+                                <select name="large_area" class="ui multiple dropdown">
+                                    <option value="">Gran área</option>
+                                    <option value="name-1">Gran área-1</option>
+                                    <option value="name-2">Gran área-2</option>
+                                </select>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div><div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Área</label>
+                                <select name="area" class="ui multiple dropdown">
+                                    <option value="">Área</option>
+                                    <option value="lvl-1">Área-1</option>
+                                    <option value="lvl-2">Área-2</option>
+                                </select>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Área
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Disciplina</label>
+                                <select name="discipline" class="ui multiple dropdown">
+                                    <option value="">Disciplina</option>
+                                    <option value="discipline-1">Disciplina-1</option>
+                                    <option value="discipline-2">Disciplina-2</option>
+                                </select>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Disciplina
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <h4 class="ui dividing header">Cuenta</h4>
@@ -457,6 +540,153 @@
                         <div class="required field">
                             <label>Repetir contraseña</label>
                             <input type="password" name="repeat_password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Áreas de interés</label>
+                        <div class="ui three divided fields segment">
+                            <div class="required field">
+                                <label>Gran área</label>
+                                <select name="large_area" class="ui multiple dropdown">
+                                    <option value="">Gran área</option>
+                                    <option value="name-1">Gran área-1</option>
+                                    <option value="name-2">Gran área-2</option>
+                                </select>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div><div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Gran área
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="required field">
+                                <label>Área</label>
+                                <select name="area" class="ui multiple dropdown">
+                                    <option value="">Área</option>
+                                    <option value="lvl-1">Área-1</option>
+                                    <option value="lvl-2">Área-2</option>
+                                </select>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Área
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Área
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="required field">
+                                <label>Disciplina</label>
+                                <select name="discipline" class="ui multiple dropdown">
+                                    <option value="">Disciplina</option>
+                                    <option value="discipline-1">Disciplina-1</option>
+                                    <option value="discipline-2">Disciplina-2</option>
+                                </select>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Disciplina
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="right floated content">
+                                                <div class="ui label button color_3">Eliminar</div>
+                                            </div>
+                                            <div class="content">
+                                                Disciplina
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="required field">
@@ -511,14 +741,14 @@
                     <div class="grouped fields">
                         <label>Activación de cuenta</label>
                         <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="notification_type" value="1">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="notification_type" value="1">
                                 <label>Activar mi cuenta</label>
                             </div>
                         </div>
                         <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="notification_type" value="2">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="notification_type" value="2">
                                 <label>Inactivar mi cuenta</label>
                             </div>
                         </div>
@@ -530,7 +760,7 @@
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <div form="form" onclick="validateFormAccount()"
-                                    class="ui submit inverted button button_submit">
+                                 class="ui submit inverted button button_submit">
                                 Guardar
                             </div>
                         </div>
@@ -590,8 +820,8 @@
                                 identifier: 'large_area',
                                 rules: [
                                     {
-                                        type   : 'minCount[1]',
-                                        prompt : 'Porfavor seleccione al menos un valor en Gran Área'
+                                        type: 'minCount[1]',
+                                        prompt: 'Porfavor seleccione al menos un valor en Gran Área'
                                     }
                                 ]
                             },
@@ -701,7 +931,7 @@
                         }
                     })
                 ;
-            }else{
+            } else {
                 $('.ui.form')
                     .form({
                         on: 'blur',

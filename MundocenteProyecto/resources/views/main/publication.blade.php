@@ -26,7 +26,7 @@
                     </div>
                     <div class="ui thirteen wide column form" style="padding-left: 0; padding-top: 25px;">
                         <div class="field">
-                            <label>Búsqueda Rapida: </label>
+                            <label style="font-size: 1.22em;">Búsqueda Rapida: </label>
                             <div class="ui action input" style="">
                                 <input type="text" placeholder="Palabras clave...">
                                 <select class="ui selection dropdown">

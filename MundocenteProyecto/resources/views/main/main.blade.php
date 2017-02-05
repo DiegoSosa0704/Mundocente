@@ -68,11 +68,7 @@
     </a>
 </div>
 
-
-<!--Menu top fixed visible-->
-
 <!--Top menu fixed-->
-
 <div class="ui secondary raised top fixed menu" style="height: 65px;">
     <div class="item item_logo">
         <img src="../images/logo.png" class="ui centered image" style="height: 46px">
@@ -81,11 +77,11 @@
         <div class="ui action input" style="width: 200%;">
             <input type="text" placeholder="Palabras clave...">
             <select class="ui selection dropdown">
-                <option value="all">Todo</option>
-                <option value="paper">Revistas</option>
-                <option value="announcement">Convocatorias</option>
-                <option value="event">Eventos</option>
-                <option value="request">Solicitudes</option>
+                <option value="all_menu">Todo</option>
+                <option value="paper_menu">Revistas</option>
+                <option value="announcement_menu">Convocatorias</option>
+                <option value="event_menu">Eventos</option>
+                <option value="request_menu">Solicitudes</option>
             </select>
             <a type="submit" class="ui teal button" style="background-color: #AD5691" href="result">Buscar</a>
         </div>
