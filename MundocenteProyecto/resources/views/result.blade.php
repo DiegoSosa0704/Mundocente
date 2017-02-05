@@ -4,7 +4,7 @@
     <!--Contenido-->
     <div class="pusher" style="background-color: #EEEEEE;">
         <div class="ui container center aligned">
-            <h1 class="ui header">Resultado</h1>
+            <h1 class="ui header">Resultados</h1>
             <div>
                 <div class="line"></div>
                 <div data-width="79" data-height="27"

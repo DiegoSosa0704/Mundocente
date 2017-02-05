@@ -348,13 +348,7 @@
         <div class="field">
             <div class="ui left icon input">
                 <i class="user icon"></i>
-                {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombre'])!!}
-            </div>
-        </div>
-        <div class="field">
-            <div class="ui left icon input">
-                <i class="user icon"></i>
-                {!!Form::text('lastName', null, ['type' => 'text', 'placeholder' => 'Apellidos'])!!}
+                {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombre completo'])!!}
             </div>
         </div>
         <div class="field">

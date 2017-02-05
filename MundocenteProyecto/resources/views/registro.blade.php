@@ -101,7 +101,7 @@
                 <div class="ui left icon input">
                     <i class="user icon"></i>
 
-                    {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombres y Apellidos'])!!}
+                    {!!Form::text('username', null, ['type' => 'text', 'placeholder' => 'Nombre completo'])!!}
                 </div>
             </div>
             <div class="ui field">

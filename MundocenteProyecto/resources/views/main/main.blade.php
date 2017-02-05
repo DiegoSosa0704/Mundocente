@@ -87,18 +87,19 @@
                 <option value="event">Eventos</option>
                 <option value="request">Solicitudes</option>
             </select>
-            <div type="submit" class="ui teal button" style="background-color: #AD5691">Buscar</div>
+            <a type="submit" class="ui teal button" style="background-color: #AD5691" href="result">Buscar</a>
         </div>
     </div>
     <div class="right menu" style="padding-right: 30px">
         <div class="item">
-            <div class="ui floating labeled icon dropdown teal button"  style="background-color: #AD5691">
+            <div class="ui floating right labeled icon dropdown teal button"  style="background-color: #AD5691">
+                <span>{!!Auth::user()->name!!}</span>
                 <i class="dropdown icon"></i>
-                <span>Perfil</span>
                 <div class="menu transition hidden">
                     <a class="item" href="edit-perfil"><i class="user icon"></i>Cuenta</a>
                     <a class="item"><i class="star icon"></i>Favoritos</a>
                     <a class="item"><i class="bookmark icon"></i>Guardados</a>
+                    <a class="item"><i class="setting icon"></i>Configuración</a>
                     <a class="item" href="logout"><i class="close icon"></i>Salir</a>
                 </div>
             </div>
@@ -124,6 +125,7 @@
                 </a>
                 <div class="item">Favoritos</div>
                 <a class="item"><i class="bookmark icon"></i>Guardados</a>
+                <a class="item"><i class="setting icon"></i>Configuración</a>
             </div>
         </div>
         <a class="item" href="logout">Salir</a>

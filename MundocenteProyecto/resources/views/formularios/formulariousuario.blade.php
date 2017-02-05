@@ -26,24 +26,20 @@
                     <div class="equal width fields">
                         <div class="field">
                             <label>Foto de perfil</label>
-                            <img class="ui middle aligned small circular image" src="{!!Auth::user()->photo_url!!}">
+                            
                             <span>
                                 <label for="file" class="ui inverted button button_load">
-                                    Cargar Foto
                                     <input type="file" id="file" style="display:none">
+                                    <img class="ui middle aligned small circular image" src="{!!Auth::user()->photo_url!!}">
+                                    Cargar Foto
                                 </label>
                             </span>
                         </div>
                     </div>
                     <div class="equal width fields">
                         <div class="required field">
-                            <label>Nombres</label>
+                            <label>Nombre Completo</label>
                             <input name="name" type="text" placeholder="Nombres" value="{!!Auth::user()->name!!}">
-                        </div>
-
-                        <div class="required field">
-                            <label>Apellidos</label>
-                            <input name="last_name" type="text" placeholder="Apellidos">
                         </div>
                     </div>
                     <div class="required field">
@@ -71,7 +67,32 @@
                     <h4 class="ui dividing header">Estudios</h4>
                     <div class="required field">
                         <label>Áreas de formación</label>
-                        <textarea name="title_college" rows="2"></textarea>
+                         <div class="three fields">
+                            <div class="required field">
+                                <label>Gran área</label>
+                                <select name="large_area" class="ui multiple dropdown">
+                                    <option value="">Gran área</option>
+                                    <option value="name-1">Gran área-1</option>
+                                    <option value="name-2">Gran área-2</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Área</label>
+                                <select name="area" class="ui multiple dropdown">
+                                    <option value="">Área</option>
+                                    <option value="lvl-1">Área-1</option>
+                                    <option value="lvl-2">Área-2</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Disciplina</label>
+                                <select name="discipline" class="ui multiple dropdown">
+                                    <option value="">Disciplina</option>
+                                    <option value="discipline-1">Disciplina-1</option>
+                                    <option value="discipline-2">Disciplina-2</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="required grouped fields">
                         <label>Máximo nivel de formación (titulado)</label>
@@ -556,15 +577,6 @@
                                     }
                                 ]
                             },
-                            last_name: {
-                                identifier: 'last_name',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Apellidos'
-                                    }
-                                ]
-                            },
                             link_curriculum: {
                                 identifier: 'link_curriculum',
                                 rules: [
@@ -574,21 +586,21 @@
                                     }
                                 ]
                             },
+                            large_area: {
+                                identifier: 'large_area',
+                                rules: [
+                                    {
+                                        type   : 'minCount[1]',
+                                        prompt : 'Porfavor seleccione al menos un valor en Gran Área'
+                                    }
+                                ]
+                            },
                             load_curriculum: {
                                 identifier: 'load_curriculum',
                                 rules: [
                                     {
                                         type: 'empty',
                                         prompt: 'Porfavor introduzca un Archivo en Currículo'
-                                    }
-                                ]
-                            },
-                            title_college: {
-                                identifier: 'title_college',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Estudios'
                                     }
                                 ]
                             },
