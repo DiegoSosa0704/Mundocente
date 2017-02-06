@@ -11,6 +11,8 @@ use Redirect;
 use Mundocente\Http\Requests;
 use Mundocente\Http\Controllers\Controller;
 
+use Mundocente\Lugar;
+
 class HomeController extends Controller
 {
 
@@ -39,10 +41,22 @@ class HomeController extends Controller
      */
     public function editarmiperfil()
     {
-        return view('formularios.formulariousuario');
+        $lugares = Lugar::lists('name_lugar', 'id_lugar', 'type_lugar', 'id_lugar_fk');
+        return view('formularios.formulariousuario', compact('lugares'));
     }
 
 
+ /**
+     * Llama las ciudades del país selccionado
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function obtenerCiudades(Request $request, $id_pais){
+        if($request->ajax()){
+            $ciudades = Lugar::mostrarCiudades($id_pais);
+            return response()->json($ciudades);
+        }
+    }
 
  /**
      * Nos lleva al formulario para logueo

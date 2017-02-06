@@ -48,3 +48,7 @@ Route::get('logingoogle', 'SessionController@sesiongoogle');
 Route::get('authlinkedin', 'SessionController@authlinkedin');
 Route::get('loginlinkedin', 'SessionController@sesionlinkedin');
 
+
+
+Route::get('listCity/{id_pais}' , 'HomeController@obtenerCiudades');
+

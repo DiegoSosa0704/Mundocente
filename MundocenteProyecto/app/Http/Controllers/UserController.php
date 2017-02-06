@@ -12,6 +12,8 @@ use Mundocente\Http\Controllers\Controller;
 
 use Mundocente\User;
 
+
+
 class UserController extends Controller
 {
 

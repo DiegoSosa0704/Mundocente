@@ -12,7 +12,6 @@
     {!!Html::style('css/style-inicio.css')!!}
 
 
-
     {!!Html::script('js/jquery.min.js')!!}
     {!!Html::script('semantic/out/semantic.min.js')!!}
     {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.6/calendar.min.js')!!}
@@ -178,5 +177,6 @@
         })
     ;
 </script>
+{!!Html::script('js/selectDinamic.js')!!}
 </body>
 </html>
