@@ -20,8 +20,15 @@
                 <div class="line"></div>
             </div>
             <!--Contenido Segment -->
-            <div class="ui piled very padded left aligned segment">
-                <form class="ui form" id="form">
+            
+
+
+
+<div class="ui piled very padded left aligned segment">
+                
+                {!!Form::open(['url'=>'editaperfil', 'method'=> 'POST', 'class'=>'ui form', 'id'=>'form'])!!}
+                
+
                     <h4 class="ui dividing header">Datos personales</h4>
                     <div class="equal width fields">
                         <div class="field">
@@ -37,245 +44,15 @@
                             </span>
                         </div>
                     </div>
+
                     <div class="equal width fields">
                         <div class="required field">
                             <label>Nombre Completo</label>
-                            <input name="name" type="text" placeholder="Nombres" value="{!!Auth::user()->name!!}">
+                            {!!Form::text('name', Auth::user()->name, ['type' => 'text', 'placeholder' => 'Ingrese nombres y apellidos'])!!}
                         </div>
                     </div>
-                    <div class="two fields">
-                        <div class="required field">
-                            <label>País</label>
-
-                            {!!Form::select('country',$lugares, null, ['class'=>'ui search dropdown', 'id'=>'selectCountry', 'placeholder'=>'seleccione país'])!!}
-
-
-                        </div>
-                        <div class="required field">
-                            <label>Ciudad</label>
-                            {!!Form::select('city',['ninguna'], null, ['class'=>'ui search dropdown', 'id'=>'selectCity', 'placeholder'=>'Seleccione Ciudad'])!!}
-                           
-                        </div>
-                    </div>
-                    <h4 class="ui dividing header">Vinculación laboral y estudios</h4>
-                    <div class="required field">
-                        <label>Intitución en que labora</label>
-                        <div class="ui info compact small message">
-                            <p>Si su institución no se encuentra en la lista, podrá suministrarla en el campo
-                                "Otra". </p>
-                        </div>
-                        <div class="two fields">
-                            <div class="field">
-                                <label>Institución</label>
-                                <select class="ui fluid search dropdown email" multiple="" name="institution">
-                                    <option value="">Nombre</option>
-                                    <option value="test">test</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label>Otro</label>
-                                <div class="ui action input">
-                                    <input placeholder="Nombre" name="other" type="text">
-                                    <div class="ui button" onclick="addEmail()">Nuevo</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="required field">
-                        <label>Currículo</label>
-                        <div class="ui info compact small message">
-                            <p>Debe ingresar al menos uno de los dos campos correspondientes a currículo.</p>
-                        </div>
-                        <div class="two fields">
-                            <div class="required field">
-                                <input name="link_curriculum" placeholder="Enlace a currículo en la web" type="url">
-                            </div>
-                            <div class="required field">
-                                <div class="ui action input">
-                                    <input type="text" name="load_curriculum" id="_attachmentName"
-                                           placeholder="Archivo currículo">
-                                    <label for="attachmentName" class="ui icon button btn-file">
-                                        Cargar
-                                        <input type="file" id="attachmentName" name="attachmentName"
-                                               style="display: none">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="required grouped fields">
-                        <label>Máximo nivel de formación (titulado)</label>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Universitario</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Especializacíon</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Maestría</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Doctorado</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="level_training">
-                                <label>Post-doctorado</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Áreas de formación</label>
-                        <div class="ui three fields segment">
-                            <div class="required field">
-                                <label>Gran área</label>
-                                <select name="large_area" class="ui multiple dropdown">
-                                    <option value="">Gran área</option>
-                                    <option value="name-1">Gran área-1</option>
-                                    <option value="name-2">Gran área-2</option>
-                                </select>
-                                <div class="ui raised segment">
-                                    <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div><div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Área</label>
-                                <select name="area" class="ui multiple dropdown">
-                                    <option value="">Área</option>
-                                    <option value="lvl-1">Área-1</option>
-                                    <option value="lvl-2">Área-2</option>
-                                </select>
-                                <div class="ui raised segment">
-                                    <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Área
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Disciplina</label>
-                                <select name="discipline" class="ui multiple dropdown">
-                                    <option value="">Disciplina</option>
-                                    <option value="discipline-1">Disciplina-1</option>
-                                    <option value="discipline-2">Disciplina-2</option>
-                                </select>
-                                <div class="ui raised segment">
-                                    <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Disciplina
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="ui dividing header">Cuenta</h4>
+                    
+                     
                     <div class="equal width fields">
                         <div class="required field">
                             <label>Correo electrónico</label>
@@ -290,217 +67,452 @@
                             <input type="password" name="repeat_password">
                         </div>
                     </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <input type="hidden" name="_token", value="{{ csrf_token() }}" id="token">
+                    <h4 class="ui dividing header">Vinculación laboral y estudios</h4>
+                    <div class="required field">
+                        <label>Intitución en donde labora</label>
+                        <div class="two fields">
+                        <div class="required field">
+                            <label>País en donde se encuentra la universidad</label>
+
+                            <select class="ui search dropdown" name="country" placeholder="seleccione país" id="selectCountry">
+                                @foreach($lugares as $lugar)
+                                <option value="">Seleccione país</option>
+                                    <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                @endforeach
+                            </select>
+
+
+                        </div>
+                        <div class="required field">
+                            <label>Ciudad</label>
+                            {!!Form::select('city',['ninguna'], null, ['class'=>'ui search dropdown', 'id'=>'selectCity', 'placeholder'=>'Seleccione Ciudad'])!!}
+                           
+                        </div>
+                    </div>
+                        <div class="ui info compact small message">
+                            <p>Si su institución no se encuentra en la lista, podrá suministrarla en el campo
+                                "Otra". </p>
+                        </div>
+                        
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Institución</label>
+
+
+                            {!!Form::select('institution',['ninguna'], null, ['class'=>'ui fluid search dropdown email', 'id'=>'selectInstitution', 'placeholder'=>'seleccione su institución'])!!}
+
+                            </div>
+                            <div class="field">
+                                <label>Otra</label>
+                                <div class="ui action input">
+                                    <input placeholder="Nombre" name="other" type="text">
+                                    <div class="ui button" onclick="addEmail()">Nuevo</div>
+                                </div>
+                            </div>
+
+                        </div>
+                         <div class="right floated content">
+                                                <a class="ui label button green" id="agregaInstituto">Agregar Institución</a>
+                        </div>
+
+                             <div class="ui raised segment">
+                                    <label><b>Estoy viculado en:</b></label>
+                                    <div class="ui divided list selected_list" id="listadeinstitutosvinculados">
+                                        
+                                        
+                                        @foreach($institucionesVinvulado as $institu)
+                                        <div class="item">
+                                                <div class="right floated content">
+                                                    Estado de Institución {{$institu->state_institution}} <a class="ui label button color_3">Eliminar</a>
+                                                </div>
+                                            <div class="content">
+                                                {{$institu->name_institution}}
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        
+                                        
+
+
+                                    </div>
+                                </div>
+
+
+                    </div>
+                    <div class="required field">
+                        <label>Currículo</label>
+                        <div class="ui info compact small message">
+                            <p>Debe ingresar al menos uno de los dos campos correspondientes a currículo.</p>
+                        </div>
+                        <div class="two fields">
+                            <div class="required field">
+                                
+                                {!!Form::text('link_curriculum', Auth::user()->curriculo_url, ['type' => 'url', 'placeholder' => 'Enlace a currículo en la web'])!!}
+                            </div>
+                            <div class="required field">
+                                <div class="ui action input">
+                                     {!!Form::text('load_curriculum', null, ['type' => 'text', 'id'=>'_attachmentName', 'placeholder' => 'Archivo currículo'])!!}
+
+                                    <label for="attachmentName" class="ui icon button btn-file">
+                                        Cargar
+                                        <input type="file" id="attachmentName" name="attachmentName"
+                                               style="display: none">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="required grouped fields" >
+                        <label>Máximo nivel de formación (titulado)</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                            @if(Auth::user()->nivel_formacion=='post_doctorado')
+                                {!!Form::radio('level_training', 'post_doctorado', true)!!}
+                            @else
+                                {!!Form::radio('level_training', 'post_doctorado', false)!!}
+                            @endif
+                                
+                                <label>Post-doctorado</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                 @if(Auth::user()->nivel_formacion=='doctorado')
+                                {!!Form::radio('level_training', 'doctorado', true)!!}
+                            @else
+                                {!!Form::radio('level_training', 'doctorado', false)!!}
+                            @endif
+                                <label>Doctorado</label>
+                            </div>
+                        </div>
+                          <div class="field">
+                            <div class="ui radio checkbox">
+                                 @if(Auth::user()->nivel_formacion=='maestria')
+                                {!!Form::radio('level_training', 'maestria', true)!!}
+                            @else
+                                {!!Form::radio('level_training', 'maestria', false)!!}
+                            @endif
+                                <label>Maestría</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                 @if(Auth::user()->nivel_formacion=='especializacion')
+                                {!!Form::radio('level_training', 'especializacion', true)!!}
+                            @else
+                                {!!Form::radio('level_training', 'especializacion', false)!!}
+                            @endif
+                                <label>Especializacíon</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                  @if(Auth::user()->nivel_formacion=='universitario')
+                                {!!Form::radio('level_training', 'universitario', true)!!}
+                            @else
+                                {!!Form::radio('level_training', 'universitario', false)!!}
+                            @endif
+                                <label>Universitario</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <h4 class="ui dividing header">Áreas de formación</h4>
                     <div class="field">
-                        <label>Áreas de interés</label>
-                        <div class="ui three divided fields segment">
+                        
+                        <div class="ui three fields segment">
                             <div class="required field">
                                 <label>Gran área</label>
-                                <select name="large_area" class="ui multiple dropdown">
-                                    <option value="">Gran área</option>
-                                    <option value="name-1">Gran área-1</option>
-                                    <option value="name-2">Gran área-2</option>
+
+                                  <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
+                                    @foreach($gran_areas as $gran_area)
+                                    <option value="">Gran Área</option>
+                                        <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                    @endforeach
                                 </select>
+                               
+
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
                                     <div class="ui divided list selected_list">
+                                        
+                                        
+                                        @foreach($gran_areas_de_formacion as $gran_area_f)
                                         <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
+                                                <div class="right floated content">
+                                                    <div class="ui label button color_3">Eliminar</div>
+                                                </div>
                                             <div class="content">
-                                                Gran área
+                                                {{$gran_area_f->name_theme}}
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div><div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Gran área
-                                            </div>
-                                        </div>
+                                        @endforeach
+                                        
+                                        
+
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="required field">
+                            <div class="field">
                                 <label>Área</label>
-                                <select name="area" class="ui multiple dropdown">
-                                    <option value="">Área</option>
-                                    <option value="lvl-1">Área-1</option>
-                                    <option value="lvl-2">Área-2</option>
-                                </select>
+                               
+
+                                {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
+                                 
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
                                     <div class="ui divided list selected_list">
+                                        
+                                        
+                                        @foreach($areas_de_formacion as $area_f)
                                         <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
+                                                <div class="right floated content">
+                                                    <div class="ui label button color_3">Eliminar</div>
+                                                </div>
                                             <div class="content">
-                                                Área
+                                                {{$area_f->name_theme}}
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Área
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Área
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <div class="required field">
+                            <div class="field">
                                 <label>Disciplina</label>
-                                <select name="discipline" class="ui multiple dropdown">
-                                    <option value="">Disciplina</option>
-                                    <option value="discipline-1">Disciplina-1</option>
-                                    <option value="discipline-2">Disciplina-2</option>
-                                </select>
+                               
+                                {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                                 <div class="right floated content">
+                                                <div class="ui label button green">Agregar</div>
+                                </div>
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
                                     <div class="ui divided list selected_list">
+                                        
+
+                                         @foreach($disciplina_de_formacion as $disciplina_formacion)
                                         <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
+                                                <div class="right floated content">
+                                                    <div class="ui label button color_3">Eliminar</div>
+                                                </div>
                                             <div class="content">
-                                                Disciplina
+                                                {{$disciplina_formacion->name_theme}}
                                             </div>
                                         </div>
-                                        <div class="item">
-                                            <div class="right floated content">
-                                                <div class="ui label button color_3">Eliminar</div>
-                                            </div>
-                                            <div class="content">
-                                                Disciplina
-                                            </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                   <h4 class="ui dividing header">Áreas de interés</h4>
+                    <div class="field">
+                        
+                        <div class="ui three fields segment">
+                            <div class="required field">
+                                <label>Gran área</label>
+
+                                  <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_interes">
+                                    @foreach($gran_areas as $gran_area)
+                                    <option value="">Gran Área</option>
+                                        <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                    @endforeach
+                                </select>
+                                
+
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        
+                                        
+                                        
+                                        
+                                         @foreach($gran_areas_de_interes as $gran_area_i)
+                                        <div class="item">
+                                                <div class="right floated content">
+                                                    <div class="ui label button color_3">Eliminar</div>
+                                                </div>
+                                            <div class="content">
+                                                {{$gran_area_i->name_theme}}
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Área</label>
+                               
+
+                                {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_interes'])!!}
+                                
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        
+                                        
+                                        @foreach($areas_de_interes as $gran_area_i)
+                                        <div class="item">
+                                                <div class="right floated content">
+                                                    <div class="ui label button color_3">Eliminar</div>
+                                                </div>
+                                            <div class="content">
+                                                {{$gran_area_i->name_theme}}
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Disciplina</label>
+                               
+                                {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_interes'])!!}
+                                <div class="right floated content">
+                                                <div class="ui label button green">Agregar</div>
+                                </div>
+                                <div class="ui raised segment">
+                                    <label><b>Seleccionados</b></label>
+                                    <div class="ui divided list selected_list">
+                                        
+
+                                          @foreach($disciplina_de_interes as $gran_area_i)
+                                        <div class="item">
+                                                <div class="right floated content">
+                                                    <div class="ui label button color_3">Eliminar</div>
+                                                </div>
+                                            <div class="content">
+                                                {{$gran_area_i->name_theme}}
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <div class="required field">
                         <label>¿Desea recibir notificaciones de las diferentes publicaciones?</label>
+                        @if(Auth::user()->recibe_not=='si')
                         <div class="inline field">
                             <label>
                                 No
                             </label>
                             <div class="ui toggle checkbox" onclick="showNotificationType()">
-                                <input type="checkbox" name="notification" tabindex="0" class="hidden">
+                                <input type="checkbox" name="notification" tabindex="0" checked="checked" class="hidden" value="true">
                             </div>
                             <label>
                                 Si
                             </label>
                         </div>
+                        @else
+                        <div class="inline field">
+                            <label>
+                                No
+                            </label>
+                            <div class="ui toggle checkbox" onclick="showNotificationType()">
+                                <input type="checkbox" name="notification" tabindex="0" class="hidden" value="false">
+                            </div>
+                            <label>
+                                Si
+                            </label>
+                        </div>
+                        @endif
                     </div>
-                    <div class="ui notification_type raised segment" id="notification_type" style="display: none;">
+                    @if(Auth::user()->recibe_not=='si')
+                    <div class="ui notification_type raised segment" id="notification_type" >
                         <div class="required grouped fields">
                             <label>Notificaciones de: </label>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type" value="1">
+                                    <input type="checkbox" name="notification_type[]" value="1">
                                     <label>Convocatorias docentes</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type" value="2">
+                                    <input type="checkbox" name="notification_type[]" value="2">
                                     <label>Revistas científicas</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type" value="3">
+                                    <input type="checkbox" name="notification_type[]" value="3">
                                     <label>Eventos académicos</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type" value="4">
+                                    <input type="checkbox" name="notification_type[]" value="4">
                                     <label>Invitaciones a proyectos</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type" value="5">
+                                    <input type="checkbox" name="notification_type[]" value="5">
                                     <label>Invitaciones a ser evaluador de proyectos</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="grouped fields">
-                        <label>Activación de cuenta</label>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="notification_type" value="1">
-                                <label>Activar mi cuenta</label>
+                    @else
+                    <div class="ui notification_type raised segment" id="notification_type" style="display: none;">
+                        <div class="required grouped fields">
+                            <label>Notificaciones de: </label>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="notification_type[]" value="1">
+                                    <label>Convocatorias docentes</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui radio checkbox">
-                                <input type="radio" name="notification_type" value="2">
-                                <label>Inactivar mi cuenta</label>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="notification_type[]" value="2">
+                                    <label>Revistas científicas</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="notification_type[]" value="3">
+                                    <label>Eventos académicos</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="notification_type[]" value="4">
+                                    <label>Invitaciones a proyectos</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="notification_type[]" value="5">
+                                    <label>Invitaciones a ser evaluador de proyectos</label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @endif
+                   
                     <div class="field">
                         <label>Términos y condiciones</label>
                         <a class="ui compact blue label">Leer términos y condiciones</a>
@@ -509,13 +521,44 @@
                         <div class="sixteen wide column">
                             <div form="form" onclick="validateFormAccount()"
                                  class="ui submit inverted button button_submit">
-                                Guardar
+                                Aceptar
                             </div>
                         </div>
                     </div>
                     <div class="ui error message"></div>
-                </form>
-            </div>
+                    
+                {!!Form::close()!!}
+
+
+                 <div class="grouped fields">
+                        <label>Cuenta</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                            @if(Auth::user()->state_user=='activo')
+                            <input type="radio" name="activacion_cuenta" checked="checked" value="1">
+                            @else
+                            <input type="radio" name="activacion_cuenta" value="1">
+                            @endif
+                                
+                                <label>Activa</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                            @if(Auth::user()->state_user=='inactivo')
+                            <input type="radio" name="activacion_cuenta" checked="checked" value="2">
+                            @else
+                            <input type="radio" name="activacion_cuenta" value="2">
+                            @endif
+                                <label>Inactiva</label>
+                            </div>
+                        </div>
+                    </div>
+</div>
+
+
+
+            
         </div>
     </div>
 
@@ -564,15 +607,6 @@
                                     }
                                 ]
                             },
-                            large_area: {
-                                identifier: 'large_area',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                    }
-                                ]
-                            },
                             load_curriculum: {
                                 identifier: 'load_curriculum',
                                 rules: [
@@ -591,60 +625,6 @@
                                     }
                                 ]
                             },
-                            country: {
-                                identifier: 'country',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor seleccione un valor en País'
-                                    }
-                                ]
-                            },
-                            city: {
-                                identifier: 'city',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor seleccione un valor en Ciudad'
-                                    }
-                                ]
-                            },
-                            institution: {
-                                identifier: 'institution',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor seleccione un valor en Institución'
-                                    }
-                                ]
-                            },
-                            large_area: {
-                                identifier: 'large_area',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                    }
-                                ]
-                            },
-                            area: {
-                                identifier: 'area',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Área'
-                                    }
-                                ]
-                            },
-                            discipline: {
-                                identifier: 'discipline',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Disciplina'
-                                    }
-                                ]
-                            },
                             email: {
                                 identifier: 'email',
                                 rules: [
@@ -655,24 +635,6 @@
                                     {
                                         type: 'email',
                                         prompt: 'Porfavor introduzca un valor valido en Correo electrónico'
-                                    }
-                                ]
-                            },
-                            password: {
-                                identifier: 'password',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Contraseña'
-                                    }
-                                ]
-                            },
-                            repeat_password: {
-                                identifier: 'repeat_password',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Repetir contraseña'
                                     }
                                 ]
                             },
@@ -717,60 +679,6 @@
                                     {
                                         type: 'checked',
                                         prompt: 'Porfavor seleccione un valor en Nivel de formación'
-                                    }
-                                ]
-                            },
-                            country: {
-                                identifier: 'country',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor seleccione un valor en País'
-                                    }
-                                ]
-                            },
-                            city: {
-                                identifier: 'city',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor seleccione un valor en Ciudad'
-                                    }
-                                ]
-                            },
-                            institution: {
-                                identifier: 'institution',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor seleccione un valor en Institución'
-                                    }
-                                ]
-                            },
-                            large_area: {
-                                identifier: 'large_area',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                    }
-                                ]
-                            },
-                            area: {
-                                identifier: 'area',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Área'
-                                    }
-                                ]
-                            },
-                            discipline: {
-                                identifier: 'discipline',
-                                rules: [
-                                    {
-                                        type: 'minCount[1]',
-                                        prompt: 'Porfavor seleccione al menos un valor en Disciplina'
                                     }
                                 ]
                             },
@@ -826,7 +734,15 @@
         }
 
         function showNotificationType() {
-            $('#notification_type').toggle("slow");
+
+            if($('#notification_type').is(":visible")){
+                $('#notification_type').toggle("fast");
+                $('#recibe_not').val(false);
+            }else{
+                $('#notification_type').toggle("show");
+                $('#recibe_not').val(true)
+            }
+            
         }
 
         $('.ui.radio.checkbox')

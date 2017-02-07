@@ -11,6 +11,7 @@ use Redirect;
 use Mundocente\Http\Controllers\Controller;
 
 use Mundocente\User;
+use Mundocente\Vinculacion;
 
 
 
@@ -64,6 +65,7 @@ class UserController extends Controller
                 'recibe_not' => 'no',
                 'nivel_formacion' => 'ninguno',
                 'photo_url' => 'images/user.png',
+                'state_user' => 'activo',
 
             ]);
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
@@ -73,6 +75,84 @@ class UserController extends Controller
 
 
     }
+
+
+
+
+
+ /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editarusuario(Request $request)
+    {
+
+
+        
+        echo "<br>Ciudad: ".$request['city'];
+        
+        
+        
+         
+
+        
+        
+        echo "<br>Activación cuenta: ".$request['activacion_cuenta'];
+        echo " - ";
+        for ($n=0; $n < count($request['notification_type']); $n++) { 
+            echo " recibe de ".$request['notification_type'][$n];
+        }
+
+
+/*
+        Vinculacion::create([
+                'id_user_fk' => Auth::user()->id,
+                'id_institution_fk' => $request['institution'];
+            ]);
+*/
+       
+
+        if($request['notification']==true){
+            DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['name' => $request['name'],
+                    'curriculo_url'=>$request['link_curriculum'],
+                    'nivel_formacion'=>$request['level_training'],
+                    'recibe_not'=>'si']);
+        }else{
+            DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['name' => $request['name'],
+                    'curriculo_url'=>$request['link_curriculum'],
+                    'nivel_formacion'=>$request['level_training'],
+                    'recibe_not'=>'no']);
+        }
+
+
+    }
+
+
+    public function agregarUniversidad(Request $request){
+        if($request->ajax()){
+            
+           
+            Vinculacion::create([
+                'id_user_fk' => Auth::user()->id,
+                'id_institution_fk' =>  $request['id_institute'],
+            ]);
+
+           $instituto =  DB::table('institucions')->where('id_institution', $request['id_institute'])->limit(1)->get();
+           foreach ($instituto as $ins) {
+               return  response()->json($ins->name_institution);
+
+           }
+           
+        }
+    }
+ 
 
     /**
      * Display the specified resource.
@@ -93,7 +173,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+         //
     }
 
     /**
@@ -105,7 +185,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        
+
+
     }
 
     /**

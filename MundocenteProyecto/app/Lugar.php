@@ -1,6 +1,7 @@
 <?php
 
 namespace Mundocente;
+use DB;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,4 +14,6 @@ class Lugar extends Model
     public static function mostrarCiudades($id_pais){
     	return Lugar::where('id_lugar_fk', $id_pais)->get();
     }
+
+   
 }

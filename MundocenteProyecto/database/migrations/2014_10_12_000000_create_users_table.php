@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->enum('nivel_formacion', ['ninguno','universitario', 'especializacion', 'maestria', 'doctorado', 'post_doctorado']);
             $table->string('photo_url');
             $table->enum('state_user', ['avtivo', 'inactivo']);
+            $table->integer('id_lugar_fk')->unsigned();
+            $table->foreign('id_lugar_fk')->references('id_lugar')->on('lugars');
             $table->rememberToken();
             $table->timestamps();
         });

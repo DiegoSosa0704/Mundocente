@@ -31,6 +31,8 @@ Route::get('result', 'HomeController@showResult');
 
 
 Route::resource('user', 'UserController');
+Route::post('editaperfil', 'UserController@editarusuario');
+Route::post('addUniversity' , 'UserController@agregarUniversidad');
 
 
 
@@ -49,6 +51,14 @@ Route::get('authlinkedin', 'SessionController@authlinkedin');
 Route::get('loginlinkedin', 'SessionController@sesionlinkedin');
 
 
-
+//Selects dinámicos
 Route::get('listCity/{id_pais}' , 'HomeController@obtenerCiudades');
+
+
+Route::get('area/{id}' , 'HomeController@obtenerArea');
+Route::get('disciplina/{id_pais}' , 'HomeController@obtenerDisciplina');
+
+Route::get('university/{id_city}' , 'HomeController@obtenerUniversidades');
+
+
 
