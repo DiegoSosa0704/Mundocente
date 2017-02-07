@@ -14,13 +14,17 @@ use Mundocente\Http\Controllers\Controller;
 use Mundocente\Lugar;
 use Mundocente\Institucion;
 use Mundocente\Tema;
+use Mundocente\Tema_Notificacion;
 
 class HomeController extends Controller
 {
 
     public function __construct(){
         $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento']]);
+
+        
     }
+
 
 
     public function find(Route $route){
@@ -117,8 +121,17 @@ class HomeController extends Controller
             ->get();
 
 
+         $recibonotifide = DB::table('tema__notificacions')
+         ->select('id_type_publications', 'name_theme_notifications')
+         ->get();
 
-            return view('formularios.formulariousuario', compact('lugares', 'gran_areas', 'gran_areas_de_formacion', 'areas_de_formacion', 'disciplina_de_formacion', 'gran_areas_de_interes', 'areas_de_interes', 'disciplina_de_interes', 'institucionesVinvulado'));
+         $milista_notificacion_recibe = DB::table('tema_notificacion_usuarios')
+         ->where('id_user_fk', Auth::user()->id)
+         ->select('id_type_notifications_fk')
+         ->get();
+
+
+            return view('formularios.formulariousuario', compact('lugares', 'gran_areas', 'gran_areas_de_formacion', 'areas_de_formacion', 'disciplina_de_formacion', 'gran_areas_de_interes', 'areas_de_interes', 'disciplina_de_interes', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
     }
 
 

@@ -135,7 +135,7 @@
                     </div>
                    
                     <br>
-                    <div class="required field">
+                    <div class="field">
                         <label>¿Desea recibir notificaciones de las diferentes publicaciones?</label>
                         @if(Auth::user()->recibe_not=='si')
                         <div class="inline field">
@@ -164,75 +164,59 @@
                         @endif
                     </div>
                     @if(Auth::user()->recibe_not=='si')
+                    <?php $id_notification_exist = 0; ?>
                     <div class="ui notification_type raised segment" id="notification_type" >
                         <div class="required grouped fields">
                             <label>Notificaciones de: </label>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="1">
-                                    <label>Convocatorias docentes</label>
+
+                            @foreach($recibonotifide as $recibe_noti)
+
+                            @foreach($milista_notificacion_recibe as $misnoti)
+                                @if($recibe_noti->id_type_publications==$misnoti->id_type_notifications_fk)
+                                <p style="display: none;">{{$id_notification_exist=$misnoti->id_type_notifications_fk}}</p>
+                                <div class="field">
+                                    <div class="ui checkbox checked">
+                                        <input type="checkbox" checked="" name="notification_type[]" value="{{$recibe_noti->id_type_publications}}">
+                                        <label>{{$recibe_noti->name_theme_notifications}}</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="2">
-                                    <label>Revistas científicas</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="3">
-                                    <label>Eventos académicos</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="4">
-                                    <label>Invitaciones a proyectos</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="5">
-                                    <label>Invitaciones a ser evaluador de proyectos</label>
-                                </div>
-                            </div>
+                                @else
+                                
+                                  
+
+                                @endif
+                            @endforeach
+
+                              @if($id_notification_exist!=$recibe_noti->id_type_publications)
+                                     <div class="field">
+                                                <div class="ui checkbox">
+                                                    <input type="checkbox" name="notification_type[]" value="{{$recibe_noti->id_type_publications}}">
+                                                    <label>{{$recibe_noti->name_theme_notifications}}</label>
+                                                </div>
+                                            </div>
+                                    @endif
+                           
+
+                            @endforeach
+
+                         
                         </div>
                     </div>
                     @else
                     <div class="ui notification_type raised segment" id="notification_type" style="display: none;">
                         <div class="required grouped fields">
                             <label>Notificaciones de: </label>
+                            
+                           @foreach($recibonotifide as $recibe_noti)
+
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="1">
-                                    <label>Convocatorias docentes</label>
+                                    <input type="checkbox" name="notification_type[]" value="{{$recibe_noti->id_type_publications}}">
+                                    <label>{{$recibe_noti->name_theme_notifications}}</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="2">
-                                    <label>Revistas científicas</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="3">
-                                    <label>Eventos académicos</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="4">
-                                    <label>Invitaciones a proyectos</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" name="notification_type[]" value="5">
-                                    <label>Invitaciones a ser evaluador de proyectos</label>
-                                </div>
-                            </div>
+
+                            @endforeach
                         </div>
                     </div>
                     @endif
@@ -275,23 +259,31 @@
    <input type="hidden" name="_token", value="{{ csrf_token() }}" id="token">
                     <h4 class="ui dividing header">Vinculación laboral</h4>
                     <div class="required field">
-                        <label>Intitución en donde labora</label>
+                        
                         <div class="two fields">
                         <div class="required field">
                             <label>País en donde se encuentra la universidad</label>
 
-                            <select class="ui search dropdown" name="country" placeholder="seleccione país" id="selectCountry">
-                                @foreach($lugares as $lugar)
+                            <select class="ui search dropdown" name="country" placeholder="seleccione país de la institución" id="selectCountry">
                                 <option value="">Seleccione país</option>
+                                @foreach($lugares as $lugar)
+                                
                                     <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
                                 @endforeach
                             </select>
 
 
                         </div>
-                        <div class="required field">
+                        <div class="required field" id="cityChange">
                             <label>Ciudad</label>
-                            {!!Form::select('city',['ninguna'], null, ['class'=>'ui search dropdown', 'id'=>'selectCity', 'placeholder'=>'Seleccione Ciudad'])!!}
+                           
+
+                             <select class="ui search dropdown" name="city" placeholder="Seleccione Ciudad" id="selectCity">
+                                
+                                <option value="">Seleccione ciudad</option>
+                                    
+                                
+                            </select>
                            
                         </div>
                     </div>
@@ -300,19 +292,23 @@
                                 "Otra". </p>
                         </div>
                         
-                        <div class="two fields">
-                            <div class="field">
+                        <div class="two fields" id="institutionChange">
+                            <div class="required field">
                                 <label>Institución</label>
 
 
-                            {!!Form::select('institution',['ninguna'], null, ['class'=>'ui fluid search dropdown email', 'id'=>'selectInstitution', 'placeholder'=>'seleccione su institución'])!!}
+                            <select class="ui search dropdown" name="institution" placeholder="Seleccione Institución" id="selectInstitution">
+                                
+                                <option value="" >Seleccione institución</option>
+                                    
+                            </select>
 
                             </div>
                             <div class="field">
                                 <label>Otra</label>
                                 <div class="ui action input">
-                                    <input placeholder="Nombre" name="other" type="text">
-                                    <div class="ui button" onclick="addEmail()">Nuevo</div>
+                                    <input placeholder="Nombre" id="otherInstitute" type="text" value="">
+                                    <div class="ui button" id="addInstituteNew">Nuevo</div>
                                 </div>
                             </div>
 
@@ -327,12 +323,12 @@
                                         
                                         
                                         @foreach($institucionesVinvulado as $institu)
-                                        <div class="item">
+                                        <div class="item" id="institutionList{{$institu->id_institution}}">
                                                 <div class="right floated content">
-                                                    Estado de Institución {{$institu->state_institution}} <a class="ui label button color_3">Eliminar</a>
+                                                     <a class="ui label button color_3" onclick="delete_institution_vinul({{$institu->id_institution}})">Eliminar</a>
                                                 </div>
                                             <div class="content">
-                                                {{$institu->name_institution}}
+                                                {{$institu->name_institution}} - ({{$institu->state_institution}})
                                             </div>
                                         </div>
                                         @endforeach
@@ -345,6 +341,28 @@
 
 
                     </div>
+                        <div class="ui info green message" style="display: none;" id="messageSaveVinculation">
+                                <i class="close icon" id="cierramensajedeinstitutos"></i>
+                                <div class="header">
+                                Guardó institución con éxito
+                                </div>
+                                <ul class="list">
+                                <li id="idlisaveinstitute"></li>
+                                
+                                </ul>
+                        </div>
+
+
+                        <div class="ui red message" style="display: none;" id="messageSaveVinculationerror">
+                                <i class="close icon" id="cierramensajedeinstitutoserror"></i>
+                                <div class="header">
+                                    No se ha seleccionado la Institución correctamente
+                                </div>
+                                <ul class="list">
+                                
+                                
+                                </ul>
+                        </div>
 
 </div>
 </div>
@@ -634,20 +652,7 @@
     </div>
 
     <script type="text/javascript">
-        function addEmail() {
-            var institution = $('.ui.form').form('get value', 'other');
-            var institutions = $('.ui.form .field .dropdown.email').dropdown('get value');
-            institutions.push(institution);
-
-            $('.ui.form .field .dropdown.email select').append('<option value="' + institution + '" selected="">' + institution + '</option>');
-            $('.ui.form .field .dropdown.email .menu').append('<div class="item" data-value="' + institution + '">' + institution + '</div>');
-
-            $('.ui.form .field .dropdown.email').dropdown('set value', institutions);
-            $('.ui.form .field .dropdown.email').dropdown('set selected', institution);
-            $('.ui.form .field .dropdown.email').dropdown();
-
-            $('.ui.form .field.dropdown.email').dropdown();
-        }
+       
 
         function validateFormAccount() {
             var $form = $('.ui.form'),
@@ -815,6 +820,26 @@
             }
             
         }
+
+        $('.message .close')
+          .on('click', function() {
+             if($('#messageSaveVinculation').is(":visible")){
+                $('#messageSaveVinculation').toggle("fast");
+            }
+            
+          })
+        ;
+
+          $('.message .close')
+          .on('click', function() {
+            if($('#messageSaveVinculationerror').is(":visible")){
+                $('#messageSaveVinculationerror').toggle("fast");
+            }
+          })
+        ;
+
+        
+       
 
         $('.ui.radio.checkbox')
             .checkbox()

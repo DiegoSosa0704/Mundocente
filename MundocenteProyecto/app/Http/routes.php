@@ -33,6 +33,8 @@ Route::get('result', 'HomeController@showResult');
 Route::resource('user', 'UserController');
 Route::post('editaperfil', 'UserController@editarusuario');
 Route::post('addUniversity' , 'UserController@agregarUniversidad');
+Route::post('addUniversityNew' , 'UserController@agregarUniversidadNueva');
+Route::post('deleteUniversity' , 'UserController@eliminarVinculacion');
 
 
 

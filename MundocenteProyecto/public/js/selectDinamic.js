@@ -1,9 +1,9 @@
 
 //Llena el campo ciudad con el país correspondiente
 $('#selectCountry').change(function(event){
-	console.log('');
+	$('#cityChange').toggle("fast");
 	$('#selectCity').empty();
-
+	$('#selectInstitution').empty();
 
 	$.get('listCity/'+event.target.value+ "" , function(response, ciudad){
 
@@ -11,6 +11,12 @@ $('#selectCountry').change(function(event){
 			$('#selectCity').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
 		}
 	});
+
+
+	$('#cityChange').toggle("show");
+	$('#selectCity').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCity > option[value="0"]').attr('selected', 'selected');
+
 });
 
 
@@ -21,9 +27,11 @@ $('#selectCountry').change(function(event){
 
 //llena el campo de instituciones según la ciudad seleccionada
 $('#selectCity').change(function(event){
-	console.log('');
-	$('#selectInstitution').empty();
 
+	$('#institutionChange').toggle("fast");
+	
+	$('#selectInstitution').empty();
+	
 
 	$.get('university/'+event.target.value+ "" , function(response, ciudad){
 
@@ -31,7 +39,15 @@ $('#selectCity').change(function(event){
 			$('#selectInstitution').append("<option value='"+response[i].id_institution+"'> "+ response[i].name_institution +" </option>");
 		}
 	});
+
+	$('#selectInstitution').append('<option value="0" disabled="true">Seleccione Institución</option>');
+	$('#selectInstitution > option[value="0"]').attr('selected', 'selected');
+	$('#institutionChange').toggle("show");
+	
 });
+
+
+
 
 
 
@@ -108,8 +124,102 @@ $('#select_area_interes').change(function(event){
 
 $("#agregaInstituto").click(function(){
 	var id_instituto = $("#selectInstitution").val();
-	var ruta = "http://localhost:8000/addUniversity";
+	var ruta = "addUniversity";
 	var token = $("#token").val();
+	
+	if(id_instituto==null || id_instituto==0){
+		
+		
+		
+		if($('#messageSaveVinculationerror').is(":visible")){
+                
+            }else{
+            	$('#messageSaveVinculationerror').toggle("show");
+            }
+
+		if($('#messageSaveVinculation').is(":visible")){
+                $('#messageSaveVinculation').toggle("fast");
+            }
+	}else{
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_institute: id_instituto},
+		success:function(info){
+			
+
+		if($('#messageSaveVinculation').is(":visible")){
+                
+            }else{
+            	$('#messageSaveVinculation').toggle("show");
+            }
+
+
+		if($('#messageSaveVinculationerror').is(":visible")){
+                $('#messageSaveVinculationerror').toggle("fast");
+            }
+
+            $("#listadeinstitutosvinculados").append("<div class='item' id='institutionList"+info.id_institution+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='delete_institution_vinul("+info.id_institution+")'>Eliminar</a> </div>   <div class='content'>"+info.name_institution+" - ("+info.state_institution+")  </div> </div>");
+
+			$( "#idlisaveinstitute" ).append( "Se guardó ("+info.name_institution+") como instituto de tabajo.<br>");
+
+		}
+
+	});
+	}
+	
+});
+
+
+
+
+
+
+
+
+//Agegar una institución que no existe
+
+$("#addInstituteNew").click(function(){
+	var name_new = $("#otherInstitute").val();
+	var ruta = "addUniversityNew";
+	var token = $("#token").val();
+
+
+if(name_new!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{name_new_institute: name_new},
+		success:function(info){
+			console.log('Se agregó ');
+			$("#listadeinstitutosvinculados").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'>Se ha enviado la solicitud para agregar una nueva universidad - ("+name_new+") está por el momento inactiva </div> </div>");
+		}
+	});
+}
+
+
+	
+	
+	
+	
+});
+
+
+
+
+//Elimina un institución de vinculación
+
+
+function delete_institution_vinul(id_ins){
+
+	var id_instituto = id_ins;
+	var ruta = "deleteUniversity";
+	var token = $("#token").val();
+	
 	$.ajax({
 		url: ruta,
 		headers: {'X-CSRF-TOKEN': token},
@@ -117,11 +227,17 @@ $("#agregaInstituto").click(function(){
 		dataType: 'json',
 		data:{id_institute: id_instituto},
 		success:function(info){
-			$( "#listadeinstitutosvinculados" ).append( "<div class='item'><div class='left floated content'>'"+info.name_institution+"'   (Activo)</div></div>");
+			console.log('entró');
+            	$('#institutionList'+id_instituto).toggle("fast");
+
 		}
 
 	});
-});
+	
+}
+	
+
+
 
 
 

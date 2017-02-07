@@ -11,7 +11,9 @@ use Redirect;
 use Mundocente\Http\Controllers\Controller;
 
 use Mundocente\User;
+use Mundocente\Institucion;
 use Mundocente\Vinculacion;
+use Mundocente\temaNotificacionUsuario;
 
 
 
@@ -91,11 +93,8 @@ class UserController extends Controller
     {
 
         
-        echo "<br>Activación cuenta: ".$request['activacion_cuenta'];
-        echo " - ";
-        for ($n=0; $n < count($request['notification_type']); $n++) { 
-            echo " recibe de ".$request['notification_type'][$n];
-        }
+        
+       
 
 
         if($request['notification']==true){
@@ -105,6 +104,18 @@ class UserController extends Controller
                     'curriculo_url'=>$request['link_curriculum'],
                     'nivel_formacion'=>$request['level_training'],
                     'recibe_not'=>'si']);
+            
+            DB::table('tema_notificacion_usuarios')->where('id_user_fk', Auth::user()->id)->delete();
+
+             for ($n=0; $n < count($request['notification_type']); $n++) { 
+                 temaNotificacionUsuario::create([
+                'id_user_fk' => Auth::user()->id,
+                'id_type_notifications_fk' => $request['notification_type'][$n],
+
+                ]);
+                
+            }
+
         }else{
             DB::table('users')
                 ->where('id', Auth::user()->id)
@@ -112,6 +123,7 @@ class UserController extends Controller
                     'curriculo_url'=>$request['link_curriculum'],
                     'nivel_formacion'=>$request['level_training'],
                     'recibe_not'=>'no']);
+            DB::table('tema_notificacion_usuarios')->where('id_user_fk', Auth::user()->id)->delete();
         }
         return Redirect::to('edit-perfil');
 
@@ -129,16 +141,24 @@ class UserController extends Controller
 
 
 
-
+   /**
+     * método que agrega universidad donde labora
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
 
     public function agregarUniversidad(Request $request){
         if($request->ajax()){
-            
-           
-            Vinculacion::create([
-                'id_user_fk' => Auth::user()->id,
-                'id_institution_fk' =>  $request['id_institute'],
-            ]);
+
+            $quantityVinculation = Vinculacion::where('id_user_fk', Auth::user()->id)->where('id_institution_fk', $request['id_institute'])->count();
+
+            if ($quantityVinculation==0) {
+                    Vinculacion::create([
+                   'id_user_fk' => Auth::user()->id,
+                    'id_institution_fk' =>  $request['id_institute'],
+                ]);
+            }
 
            $instituto =  DB::table('institucions')->where('id_institution', $request['id_institute'])->limit(1)->get();
            foreach ($instituto as $ins) {
@@ -146,6 +166,45 @@ class UserController extends Controller
 
            }
            
+        }
+    }
+
+
+
+
+
+   /**
+     * método que agrega una nueva institución
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function agregarUniversidadNueva(Request $request){
+        if($request->ajax()){
+             Institucion::create([
+                   'name_institution' => $request['name_new_institute'],
+                    'setor_institution' =>  'universitario',
+                    'state_institution' => 'nuevo',
+                ]);
+               return  0;
+           
+        }
+    }
+
+
+
+   /**
+     * Método que elimina una vinculación al usuario en sesión
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function eliminarVinculacion(Request $request){
+        if($request->ajax()){
+            DB::table('vinculacions')->where('id_institution_fk', $request['id_institute'])->delete();
+            return 0;
         }
     }
  
