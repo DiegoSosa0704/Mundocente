@@ -90,15 +90,6 @@ class UserController extends Controller
     public function editarusuario(Request $request)
     {
 
-
-        
-        echo "<br>Ciudad: ".$request['city'];
-        
-        
-        
-         
-
-        
         
         echo "<br>Activación cuenta: ".$request['activacion_cuenta'];
         echo " - ";
@@ -106,14 +97,6 @@ class UserController extends Controller
             echo " recibe de ".$request['notification_type'][$n];
         }
 
-
-/*
-        Vinculacion::create([
-                'id_user_fk' => Auth::user()->id,
-                'id_institution_fk' => $request['institution'];
-            ]);
-*/
-       
 
         if($request['notification']==true){
             DB::table('users')
@@ -136,6 +119,18 @@ class UserController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     public function agregarUniversidad(Request $request){
         if($request->ajax()){
             
@@ -147,7 +142,7 @@ class UserController extends Controller
 
            $instituto =  DB::table('institucions')->where('id_institution', $request['id_institute'])->limit(1)->get();
            foreach ($instituto as $ins) {
-               return  response()->json($ins->name_institution);
+               return  response()->json($ins);
 
            }
            

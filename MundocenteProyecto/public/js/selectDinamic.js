@@ -117,7 +117,7 @@ $("#agregaInstituto").click(function(){
 		dataType: 'json',
 		data:{id_institute: id_instituto},
 		success:function(info){
-			$( "#listadeinstitutosvinculados" ).append( "<div class='item'><div class='left floated content'>'"+info+"'   (Activo)</div></div>");
+			$( "#listadeinstitutosvinculados" ).append( "<div class='item'><div class='left floated content'>'"+info.name_institution+"'   (Activo)</div></div>");
 		}
 
 	});
