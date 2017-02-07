@@ -139,12 +139,14 @@
             onChange: function (value, text, $selectedItem) {
                 switch (value) {
                     case 'all':
-                       /* $('#paper').toggle(true);
-                        $('#announcement').toggle(true);
-                        $('#event').toggle(true);
-                        $('#request').toggle(true);*/
+                        $('#all').toggle(true);
+                        $('#paper').toggle(false);
+                        $('#announcement').toggle(false);
+                        $('#event').toggle(false);
+                        $('#request').toggle(false);
                         break;
                     case 'paper':
+                        $('#all').toggle(false);
                         $('#paper').toggle(true);
                         $('#announcement').toggle(false);
                         $('#event').toggle(false);
@@ -152,6 +154,7 @@
                         $('#request_investigator').toggle(false);
                         break;
                     case 'announcement':
+                        $('#all').toggle(false);
                         $('#paper').toggle(false);
                         $('#announcement').toggle(true);
                         $('#event').toggle(false);
@@ -159,6 +162,7 @@
                         $('#request_investigator').toggle(false);
                         break;
                     case 'event':
+                        $('#all').toggle(false);
                         $('#paper').toggle(false);
                         $('#announcement').toggle(false);
                         $('#event').toggle(true);
@@ -166,6 +170,7 @@
                         $('#request_investigator').toggle(false);
                         break;
                     case 'request_investigator':
+                        $('#all').toggle(false);
                         $('#paper').toggle(false);
                         $('#announcement').toggle(false);
                         $('#event').toggle(false);
@@ -173,6 +178,7 @@
                         $('#request_investigator').toggle(true);
                         break;
                     case 'request_evaluator':
+                        $('#all').toggle(false);
                         $('#paper').toggle(false);
                         $('#announcement').toggle(false);
                         $('#event').toggle(false);

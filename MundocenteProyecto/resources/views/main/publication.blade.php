@@ -46,10 +46,23 @@
         <div class="ui container">
             <div class="ui stackable grid">
                 <div class="ui five wide form column">
-                    <div id="announcement" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll;display: none;">
+                    <div id="all" class="ui raised padded fixed sticky sticky-filter segment"
+                         style="min-width: 23% !important; max-width: 23% !important; min-height: 10% !important;overflow: scroll; margin-top: 0;">
+                        <div class="ui top left attached label" style="font-size: 1em">Filtrado</div>
+                        <div class="ui info message">
+                            <div class="header">
+                                Al seleccionar "Todo" en el menú de búsqueda, podrá buscar todos los tipos de
+                                publicación introduciendo palabras clave y oprimiendo el botón Buscar.
+                            </div>
+                        </div>
+                    </div>
+                    <div id="announcement" class="ui raised padded fixed sticky sticky-filter segment"
+                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll;display: none; margin-top: 0;">
                         <div class="ui top left attached label" style="font-size: 1em">Filtros de convocatoria</div>
                         <div class="ui small form">
+                            <h5 class="ui horizontal divider header">
+                                Áreas de conocimiento
+                            </h5>
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
@@ -81,6 +94,9 @@
                                     </select>
                                 </div>
                             </div>
+                            <h5 class="ui horizontal divider header">
+                                Lugar de la convocatoria
+                            </h5>
                             <div class="field">
                                 <label>País</label>
                                 <select name="country" class="ui dropdown">
@@ -108,9 +124,12 @@
                         </div>
                     </div>
                     <div id="paper" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none;">
+                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
                         <div class="ui top left attached label" style="font-size: 1em">Filtros de revistas</div>
                         <div class="ui small form">
+                            <h5 class="ui horizontal divider header">
+                                Áreas de conocimiento
+                            </h5>
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
@@ -142,6 +161,9 @@
                                     </select>
                                 </div>
                             </div>
+                            <h5 class="ui horizontal divider header">
+                                Lugar de la institución
+                            </h5>
                             <div class="field">
                                 <label>País</label>
                                 <select name="country" class="ui dropdown">
@@ -166,12 +188,30 @@
                                     <option value="institution-2">Ciudad-2</option>
                                 </select>
                             </div>
+                            <div class="grouped fields">
+                                <label>Indexada</label>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="indexed">
+                                        <label>Si</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="indexed">
+                                        <label>No</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div id="event" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none;">
+                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
                         <div class="ui top left attached label" style="font-size: 1em">Filtros de eventos</div>
                         <div class="ui small form">
+                            <h5 class="ui horizontal divider header">
+                                Áreas de conocimiento
+                            </h5>
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
@@ -203,6 +243,9 @@
                                     </select>
                                 </div>
                             </div>
+                            <h5 class="ui horizontal divider header">
+                                Lugar del evento
+                            </h5>
                             <div class="field">
                                 <label>País</label>
                                 <select name="country" class="ui dropdown">
@@ -230,9 +273,14 @@
                         </div>
                     </div>
                     <div id="request_investigator" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de solicitud a investigadores</div>
+                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
+                        <div class="ui top left attached label" style="font-size: 1em">Filtros de solicitud a
+                            investigadores
+                        </div>
                         <div class="ui small form">
+                            <h5 class="ui horizontal divider header">
+                                Áreas de conocimiento
+                            </h5>
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
@@ -264,6 +312,9 @@
                                     </select>
                                 </div>
                             </div>
+                            <h5 class="ui horizontal divider header">
+                                Lugar de la institución
+                            </h5>
                             <div class="field">
                                 <label>País</label>
                                 <select name="country" class="ui dropdown">
@@ -291,9 +342,14 @@
                         </div>
                     </div>
                     <div id="request_evaluator" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de solicitud a evaluadores</div>
+                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
+                        <div class="ui top left attached label" style="font-size: 1em">Filtros de solicitud a
+                            evaluadores
+                        </div>
                         <div class="ui small form">
+                            <h5 class="ui horizontal divider header">
+                                Áreas de conocimiento
+                            </h5>
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
@@ -325,6 +381,9 @@
                                     </select>
                                 </div>
                             </div>
+                            <h5 class="ui horizontal divider header">
+                                Lugar de la institución
+                            </h5>
                             <div class="field">
                                 <label>País</label>
                                 <select name="country" class="ui dropdown">
@@ -354,9 +413,11 @@
                 </div>
                 <div class="ui eleven wide column">
                     <h2 class="ui header">Ultimas publicaciones</h2>
-                    <div class="ui raised card menu segment" style="width: 100%;">
+                    <div id="result-announcement" class="ui raised card menu segment" style="width: 100%;">
+                        {{--Titulo--}}
                         <div class="content">
                             <div class="ui right floated simple dropdown item">
+                                Convocatoria
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="#">Guardar publicación</a>
@@ -364,36 +425,39 @@
                                     <a class="item" href="#">Mis publicaciones</a>
                                 </div>
                             </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
+                            <a><h3 class="header">Título de convocatoria</h3></a>
+                        </div>
+                        {{--Institución--}}
+                        <div class="content">
                             <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
+                                <div class="ui large label">
+                                    <i class="student icon"></i>
+                                    <a class="detail">Institución</a>
+                                </div>
                             </div>
                         </div>
+                        {{--Footer--}}
                         <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <span><b>Desde: </b> dd/mm/aaaa</span>
+                                    <br>
+                                    <span><b>Hasta: </b> dd/mm/aaaa</span>
+                                </div>
+                                <div class="five wide column">
+                                    <button class="ui teal right floated labeled icon button">
+                                        Ver detalle
+                                        <i class="linkify icon"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
+                    <div id="result-paper" class="ui raised card menu segment" style="width: 100%;">
+                        {{--Titulo--}}
                         <div class="content">
                             <div class="ui right floated simple dropdown item">
+                                Revista
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="#">Guardar publicación</a>
@@ -401,36 +465,37 @@
                                     <a class="item" href="#">Mis publicaciones</a>
                                 </div>
                             </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
+                            <a><h3 class="header">Título de revista</h3></a>
+                        </div>
+                        <div class="ui items content">
+                            <div class="item">
+                                <div class="ui medium image">
+                                    <img src="images/revista1.jpg">
                                 </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
+                                <div class="middle aligned content">
+                                    {{--Institución--}}
+                                    <div class="description">
+                                        <div class="ui large label">
+                                            <i class="student icon"></i>
+                                            <a class="detail">Institución editoria</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        {{--Footer--}}
                         <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
+                        <button class="ui teal right floated labeled icon button">
+                            Ver detalle
+                            <i class="linkify icon"></i>
+                        </button>
                         </div>
                     </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
+                    <div id="result-event" class="ui raised card menu segment" style="width: 100%;">
+                        {{--Titulo--}}
                         <div class="content">
                             <div class="ui right floated simple dropdown item">
+                                Evento
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="#">Guardar publicación</a>
@@ -438,36 +503,46 @@
                                     <a class="item" href="#">Mis publicaciones</a>
                                 </div>
                             </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
+                            <a><h3 class="header">Título del evento</h3></a>
+                        </div>
+                        <div class="ui items content">
+                            <div class="item">
+                                <div class="ui medium image">
+                                    <img src="images/revista2.jpg">
                                 </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
+                                <div class="middle aligned content">
+                                    {{--Institución--}}
+                                    <div class="description">
+                                        <div class="ui large label">
+                                            <i class="student icon"></i>
+                                            <a class="detail">Institución organizadora</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        {{--Footer--}}
                         <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <span><b>Desde: </b> dd/mm/aaaa</span>
+                                    <br>
+                                    <span><b>Hasta: </b> dd/mm/aaaa</span>
+                                </div>
+                                <div class="five wide column">
+                                    <button class="ui teal right floated labeled icon button">
+                                        Ver detalle
+                                        <i class="linkify icon"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
+                    <div id="result-request_investigator" class="ui raised card menu segment" style="width: 100%;">
+                        {{--Titulo--}}
                         <div class="content">
                             <div class="ui right floated simple dropdown item">
+                                Convocatoria
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="#">Guardar publicación</a>
@@ -475,216 +550,40 @@
                                     <a class="item" href="#">Mis publicaciones</a>
                                 </div>
                             </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
-                            </div>
+                            <a><h3 class="header">Título de la solicitud</h3></a>
                         </div>
-                        <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
+                        {{--Institución--}}
                         <div class="content">
-                            <div class="ui right floated simple dropdown item">
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item" href="#">Guardar publicación</a>
-                                    <a class="item" href="#">Denunciar Publicación</a>
-                                    <a class="item" href="#">Mis publicaciones</a>
-                                </div>
-                            </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
                             <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
+                                <p>
+                                    <div class="ui large label">
+                                        <i class="mail outline icon"></i>
+                                        <a class="detail">Tipo de solicitud</a>
+                                    </div>
+                                </p>
+                                <p>
+                                    <div class="ui large label">
+                                        <i class="student icon"></i>
+                                        <a class="detail">Institución que publica la solicitud</a>
+                                    </div>
+                                </p>
                             </div>
                         </div>
+                        {{--Footer--}}
                         <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
-                        <div class="content">
-                            <div class="ui right floated simple dropdown item">
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item" href="#">Guardar publicación</a>
-                                    <a class="item" href="#">Denunciar Publicación</a>
-                                    <a class="item" href="#">Mis publicaciones</a>
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column">
+                                    <span><b>Desde: </b> dd/mm/aaaa</span>
+                                    <br>
+                                    <span><b>Hasta: </b> dd/mm/aaaa</span>
+                                </div>
+                                <div class="five wide column">
+                                    <button class="ui teal right floated labeled icon button">
+                                        Ver detalle
+                                        <i class="linkify icon"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
-                        <div class="content">
-                            <div class="ui right floated simple dropdown item">
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item" href="#">Guardar publicación</a>
-                                    <a class="item" href="#">Denunciar Publicación</a>
-                                    <a class="item" href="#">Mis publicaciones</a>
-                                </div>
-                            </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
-                        <div class="content">
-                            <div class="ui right floated simple dropdown item">
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item" href="#">Guardar publicación</a>
-                                    <a class="item" href="#">Denunciar Publicación</a>
-                                    <a class="item" href="#">Mis publicaciones</a>
-                                </div>
-                            </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ui raised card menu segment" style="width: 100%;">
-                        <div class="content">
-                            <div class="ui right floated simple dropdown item">
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item" href="#">Guardar publicación</a>
-                                    <a class="item" href="#">Denunciar Publicación</a>
-                                    <a class="item" href="#">Mis publicaciones</a>
-                                </div>
-                            </div>
-                            <a>
-                                <div class="header">
-                                    <h3 style="color: black;">Evento de ingeniería ambiental</h3>
-                                </div>
-                            </a>
-                            <div class="meta">
-                                Ciencias naturales
-                                <span class=" floated star" title="Agregar área a favoritas">
-                                    <i class="star icon"></i>
-                                </span>
-                            </div>
-                            <div class="description">
-                                <p>Aquí va la descripción de la publicación con detalles.</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="left floated pointing up">
-                                <i class="pointing up icon"></i>
-                                132 Visitas
-                            </span>
-                            <button class="ui inverted right floated labeled icon button"
-                                    style="background-color: rgb(164, 70, 133);">
-                                Enlace
-                                <i class="linkify icon"></i>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -694,6 +593,9 @@
     <script type="text/javascript">
         $('.ui.sidebar')
             .sidebar('attach events', '.menu.fixed .launch.item')
+        ;
+        $('.ui.checkbox')
+            .checkbox()
         ;
     </script>
 

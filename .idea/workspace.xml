@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b2510a9-d97f-4aa6-b466-b2a3e043afdf" name="Default" comment="Cambio diseño de main y publication. Agrego archivo result.blade.php para diseño de resultados de búsquedas.">
+    <list default="true" id="2b2510a9-d97f-4aa6-b466-b2a3e043afdf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/result.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/result.blade.php" />
     </list>
     <ignored path="C:\Users\diego\Documents\Diego\Mundocente\Diseno\Mundocente\.idea\shelf/" />
     <ignored path="C:\xampp\htdocs\Mundocente\.idea\shelf/" />
@@ -31,42 +29,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="publication.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="publication.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-155">
-              <caret line="294" column="121" lean-forward="false" selection-start-line="294" selection-start-column="121" selection-end-line="294" selection-end-column="121" />
+            <state relative-caret-position="1071">
+              <caret line="487" column="81" lean-forward="false" selection-start-line="487" selection-start-column="81" selection-end-line="487" selection-end-column="81" />
               <folding>
-                <element signature="e#1278#1394#0#HTML" expanded="true" />
-                <element signature="e#1460#1482#0#HTML" expanded="true" />
-                <element signature="e#5317#5434#0#HTML" expanded="true" />
-                <element signature="e#5500#5522#0#HTML" expanded="true" />
-                <element signature="e#9353#9470#0#HTML" expanded="true" />
-                <element signature="e#9536#9558#0#HTML" expanded="true" />
-                <element signature="e#13403#13520#0#HTML" expanded="true" />
-                <element signature="e#13586#13608#0#HTML" expanded="true" />
-                <element signature="e#17469#17586#0#HTML" expanded="true" />
-                <element signature="e#17652#17674#0#HTML" expanded="true" />
+                <element signature="e#1177#1909#0#HTML" expanded="false" />
+                <element signature="e#1276#1397#0#HTML" expanded="true" />
+                <element signature="e#1930#6296#0#HTML" expanded="false" />
+                <element signature="e#2038#2169#0#HTML" expanded="true" />
+                <element signature="e#6317#11485#0#HTML" expanded="false" />
+                <element signature="e#6411#6543#0#HTML" expanded="true" />
+                <element signature="e#11506#15846#0#HTML" expanded="false" />
+                <element signature="e#11600#11732#0#HTML" expanded="true" />
+                <element signature="e#15867#20301#0#HTML" expanded="false" />
+                <element signature="e#15976#16108#0#HTML" expanded="true" />
+                <element signature="e#20322#24750#0#HTML" expanded="false" />
+                <element signature="e#20428#20560#0#HTML" expanded="true" />
+                <element signature="e#24981#25001#0#HTML" expanded="true" />
+                <element signature="e#24915#27115#0#HTML" expanded="false" />
+                <element signature="e#27195#27215#0#HTML" expanded="true" />
+                <element signature="e#29296#29316#0#HTML" expanded="true" />
+                <element signature="e#29237#31860#0#HTML" expanded="false" />
+                <element signature="e#31955#31975#0#HTML" expanded="true" />
+                <element signature="e#31881#34538#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="173" column="30" lean-forward="true" selection-start-line="173" selection-start-column="30" selection-end-line="173" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style-inicio.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="87" column="4" lean-forward="true" selection-start-line="87" selection-start-column="4" selection-end-line="89" selection-end-column="20" />
+            <state relative-caret-position="292">
+              <caret line="46" column="87" lean-forward="false" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -84,9 +81,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>grid</find>
-      <find>toggle</find>
-      <find>false</find>
       <find>search anima</find>
       <find>logo</find>
       <find>top</find>
@@ -114,6 +108,9 @@
       <find>res</find>
       <find>ultima</find>
       <find>seleccionado</find>
+      <find>indexada</find>
+      <find>index</find>
+      <find>sector</find>
     </findStrings>
     <replaceStrings>
       <replace>3</replace>
@@ -199,8 +196,8 @@
         <option value="$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/result.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php" />
       </list>
     </option>
   </component>
@@ -212,10 +209,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="x" value="1359" />
+    <option name="y" value="5" />
+    <option name="width" value="950" />
+    <option name="height" value="867" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -232,6 +229,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -390,10 +389,22 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mundocente" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mundocente" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mockups pdf" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -435,6 +446,7 @@
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/app/Http/Controllers/UserController.php</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -442,11 +454,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Mockups pdf/HU 18 - Gestión de lugares.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Mockups pdf/HU 19 - Gestión de Instituciones.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Mockups pdf/HU 20 - Gestión de indices revistas.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Mockups pdf/HU 21 - Gestión de usuarios.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Mockups pdf/HU 22 - Gestión de publicaciones.pdf</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -702,7 +709,8 @@
       <workItem from="1486324875991" duration="6295000" />
       <workItem from="1486398253317" duration="856000" />
       <workItem from="1486421488659" duration="460000" />
-      <workItem from="1486437568133" duration="7988000" />
+      <workItem from="1486437568133" duration="8073000" />
+      <workItem from="1486482628709" duration="12233000" />
     </task>
     <task id="LOCAL-00001" summary="Actualización de diseño. Nuevas imagenes del logo oficial de Mundocente.">
       <created>1484671010422</created>
@@ -851,11 +859,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486272024024</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Cambio de diseño para el segmento de busqueda de publicaciones.">
+      <created>1486445762228</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1486445762228</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355660000" />
+    <option name="totallyTimeSpent" value="367978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -867,16 +882,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
+    <frame x="1359" y="5" width="950" height="867" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20196672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35617977" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733223" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5483871" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5482815" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -956,7 +971,9 @@
     <MESSAGE value="Edición de LandingPage." />
     <MESSAGE value="Agrego &quot;Apellidos&quot; como dato requerido para el Registro." />
     <MESSAGE value="Cambio diseño de main y publication. Agrego archivo result.blade.php para diseño de resultados de búsquedas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio diseño de main y publication. Agrego archivo result.blade.php para diseño de resultados de búsquedas." />
+    <MESSAGE value="Cambio de diseño para el segmento de busqueda de publicaciones." />
+    <MESSAGE value="Avances de diseño en sección de búsqueda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Avances de diseño en sección de búsqueda." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1211,13 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2257">
-          <caret line="360" column="25" lean-forward="true" selection-start-line="360" selection-start-column="25" selection-end-line="360" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1721">
@@ -1242,19 +1252,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3985">
-          <caret line="604" column="2" lean-forward="false" selection-start-line="604" selection-start-column="2" selection-end-line="604" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio-fixed.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1262,9 +1263,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="113" column="63" lean-forward="false" selection-start-line="113" selection-start-column="63" selection-end-line="113" selection-end-column="63" />
-          <folding>
-            <element signature="e#1207#1241#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1272,7 +1270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="174" column="20" lean-forward="false" selection-start-line="174" selection-start-column="20" selection-end-line="174" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1280,42 +1277,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="246" column="57" lean-forward="true" selection-start-line="246" selection-start-column="57" selection-end-line="246" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="87" column="4" lean-forward="true" selection-start-line="87" selection-start-column="4" selection-end-line="89" selection-end-column="20" />
+        <state relative-caret-position="1479">
+          <caret line="87" column="4" lean-forward="false" selection-start-line="87" selection-start-column="4" selection-end-line="89" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="372" column="4" lean-forward="true" selection-start-line="372" selection-start-column="4" selection-end-line="374" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="47" column="22" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="47" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="46" column="87" lean-forward="false" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-155">
-          <caret line="294" column="121" lean-forward="false" selection-start-line="294" selection-start-column="121" selection-end-line="294" selection-end-column="121" />
+        <state relative-caret-position="1071">
+          <caret line="487" column="81" lean-forward="false" selection-start-line="487" selection-start-column="81" selection-end-line="487" selection-end-column="81" />
           <folding>
-            <element signature="e#1278#1394#0#HTML" expanded="true" />
-            <element signature="e#1460#1482#0#HTML" expanded="true" />
-            <element signature="e#5317#5434#0#HTML" expanded="true" />
-            <element signature="e#5500#5522#0#HTML" expanded="true" />
-            <element signature="e#9353#9470#0#HTML" expanded="true" />
-            <element signature="e#9536#9558#0#HTML" expanded="true" />
-            <element signature="e#13403#13520#0#HTML" expanded="true" />
-            <element signature="e#13586#13608#0#HTML" expanded="true" />
-            <element signature="e#17469#17586#0#HTML" expanded="true" />
-            <element signature="e#17652#17674#0#HTML" expanded="true" />
+            <element signature="e#1177#1909#0#HTML" expanded="false" />
+            <element signature="e#1276#1397#0#HTML" expanded="true" />
+            <element signature="e#1930#6296#0#HTML" expanded="false" />
+            <element signature="e#2038#2169#0#HTML" expanded="true" />
+            <element signature="e#6317#11485#0#HTML" expanded="false" />
+            <element signature="e#6411#6543#0#HTML" expanded="true" />
+            <element signature="e#11506#15846#0#HTML" expanded="false" />
+            <element signature="e#11600#11732#0#HTML" expanded="true" />
+            <element signature="e#15867#20301#0#HTML" expanded="false" />
+            <element signature="e#15976#16108#0#HTML" expanded="true" />
+            <element signature="e#20322#24750#0#HTML" expanded="false" />
+            <element signature="e#20428#20560#0#HTML" expanded="true" />
+            <element signature="e#24981#25001#0#HTML" expanded="true" />
+            <element signature="e#24915#27115#0#HTML" expanded="false" />
+            <element signature="e#27195#27215#0#HTML" expanded="true" />
+            <element signature="e#29296#29316#0#HTML" expanded="true" />
+            <element signature="e#29237#31860#0#HTML" expanded="false" />
+            <element signature="e#31955#31975#0#HTML" expanded="true" />
+            <element signature="e#31881#34538#0#HTML" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="173" column="30" lean-forward="true" selection-start-line="173" selection-start-column="30" selection-end-line="173" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
