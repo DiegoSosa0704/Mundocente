@@ -130,6 +130,7 @@ class UserController extends Controller
                     'nivel_formacion'=>$request['level_training'],
                     'recibe_not'=>'no']);
         }
+        return Redirect::to('edit-perfil');
 
 
     }
