@@ -48,7 +48,7 @@
         <div class="ui aligned center inverted tiny header">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</div>
     </div>
     <a class=" item" href="publications">
-        <i class="grid layout icon"></i> Búsqueda avanzada
+        <i class="grid layout icon"></i> Inicio
     </a>
   
     
@@ -76,11 +76,12 @@
         <div class="ui action input" style="width: 200%;">
             <input type="text" placeholder="Palabras clave...">
             <select class="ui selection dropdown">
-                <option value="all_menu">Todo</option>
-                <option value="paper_menu">Revistas</option>
-                <option value="announcement_menu">Convocatorias</option>
-                <option value="event_menu">Eventos</option>
-                <option value="request_menu">Solicitudes</option>
+                <option value="all">Todo</option>
+                <option value="announcement">Convocatorias docentes</option>
+                <option value="paper">Revistas científicas</option>
+                <option value="event">Eventos académicos</option>
+                <option value="request_investigator">Solicitudes de investigadores</option>
+                <option value="request_evaluator">Solicitudes de evaluadores</option>
             </select>
             <a type="submit" class="ui teal button" style="background-color: #AD5691" href="result">Buscar</a>
         </div>
@@ -138,40 +139,52 @@
             onChange: function (value, text, $selectedItem) {
                 switch (value) {
                     case 'all':
-                        $('#paper').toggle(true);
+                       /* $('#paper').toggle(true);
                         $('#announcement').toggle(true);
                         $('#event').toggle(true);
-                        $('#request').toggle(true);
+                        $('#request').toggle(true);*/
                         break;
                     case 'paper':
                         $('#paper').toggle(true);
                         $('#announcement').toggle(false);
                         $('#event').toggle(false);
-                        $('#request').toggle(false);
+                        $('#request_evaluator').toggle(false);
+                        $('#request_investigator').toggle(false);
                         break;
                     case 'announcement':
                         $('#paper').toggle(false);
                         $('#announcement').toggle(true);
                         $('#event').toggle(false);
-                        $('#request').toggle(false);
+                        $('#request_evaluator').toggle(false);
+                        $('#request_investigator').toggle(false);
                         break;
                     case 'event':
                         $('#paper').toggle(false);
                         $('#announcement').toggle(false);
                         $('#event').toggle(true);
-                        $('#request').toggle(false);
+                        $('#request_evaluator').toggle(false);
+                        $('#request_investigator').toggle(false);
                         break;
-                    case 'request':
+                    case 'request_investigator':
                         $('#paper').toggle(false);
                         $('#announcement').toggle(false);
                         $('#event').toggle(false);
-                        $('#request').toggle(true);
+                        $('#request_evaluator').toggle(false);
+                        $('#request_investigator').toggle(true);
+                        break;
+                    case 'request_evaluator':
+                        $('#paper').toggle(false);
+                        $('#announcement').toggle(false);
+                        $('#event').toggle(false);
+                        $('#request_evaluator').toggle(true);
+                        $('#request_investigator').toggle(false);
                         break;
                     default:
                         $('#paper').toggle(true);
-                        $('#announcement').toggle(true);
-                        $('#event').toggle(true);
-                        $('#request').toggle(true);
+                        $('#announcement').toggle(false);
+                        $('#event').toggle(false);
+                        $('#request_evaluator').toggle(false);
+                        $('#request_investigator').toggle(false);
                 }
             }
         })

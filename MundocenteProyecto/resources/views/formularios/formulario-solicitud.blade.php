@@ -104,6 +104,26 @@
                     </div>
                     <input name="title" type="text">
                 </div>
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Desde</label>
+                        <div class="ui calendar" id="from">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input name="from" type="text" placeholder="Desde">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="required field">
+                        <label>Hasta</label>
+                        <div class="ui calendar" id="until">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input name="until" type="text" placeholder="Hasta">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="field">
                     <label>Descripción</label>
                     <textarea name="description" rows="3"></textarea>
@@ -173,6 +193,24 @@
                             {
                                 type: 'maxLength[150]',
                                 prompt: 'El título no puede ser mayor a 150 caracteres'
+                            }
+                        ]
+                    },
+                    from: {
+                        identifier: 'from',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Porfavor seleccione un valor en Desde'
+                            }
+                        ]
+                    },
+                    until: {
+                        identifier: 'until',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Porfavor seleccione un valor en Hasta'
                             }
                         ]
                     },
