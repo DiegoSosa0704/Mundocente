@@ -66,6 +66,8 @@ $('#select_gran_area_formacion').change(function(event){
 			$('#select_area_formacion').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+	$('#select_area_formacion').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#select_area_formacion > option[value="0"]').attr('selected', 'selected');
 });
 
 
@@ -243,3 +245,469 @@ function delete_institution_vinul(id_ins){
 
 
 
+
+
+
+
+
+
+// método que agrega una nueva área de interés
+
+
+
+
+$("#addGranAreaFormation").click(function(){
+	var id_gran_area_formacion = $("#select_gran_area_formacion").val();
+	var ruta = "addNewLargeAreaTraining";
+	var token = $("#token").val();
+
+
+if(id_gran_area_formacion!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formacion_institute: id_gran_area_formacion},
+		success:function(info){
+			console.log('Se agregó gran área '+id_gran_area_formacion);
+			$("#list_large_area_training").append("<div class='item' id='listLargeAreTrainingItem"+info.id_areas_formacion+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='deleteLargeAreaTraining("+info.id_areas_formacion+")'>Eliminar</a> </div>   <div class='content'>"+info.name_theme+"   </div> </div>");
+			
+			}
+		});
+	}
+});
+
+//Se elimina gran área de formación 
+
+function deleteLargeAreaTraining(id_gran_area){
+
+	var id_gran_area_formcion_var = id_gran_area;
+	var ruta = "deleteLargeAreaTraining";
+	var token = $("#token").val();
+	
+	$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formcion: id_gran_area_formcion_var},
+		success:function(info){
+			console.log('entró');
+            $('#listLargeAreTrainingItem'+id_gran_area_formcion_var).toggle("fast");
+
+		}
+
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Agrega y elimina área de formación
+
+$("#addAreaFormation").click(function(){
+	var id_gran_area_formacion = $("#select_area_formacion").val();
+	var ruta = "addNewLargeAreaTraining";
+	var token = $("#token").val();
+
+
+if(id_gran_area_formacion!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formacion_institute: id_gran_area_formacion},
+		success:function(info){
+			console.log('Se agregó gran área '+id_gran_area_formacion);
+			$("#list_area_training").append("<div class='item' id='listAreTrainingItem"+info.id_areas_formacion+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='deleteAreaTraining("+info.id_areas_formacion+")'>Eliminar</a> </div>   <div class='content'>"+info.name_theme+"   </div> </div>");
+			
+			}
+		});
+	}
+});
+
+
+function deleteAreaTraining(id_gran_area){
+
+	var id_gran_area_formcion_var = id_gran_area;
+	var ruta = "deleteLargeAreaTraining";
+	var token = $("#token").val();
+	
+	$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formcion: id_gran_area_formcion_var},
+		success:function(){
+			console.log('entró abajo');
+            $('#listAreTrainingItem'+id_gran_area_formcion_var).toggle("fast");
+
+		}
+
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Agrega y elimina área de formación
+
+$("#addDisciplineAreaFormation").click(function(){
+	var id_gran_area_formacion = $("#select_disciplina_formacion").val();
+	var ruta = "addNewLargeAreaTraining";
+	var token = $("#token").val();
+
+
+if(id_gran_area_formacion!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formacion_institute: id_gran_area_formacion},
+		success:function(info){
+			console.log('Se agregó gran área '+id_gran_area_formacion);
+			$("#list_discipline_area_training").append("<div class='item' id='listDisciplineAreTrainingItem"+info.id_areas_formacion+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+info.id_areas_formacion+")'>Eliminar</a> </div>   <div class='content'>"+info.name_theme+"   </div> </div>");
+			
+			}
+		});
+	}
+});
+
+
+
+function deleteDisciplineAreaTraining(id_gran_area){
+
+	var id_gran_area_formcion_var = id_gran_area;
+	var ruta = "deleteLargeAreaTraining";
+	var token = $("#token").val();
+	
+	$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formcion: id_gran_area_formcion_var},
+		success:function(){
+			console.log('entró abajo');
+            $('#listDisciplineAreTrainingItem'+id_gran_area_formcion_var).toggle("fast");
+
+		}
+
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Agrega y elimina áreas de interés
+
+
+$("#addDisciplineAreaInterest").click(function(){
+	var id_gran_area_formacion = $("#select_gran_area_interes").val();
+	var ruta = "addNewLargeAreaInterest";
+	var token = $("#token").val();
+
+
+if(id_gran_area_formacion!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formacion_institute: id_gran_area_formacion},
+		success:function(info){
+			console.log('Se agregó gran área '+id_gran_area_formacion);
+			$("#list_discipline_area_Interest").append("<div class='item' id='listDisciplineAreInterestItem"+info.id_areas_interes+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+info.id_areas_interes+")'>Eliminar</a> </div>   <div class='content'>"+info.name_theme+"   </div> </div>");
+			
+			}
+		});
+	}
+});
+
+
+function deleteDisciplineAreaInterest(id_gran_area){
+
+	var id_gran_area_formcion_var = id_gran_area;
+	var ruta = "deleteLargeAreaInterest";
+	var token = $("#token").val();
+	
+	$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_interes: id_gran_area_formcion_var},
+		success:function(){
+			console.log('entró abajo');
+            $('#listDisciplineAreInterestItem'+id_gran_area_formcion_var).toggle("fast");
+
+		}
+
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Agrega y elimina áreas de interés
+
+
+$("#addAreaInterest").click(function(){
+	var id_gran_area_formacion = $("#select_area_interes").val();
+	var ruta = "addNewLargeAreaInterest";
+	var token = $("#token").val();
+
+
+if(id_gran_area_formacion!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formacion_institute: id_gran_area_formacion},
+		success:function(info){
+			console.log('Se agregó gran área '+id_gran_area_formacion);
+			$("#list_area_Interest").append("<div class='item' id='listAreInterestItem"+info.id_areas_interes+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='deleteAreaInterest("+info.id_areas_interes+")'>Eliminar</a> </div>   <div class='content'>"+info.name_theme+"   </div> </div>");
+			
+			}
+		});
+	}
+});
+
+
+function deleteAreaInterest(id_gran_area){
+
+	var id_gran_area_formcion_var = id_gran_area;
+	var ruta = "deleteLargeAreaInterest";
+	var token = $("#token").val();
+	
+	$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_interes: id_gran_area_formcion_var},
+		success:function(){
+			console.log('entró abajo');
+            $('#listAreInterestItem'+id_gran_area_formcion_var).toggle("fast");
+
+		}
+
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Agrega y elimina disciplina de interés
+
+
+$("#addAreaInterestDiscipline").click(function(){
+	var id_gran_area_formacion = $("#select_disciplina_interes").val();
+	var ruta = "addNewLargeAreaInterest";
+	var token = $("#token").val();
+
+
+if(id_gran_area_formacion!=''){
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_formacion_institute: id_gran_area_formacion},
+		success:function(info){
+			console.log('Se agregó gran área '+id_gran_area_formacion);
+			$("#list_area_Interest_discipline").append("<div class='item' id='listAreInterestItemDiscipline"+info.id_areas_interes+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='deleteAreaInterestDiscipline("+info.id_areas_interes+")'>Eliminar</a> </div>   <div class='content'>"+info.name_theme+"   </div> </div>");
+			
+			}
+		});
+	}
+});
+
+
+function deleteAreaInterestDiscipline(id_gran_area){
+
+	var id_gran_area_formcion_var = id_gran_area;
+	var ruta = "deleteLargeAreaInterest";
+	var token = $("#token").val();
+	
+	$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_gran_area_interes: id_gran_area_formcion_var},
+		success:function(){
+			console.log('entró abajo');
+            $('#listAreInterestItemDiscipline'+id_gran_area_formcion_var).toggle("fast");
+
+		}
+
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Cambiar Contraseña
+
+
+$("#buttonChangePassword").click(function(){
+	var passwordNow = $("input[name='passwordNow']").val();
+	var passwordNew = $("input[name='passwordNew']").val();
+	var passwordNRepeat = $("input[name='passwordNewRepeat']").val();
+	var ruta = "editPassword";
+	var token = $("#token").val();
+console.log('espicho');
+	if(passwordNow.length >= 6){
+
+
+			if (passwordNew.length >= 6) {
+				if (passwordNRepeat == passwordNew) {
+
+					$.ajax({
+						url: ruta,
+						headers: {'X-CSRF-TOKEN': token},
+						type: 'POST',
+						dataType: 'json',
+						data:{passwordNowChange: passwordNow, passwordNewChange:passwordNew},
+						success:function(info){
+							
+							
+							if(info==1){
+								$("#passwordChangeNow").removeClass("error");
+								$("#repeat_password_change").removeClass("error");
+								$("#passwordChangeNew").removeClass("error");
+								$('#messageErrorChangePassword').removeClass("error");
+								$('#messageErrorChangePassword').addClass("green");
+								$('#errorsChangePasswordp').html('La contraseña se guardó con éxito');
+
+							}else{
+								$('#messageErrorChangePassword').removeClass("green");
+								$('#messageErrorChangePassword').addClass("error");
+								$('#messageErrorChangePassword').css("display", "block");
+								$("#passwordChangeNow").addClass("error");
+								$('#errorsChangePasswordp').html('La contraseña actual no es correcta');
+							}
+
+							}
+						});
+
+				}else{
+					$('#messageErrorChangePassword').removeClass("green");
+					$('#messageErrorChangePassword').css("display", "block");
+					$("#passwordChangeNow").removeClass("error");
+					$("#repeat_password_change").addClass("error");
+					$("#passwordChangeNew").addClass("error");
+					$('#errorsChangePasswordp').html('Las contaseñas no coinciden');
+				}
+			}else{
+				$('#messageErrorChangePassword').removeClass("green");
+				$('#messageErrorChangePassword').css("display", "block");
+				$("#passwordChangeNow").removeClass("error");
+				$("#passwordChangeNew").addClass("error");
+				$('#errorsChangePasswordp').html('La contraseña nueva debe ser de mínimo 6 caracteres');
+			}
+
+
+	}else{
+
+		$('#messageErrorChangePassword').removeClass("green");
+		$('#messageErrorChangePassword').css("display", "block");
+		$("#passwordChangeNow").addClass("error");
+		$('#errorsChangePasswordp').html('La contraseña actual debe ser de mínimo 6 caracteres');
+	}
+
+
+
+	
+	
+});

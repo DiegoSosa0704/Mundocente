@@ -226,7 +226,7 @@
                         <div class="sixteen wide column">
                             <div form="form" onclick="validateFormAccount()"
                                  class="ui submit inverted button button_submit">
-                                Aceptar
+                                Guardar Cambios
                             </div>
                         </div>
                     </div>
@@ -399,24 +399,29 @@
                         <div class="ui three fields segment">
                             <div class="required field">
                                 <label>Gran área</label>
+                                 
+                                    
+                                   <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
+                                        <option value="">Gran Área</option>
+                                        @foreach($gran_areas as $gran_area)
+                                        
+                                            <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                        @endforeach
 
-                                  <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
-                                    @foreach($gran_areas as $gran_area)
-                                    <option value="">Gran Área</option>
-                                        <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
-                                    @endforeach
-                                </select>
+                                    </select>
+                                    <a type="submit" class="ui green button right" id="addGranAreaFormation">+</a>
+                                
                                
 
-                                <div class="ui raised segment">
+                                <div class="ui raised segment" >
                                     <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
+                                    <div class="ui divided list selected_list" id="list_large_area_training">
                                         
                                         
                                         @foreach($gran_areas_de_formacion as $gran_area_f)
-                                        <div class="item">
+                                        <div class="item" id="listLargeAreTrainingItem{{$gran_area_f->id_areas_formacion}}">
                                                 <div class="right floated content">
-                                                    <div class="ui label button color_3">Eliminar</div>
+                                                 <a class="ui label button color_3" onclick="deleteLargeAreaTraining({{$gran_area_f->id_areas_formacion}})">Eliminar</a>
                                                 </div>
                                             <div class="content">
                                                 {{$gran_area_f->name_theme}}
@@ -435,16 +440,17 @@
                                
 
                                 {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
+                                <a type="submit" class="ui green button right" id="addAreaFormation">+</a>
                                  
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
+                                    <div class="ui divided list selected_list" id="list_area_training">
                                         
                                         
                                         @foreach($areas_de_formacion as $area_f)
-                                        <div class="item">
+                                        <div class="item" id="listAreTrainingItem{{$area_f->id_areas_formacion}}">
                                                 <div class="right floated content">
-                                                    <div class="ui label button color_3">Eliminar</div>
+                                                    <a class="ui label button color_3" onclick="deleteAreaTraining({{$area_f->id_areas_formacion}})">Eliminar</a>
                                                 </div>
                                             <div class="content">
                                                 {{$area_f->name_theme}}
@@ -458,18 +464,17 @@
                                 <label>Disciplina</label>
                                
                                 {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                                 <div class="right floated content">
-                                                <div class="ui label button green">Agregar</div>
-                                </div>
+                                 <a type="submit" class="ui green button right" id="addDisciplineAreaFormation">+</a>
+
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
+                                    <div class="ui divided list selected_list" id="list_discipline_area_training">
                                         
 
                                          @foreach($disciplina_de_formacion as $disciplina_formacion)
-                                        <div class="item">
+                                        <div class="item" id="listDisciplineAreTrainingItem{{$disciplina_formacion->id_areas_formacion}}">
                                                 <div class="right floated content">
-                                                    <div class="ui label button color_3">Eliminar</div>
+                                                    <div class="ui label button color_3" onclick="deleteDisciplineAreaTraining({{$disciplina_formacion->id_areas_formacion}})">Eliminar</div>
                                                 </div>
                                             <div class="content">
                                                 {{$disciplina_formacion->name_theme}}
@@ -495,19 +500,16 @@
                                         <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
                                     @endforeach
                                 </select>
-                                
+                                <a type="submit" class="ui green button right" id="addDisciplineAreaInterest">+</a>
 
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
-                                        
-                                        
-                                        
+                                    <div class="ui divided list selected_list" id="list_discipline_area_Interest">
                                         
                                          @foreach($gran_areas_de_interes as $gran_area_i)
-                                        <div class="item">
+                                        <div class="item" id="listDisciplineAreInterestItem{{$gran_area_i->id_areas_interes}}">
                                                 <div class="right floated content">
-                                                    <div class="ui label button color_3">Eliminar</div>
+                                                    <div class="ui label button color_3" onclick="deleteDisciplineAreaInterest({{$gran_area_i->id_areas_interes}})">Eliminar</div>
                                                 </div>
                                             <div class="content">
                                                 {{$gran_area_i->name_theme}}
@@ -524,16 +526,17 @@
                                
 
                                 {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_interes'])!!}
+                                <a type="submit" class="ui green button right" id="addAreaInterest">+</a>
                                 
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
+                                    <div class="ui divided list selected_list" id="list_area_Interest">
                                         
                                         
                                         @foreach($areas_de_interes as $gran_area_i)
-                                        <div class="item">
+                                        <div class="item" id="listAreInterestItem{{$gran_area_i->id_areas_interes}}">
                                                 <div class="right floated content">
-                                                    <div class="ui label button color_3">Eliminar</div>
+                                                    <div class="ui label button color_3" onclick="deleteAreaInterest({{$gran_area_i->id_areas_interes}})">Eliminar</div>
                                                 </div>
                                             <div class="content">
                                                 {{$gran_area_i->name_theme}}
@@ -548,18 +551,17 @@
                                 <label>Disciplina</label>
                                
                                 {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_interes'])!!}
-                                <div class="right floated content">
-                                                <div class="ui label button green">Agregar</div>
-                                </div>
+                                <a type="submit" class="ui green button right" id="addAreaInterestDiscipline">+</a>
+
                                 <div class="ui raised segment">
                                     <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list">
+                                    <div class="ui divided list selected_list" id="list_area_Interest_discipline">
                                         
 
                                           @foreach($disciplina_de_interes as $gran_area_i)
-                                        <div class="item">
+                                        <div class="item" id="listAreInterestItemDiscipline{{$gran_area_i->id_areas_interes}}">
                                                 <div class="right floated content">
-                                                    <div class="ui label button color_3">Eliminar</div>
+                                                    <div class="ui label button color_3" onclick="deleteAreaInterestDiscipline({{$gran_area_i->id_areas_interes}})">Eliminar</div>
                                                 </div>
                                             <div class="content">
                                                 {{$gran_area_i->name_theme}}
@@ -587,26 +589,81 @@
 
 
 
+@if(Auth::user()->password != 'NULL')
 <div class="ui piled very padded left aligned segment">
     <div class="ui form">
-
+    
                    <div class="equal width fields">
 
                         <div class="required field">
                             <label>Correo electrónico</label>
                             <input type="text" name="email" value="{!!Auth::user()->email!!}" disabled="true">
                         </div>
-                        <div class="required field">
-                            <label>Contraseña</label>
-                            <input type="password" name="password">
-                        </div>
-                        <div class="required field">
-                            <label>Repetir contraseña</label>
-                            <input type="password" name="repeat_password">
+                        <div class="required field " id="passwordChangeNow">
+                            <label>Contraseña Actual</label>
+                            {!!Form::password('passwordNow', null, ['type' => 'password', 'id'=>'id_password_now'])!!}
                         </div>
                     </div>
 
+                    <div class="equal width fields">
+                        <div class="required field" id="passwordChangeNew">
+                            <label>Nueva Contraseña</label>
+                            {!!Form::password('passwordNew', null, ['type' => 'password'])!!}
+                        </div>
+                        <div class="required field" id="repeat_password_change">
+                            <label>Repetir contraseña</label>
+                            {!!Form::password('passwordNewRepeat', null, ['type' => 'password'])!!}
+                        </div>
+                        
+                    </div>
 
+                      <div class="ui right aligned stackable grid">
+                        <div class="sixteen wide column">
+                            <a form="form" class="ui submit inverted button button_submit" id="buttonChangePassword">
+                                Guardar cambios
+                            </a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="ui red message" id="messageErrorChangePassword" style="display: none;">
+                                
+                                <div class="header">
+                                    <p id="errorsChangePasswordp">Errores</p>
+                                </div>
+                                <ul class="list">
+                                
+                                
+                                </ul>
+                        </div>
+
+
+
+
+                
+    </div>
+</div>
+@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="ui piled very padded left aligned segment">
+    <div class="ui form">
 
                       <div class="grouped fields">
                         <label>Cuenta</label>
@@ -638,8 +695,18 @@
                         <a class="ui compact blue label">Leer términos y condiciones</a>
                     </div>
 
+
+
+                      <div class="ui right aligned stackable grid">
+                        <div class="sixteen wide column">
+                            <a form="form" class="ui submit inverted button button_submit">
+                                Guardar cambios
+                            </a>
+                        </div>
+                    </div>
     </div>
 </div>
+
 
 
 

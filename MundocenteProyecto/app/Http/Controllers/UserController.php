@@ -14,6 +14,11 @@ use Mundocente\User;
 use Mundocente\Institucion;
 use Mundocente\Vinculacion;
 use Mundocente\temaNotificacionUsuario;
+use Mundocente\Areas_formacion;
+use Mundocente\AreasInteres;
+
+use Hash;
+
 
 
 
@@ -187,6 +192,16 @@ class UserController extends Controller
                     'setor_institution' =>  'universitario',
                     'state_institution' => 'nuevo',
                 ]);
+
+             $institutionNew= Institucion::all();
+
+               Vinculacion::create([
+                   'id_user_fk' => Auth::user()->id,
+                    'id_institution_fk' =>  $institutionNew->last()->id_institution,
+                ]);
+
+             
+
                return  0;
            
         }
@@ -208,6 +223,159 @@ class UserController extends Controller
         }
     }
  
+
+
+
+
+
+
+
+   /**
+     * método que agrega una gran área de formacion
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function agregarGranAreaDeFormacion(Request $request){
+        if($request->ajax()){
+            
+             $quantityThemes = DB::table('areas_formacions')
+                ->where('id_user_fk', Auth::user()->id)
+                ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                ->count();
+
+                if ($quantityThemes==0) {
+                     Areas_formacion::create([
+                       'id_user_fk' => Auth::user()->id,
+                        'id_theme_fk' =>  $request['id_gran_area_formacion_institute'],
+                    ]);
+                }
+
+                 $gran_area_formacion =  DB::table('areas_formacions')
+                    ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
+                     ->where('id_user_fk', Auth::user()->id)
+                     ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                     ->select('areas_formacions.*', 'temas.*')
+                     ->limit(1)
+                     ->get();
+                   foreach ($gran_area_formacion as $gran_area_f) {
+                       return  response()->json($gran_area_f);
+
+                   }
+        }
+    }
+
+
+      /**
+     * Método que elimina una gran área de formación
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function eliminarGranAreaDeFormacion(Request $request){
+        if($request->ajax()){
+            DB::table('areas_formacions')->where('id_areas_formacion', $request['id_gran_area_formcion'])->delete();
+            return 0;
+        }
+    }
+
+
+
+
+
+
+
+
+ /**
+     * método que agrega una gran área de formacion
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function agregarGranAreaDeInterest(Request $request){
+        if($request->ajax()){
+            
+             $quantityThemes = DB::table('areas_interes')
+                ->where('id_user_fk', Auth::user()->id)
+                ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                ->count();
+
+                if ($quantityThemes==0) {
+                     AreasInteres::create([
+                       'id_user_fk' => Auth::user()->id,
+                        'id_theme_fk' =>  $request['id_gran_area_formacion_institute'],
+                    ]);
+                }
+
+                 $gran_area_formacion =  DB::table('areas_interes')
+                    ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
+                     ->where('id_user_fk', Auth::user()->id)
+                     ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                     ->select('areas_interes.*', 'temas.*')
+                     ->limit(1)
+                     ->get();
+                   foreach ($gran_area_formacion as $gran_area_f) {
+                       return  response()->json($gran_area_f);
+
+                   }
+        }
+    }
+
+
+      /**
+     * Método que elimina una gran área de formación
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function eliminarGranAreaDeInterest(Request $request){
+        if($request->ajax()){
+            DB::table('areas_interes')->where('id_areas_interes', $request['id_gran_area_interes'])->delete();
+            return 0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    //Método para cambiar contraseña
+
+    public function cambiarContrasena(Request $request){
+
+         if($request->ajax()){
+            $mypass = Auth::user()->password;
+              
+
+            $password_newChange = $request['passwordNowChange'];
+           if (Hash::check($password_newChange, $mypass)) {
+
+                $user = Auth::user();
+                $user->password = bcrypt($password_newChange);
+                $user->save();
+
+                Hash::make(bcrypt($password_newChange));
+
+
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        
+    }
+
+
+
 
     /**
      * Display the specified resource.

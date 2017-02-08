@@ -56,7 +56,7 @@ class HomeController extends Controller
             ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'gran_area')
-            ->select('temas.*')
+            ->select('temas.*', 'areas_formacions.*')
             ->get();
 
          $areas_de_formacion = DB::table('areas_formacions')
@@ -64,7 +64,7 @@ class HomeController extends Controller
             ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'area')
-            ->select('temas.*')
+            ->select('temas.*', 'areas_formacions.*')
             ->get();
 
 
@@ -73,7 +73,7 @@ class HomeController extends Controller
             ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'disciplina')
-            ->select('temas.*')
+            ->select('temas.*', 'areas_formacions.*')
             ->get();
 
 
@@ -92,7 +92,7 @@ class HomeController extends Controller
             ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'gran_area')
-            ->select('temas.*')
+            ->select('temas.*', 'areas_interes.*')
             ->get();
 
          $areas_de_interes = DB::table('areas_interes')
@@ -100,7 +100,7 @@ class HomeController extends Controller
             ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'area')
-            ->select('temas.*')
+            ->select('temas.*', 'areas_interes.*')
             ->get();
 
 
@@ -109,7 +109,7 @@ class HomeController extends Controller
             ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'disciplina')
-            ->select('temas.*')
+            ->select('temas.*', 'areas_interes.*')
             ->get();
 
 

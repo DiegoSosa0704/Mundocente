@@ -28,13 +28,29 @@ Route::get('result', 'ResultController@mostrarreultadostodos');
 Route::get('result', 'HomeController@showResult');
 
 
-
+//Edita mi perfil en la parde de vinculación
 
 Route::resource('user', 'UserController');
 Route::post('editaperfil', 'UserController@editarusuario');
 Route::post('addUniversity' , 'UserController@agregarUniversidad');
 Route::post('addUniversityNew' , 'UserController@agregarUniversidadNueva');
 Route::post('deleteUniversity' , 'UserController@eliminarVinculacion');
+Route::post('editPassword', 'UserController@cambiarContrasena');
+
+
+
+//Agrega  elimina a lista de áreas de formación
+
+Route::post('addNewLargeAreaTraining' , 'UserController@agregarGranAreaDeFormacion');
+Route::post('deleteLargeAreaTraining' , 'UserController@eliminarGranAreaDeFormacion');
+
+
+//Agrega  elimina a lista de áreas de interés
+
+Route::post('addNewLargeAreaInterest' , 'UserController@agregarGranAreaDeInterest');
+Route::post('deleteLargeAreaInterest' , 'UserController@eliminarGranAreaDeInterest');
+
+
 
 
 
