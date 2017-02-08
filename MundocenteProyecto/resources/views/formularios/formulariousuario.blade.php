@@ -58,21 +58,10 @@
                     <div class="ui info compact small message">
                         <p>Debe ingresar al menos uno de los dos campos correspondientes a currículo.</p>
                     </div>
-                    <div class="two fields">
+                    <div class="equal width fields">
                         <div class="required field">
 
                             {!!Form::text('link_curriculum', Auth::user()->curriculo_url, ['type' => 'url', 'placeholder' => 'Enlace a currículo en la web'])!!}
-                        </div>
-                        <div class="required field">
-                            <div class="ui action input">
-                                {!!Form::text('load_curriculum', null, ['type' => 'text', 'id'=>'_attachmentName', 'placeholder' => 'Archivo currículo'])!!}
-
-                                <label for="attachmentName" class="ui icon button btn-file">
-                                    Cargar
-                                    <input type="file" id="attachmentName" name="attachmentName"
-                                           style="display: none">
-                                </label>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -311,7 +300,7 @@
                                     <div class="item" id="institutionList{{$institu->id_institution}}">
                                         <div class="right floated content">
                                             <a class="ui label button color_3"
-                                               onclick="delete_institution_vinul({{$institu->id_institution}})">Eliminar</a>
+                                               onclick="delete_institution_vinul({{$institu->id_institution}})">Eliminar <i class="trash icon"></i></a>
                                         </div>
                                         <div class="content">
                                             {{$institu->name_institution}} - ({{$institu->state_institution}})
@@ -366,7 +355,7 @@
                                                  id="listLargeAreTrainingItem{{$gran_area_f->id_areas_formacion}}">
                                                 <div class="right floated content">
                                                     <a class="ui label button color_3"
-                                                       onclick="deleteLargeAreaTraining({{$gran_area_f->id_areas_formacion}})">Eliminar</a>
+                                                       onclick="deleteLargeAreaTraining({{$gran_area_f->id_areas_formacion}})">Eliminar  </a>
                                                 </div>
                                                 <div class="content">
                                                     {{$gran_area_f->name_theme}}
@@ -389,7 +378,7 @@
                                             <div class="item" id="listAreTrainingItem{{$area_f->id_areas_formacion}}">
                                                 <div class="right floated content">
                                                     <a class="ui label button color_3"
-                                                       onclick="deleteAreaTraining({{$area_f->id_areas_formacion}})">Eliminar</a>
+                                                       onclick="deleteAreaTraining({{$area_f->id_areas_formacion}})">Eliminar </a>
                                                 </div>
                                                 <div class="content">
                                                     {{$area_f->name_theme}}
@@ -414,7 +403,7 @@
                                                 <div class="right floated content">
                                                     <div class="ui label button color_3"
                                                          onclick="deleteDisciplineAreaTraining({{$disciplina_formacion->id_areas_formacion}})">
-                                                        Eliminar
+                                                        Eliminar 
                                                     </div>
                                                 </div>
                                                 <div class="content">
@@ -452,7 +441,7 @@
                                                 <div class="right floated content">
                                                     <div class="ui label button color_3"
                                                          onclick="deleteDisciplineAreaInterest({{$gran_area_i->id_areas_interes}})">
-                                                        Eliminar
+                                                        Eliminar 
                                                     </div>
                                                 </div>
                                                 <div class="content">
@@ -478,7 +467,7 @@
                                                 <div class="right floated content">
                                                     <div class="ui label button color_3"
                                                          onclick="deleteAreaInterest({{$gran_area_i->id_areas_interes}})">
-                                                        Eliminar
+                                                        Eliminar 
                                                     </div>
                                                 </div>
                                                 <div class="content">
@@ -504,7 +493,7 @@
                                                 <div class="right floated content">
                                                     <div class="ui label button color_3"
                                                          onclick="deleteAreaInterestDiscipline({{$gran_area_i->id_areas_interes}})">
-                                                        Eliminar
+                                                        Eliminar 
                                                     </div>
                                                 </div>
                                                 <div class="content">
@@ -613,7 +602,7 @@
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a form="form" class="ui submit inverted button button_submit" id="changeAccountActive">
-                                Guardar cambios
+                                Aceptar
                             </a>
                         </div>
                     </div>

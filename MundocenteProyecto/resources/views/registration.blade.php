@@ -230,6 +230,7 @@
                 allowMultiple: false
             })
         ;
+
         // attach events to buttons
         $('.third.modal')
             .modal('setting', 'closable', false)

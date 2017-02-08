@@ -25,9 +25,14 @@
                 <form class="ui form" id="form">
                     <h4 class="ui dividing header">Información general</h4>
                     <div class="field">
-                        <div class="ui large inverted horizontal label color_1">Institución:
-                            <div class="detail">Nombre del Instituto</div>
-                        </div>
+                        <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
+                        <select name="country" class="ui search dropdown" id="selectMVinculation">
+                        <option value="">Seleccione Institución</option>
+                            @foreach($institucionesVinvulado as $inst_vin)
+                                <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     </div>
                     <div class="field">
                         <div class="ui inverted large horizontal label color_2">País:
