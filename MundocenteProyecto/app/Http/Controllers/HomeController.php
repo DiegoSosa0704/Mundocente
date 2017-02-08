@@ -19,10 +19,11 @@ use Mundocente\Tema_Notificacion;
 class HomeController extends Controller
 {
 
+
+
     public function __construct(){
         $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento']]);
 
-        
     }
 
 
@@ -42,6 +43,22 @@ class HomeController extends Controller
 
 
     
+public function callLocationCountry(){
+    return DB::table('lugars')->where('type_lugar','country')->get();
+}
+
+public function callLargesAreasTheme(){
+    return DB::table('temas')->where('type_theme', 'gran_area')->get();
+}
+public function callInstitutionMy(){
+    return DB::table('vinculacions')
+            ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
+            ->join('users', 'vinculacions.id_user_fk', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->select('institucions.*')
+            ->get();
+}
+
 
 
 /**
@@ -51,9 +68,11 @@ class HomeController extends Controller
      */
     public function editarmiperfil()
     {
-        $lugares = DB::table('lugars')->where('type_lugar','country')->get();
+       
+
+       $lugares = $this->callLocationCountry();
         
-        $gran_areas = DB::table('temas')->where('type_theme', 'gran_area')->get();
+        $gran_areas = $this->callLargesAreasTheme();
 
         $gran_areas_de_formacion = DB::table('areas_formacions')
             ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
@@ -230,7 +249,18 @@ class HomeController extends Controller
      */
     public function publicarconvocatoria()
     {
-        return view('formularios.formularioconvocatoria');
+
+
+        $institucionesVinvulado = $this->callInstitutionMy();
+
+            $gran_areas = $this->callLargesAreasTheme();
+
+            $lugares = $this->callLocationCountry();
+
+            
+
+
+        return view('formularios.formularioconvocatoria', compact('lugares', 'institucionesVinvulado', 'gran_areas'));
     }
 
 
@@ -241,7 +271,18 @@ class HomeController extends Controller
      */
     public function publicarrevista()
     {
-        return view('formularios.formulariorevista');
+         $institucionesVinvulado = $this->callInstitutionMy();
+
+            $gran_areas = $this->callLargesAreasTheme();
+
+            $lugares = $this->callLocationCountry();
+
+            
+
+
+        return view('formularios.formulariorevista', compact('lugares', 'institucionesVinvulado', 'gran_areas'));
+
+        
     }
 
 
@@ -254,7 +295,17 @@ class HomeController extends Controller
      */
     public function publicarSolicitud()
     {
-        return view('formularios.formulario-solicitud');
+        $institucionesVinvulado = $this->callInstitutionMy();
+
+            $gran_areas = $this->callLargesAreasTheme();
+
+            $lugares = $this->callLocationCountry();
+
+            
+
+
+        return view('formularios.formulario-solicitud', compact('lugares', 'institucionesVinvulado', 'gran_areas'));
+        
     }
 
 
@@ -266,7 +317,18 @@ class HomeController extends Controller
      */
     public function publicarevento()
     {
-        return view('formularios.formularioevento');
+         $institucionesVinvulado = $this->callInstitutionMy();
+
+            $gran_areas = $this->callLargesAreasTheme();
+
+            $lugares = $this->callLocationCountry();
+
+            
+
+
+        return view('formularios.formularioevento', compact('lugares', 'institucionesVinvulado', 'gran_areas'));
+        
+        
     }
 
     /**

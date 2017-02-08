@@ -5,6 +5,8 @@ $('#selectCountry').change(function(event){
 	$('#selectCity').empty();
 	$('#selectInstitution').empty();
 
+	
+
 	$.get('listCity/'+event.target.value+ "" , function(response, ciudad){
 
 		for (var i = 0 ; i < response.length; i++) {
@@ -58,7 +60,7 @@ $('#selectCity').change(function(event){
 $('#select_gran_area_formacion').change(function(event){
 	console.log('');
 	$('#select_area_formacion').empty();
-
+	$('#select_disciplina_formacion').empty();
 
 	$.get('area/'+event.target.value+ "" , function(response, ciudad){
 
@@ -66,6 +68,7 @@ $('#select_gran_area_formacion').change(function(event){
 			$('#select_area_formacion').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+
 	$('#select_area_formacion').append('<option value="0" disabled="true">Ninguno</option>');
 	$('#select_area_formacion > option[value="0"]').attr('selected', 'selected');
 });
