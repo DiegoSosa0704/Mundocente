@@ -552,7 +552,7 @@
                             <div class="sixteen wide column">
                                 <a form="form" class="ui submit inverted button button_submit"
                                    id="buttonChangePassword">
-                                    Guardar cambios
+                                    Guardar contraseña
                                 </a>
                             </div>
                         </div>

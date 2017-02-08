@@ -80,11 +80,28 @@ class UserController extends Controller
 
             ]);
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-                return Redirect::to('publications');
+                return Redirect::to('registration');
             }
         }
 
 
+    }
+
+
+
+
+
+
+
+
+     /**
+     * Si se registra por primera vez
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationInit()
+    {
+        return view('registration');
     }
 
 

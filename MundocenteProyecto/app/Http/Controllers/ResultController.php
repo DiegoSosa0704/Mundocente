@@ -26,10 +26,6 @@ class ResultController extends Controller
     **/
 
 
-    public function mostrarreultadostodos(){
-        return view('result');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

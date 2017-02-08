@@ -21,11 +21,11 @@ Route::get('publicar-revista', 'HomeController@publicarrevista');
 Route::get('publicar-solicitud', 'HomeController@publicarSolicitud');
 Route::get('publicar-evento', 'HomeController@publicarevento');
 Route::get('signup', 'HomeController@registrar');
-Route::get('result', 'ResultController@mostrarreultadostodos');
+
 
 
 /*Resultado*/
-Route::get('result', 'HomeController@showResult');
+Route::get('registration', 'UserController@showRegistrationInit');
 
 
 //Edita mi perfil en la parde de vinculación

@@ -331,15 +331,7 @@ public function callInstitutionMy(){
         
     }
 
-    /**
-     * Nos lleva a la página de publicar convocatoria
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showResult()
-    {
-        return view('result');
-    }
+   
 
 
     /**

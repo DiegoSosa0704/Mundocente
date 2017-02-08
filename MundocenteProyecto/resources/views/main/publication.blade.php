@@ -373,7 +373,7 @@
                     </div>
                 </div>
                 <div class="ui eleven wide column">
-                    <h2 class="ui header">Ultimas publicaciones</h2>
+                    <h2 class="ui header">Últimas publicaciones</h2>
                     <div id="result-announcement" class="ui raised card menu segment" style="width: 100%;">
                         {{--Titulo--}}
                         <div class="content">

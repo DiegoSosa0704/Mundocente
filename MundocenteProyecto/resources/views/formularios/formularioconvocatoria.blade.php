@@ -91,7 +91,7 @@
                                         @endforeach
 
                                     </select>
-                                    <a type="submit" class="ui green button right" id="addGranAreaFormation">+</a>
+                                    <a type="submit" class="ui green button right">+</a>
                                 
                                
 
@@ -117,7 +117,7 @@
                                
 
                                 {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                                <a type="submit" class="ui green button right" id="addAreaFormation">+</a>
+                                <a type="submit" class="ui green button right" >+</a>
                                  
                               <div class="ui raised segment" >
                                     <label><b>Seleccionados</b></label>
@@ -140,7 +140,7 @@
                                 <label>Disciplina</label>
                                
                                 {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                                 <a type="submit" class="ui green button right" id="addDisciplineAreaFormation">+</a>
+                                 <a type="submit" class="ui green button right">+</a>
 
                                 <div class="ui raised segment" >
                                     <label><b>Seleccionados</b></label>
