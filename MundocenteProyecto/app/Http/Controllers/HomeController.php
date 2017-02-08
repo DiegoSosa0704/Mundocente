@@ -40,6 +40,10 @@ class HomeController extends Controller
         return view('home');
     }
 
+
+    
+
+
 /**
      * Nos lleva al formulario para editar mi perfils
      *

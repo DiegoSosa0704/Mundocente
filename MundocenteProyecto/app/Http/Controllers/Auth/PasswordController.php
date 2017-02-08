@@ -5,6 +5,8 @@ namespace Mundocente\Http\Controllers\Auth;
 use Mundocente\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
+use Auth;
+
 class PasswordController extends Controller
 {
     /*
@@ -28,5 +30,17 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    
+
+
+    public static function resetPassword($user, $password)
+    {
+       $user->password = bcrypt($password);
+
+       $user->save();
+
+       Auth::login($user);
     }
 }

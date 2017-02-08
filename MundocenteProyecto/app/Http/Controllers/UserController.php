@@ -17,6 +17,10 @@ use Mundocente\temaNotificacionUsuario;
 use Mundocente\Areas_formacion;
 use Mundocente\AreasInteres;
 
+use Illuminate\Support\Facades\Password;
+use Mundocente\Http\Controllers\Auth\PasswordController;
+
+
 use Hash;
 
 
@@ -354,24 +358,32 @@ class UserController extends Controller
 
          if($request->ajax()){
             $mypass = Auth::user()->password;
-              
+            
+            $password_nowChange = $request['password'];
+            $password_new = $request['password_confirmation'];
 
-            $password_newChange = $request['passwordNowChange'];
-           if (Hash::check($password_newChange, $mypass)) {
+           if (Hash::check($password_nowChange, $mypass)) {
 
                 $user = Auth::user();
-                $user->password = bcrypt($password_newChange);
-                $user->save();
 
-                Hash::make(bcrypt($password_newChange));
-
+                PasswordController::resetPassword($user, $password_new);
 
                 return 1;
             }else{
                 return 0;
             }
         }
-        
+    }
+
+
+
+    public function deleteAccount(Request $request){
+        if($request->ajax()){
+              DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['state_user' => $request['stateUser']]);
+                return 0;
+        }   
     }
 
 

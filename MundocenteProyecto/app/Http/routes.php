@@ -36,6 +36,7 @@ Route::post('addUniversity' , 'UserController@agregarUniversidad');
 Route::post('addUniversityNew' , 'UserController@agregarUniversidadNueva');
 Route::post('deleteUniversity' , 'UserController@eliminarVinculacion');
 Route::post('editPassword', 'UserController@cambiarContrasena');
+Route::post('delete-account', 'UserController@deleteAccount');
 
 
 

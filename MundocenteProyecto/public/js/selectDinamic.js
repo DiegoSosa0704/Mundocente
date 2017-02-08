@@ -646,7 +646,7 @@ $("#buttonChangePassword").click(function(){
 	var passwordNRepeat = $("input[name='passwordNewRepeat']").val();
 	var ruta = "editPassword";
 	var token = $("#token").val();
-console.log('espicho');
+console.log('');
 	if(passwordNow.length >= 6){
 
 
@@ -658,7 +658,7 @@ console.log('espicho');
 						headers: {'X-CSRF-TOKEN': token},
 						type: 'POST',
 						dataType: 'json',
-						data:{passwordNowChange: passwordNow, passwordNewChange:passwordNew},
+						data:{password: passwordNow, password_confirmation:passwordNew, token:token, email:'dvd_cheztorres@hotmail.com'},
 						success:function(info){
 							
 							
@@ -711,3 +711,88 @@ console.log('espicho');
 	
 	
 });
+
+
+
+
+
+$('#changeAccountActive').click(function(){
+	var activate = $("#activacion_cuenta").val();
+	
+	console.log(''+activate);
+
+	if ($("#activacion_cuenta").is(':checked')) {
+		var ruta = "delete-account";
+		var token = $("#token").val();
+				$.ajax({
+					url: ruta,
+					headers: {'X-CSRF-TOKEN': token},
+					type: 'POST',
+					dataType: 'json',
+					data:{stateUser: 'activo'},
+					success:function(info){						
+						$('#messageActivateAccount').css('display', 'block');
+						$('#idmensaje_p_activteAccount').html('Se ha activado su cuenta');
+						}
+					});
+			
+	}else if($("#inactivacion_cuenta").is(':checked')){
+		var ruta = "delete-account";
+		var token = $("#token").val();
+				$.ajax({
+					url: ruta,
+					headers: {'X-CSRF-TOKEN': token},
+					type: 'POST',
+					dataType: 'json',
+					data:{stateUser: 'inactivo'},
+					success:function(info){
+						$('#messageActivateAccount').css('display', 'block');
+						$('#idmensaje_p_activteAccount').html('Se ha inactivado su cuenta');
+						}
+					});
+	}else{
+		var ruta = "delete-account";
+		var token = $("#token").val();
+				$.ajax({
+					url: ruta,
+					headers: {'X-CSRF-TOKEN': token},
+					type: 'POST',
+					dataType: 'json',
+					data:{stateUser: 'inactivo'},
+					success:function(info){
+						$('#messageActivateAccount').css('display', 'block');
+						$('#idmensaje_p_activteAccount').html('Se ha inactivado su cuenta');
+						}
+					});
+	}
+
+	
+	
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

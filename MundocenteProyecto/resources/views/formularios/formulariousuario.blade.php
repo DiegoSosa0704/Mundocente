@@ -670,9 +670,9 @@
                         <div class="field">
                             <div class="ui radio checkbox">
                             @if(Auth::user()->state_user=='activo')
-                            <input type="radio" name="activacion_cuenta" checked="checked" value="1">
+                            <input type="radio" id="activacion_cuenta" name="accountActivate" checked="checked" value="1">
                             @else
-                            <input type="radio" name="activacion_cuenta" value="1">
+                            <input type="radio" id="activacion_cuenta" name="accountActivate" value="1">
                             @endif
                                 
                                 <label>Activa</label>
@@ -681,9 +681,9 @@
                         <div class="field">
                             <div class="ui radio checkbox">
                             @if(Auth::user()->state_user=='inactivo')
-                            <input type="radio" name="activacion_cuenta" checked="checked" value="2">
+                            <input type="radio" id="inactivacion_cuenta" name="accountActivate" checked="checked" value="2">
                             @else
-                            <input type="radio" name="activacion_cuenta" value="2">
+                            <input type="radio" id="inactivacion_cuenta" name="accountActivate" value="2">
                             @endif
                                 <label>Inactiva</label>
                             </div>
@@ -699,11 +699,23 @@
 
                       <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
-                            <a form="form" class="ui submit inverted button button_submit">
+                            <a form="form" class="ui submit inverted button button_submit" id="changeAccountActive">
                                 Guardar cambios
                             </a>
                         </div>
                     </div>
+
+
+                      <div class="ui info green message" style="display: none;" id="messageActivateAccount">
+                                
+                                <div class="header">
+                                
+                                </div>
+                                <ul class="list">
+                                <li id="idmensaje_p_activteAccount"></li>
+                                
+                                </ul>
+                        </div>
     </div>
 </div>
 
