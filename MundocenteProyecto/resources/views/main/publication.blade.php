@@ -2,51 +2,12 @@
 
 @section('content')
 
-    <style>
-        /* Mobile */
-        @media only screen and (max-width: 767px) {
-
-        }
-
-        /* Tablet */
-
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
-        }
-
-        /* Small Monitor */
-
-        @media only screen and (min-width: 992px) and (max-width: 1199px) {
-            .pusher .ui.container {
-                width: 1080px;
-                padding-left: 18rem;
-            }
-        }
-
-        /* Large Monitor */
-
-        @media only screen and (min-width: 1200px) and (max-width: 1407px) {
-            .pusher .ui.container {
-                width: 1267px;
-                padding-left: 18rem;
-            }
-        }
-
-        /*Large Monitor 2*/
-
-        @media only screen and (min-width: 1408px) {
-            .pusher .ui.container {
-                width: 1458px;
-                padding-left: 18rem;
-            }
-        }
-    </style>
-
     <!--Contenido-->
     <div class="pusher" style="background-color: #EEEEEE;">
-        <div class="ui container">
+        <div class="ui container start-container">
             <div class="ui stackable grid">
                 <div class="ui five wide form column">
-                    <div id="all" class="ui raised padded fixed sticky sticky-filter segment"
+                    <div id="all" class="ui raised padded fixed sticky sticky-filter-all segment"
                          style="min-width: 23% !important; max-width: 23% !important; min-height: 10% !important;overflow: scroll; margin-top: 0;">
                         <div class="ui top left attached label" style="font-size: 1em">Filtrado</div>
                         <div class="ui info message">
@@ -57,8 +18,8 @@
                         </div>
                     </div>
                     <div id="announcement" class="ui raised padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll;display: none; margin-top: 0;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de convocatoria</div>
+                         style="display: none;">
+                        <div class="ui top left attached label">Filtros de convocatoria</div>
                         <div class="ui small form">
                             <h5 class="ui horizontal divider header">
                                 Áreas de conocimiento
@@ -124,8 +85,8 @@
                         </div>
                     </div>
                     <div id="paper" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de revistas</div>
+                         style="display: none;">
+                        <div class="ui top left attached label">Filtros de revistas</div>
                         <div class="ui small form">
                             <h5 class="ui horizontal divider header">
                                 Áreas de conocimiento
@@ -206,8 +167,8 @@
                         </div>
                     </div>
                     <div id="event" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de eventos</div>
+                         style="display: none;">
+                        <div class="ui top left attached label">Filtros de eventos</div>
                         <div class="ui small form">
                             <h5 class="ui horizontal divider header">
                                 Áreas de conocimiento
@@ -273,8 +234,8 @@
                         </div>
                     </div>
                     <div id="request_investigator" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de solicitud a
+                         style="display: none;">
+                        <div class="ui top left attached label">Filtros de solicitud a
                             investigadores
                         </div>
                         <div class="ui small form">
@@ -342,8 +303,8 @@
                         </div>
                     </div>
                     <div id="request_evaluator" class="ui padded fixed sticky sticky-filter segment"
-                         style="min-width: 23% !important; max-width: 23% !important; height: 85% !important;overflow: scroll; display: none; margin-top: 0;">
-                        <div class="ui top left attached label" style="font-size: 1em">Filtros de solicitud a
+                         style="display: none;">
+                        <div class="ui top left attached label">Filtros de solicitud a
                             evaluadores
                         </div>
                         <div class="ui small form">
@@ -542,7 +503,7 @@
                         {{--Titulo--}}
                         <div class="content">
                             <div class="ui right floated simple dropdown item">
-                                Convocatoria
+                                Solicitud
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="#">Guardar publicación</a>
@@ -598,5 +559,4 @@
             .checkbox()
         ;
     </script>
-
 @stop

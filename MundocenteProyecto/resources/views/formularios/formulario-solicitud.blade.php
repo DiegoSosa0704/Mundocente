@@ -70,27 +70,73 @@
                 <div class="three fields">
                     <div class="required field">
                         <label>Gran área</label>
-                        <select name="large_area" class="ui multiple dropdown">
-                            <option value="">Gran área</option>
-                            <option value="name-1">Gran área-1</option>
-                            <option value="name-2">Gran área-2</option>
+                        <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
+                            <option value="">Gran Área</option>
+                            @foreach($gran_areas as $gran_area)
+                                <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                            @endforeach
                         </select>
+                        <div class="ui horizontal divider">
+                            <a type="submit" class="ui label button color_1" id="addGranAreaFormation">Agregar Gran
+                                Área</a>
+                        </div>
+                        <div class="ui raised segment">
+                            <label><b>Seleccionados</b></label>
+                            <div class="ui divided list selected_list">
+
+
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <a class="ui label button color_3">Eliminar</a>
+                                    </div>
+                                    <div class="content">
+                                        nombre área
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
                         <label>Área</label>
-                        <select name="area" class="ui multiple dropdown">
-                            <option value="">Área</option>
-                            <option value="lvl-1">Área-1</option>
-                            <option value="lvl-2">Área-2</option>
-                        </select>
+                        {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
+                        <div class="ui horizontal divider">
+                            <a type="submit" class="ui label button color_1" id="addAreaFormation">Agregar Área</a>
+                        </div>
+                        <div class="ui raised segment">
+                            <label><b>Seleccionados</b></label>
+                            <div class="ui divided list selected_list">
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <a class="ui label button color_3">Eliminar</a>
+                                    </div>
+                                    <div class="content">
+                                        nombre área
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
                         <label>Disciplina</label>
-                        <select name="discipline" class="ui multiple dropdown">
-                            <option value="">Disciplina</option>
-                            <option value="discipline-1">Disciplina-1</option>
-                            <option value="discipline-2">Disciplina-2</option>
-                        </select>
+                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                        <div class="ui horizontal divider">
+                            <a type="submit" class="ui label button color_1" id="addDisciplineAreaFormation">Agregar
+                                Disciplina</a>
+                        </div>
+                        <div class="ui raised segment">
+                            <label><b>Seleccionados</b></label>
+                            <div class="ui divided list selected_list">
+                                <div class="item">
+                                    <div class="right floated content">
+                                        <a class="ui label button color_3">Eliminar</a>
+                                    </div>
+                                    <div class="content">
+                                        nombre área
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <h4 class="ui dividing header">Detalles</h4>
