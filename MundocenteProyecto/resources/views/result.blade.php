@@ -643,7 +643,7 @@
             </div>
         </div>
         <div class="actions">
-            <div class="ui approve button">Omitir</div>
+            <div class="ui approve button">Siguiente</div>
         </div>
     </div>
 
@@ -670,13 +670,12 @@
             </div>
         </div>
         <div class="actions">
-            <div class="ui approve button">Omitir</div>
-            {{--<div class="ui cancel button">Cancel</div>--}}
+            <div class="ui approve button">Siguiente</div>
         </div>
     </div>
 
     <div class="ui third coupled modal">
-        <div class="header">Modal 3</div>
+        <div class="header">Áreas de interes</div>
         <div class="content ui form">
             <div class="field">
                 <div class="three fields">
@@ -712,7 +711,9 @@
                                 <div class="item" data-value="7"> Humanidades</div>
                             </div>
                         </div>
-                        <a type="submit" class="ui green button right" id="addDisciplineAreaInterest">+</a>
+                        <div class="ui horizontal divider">
+                            <a type="submit" class="ui label button color_1" id="addDisciplineAreaInterest">+</a>
+                        </div>
                         <div class="ui raised segment">
                             <label><b>Seleccionados</b></label>
                             <div class="ui divided list selected_list" id="list_discipline_area_Interest"></div>
@@ -762,8 +763,7 @@
             </div>
         </div>
         <div class="actions">
-            <div class="ui approve button">Omitir</div>
-            {{--<div class="ui cancel button">Cancel</div>--}}
+            <div class="ui approve button">Siguiente</div>
         </div>
     </div>
 
