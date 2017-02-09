@@ -12,23 +12,21 @@
         <div>
             <div class="line"></div>
             <div data-width="79" data-height="27"
-                 style="display: inline-block; vertical-align: middle; line-height: 0; width: 79px; height: 27px;">
+                 style="display: inline-block; vertical-align: middle; line-height: 0; width: 79px; height: 27px;margin-top: -55px;">
                 <svg height="27" width="79">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.2 26.4">
-                        <path fill="none" stroke="#A54686" stroke-width="2" d="
-                            M57.3,13.1c-3.2,10.4,10.4,16.1,16.8,8.7c7.1-8.2,0.6-17.8-7-20.1c-19.6-5.2-31.9,18-49,23.1C9.3,27.5-1.7,20.4,1.6,9.8
-                            c3.8-12.4,23.3-9,19.3,4"></path>
+                        <img src="images/icono.png" width="34" height="30" style="padding-top: -10px;">
                     </svg>
                 </svg>
             </div>
             <div class="line"></div>
         </div>
         <div class="ui piled very padded left aligned segment">
-            <form class="ui form" id="form">
+            <div class="ui form" id="form">
                 <h4 class="ui dividing header">Información general</h4>
                 <div class="field">
                     <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
-                        <select name="country" class="ui search dropdown" id="selectMVinculation">
+                        <select name="institution" class="ui search dropdown" id="selectMVinculation">
                         <option value="">Seleccione Institución</option>
                             @foreach($institucionesVinvulado as $inst_vin)
                                 <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
@@ -59,121 +57,104 @@
                     </div>
                 </div>
                 <div class="two fields">
-                    <div class="required field">
-                        <label>Desde</label>
-                        <div class="ui calendar" id="from">
-                            <div class="ui input left icon">
-                                <i class="calendar icon"></i>
-                                <input name="from" type="text" placeholder="Desde">
+                    
+                        
+                            <div class="required field">
+                                <label>Desde</label>
+                                <div class="ui calendar" id="rangestart">
+                                    <div class="ui input icon">
+                                        <i class="calendar icon"></i>
+                                        {!!Form::text('dateStart', '{{date("Y/m/d")}}', ['type' => 'text', 'placeholder' => 'Ingrese fecha de inicio', 'id'=>'dateStartid'])!!}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="required field">
+                                <label>Hasta</label>
+                                <div class="ui calendar" id="rangeend">
+                                    <div class="ui input icon">
+                                        <i class="calendar icon"></i>
+                                        {!!Form::text('dateFinish', null, ['type' => 'text', 'placeholder' => 'Ingrese fecha de fin', 'id'=>'dateFinishid'])!!}
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <h4 class="ui dividing header">Áreas de conocimiento</h4>
+                <div class="three fields" id="contentSelectArea">
+                    <div class="required field">
+                        <label>Gran área</label>
+
+                        <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
+                            <option value="">Gran Área</option>
+                            @foreach($gran_areas as $gran_area)
+                                <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                            @endforeach
+                        </select>
+                        
+                       
                     </div>
-                    <div class="required field">
-                        <label>Hasta</label>
-                        <div class="ui calendar" id="until">
-                            <div class="ui input left icon">
-                                <i class="calendar icon"></i>
-                                <input name="until" type="text" placeholder="Hasta">
-                            </div>
-                        </div>
+                    <div class="field">
+                        <label>Área</label>
+                        {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
+                      
+                    </div>
+                    <div class="field">
+                        <label>Disciplina</label>
+                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                     
                     </div>
                 </div>
-                <h4 class="ui dividing header">Áreas de conocimiento</h4>
-               <div class="ui three fields segment">
-                            <div class="required field">
-                                <label>Gran área</label>
-                                 
-                                    
-                                   <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
-                                        <option value="">Gran Área</option>
-                                        @foreach($gran_areas as $gran_area)
-                                            <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
-                                        @endforeach
+                <div class="ui checkbox" id="check_area_all">
+                              <input type="checkbox" id="valueCheckallArea"  value="1">
+                              <label>Todas las áreas</label>
+                </div>
 
-                                    </select>
-                                    <a type="submit" class="ui green button right">+</a>
-                                
-                               
 
-                                <div class="ui raised segment" >
-                                    <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list" >
-                                        
-                                        
-                                        <div class="item">
-                                                <div class="right floated content">
-                                                 <a class="ui label button color_3"">Eliminar</a>
-                                                </div>
-                                            <div class="content">
-                                                nombre área
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Área</label>
-                               
 
-                                {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                                <a type="submit" class="ui green button right" >+</a>
-                                 
-                              <div class="ui raised segment" >
-                                    <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list" >
-                                        
-                                        
-                                        <div class="item">
-                                                <div class="right floated content">
-                                                 <a class="ui label button color_3"">Eliminar</a>
-                                                </div>
-                                            <div class="content">
-                                                nombre área
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label>Disciplina</label>
-                               
-                                {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                                 <a type="submit" class="ui green button right">+</a>
 
-                                <div class="ui raised segment" >
-                                    <label><b>Seleccionados</b></label>
-                                    <div class="ui divided list selected_list" >
-                                        
-                                        
-                                        <div class="item">
-                                                <div class="right floated content">
-                                                 <a class="ui label button color_3"">Eliminar</a>
-                                                </div>
-                                            <div class="content">
-                                                nombre área
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                
+
                 <h4 class="ui dividing header">Detalles</h4>
                 <div class="required field">
                     <label>Título</label>
-                    <div class="ui info compact small message">
-                        <ul class="list">
-                            <li><b>Ejemplor 1: </b> Docente de tiempo completo área matemáticas.</li>
-                            <li><b>Ejemplor 2: </b> Concurso docente institución ABC.</li>
-                        </ul>
-                    </div>
-                    <input name="title" type="text">
+                    {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
                 </div>
                 <div class="field">
                     <label>Descripción</label>
-                    <textarea name="description" rows="3"></textarea>
+                    
+                     {!!Form::textarea('description', null, ['type' => 'text', 'rows' => '5', 'id'=>'descriptionid'])!!}
                 </div>
                 <div class="ui info compact small message">
                     <p>Debe ingresar al menos uno de los siguientes campos.</p>
@@ -181,220 +162,58 @@
                 <div class="two fields">
                     <div class="required field">
                         <label>Enlace</label>
-                        <input name="link" type="text" placeholder="URL">
+                        
+                        {!!Form::text('link', null, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
                     </div>
                     <div class="required field">
                         <label>Datos de contacto </label>
-                        <input name="contact_data" type="text" placeholder="Nombre, e-mail y/o teléfono">
+                        
+                        {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                     </div>
                 </div>
                 <div class="ui right aligned stackable grid">
                     <div class="sixteen wide column">
-                        <button type="submit" form="form" onclick="validateFormAnnouncement()"
+                        <a form="form" id="addAnnouncement"
                                 class="ui submit inverted button button_submit">
                             Publicar
-                        </button>
+                        </a>
                     </div>
                 </div>
-                <div class="ui error message"></div>
-            </form>
+                <br>
+                <div class="ui message error" style="display: none;" id="messageErrorpublication">
+                                              
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                </div>
+            </div>
         </div>
     </div>
+    <br>
+    <br>
+    
+    <br>
+    <br>
 </div>
 
 <script type="text/javascript">
 
-    function validateFormAnnouncement() {
-        var $form = $('.ui.form'),
-            allFields = $form.form('get values')
-        ;
-        if(allFields.link == false && allFields.contact_data == false){
-            $('.ui.form')
-                .form({
-                    on: 'blur',
-                    fields: {
-                        sector: {
-                            identifier: 'sector',
-                            rules: [
-                                {
-                                    type: 'checked',
-                                    prompt: 'Porfavor seleccione un valor en País'
-                                }
-                            ]
-                        },
-                        country: {
-                            identifier: 'country',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en País'
-                                }
-                            ]
-                        },
-                        city: {
-                            identifier: 'city',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Ciudad'
-                                }
-                            ]
-                        },
-                        from: {
-                            identifier: 'from',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Desde'
-                                }
-                            ]
-                        },
-                        until: {
-                            identifier: 'until',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Hasta'
-                                }
-                            ]
-                        },
-                        large_area: {
-                            identifier: 'large_area',
-                            rules: [
-                                {
-                                    type   : 'minCount[1]',
-                                    prompt : 'Porfavor seleccione al menos un valor en Gran Área'
-                                }
-                            ]
-                        },
-                        title: {
-                            identifier: 'title',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Título'
-                                },
-                                {
-                                    type: 'maxLength[150]',
-                                    prompt: 'El título no puede ser mayor a 150 caracteres'
-                                }
-                            ]
-                        },
-                        description: {
-                            identifier: 'description',
-                            rules: [
-                                {
-                                    type: 'maxLength[500]',
-                                    prompt: 'La descripción no puede ser mayor a 500 caracteres'
-                                }
-                            ]
-                        },
-                        link: {
-                            identifier: 'link',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Enlace'
-                                }
-                            ]
-                        },
-                        contact_data: {
-                            identifier: 'contact_data',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Datos de contacto'
-                                }
-                            ]
-                        }
-                    }
-                })
-            ;
-        }else {
-            $('.ui.form')
-                .form({
-                    on: 'blur',
-                    fields: {
-                        sector: {
-                            identifier: 'sector',
-                            rules: [
-                                {
-                                    type: 'checked',
-                                    prompt: 'Porfavor seleccione un valor en País'
-                                }
-                            ]
-                        },
-                        country: {
-                            identifier: 'country',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en País'
-                                }
-                            ]
-                        },
-                        city: {
-                            identifier: 'city',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Ciudad'
-                                }
-                            ]
-                        },
-                        from: {
-                            identifier: 'from',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Desde'
-                                }
-                            ]
-                        },
-                        until: {
-                            identifier: 'until',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Hasta'
-                                }
-                            ]
-                        },
-                        large_area: {
-                            identifier: 'large_area',
-                            rules: [
-                                {
-                                    type   : 'minCount[1]',
-                                    prompt : 'Porfavor seleccione al menos un valor en Gran Área'
-                                }
-                            ]
-                        },
-                        title: {
-                            identifier: 'title',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Título'
-                                },
-                                {
-                                    type: 'maxLength[150]',
-                                    prompt: 'El título no puede ser mayor a 150 caracteres'
-                                }
-                            ]
-                        }
-                    }
-                })
-            ;
-        }
-    }
+$('#optionMainAnnouncement').addClass('active');
+$('#optionMainPaper').removeClass('active');
+$('#optionMainEvent').removeClass('active');
+$('#optionMainRequest').removeClass('active');
 
     var today = new Date();
-    $('#from').calendar({
+   
+    $('#rangestart').calendar({
         type: 'date',
+        endCalendar: $('#rangeend'),
         minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
     });
-    $('#until').calendar({
+    $('#rangeend').calendar({
         type: 'date',
+        startCalendar: $('#rangestart'),
         minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
     });
     $('.ui.radio.checkbox')
@@ -403,6 +222,24 @@
     $('.ui.sidebar')
         .sidebar('attach events', '.menu.fixed .launch.item')
     ;
+
+     $('.ui.checkbox')
+            .checkbox()
+        ;
+
+    $('#check_area_all').click(function() {
+        var checkAl = $('#valueCheckallArea').val();
+         if(checkAl=='2'){
+            $('#contentSelectArea').removeClass('disabled');
+            $('#valueCheckallArea').val('1');
+         }else{
+            $('#contentSelectArea').addClass('disabled');
+            $('#valueCheckallArea').val('2');
+         }
+    });
+    
+
+     
 </script>
 
 @stop

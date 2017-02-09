@@ -4478,7 +4478,7 @@ $.fn.dropdown = function(parameters) {
               .not(selector.unselectable)
               .not(selector.addition + selector.hidden)
                 .eq(0)
-                .addClass(className.selected)
+                
             ;
           },
           nextAvailable: function($selected) {
@@ -4490,7 +4490,7 @@ $.fn.dropdown = function(parameters) {
             ;
             if(hasNext) {
               module.verbose('Moving selection to', $nextAvailable);
-              $nextAvailable.addClass(className.selected);
+              
             }
             else {
               module.verbose('Moving selection to', $prevAvailable);
@@ -7782,7 +7782,7 @@ $.fn.dropdown.settings = {
     addResult     : 'Add <b>{term}</b>',
     count         : '{count} selected',
     maxSelections : 'Max {maxCount} selections',
-    noResults     : 'No results found.',
+    noResults     : 'No se han encontrado.',
     serverError   : 'There was an error contacting the server'
   },
 

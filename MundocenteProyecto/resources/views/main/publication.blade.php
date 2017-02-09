@@ -558,5 +558,6 @@
         $('.ui.checkbox')
             .checkbox()
         ;
+        $('#optionMainHome').addClass('active');
     </script>
 @stop

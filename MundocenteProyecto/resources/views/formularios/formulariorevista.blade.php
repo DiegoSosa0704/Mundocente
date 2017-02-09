@@ -121,81 +121,67 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <!--Areas de conocimiento-->
                     <h4 class="ui dividing header">Áreas de conocimiento</h4>
-                    <div class="three fields">
-                        <div class="required field">
-                            <label>Gran área</label>
-                            <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
-                                <option value="">Gran Área</option>
-                                @foreach($gran_areas as $gran_area)
-                                    <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
-                                @endforeach
-                            </select>
-                            <div class="ui horizontal divider">
-                                <a type="submit" class="ui label button color_1" id="addGranAreaFormation">Agregar Gran
-                                    Área</a>
-                            </div>
-                            <div class="ui raised segment">
-                                <label><b>Seleccionados</b></label>
-                                <div class="ui divided list selected_list">
+                     <div class="three fields" id="contentSelectArea">
+                    <div class="required field">
+                        <label>Gran área</label>
 
-
-                                    <div class="item">
-                                        <div class="right floated content">
-                                            <a class="ui label button color_3">Eliminar</a>
-                                        </div>
-                                        <div class="content">
-                                            nombre área
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label>Área</label>
-                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                            <div class="ui horizontal divider">
-                                <a type="submit" class="ui label button color_1" id="addAreaFormation">Agregar Área</a>
-                            </div>
-                            <div class="ui raised segment">
-                                <label><b>Seleccionados</b></label>
-                                <div class="ui divided list selected_list">
-                                    <div class="item">
-                                        <div class="right floated content">
-                                            <a class="ui label button color_3">Eliminar</a>
-                                        </div>
-                                        <div class="content">
-                                            nombre área
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label>Disciplina</label>
-                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                            <div class="ui horizontal divider">
-                                <a type="submit" class="ui label button color_1" id="addDisciplineAreaFormation">Agregar
-                                    Disciplina</a>
-                            </div>
-                            <div class="ui raised segment">
-                                <label><b>Seleccionados</b></label>
-                                <div class="ui divided list selected_list">
-                                    <div class="item">
-                                        <div class="right floated content">
-                                            <a class="ui label button color_3">Eliminar</a>
-                                        </div>
-                                        <div class="content">
-                                            nombre área
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
+                            <option value="">Gran Área</option>
+                            @foreach($gran_areas as $gran_area)
+                                <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                            @endforeach
+                        </select>
+                        
+                       
                     </div>
+                    <div class="field">
+                        <label>Área</label>
+                        {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
+                      
+                    </div>
+                    <div class="field">
+                        <label>Disciplina</label>
+                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search multiple dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                     
+                    </div>
+                </div>
+
+
+                <div class="ui checkbox" id="check_area_all">
+                              <input type="checkbox" id="valueCheckallArea"  value="1">
+                              <label>Todas las áreas</label>
+                </div>
                     <!--Info final-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <h4 class="ui dividing header">Información de contacto</h4>
                     <div class="field">
                         <label>Imagen o logo de la revista</label>
@@ -418,9 +404,29 @@
 
         }
 
+
+
+
         function showAdvancedSearch() {
             $('#indexing-data').toggle("slow");
         }
+
+
+         $('#optionMainAnnouncement').removeClass('active');
+        $('#optionMainPaper').addClass('active');
+        $('#optionMainEvent').removeClass('active');
+        $('#optionMainRequest').removeClass('active');
+
+           $('#check_area_all').click(function() {
+            var checkAl = $('#valueCheckallArea').val();
+             if(checkAl=='2'){
+                $('#contentSelectArea').removeClass('disabled');
+                $('#valueCheckallArea').val('1');
+             }else{
+                $('#contentSelectArea').addClass('disabled');
+                $('#valueCheckallArea').val('2');
+             }
+        });
 
         $('.ui.checkbox')
             .checkbox()

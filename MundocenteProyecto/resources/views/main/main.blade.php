@@ -13,8 +13,8 @@
 
 
     {!!Html::script('js/jquery.min.js')!!}
-    {!!Html::script('semantic/out/semantic.min.js')!!}
-    {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.6/calendar.min.js')!!}
+    {!!Html::script('semantic/out/semantic.js')!!}
+    {!!Html::script('js/calendar.js')!!}
 
 
 </head>
@@ -31,7 +31,7 @@
     <div class="item">
         <i class="write icon"></i> Publicar
         <div class="menu">
-            <a class=" item">Revista</a>
+            <a class=" item">Revista </a>
             <a class="item">Convocatorias</a>
             <a class="item">Eventos</a>
             <a class="item">Invitación</a>
@@ -47,7 +47,7 @@
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
         <div class="ui aligned center inverted tiny header">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</div>
     </div>
-    <a class=" item" href="publications">
+    <a class=" item" href="publications" id="optionMainHome">
         <i class="grid layout icon"></i> Inicio
     </a>
   
@@ -56,10 +56,10 @@
         <i class="write icon"></i>
         <div class="header">Publicar</div>
         <div class="menu">
-            <a class="item" href="publicar-revista">Revista</a>
-            <a class="item" href="publicar-convocatoria">Convocatorias</a>
-            <a class="item" href="publicar-evento">Eventos</a>
-            <a class="item" href="publicar-solicitud">Solicitud</a>
+            <a class="item" id="optionMainPaper" href="publicar-revista">Revista</a>
+            <a class="item" id="optionMainAnnouncement" href="publicar-convocatoria">Convocatorias</a>
+            <a class="item" id="optionMainEvent" href="publicar-evento">Eventos</a>
+            <a class="item" id="optionMainRequest" href="publicar-solicitud">Solicitud</a>
         </div>
     </div>
     <a class=" item" href="publications">
@@ -197,5 +197,6 @@
     ;
 </script>
 {!!Html::script('js/selectDinamic.js')!!}
+{!!Html::script('js/create.publications.js')!!}
 </body>
 </html>

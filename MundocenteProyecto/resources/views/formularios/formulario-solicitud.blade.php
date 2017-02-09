@@ -71,109 +71,100 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <h4 class="ui dividing header">Áreas de conocimiento</h4>
-                <div class="three fields">
+                 <div class="three fields" id="contentSelectArea">
                     <div class="required field">
                         <label>Gran área</label>
-                        <select class="ui fluid search dropdown" name="large_area" id="select_gran_area_formacion">
+
+                        <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
                             <option value="">Gran Área</option>
                             @foreach($gran_areas as $gran_area)
                                 <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
                             @endforeach
                         </select>
-                        <div class="ui horizontal divider">
-                            <a type="submit" class="ui label button color_1" id="addGranAreaFormation">Agregar Gran
-                                Área</a>
-                        </div>
-                        <div class="ui raised segment">
-                            <label><b>Seleccionados</b></label>
-                            <div class="ui divided list selected_list">
-
-
-                                <div class="item">
-                                    <div class="right floated content">
-                                        <a class="ui label button color_3">Eliminar</a>
-                                    </div>
-                                    <div class="content">
-                                        nombre área
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        
+                       
                     </div>
                     <div class="field">
                         <label>Área</label>
                         {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                        <div class="ui horizontal divider">
-                            <a type="submit" class="ui label button color_1" id="addAreaFormation">Agregar Área</a>
-                        </div>
-                        <div class="ui raised segment">
-                            <label><b>Seleccionados</b></label>
-                            <div class="ui divided list selected_list">
-                                <div class="item">
-                                    <div class="right floated content">
-                                        <a class="ui label button color_3">Eliminar</a>
-                                    </div>
-                                    <div class="content">
-                                        nombre área
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
                     </div>
                     <div class="field">
                         <label>Disciplina</label>
-                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                        <div class="ui horizontal divider">
-                            <a type="submit" class="ui label button color_1" id="addDisciplineAreaFormation">Agregar
-                                Disciplina</a>
-                        </div>
-                        <div class="ui raised segment">
-                            <label><b>Seleccionados</b></label>
-                            <div class="ui divided list selected_list">
-                                <div class="item">
-                                    <div class="right floated content">
-                                        <a class="ui label button color_3">Eliminar</a>
-                                    </div>
-                                    <div class="content">
-                                        nombre área
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                     
                     </div>
                 </div>
+
+                <div class="ui checkbox" id="check_area_all">
+                              <input type="checkbox" id="valueCheckallArea"  value="1">
+                              <label>Todas las áreas</label>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <h4 class="ui dividing header">Detalles</h4>
                 <div class="required field">
                     <label>Título</label>
-                    <div class="ui info compact small message">
-                        <ul class="list">
-                            <li><b>Ejemplor 1: </b> Investigador Junior, Matemático, para participar en proyecto de Colciencias.</li>
-                            <li><b>Ejemplor 2: </b> Par evaluador de artículo resultado de investigación (Ing. Electrónica).</li>
-                        </ul>
-                    </div>
-                    <input name="title" type="text">
+                    
+                    <input name="title" type="text" placeholder="Ejemplo: Investigador Junior, Matemático, para participar en proyecto de Colciencias">
                 </div>
                 <div class="two fields">
-                    <div class="required field">
-                        <label>Desde</label>
-                        <div class="ui calendar" id="from">
-                            <div class="ui input left icon">
-                                <i class="calendar icon"></i>
-                                <input name="from" type="text" placeholder="Desde">
+                            <div class="required field">
+                                <label>Desde</label>
+                                <div class="ui calendar" id="rangestart">
+                                    <div class="ui input icon">
+                                        <i class="calendar icon"></i>
+                                        {!!Form::text('dateStart', '{{date("Y/m/d")}}', ['type' => 'text', 'placeholder' => 'Ingrese fecha de inicio', 'id'=>'dateStartid'])!!}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="required field">
-                        <label>Hasta</label>
-                        <div class="ui calendar" id="until">
-                            <div class="ui input left icon">
-                                <i class="calendar icon"></i>
-                                <input name="until" type="text" placeholder="Hasta">
+                            <div class="required field">
+                                <label>Hasta</label>
+                                <div class="ui calendar" id="rangeend">
+                                    <div class="ui input icon">
+                                        <i class="calendar icon"></i>
+                                        {!!Form::text('dateFinish', null, ['type' => 'text', 'placeholder' => 'Ingrese fecha de fin', 'id'=>'dateFinishid'])!!}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="field">
                     <label>Descripción</label>
@@ -288,6 +279,14 @@
         ;
     }
 
+
+
+    $('#optionMainAnnouncement').removeClass('active');
+    $('#optionMainPaper').removeClass('active');
+    $('#optionMainEvent').removeClass('active');
+    $('#optionMainRequest').addClass('active');
+
+
     var today = new Date();
     $('#from').calendar({
         type: 'date',
@@ -309,6 +308,36 @@
     $('.ui.sidebar')
         .sidebar('attach events', '.menu.fixed .launch.item')
     ;
+
+
+  var today = new Date();
+   
+    $('#rangestart').calendar({
+        type: 'date',
+        endCalendar: $('#rangeend'),
+        minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+    });
+    $('#rangeend').calendar({
+        type: 'date',
+        startCalendar: $('#rangestart'),
+        minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+    });
+
+    $('.ui.checkbox')
+            .checkbox()
+        ;
+
+    $('#check_area_all').click(function() {
+        var checkAl = $('#valueCheckallArea').val();
+         if(checkAl=='2'){
+            $('#contentSelectArea').removeClass('disabled');
+            $('#valueCheckallArea').val('1');
+         }else{
+            $('#contentSelectArea').addClass('disabled');
+            $('#valueCheckallArea').val('2');
+         }
+    });
+
 </script>
 
 
