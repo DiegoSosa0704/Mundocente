@@ -18,7 +18,7 @@ var checkSelectedAllArea = $('#valueCheckallArea').val();
 
 
 
- var ruta = "add-announcement";
+var ruta = "add-announcement";
 var token = $("#token").val();
 
 
@@ -27,14 +27,30 @@ var token = $("#token").val();
             if(city != null){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(largeArea.length != 0){
+                        if(largeArea.length != 0 || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
-                                    $('#messageErrorpublication').removeClass('error');
-                                    $('#messageErrorpublication').addClass('green');
-                                    $('#idpmessageerrorpublications').html('Se publió co éxito, todas las áreas');
+                                     $('#messageErrorpublication').removeClass('error');
+                                        $('#messageErrorpublication').addClass('green');
+                                        $('#idpmessageerrorpublications').html('Se publicó la convocatoria con éxito');
+                                    
+                                    $.ajax({
+                                        url: ruta,
+                                        headers: {'X-CSRF-TOKEN': token},
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        data:{id_institute: institution, id_country: country, id_city: city, 
+                                            dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
+                                             contact: contacts, description: description, allArea: '2'},
+                                        success:function(info){
+                                            console.log('entró '+info);
+                                        }
+                                    });
                                 }else{
+                                        $('#messageErrorpublication').removeClass('error');
+                                        $('#messageErrorpublication').addClass('green');
+                                        $('#idpmessageerrorpublications').html('Se publicó la convocatoria con éxito');
                                     
                                     $.ajax({
                                         url: ruta,
@@ -44,14 +60,12 @@ var token = $("#token").val();
                                         data:{id_institute: institution, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
                                             area: area, disciplines: disciplines, title: title, url_link: link,
-                                             contact: contacts, description: description, allArea: '0'},
+                                             contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
                                         }
                                     });
-                                    $('#messageErrorpublication').removeClass('error');
-                                    $('#messageErrorpublication').addClass('green');
-                                    $('#idpmessageerrorpublications').html('Se publicó la convocatoria con éxito');
+                                   
                                 }
                             }else{
                                 $('#messageErrorpublication').removeClass('green');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Mundocente\Http\Requests;
 use Mundocente\Http\Controllers\Controller;
 use Mundocente\Publicacion;
+use Mundocente\AreasPublicacion;
 use Auth;
 use DB;
 
@@ -24,6 +25,47 @@ class PublicationsController extends Controller
 
 
 
+    public function converterToDateMysql($date){
+        
+        $sincoma = str_replace(",", "", $date);
+        $porciones = explode(" ", $sincoma);
+        $p1 = $porciones[0]; 
+        $p2 = $porciones[1]; 
+        $p3 = $porciones[2];
+
+
+        if($p1=='Enero'){
+            $p1 = '01';
+        }else if($p1=='Febrero'){
+            $p1 = '02';
+        }else if($p1=='Marzo'){
+            $p1 = '03';
+        }else if($p1=='Abril'){
+            $p1 = '04';
+        }else if($p1=='Mayo'){
+            $p1 = '05';
+        }else if($p1=='Junio'){
+            $p1 = '06';
+        }else if($p1=='Julio'){
+            $p1 = '07';
+        }else if($p1=='Agosto'){
+            $p1 = '08';
+        }else if($p1=='Septiembre'){
+            $p1 = '09';
+        }else if($p1=='Octubre'){
+            $p1 = '10';
+        }else if($p1=='Noviembre'){
+            $p1 = '11';
+        }else if($p1=='Diciembre'){
+            $p1 = '12';
+        }
+
+        $union = $p3.'-'.$p1.'-'.$p2;
+
+        return $union;
+    }
+
+
 
 /**
      * Método que sirve para crear una nueva convocatoria
@@ -34,28 +76,22 @@ class PublicationsController extends Controller
     {
            if($request->ajax()){
                 
-                echo "<br>id país".$request['id_country'];
-                
-                echo "<br>dato inicio".$request['dateStart'];
-                echo "<br>dato final".$request['dateFinis'];
-                
-                
-
-                $institutionTable = DB::table('institucions')->where('id_institution', $request['id_institute'])->select('state_institution')->get();
+                $institutionTable = DB::table('institucions')->where('id_institution', $request['id_institute'])->select('setor_institution')->get();
                 $sectorInstitution = '';
                 foreach ($institutionTable as $ins) {
-                    $sectorInstitution = $ins->state_institution;
+                    $sectorInstitution = $ins->setor_institution;
                 }
                 
+                $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
+                $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
                 
-                echo "<br>todas: ".$request['allArea'];
-
-
                  Publicacion::create([
                     'title_publication' => $request['title'],
                     'description_publication' => $request['description'],
                     'sector_publication' => $sectorInstitution,
                     'url_publication' => $request['url_link'],
+                    'date_start' => "".$fecha_inicio,
+                    'date_end' => "".$fecha_fin,
                     'contact_pubication' => $request['contact'],
                     'state_publication' => 'activo',
                     'id_type_publication' => 1,
@@ -65,23 +101,51 @@ class PublicationsController extends Controller
                 ]);
 
 
-                if ($request['allArea']=='0') {
+                $publication_last= Publicacion::all();
+                $last_id_publication = $publication_last->last()->id_publication;
+                
+                if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
+                        echo "<br>entró a id";
                         for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
-                            echo "<br>id discipline: ".$request['disciplines'][$i];
+                            echo "for ----> "+$request['disciplines'][$i];
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
                         }
-                        echo "<br>gran área".$request['large_area'];
-                        echo "<br>área".$request['area'];
-                    }
+                     }
+                        echo "large: ".$request['large_area'];
+                        if(!empty($request['large_area'])){
+
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['large_area'],
+                            ]);
+                        }
+                         if(!empty($request['area'])){
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['area'],
+                            ]);
+                        }
+
                 }else{
-                    echo "Se guardan todas las áreas";
+                    echo "large abajo : ".$request['large_area'];
+                    $themes = DB::table('temas')->where('type_theme', 'gran_area')->get();
+                    foreach ($themes as $theme) {
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $theme->id_tema,
+                            ]);
+                    }
                 }
                 
               
                 
                 
                
-
+                echo "<br>";
                return  0;
            
         }
