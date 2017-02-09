@@ -22,6 +22,12 @@ Route::get('publicar-solicitud', 'HomeController@publicarSolicitud');
 Route::get('publicar-evento', 'HomeController@publicarevento');
 Route::get('signup', 'HomeController@registrar');
 
+//Show details
+Route::get('detalles-convocatoria', 'HomeController@verdetallesConvocatoria');
+Route::get('detalles-evento', 'HomeController@verdetallesEvento');
+Route::get('detalles-revista', 'HomeController@verdetallesrevista');
+Route::get('detalles-solicitud', 'HomeController@verdetallesSolicitud');
+
 
 
 /*Resultado*/

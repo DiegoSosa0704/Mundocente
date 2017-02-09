@@ -42,6 +42,23 @@ class HomeController extends Controller
     }
 
 
+
+
+public function verdetallesConvocatoria(){
+    return view('details.detalles-convocatoria');
+}
+
+public function verdetallesEvento(){
+    return view('details.detalles-evento');
+}
+
+public function verdetallesrevista(){
+    return view('details.detalles-revista');
+}
+public function verdetallesSolicitud(){
+    return view('details.detalles-solicitud');
+}
+
     
 public function callLocationCountry(){
     return DB::table('lugars')->where('type_lugar','country')->get();

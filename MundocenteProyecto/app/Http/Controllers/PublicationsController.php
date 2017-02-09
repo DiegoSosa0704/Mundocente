@@ -131,14 +131,10 @@ class PublicationsController extends Controller
                         }
 
                 }else{
-                    echo "large abajo : ".$request['large_area'];
-                    $themes = DB::table('temas')->where('type_theme', 'gran_area')->get();
-                    foreach ($themes as $theme) {
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
-                                'id_theme_fk' => $theme->id_tema,
+                                'id_theme_fk' => 0,
                             ]);
-                    }
                 }
                 
               

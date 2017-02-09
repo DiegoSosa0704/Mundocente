@@ -33,6 +33,7 @@ var token = $("#token").val();
                                 if(checkSelectedAllArea == 2){
                                      $('#messageErrorpublication').removeClass('error');
                                         $('#messageErrorpublication').addClass('green');
+                                        
                                         $('#idpmessageerrorpublications').html('Se publicó la convocatoria con éxito');
                                     
                                     $.ajax({
@@ -50,6 +51,7 @@ var token = $("#token").val();
                                 }else{
                                         $('#messageErrorpublication').removeClass('error');
                                         $('#messageErrorpublication').addClass('green');
+                                        
                                         $('#idpmessageerrorpublications').html('Se publicó la convocatoria con éxito');
                                     
                                     $.ajax({
@@ -68,51 +70,36 @@ var token = $("#token").val();
                                    
                                 }
                             }else{
-                                $('#messageErrorpublication').removeClass('green');
-                                $('#messageErrorpublication').addClass('error');
-                                $('#messageErrorpublication').css('display', 'block');
+                                removeClassGreenAddError();
                                 $('#idpmessageerrorpublications').html('Debe ingresar url de la convocatoria o contacto del interesado');
                             }
                         }else{
-                            $('#messageErrorpublication').removeClass('green');
-                            $('#messageErrorpublication').addClass('error');
-                            $('#messageErrorpublication').css('display', 'block');
+                            removeClassGreenAddError();
+
                             $('#idpmessageerrorpublications').html('El campo título es obligatorio y debe tener máximo 150 carcteres');
                         }
                         }else{
-                            $('#messageErrorpublication').removeClass('green');
-                            $('#messageErrorpublication').addClass('error');
-                            $('#messageErrorpublication').css('display', 'block');
+                            removeClassGreenAddError();
                             $('#idpmessageerrorpublications').html('Debe ingresar mínimo una gran área');
                         }
                     }else{
-                        $('#messageErrorpublication').removeClass('green');
-                        $('#messageErrorpublication').addClass('error');
-                        $('#messageErrorpublication').css('display', 'block');
+                        removeClassGreenAddError();
                         $('#idpmessageerrorpublications').html('Debe ingresar la fecha de finalización de la convocatoria');
                     }
                 }else{
-                    $('#messageErrorpublication').removeClass('green');
-                    $('#messageErrorpublication').addClass('error');
-                    $('#messageErrorpublication').css('display', 'block');
+                   removeClassGreenAddError();
                     $('#idpmessageerrorpublications').html('Debe ingresar la fecha de inicio de la convocatoria');
                 }
             }else{
-                $('#messageErrorpublication').removeClass('green');
-                $('#messageErrorpublication').addClass('error');
-                $('#messageErrorpublication').css('display', 'block');
+               removeClassGreenAddError();
                 $('#idpmessageerrorpublications').html('Debe agregar la ciudad en donde se hace la convocatoria');
             }
         }else{
-            $('#messageErrorpublication').removeClass('green');
-            $('#messageErrorpublication').addClass('error');
-            $('#messageErrorpublication').css('display', 'block');
+            removeClassGreenAddError();
             $('#idpmessageerrorpublications').html('Debe seleccionar país en donde se realiza la convocatoria');
         }
    }else{
-    $('#messageErrorpublication').removeClass('green');
-    $('#messageErrorpublication').addClass('error');
-    $('#messageErrorpublication').css('display', 'block');
+    removeClassGreenAddError();
     $('#idpmessageerrorpublications').html('Debe seleccionar institución que realiza la convocatoria');
    }
         
@@ -123,3 +110,9 @@ var token = $("#token").val();
       
 });
    
+
+function removeClassGreenAddError(){
+    $('#messageErrorpublication').removeClass('green');
+    $('#messageErrorpublication').addClass('error');
+    $('#messageErrorpublication').css('display', 'block');
+}
