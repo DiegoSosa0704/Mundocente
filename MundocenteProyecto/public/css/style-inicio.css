@@ -1,5 +1,6 @@
 body {
     background-color: #EEEEEE;
+    color: #242533;
 }
 
 .ui.menu.sidebar {
@@ -43,7 +44,9 @@ body {
 }
 
 .pusher .ui.container .ui.form h4,
-.pusher .ui.container .ui.form label {
+.pusher .ui.container .ui.form label,
+.ui.modal .content.ui.form label,
+.ui.modal .ui.header {
     color: #242533;
 }
 
@@ -62,11 +65,13 @@ div.pusher {
 
 /* Formularios Publicaciones */
 
-.pusher .ui.container .ui.form label {
+.pusher .ui.container .ui.form label,
+.ui.modal .content.ui.form label {
     font-size: 0.9649em;
 }
 
-.pusher .ui.segment .ui.form .message {
+.pusher .ui.segment .ui.form .message,
+.ui.modal .content.ui.form .message {
     margin-top: 0;
     margin-bottom: 5px;
 }
@@ -90,17 +95,20 @@ div.pusher {
     overflow: scroll
 }
 
-.ui.label.color_1{
+.ui.label.color_1,
+.ui.button.color_1 {
     background-color: #AD5691;
     color: #EEEEEE;
 }
 
-.ui.label.color_2{
+.ui.label.color_2,
+.ui.button.color_2 {
     background-color: #96407A;
     color: #EEEEEE;
 }
 
-.ui.label.color_3{
+.ui.label.color_3,
+.ui.button.color_3 {
     background-color: #793362;
     color: #EEEEEE;
 }
