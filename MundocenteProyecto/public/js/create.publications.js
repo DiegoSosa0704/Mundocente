@@ -13,9 +13,13 @@ var link = $('#url_publication').val();
 var contacts = $('#cantactsid').val();
 var largeArea = $('#select_gran_area_formacion').val();
 var area = $('#select_area_formacion').val();
-var discipline = $('#select_disciplina_formacion').val();
+var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 
+
+
+ var ruta = "add-announcement";
+var token = $("#token").val();
 
 
    if(institution.length != 0){
@@ -23,7 +27,8 @@ var checkSelectedAllArea = $('#valueCheckallArea').val();
             if(city != null){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(title.length != 0){
+                        if(largeArea.length != 0){
+                            if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
                                     $('#messageErrorpublication').removeClass('error');
@@ -31,10 +36,22 @@ var checkSelectedAllArea = $('#valueCheckallArea').val();
                                     $('#idpmessageerrorpublications').html('Se publió co éxito, todas las áreas');
                                 }else{
                                     
-                                            $('#messageErrorpublication').removeClass('error');
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                   
+                                    $.ajax({
+                                        url: ruta,
+                                        headers: {'X-CSRF-TOKEN': token},
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        data:{id_institute: institution, id_country: country, id_city: city, 
+                                            dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
+                                            area: area, disciplines: disciplines, title: title, url_link: link,
+                                             contact: contacts, description: description, allArea: '0'},
+                                        success:function(info){
+                                            console.log('entró '+info);
+                                        }
+                                    });
+                                    $('#messageErrorpublication').removeClass('error');
+                                    $('#messageErrorpublication').addClass('green');
+                                    $('#idpmessageerrorpublications').html('Se publicó la convocatoria con éxito');
                                 }
                             }else{
                                 $('#messageErrorpublication').removeClass('green');
@@ -46,7 +63,13 @@ var checkSelectedAllArea = $('#valueCheckallArea').val();
                             $('#messageErrorpublication').removeClass('green');
                             $('#messageErrorpublication').addClass('error');
                             $('#messageErrorpublication').css('display', 'block');
-                            $('#idpmessageerrorpublications').html('Debe ingesar el título de la convocatoria');
+                            $('#idpmessageerrorpublications').html('El campo título es obligatorio y debe tener máximo 150 carcteres');
+                        }
+                        }else{
+                            $('#messageErrorpublication').removeClass('green');
+                            $('#messageErrorpublication').addClass('error');
+                            $('#messageErrorpublication').css('display', 'block');
+                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo una gran área');
                         }
                     }else{
                         $('#messageErrorpublication').removeClass('green');

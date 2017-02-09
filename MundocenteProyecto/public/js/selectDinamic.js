@@ -12,12 +12,13 @@ $('#selectCountry').change(function(event){
 		for (var i = 0 ; i < response.length; i++) {
 			$('#selectCity').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
 		}
+		
 	});
-
-
-	$('#cityChange').toggle("show");
 	$('#selectCity').append('<option value="0" disabled="true">Ninguno</option>');
-	$('#selectCity > option[value="0"]').attr('selected', 'selected');
+		$('#selectCity > option[value="0"]').attr('selected', 'selected');
+		$('#cityChange').toggle("show");
+
+	
 
 });
 
@@ -40,11 +41,13 @@ $('#selectCity').change(function(event){
 		for (var i = 0 ; i < response.length; i++) {
 			$('#selectInstitution').append("<option value='"+response[i].id_institution+"'> "+ response[i].name_institution +" </option>");
 		}
+		
 	});
+	    $('#selectInstitution').append('<option value="0" disabled="true">Seleccione Institución</option>');
+		$('#selectInstitution > option[value="0"]').attr('selected', 'selected');
+		$('#institutionChange').toggle("show");
 
-	$('#selectInstitution').append('<option value="0" disabled="true">Seleccione Institución</option>');
-	$('#selectInstitution > option[value="0"]').attr('selected', 'selected');
-	$('#institutionChange').toggle("show");
+	
 	
 });
 
@@ -780,6 +783,46 @@ $('#changeAccountActive').click(function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+//LLena el campo de país y ciudad segun la universidad que seleccione
+$('#selectMVinculation').change(function(event){
+	if ($('#changeInstitution_location').is(":visible")) {
+          $('#changeInstitution_location').toggle('fast');
+        }
+
+	$.get('get-pocation-institution/'+event.target.value+ "" , function(response, ciudad){
+
+		for (var i = 0 ; i < response.length; i++) {
+			
+			$('#name_country_title').html("País - ("+response[i].nombre_pais +")");
+			
+			$("#selectCountry option[value="+ response[i].id_pais +"]").attr("selected",true);
+
+			$('#selectCity').append("<option value="+response[i].id_ciudad+" >"+response[i].nombre_ciudad+"</option>");
+			$('#name_city_title').html("Ciudad - ("+response[i].nombre_ciudad +")");
+			
+			$("#selectCity option[value="+ response[i].id_ciudad +"]").attr("selected",true);
+
+			
+
+		}
+	});
+
+	          $('#changeInstitution_location').toggle('show');
+	       
+
+
+
+});
 
 
 

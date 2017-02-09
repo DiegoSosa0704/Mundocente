@@ -78,6 +78,7 @@ Route::get('area/{id}' , 'HomeController@obtenerArea');
 Route::get('disciplina/{id_pais}' , 'HomeController@obtenerDisciplina');
 
 Route::get('university/{id_city}' , 'HomeController@obtenerUniversidades');
+Route::get('get-pocation-institution/{id_institution}', 'HomeController@obtenerPaisYCiudadConInstitucion');
 
 
 

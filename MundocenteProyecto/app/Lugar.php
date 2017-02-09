@@ -15,5 +15,13 @@ class Lugar extends Model
     	return Lugar::where('id_lugar_fk', $id_pais)->get();
     }
 
+    public static function mostrarPaisyCiudad($id_institut){
+    	return DB::select('select lp.id_lugar AS id_pais, lp.name_lugar as nombre_pais, lc.id_lugar as id_ciudad, lc.name_lugar as nombre_ciudad FROM institucions i, lugars lp, lugars lc WHERE i.id_lugar_fk=lc.id_lugar AND lc.id_lugar_fk=lp.id_lugar AND i.id_institution='.$id_institut);
+
+    }
+
+
+
+
    
 }

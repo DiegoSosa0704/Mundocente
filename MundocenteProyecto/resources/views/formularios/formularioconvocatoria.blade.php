@@ -23,21 +23,42 @@
         </div>
         <div class="ui piled very padded left aligned segment">
             <div class="ui form" id="form">
+            <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                 <h4 class="ui dividing header">Información general</h4>
+
+
+
                 <div class="field">
                     <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
                         <select name="institution" class="ui search dropdown" id="selectMVinculation">
                         <option value="">Seleccione Institución</option>
                             @foreach($institucionesVinvulado as $inst_vin)
-                                <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                @if($inst_vin->state_institution=='nuevo')
+                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} - (Institución no verificada)</option>
+                                @else
+                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
              
-                <div class="two fields">
+                <div class="two fields" id="changeInstitution_location">
                     <div class="required field">
-                        <label>País</label>
+                        <label id="name_country_title">País</label>
                         <select class="ui search dropdown" name="country" placeholder="seleccione país de la convocatoria" id="selectCountry">
                                 <option value="">Seleccione país</option>
                                 @foreach($lugares as $lugar)
@@ -50,15 +71,28 @@
 
                     </div>
                     <div class="required field" id="cityChange">
-                        <label>Ciudad</label>
+                        <label id="name_city_title">Ciudad</label>
                              <select class="ui search dropdown" name="city" placeholder="Seleccione Ciudad" id="selectCity">
                                 <option value="">Seleccione ciudad</option>
                             </select>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="two fields">
-                    
-                        
                             <div class="required field">
                                 <label>Desde</label>
                                 <div class="ui calendar" id="rangestart">
@@ -77,8 +111,6 @@
                                     </div>
                                 </div>
                             </div>
-                        
-                    
                 </div>
 
 
@@ -180,6 +212,7 @@
                     </div>
                 </div>
                 <br>
+
                 <div class="ui message error" style="display: none;" id="messageErrorpublication">
                                               
                         <ul class="list">
@@ -187,6 +220,14 @@
 
                         </ul>
                 </div>
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
@@ -200,9 +241,6 @@
 <script type="text/javascript">
 
 $('#optionMainAnnouncement').addClass('active');
-$('#optionMainPaper').removeClass('active');
-$('#optionMainEvent').removeClass('active');
-$('#optionMainRequest').removeClass('active');
 
     var today = new Date();
    

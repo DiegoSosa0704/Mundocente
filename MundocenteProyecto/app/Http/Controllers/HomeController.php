@@ -196,6 +196,14 @@ public function callInstitutionMy(){
         }
     }
 
+
+    public function obtenerPaisYCiudadConInstitucion(Request $request, $id_institution){
+        if($request->ajax()){
+            $lugar = Lugar::mostrarPaisyCiudad($id_institution);
+            return response()->json($lugar);
+        }
+    }
+
  /**
      * Nos lleva al formulario para logueo
      *

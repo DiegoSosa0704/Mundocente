@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use Mundocente\Http\Requests;
 use Mundocente\Http\Controllers\Controller;
+use Mundocente\Publicacion;
+use Auth;
+use DB;
 
 class PublicationsController extends Controller
 {
@@ -31,6 +34,54 @@ class PublicationsController extends Controller
     {
            if($request->ajax()){
                 
+                echo "<br>id país".$request['id_country'];
+                
+                echo "<br>dato inicio".$request['dateStart'];
+                echo "<br>dato final".$request['dateFinis'];
+                
+                
+
+                $institutionTable = DB::table('institucions')->where('id_institution', $request['id_institute'])->select('state_institution')->get();
+                $sectorInstitution = '';
+                foreach ($institutionTable as $ins) {
+                    $sectorInstitution = $ins->state_institution;
+                }
+                
+                
+                echo "<br>todas: ".$request['allArea'];
+
+
+                 Publicacion::create([
+                    'title_publication' => $request['title'],
+                    'description_publication' => $request['description'],
+                    'sector_publication' => $sectorInstitution,
+                    'url_publication' => $request['url_link'],
+                    'contact_pubication' => $request['contact'],
+                    'state_publication' => 'activo',
+                    'id_type_publication' => 1,
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+
+                ]);
+
+
+                if ($request['allArea']=='0') {
+                      if (!empty($request['disciplines'])) {
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            echo "<br>id discipline: ".$request['disciplines'][$i];
+                        }
+                        echo "<br>gran área".$request['large_area'];
+                        echo "<br>área".$request['area'];
+                    }
+                }else{
+                    echo "Se guardan todas las áreas";
+                }
+                
+              
+                
+                
+               
+
                return  0;
            
         }
