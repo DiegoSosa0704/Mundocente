@@ -799,6 +799,8 @@ $('#selectMVinculation').change(function(event){
           $('#changeInstitution_location').toggle('fast');
         }
 
+        $('#selectCity').empty();
+
 	$.get('get-pocation-institution/'+event.target.value+ "" , function(response, ciudad){
 
 		for (var i = 0 ; i < response.length; i++) {
@@ -812,10 +814,14 @@ $('#selectMVinculation').change(function(event){
 			
 			$("#selectCity option[value="+ response[i].id_ciudad +"]").attr("selected",true);
 
+			$("#sectorUniversityCheck").prop("checked", false);
+			$("#sectorBasicCheck").prop("checked", false);
 			if(response[i].setor_institution=='universitario'){
 				$("#sectorUniversityCheck").prop("checked", true);
+				
 			}else{
 				$("#sectorBasicCheck").prop("checked", true);
+
 			}
 			
 

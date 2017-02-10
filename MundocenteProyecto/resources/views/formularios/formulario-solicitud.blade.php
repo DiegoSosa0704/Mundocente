@@ -30,7 +30,7 @@
 
 
                 <div class="field">
-                    <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
+                    <div class="ui  large horizontal label ">Institución que publica la solicitud:
                         <select name="country" class="ui search dropdown" id="selectMVinculation">
                         <option value="">Seleccione Institución</option>
                             @foreach($institucionesVinvulado as $inst_vin)
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="field">
-                        <div class="required grouped fields">
+                        <div class=" grouped fields">
                             <label>Sector educativo</label>
                             <div class="field">
                                 <div class="ui checkbox">

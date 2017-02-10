@@ -159,6 +159,68 @@ class PublicationsController extends Controller
     public function agregarEvento(Request $request)
     {
            if($request->ajax()){
+                   
+               
+                
+                $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
+                $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
+                
+                 Publicacion::create([
+                    'title_publication' => $request['title'],
+                    'description_publication' => $request['description'],
+                    'sector_publication' => $request['sector_request'],
+                    'url_publication' => $request['url_link'],
+                    'date_start' => "".$fecha_inicio,
+                    'date_end' => "".$fecha_fin,
+                    'hour_start' => $request['hour_i'],
+                    'hour_end' => $request['hour_f'],
+                    'contact_pubication' => $request['contact'],
+                    'state_publication' => 'activo',
+                    'id_type_publication' => 3,
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+
+                ]);
+
+
+                $publication_last= Publicacion::all();
+                $last_id_publication = $publication_last->last()->id_publication;
+                
+                if ($request['allArea']=='1') {
+                      if (!empty($request['disciplines'])) {
+                        echo "<br>entró a id";
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            echo "for ----> "+$request['disciplines'][$i];
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
+                        }
+                     }
+                        echo "large: ".$request['large_area'];
+                        if(!empty($request['large_area'])){
+
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['large_area'],
+                            ]);
+                        }
+                         if(!empty($request['area'])){
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['area'],
+                            ]);
+                        }
+
+                }else{
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => 0,
+                            ]);
+                }
+                
+              
+                
                 
                return  0;
            

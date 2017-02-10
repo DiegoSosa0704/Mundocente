@@ -25,7 +25,7 @@
                 <form class="ui form" id="form">
                     <h4 class="ui dividing header">Información general</h4>
                     <div class="field">
-                        <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
+                        <div class="ui  large horizontal label ">Institución que publica la revista:
                         <select name="country" class="ui search dropdown" id="selectMVinculation">
                         <option value="">Seleccione Institución</option>
                             @foreach($institucionesVinvulado as $inst_vin)

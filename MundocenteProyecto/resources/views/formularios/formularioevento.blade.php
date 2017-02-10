@@ -22,10 +22,11 @@
             <div class="line"></div>
         </div>
         <div class="ui piled very padded left aligned segment">
-            <form class="ui form" id="form">
+            <div class="ui form" id="form">
+            <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                 <h4 class="ui dividing header">Información general</h4>
                 <div class="field">
-                    <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
+                    <div class="ui  large horizontal label ">Institución que publica el evento:
                         <select name="country" class="ui search dropdown" id="selectMVinculation">
                         <option value="">Seleccione Institución</option>
                             @foreach($institucionesVinvulado as $inst_vin)
@@ -34,24 +35,40 @@
                         </select>
                     </div>
                 </div>
-                <div class="required grouped fields">
-                    <label>Sector educativo</label>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="sector">
-                            <label>Universitario</label>
+                <div class="field">
+                        <div class="grouped fields">
+                            <label>Sector educativo</label>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="sector" id="sectorUniversityCheck" value="universitario">
+                                    <label>Universitario</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="sector" id="sectorBasicCheck" value="preescolar">
+                                    <label>Preescolar, básica y media</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="sector">
-                            <label>Preescolar, básica y media</label>
-                        </div>
-                    </div>
-                </div>
-                  <div class="two fields">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 <div class="two fields" id="changeInstitution_location">
                     <div class="required field">
-                        <label>País</label>
+                        <label id="name_country_title">País</label>
                         <select class="ui search dropdown" name="country" placeholder="seleccione país de la convocatoria" id="selectCountry">
                                 <option value="">Seleccione país</option>
                                 @foreach($lugares as $lugar)
@@ -64,12 +81,37 @@
 
                     </div>
                     <div class="required field" id="cityChange">
-                        <label>Ciudad</label>
+                        <label id="name_city_title">Ciudad</label>
                              <select class="ui search dropdown" name="city" placeholder="Seleccione Ciudad" id="selectCity">
                                 <option value="">Seleccione ciudad</option>
                             </select>
                     </div>
                 </div>
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="required field">
                     
                     <div class="two fields">
@@ -87,7 +129,7 @@
                                 <div class="ui calendar" id="timeStart">
                                     <div class="ui input left icon">
                                         <i class="time icon"></i>
-                                        <input type="text" placeholder="Hora de inicio">
+                                        <input type="text" placeholder="Hora de inicio" id="inputvaluehourStart">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +152,7 @@
                                 <div class="ui calendar" id="timeFinish">
                                     <div class="ui input left icon">
                                         <i class="time icon"></i>
-                                        <input type="text" placeholder="Ingrese hora de fin">
+                                        <input type="text" placeholder="Ingrese hora de fin" id="inputvaluehourFinish">
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +180,7 @@
 
 
 
-                <h4 class="ui dividing header">Áreas de conocimiento</h4>
+           <h4 class="ui dividing header">Áreas de conocimiento</h4>
                 <div class="three fields" id="contentSelectArea">
                     <div class="required field">
                         <label>Gran área</label>
@@ -159,7 +201,7 @@
                     </div>
                     <div class="field">
                         <label>Disciplina</label>
-                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui fluid search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
                      
                     </div>
                 </div>
@@ -189,10 +231,12 @@
 
 
                 <h4 class="ui dividing header">Detalles</h4>
-                <div class="required field">
-                    <label>Nombre</label>
-                    <input name="name" type="text">
+                 <div class="required field">
+                    <label>Nombre del evento</label>
+                    {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
                 </div>
+
+
                 <div class="field">
                     <label>Imagen o logo del evento</label>
                     <img class="ui middle aligned medium rounded image" src="images/public-image.png">
@@ -203,236 +247,74 @@
                         </label>
                     </span>
                 </div>
+
+
                 <div class="field">
                     <label>Descripción</label>
-                    <textarea name="description" rows="3"></textarea>
+                    
+                     {!!Form::textarea('description', null, ['type' => 'text', 'rows' => '5', 'id'=>'descriptionid'])!!}
                 </div>
+
+
                 <div class="ui info compact small message">
                     <p>Debe ingresar al menos uno de los campos correspondientes a contacto.</p>
                 </div>
+                
+
+
+
+
+
+
+
                 <div class="two fields">
                     <div class="required field">
                         <label>Enlace</label>
-                        <input name="link" type="url" placeholder="URL">
+                        
+                        {!!Form::text('link', null, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
                     </div>
                     <div class="required field">
                         <label>Datos de contacto </label>
-                        <input name="contact_data" type="text" placeholder="Nombre, e-mail y/o teléfono">
+                        
+                        {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                     </div>
                 </div>
+
+
+
+
+
+
+
                 <div class="ui right aligned stackable grid">
                     <div class="sixteen wide column">
-                        <button type="submit" form="form" onclick="validateFormAnnouncement()"
-                                class="ui submit inverted button button_submit">
+                        <a type="submit" form="form" class="ui submit inverted button button_submit" id="addpublicationeventbutton">
                             Publicar
-                        </button>
+                        </a>
                     </div>
                 </div>
-                <div class="ui error message"></div>
-            </form>
+                <br>
+                <div class="ui message error" style="display: none;" id="messageErrorpublication">
+                                              
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+
+
+
+
+
+
 <script type="text/javascript">
 
-    function validateFormAnnouncement() {
-        var $form = $('.ui.form'),
-            allFields = $form.form('get values')
-            ;
-        if(allFields.link == false && allFields.contact_data == false){
-            $('.ui.form')
-                .form({
-                    on: 'blur',
-                    fields: {
-                        sector: {
-                            identifier: 'sector',
-                            rules: [
-                                {
-                                    type: 'checked',
-                                    prompt: 'Porfavor seleccione un valor en Sector educativo'
-                                }
-                            ]
-                        },
-                        country: {
-                            identifier: 'country',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en País'
-                                }
-                            ]
-                        },
-                        city: {
-                            identifier: 'city',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Ciudad'
-                                }
-                            ]
-                        },
-                        from: {
-                            identifier: 'from',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione una fecha en Desde'
-                                }
-                            ]
-                        },
-                        until: {
-                            identifier: 'until',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione una fecha en Hasta'
-                                }
-                            ]
-                        },
-                        large_area: {
-                            identifier: 'large_area',
-                            rules: [
-                                {
-                                    type   : 'minCount[1]',
-                                    prompt : 'Porfavor seleccione al menos un valor en Gran Área'
-                                }
-                            ]
-                        },
-                        name: {
-                            identifier: 'name',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Nombre'
-                                },
-                                {
-                                    type: 'maxLength[150]',
-                                    prompt: 'El nombre no puede ser mayor a 150 caracteres'
-                                }
-                            ]
-                        },
-                        description: {
-                            identifier: 'description',
-                            rules: [
-                                {
-                                    type: 'maxLength[500]',
-                                    prompt: 'La descripción no puede ser mayor a 500 caracteres'
-                                }
-                            ]
-                        },
-                        link: {
-                            identifier: 'link',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Enlace'
-                                }
-                            ]
-                        },
-                        contact_data: {
-                            identifier: 'contact_data',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Datos de contacto'
-                                }
-                            ]
-                        }
-                    }
-                })
-            ;
-        }else {
-            $('.ui.form')
-                .form({
-                    on: 'blur',
-                    fields: {
-                        sector: {
-                            identifier: 'sector',
-                            rules: [
-                                {
-                                    type: 'checked',
-                                    prompt: 'Porfavor seleccione un valor en Sector educativo'
-                                }
-                            ]
-                        },
-                        country: {
-                            identifier: 'country',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en País'
-                                }
-                            ]
-                        },
-                        city: {
-                            identifier: 'city',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione un valor en Ciudad'
-                                }
-                            ]
-                        },
-                        from: {
-                            identifier: 'from',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione una fecha en Desde'
-                                }
-                            ]
-                        },
-                        until: {
-                            identifier: 'until',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor seleccione una fecha en Hasta'
-                                }
-                            ]
-                        },
-                        large_area: {
-                            identifier: 'large_area',
-                            rules: [
-                                {
-                                    type   : 'minCount[1]',
-                                    prompt : 'Porfavor seleccione al menos un valor en Gran Área'
-                                }
-                            ]
-                        },
-                        name: {
-                            identifier: 'name',
-                            rules: [
-                                {
-                                    type: 'empty',
-                                    prompt: 'Porfavor introduzca un valor en Nombre'
-                                },
-                                {
-                                    type: 'maxLength[150]',
-                                    prompt: 'El nombre no puede ser mayor a 150 caracteres'
-                                }
-                            ]
-                        },
-                        description: {
-                            identifier: 'description',
-                            rules: [
-                                {
-                                    type: 'maxLength[500]',
-                                    prompt: 'La descripción no puede ser mayor a 500 caracteres'
-                                }
-                            ]
-                        }
-                    }
-                })
-            ;
-        }
-    }
-
-
-
-
-      $('#optionMainAnnouncement').removeClass('active');
+        $('#optionMainAnnouncement').removeClass('active');
         $('#optionMainPaper').removeClass('active');
         $('#optionMainEvent').addClass('active');
         $('#optionMainRequest').removeClass('active');
@@ -452,10 +334,12 @@
       
 
      $('#timeStart').calendar({
+        ampm: false,
         type: 'time'
     });
 
       $('#timeFinish').calendar({
+        ampm: false,
         type: 'time'
     });
 
