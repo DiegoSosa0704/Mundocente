@@ -22,7 +22,7 @@ class HomeController extends Controller
 
 
     public function __construct(){
-        $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento']]);
+        $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud']]);
 
     }
 

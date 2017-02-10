@@ -23,8 +23,12 @@
             <div class="line"></div>
         </div>
         <div class="ui piled very padded left aligned segment">
-            <form class="ui form" id="form">
+            <div class="ui form" id="form">
+            <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                 <h4 class="ui dividing header">Información general</h4>
+                
+
+
                 <div class="field">
                     <div class="ui  large horizontal label ">Institución con la que realizará la convocatoria:
                         <select name="country" class="ui search dropdown" id="selectMVinculation">
@@ -35,19 +39,33 @@
                         </select>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="two fields">
                     <div class="field">
                         <div class="required grouped fields">
                             <label>Tipo de invitación</label>
                             <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="request">
+                                <div class="ui radio checkbox checked">
+                                    <input type="radio" name="request" id="radiooptionrequestproyect" checked="true">
                                     <label>Formar parte de un proyecto</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="request">
+                                    <input type="radio" name="request" id="radiooptionrequestevaluator">
                                     <label>Ser evaluador de un proyecto</label>
                                 </div>
                             </div>
@@ -58,13 +76,13 @@
                             <label>Sector educativo</label>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="sector">
+                                    <input type="checkbox" name="sector" id="sectorUniversityCheck" value="universitario">
                                     <label>Universitario</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="sector">
+                                    <input type="checkbox" name="sector" id="sectorBasicCheck" value="preescolar">
                                     <label>Preescolar, básica y media</label>
                                 </div>
                             </div>
@@ -92,7 +110,7 @@
 
 
                 <h4 class="ui dividing header">Áreas de conocimiento</h4>
-                 <div class="three fields" id="contentSelectArea">
+                    <div class="three fields" id="contentSelectArea">
                     <div class="required field">
                         <label>Gran área</label>
 
@@ -116,7 +134,6 @@
                      
                     </div>
                 </div>
-
                 <div class="ui checkbox" id="check_area_all">
                               <input type="checkbox" id="valueCheckallArea"  value="1">
                               <label>Todas las áreas</label>
@@ -134,17 +151,15 @@
 
 
 
-
-
-
-
-
-
                 <h4 class="ui dividing header">Detalles</h4>
-                <div class="required field">
+                 <div class="required field">
                     <label>Título</label>
+                    {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
+                </div>
+                <div class="field">
+                    <label>Descripción</label>
                     
-                    <input name="title" type="text" placeholder="Ejemplo: Investigador Junior, Matemático, para participar en proyecto de Colciencias">
+                     {!!Form::textarea('description', null, ['type' => 'text', 'rows' => '5', 'id'=>'descriptionid'])!!}
                 </div>
                 <div class="two fields">
                             <div class="required field">
@@ -166,118 +181,57 @@
                                 </div>
                             </div>
                 </div>
-                <div class="field">
-                    <label>Descripción</label>
-                    <textarea name="description" rows="3"></textarea>
-                </div>
-                <div class="required field">
-                    <label>Datos de contacto </label>
-                    <input name="contact_data" type="text" placeholder="Nombre, e-mail y/o teléfono">
-                </div>
-                <div class="ui right aligned stackable grid">
-                    <div class="sixteen wide column">
-                        <button type="submit" form="form" onclick="validateFormAnnouncement()"
-                                class="ui submit inverted button button_submit">
-                            Publicar
-                        </button>
+
+
+
+
+
+
+
+
+
+
+               <div class="two fields">
+                    
+                    <div class="required field">
+                        <label>Datos de contacto </label>
+                        
+                        {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                     </div>
                 </div>
+
+
+                 <div class="ui right aligned stackable grid">
+                    <div class="sixteen wide column">
+                        <a form="form" id="addRequestbutton"
+                                class="ui submit inverted button button_submit">
+                            Publicar
+                        </a>
+                    </div>
+                </div>
+                <br>
+
+                 <div class="ui message error" style="display: none;" id="messageErrorpublication">
+                                              
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                </div>
+
+
+
+
+
                 <div class="ui error message"></div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
 
-    function validateFormAnnouncement() {
-        var $form = $('.ui.form'),
-            allFields = $form.form('get values')
-            ;
-        $('.ui.form')
-            .form({
-                on: 'blur',
-                fields: {
-                    sector: {
-                        identifier  : 'sector',
-                        rules: [
-                            {
-                                type   : 'checked',
-                                prompt : 'Porfavor seleccione un valor en Sector'
-                            }
-                        ]
-                    },
-                    request: {
-                        identifier  : 'request',
-                        rules: [
-                            {
-                                type   : 'checked',
-                                prompt : 'Porfavor seleccione un tipo de Solicitud'
-                            }
-                        ]
-                    },
-                    large_area: {
-                        identifier: 'large_area',
-                        rules: [
-                            {
-                                type: 'minCount[1]',
-                                prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                            }
-                        ]
-                    },
-                    title: {
-                        identifier: 'title',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Porfavor introduzca un valor en Título'
-                            },
-                            {
-                                type: 'maxLength[150]',
-                                prompt: 'El título no puede ser mayor a 150 caracteres'
-                            }
-                        ]
-                    },
-                    from: {
-                        identifier: 'from',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Porfavor seleccione un valor en Desde'
-                            }
-                        ]
-                    },
-                    until: {
-                        identifier: 'until',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Porfavor seleccione un valor en Hasta'
-                            }
-                        ]
-                    },
-                    description: {
-                        identifier: 'description',
-                        rules: [
-                            {
-                                type: 'maxLength[500]',
-                                prompt: 'La descripción no puede ser mayor a 500 caracteres'
-                            }
-                        ]
-                    },
-                    contact_data: {
-                        identifier: 'contact_data',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Porfavor introduzca un valor en Datos de contacto'
-                            }
-                        ]
-                    }
-                }
-            })
-        ;
-    }
+    
 
 
 

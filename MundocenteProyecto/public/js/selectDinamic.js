@@ -15,8 +15,8 @@ $('#selectCountry').change(function(event){
 		
 	});
 	$('#selectCity').append('<option value="0" disabled="true">Ninguno</option>');
-		$('#selectCity > option[value="0"]').attr('selected', 'selected');
-		$('#cityChange').toggle("show");
+	$('#selectCity > option[value="0"]').attr('selected', 'selected');
+	$('#cityChange').toggle("show");
 
 	
 
@@ -812,6 +812,11 @@ $('#selectMVinculation').change(function(event){
 			
 			$("#selectCity option[value="+ response[i].id_ciudad +"]").attr("selected",true);
 
+			if(response[i].setor_institution=='universitario'){
+				$("#sectorUniversityCheck").prop("checked", true);
+			}else{
+				$("#sectorBasicCheck").prop("checked", true);
+			}
 			
 
 		}
