@@ -229,6 +229,7 @@ public function uploadPhotoPerfil(Request $request){
                    'name_institution' => $request['name_new_institute'],
                     'setor_institution' =>  'universitario',
                     'state_institution' => 'nuevo',
+                    'id_lugar_fk' => $request['id_lugar_city'],
                 ]);
 
              $institutionNew= Institucion::all();

@@ -141,6 +141,7 @@ class PublicationsController extends Controller
                     'contact_pubication' => $request['contact'],
                     'state_publication' => 'activo',
                     'id_type_publication' => 1,
+                    'id_institution_fk' => $request['id_institute'],
                     'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
 
@@ -219,6 +220,7 @@ class PublicationsController extends Controller
                     'date_end' => "".$fecha_fin,
                     'hour_start' => $request['hour_i'],
                     'hour_end' => $request['hour_f'],
+                    'id_institution_fk' => $request['id_institute'],
                     'contact_pubication' => $request['contact'],
                     'state_publication' => 'activo',
                     'id_type_publication' => 3,
@@ -289,6 +291,7 @@ class PublicationsController extends Controller
                     'contact_pubication' => $request['contact'],
                     'state_publication' => 'activo',
                     'id_type_publication' => 3,
+                    'id_institution_fk' => $request['id_institute'],
                     'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
 
@@ -363,6 +366,7 @@ class PublicationsController extends Controller
                     'contact_pubication' => $request['contact'],
                     'sector_publication' => $request['sector_request'],
                     'state_publication' => 'activo',
+                    'id_institution_fk' => $request['id_institute'],
                     'id_type_publication' => $request['type_request'],
                     'id_user_fk' => Auth::user()->id,
                 ]);

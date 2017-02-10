@@ -45,7 +45,7 @@
     </div>
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
-        <div class="ui aligned center inverted tiny header">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</div>
+        <div class="ui aligned center inverted tiny header"><a href="edit-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
     </div>
     <a class=" item" href="publications" id="optionMainHome">
         <i class="grid layout icon"></i> Inicio

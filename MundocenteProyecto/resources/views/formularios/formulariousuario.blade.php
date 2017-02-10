@@ -267,7 +267,7 @@
                                 <div class="sixteen wide column">
                                     <div form="form" onclick="validateFormAccount()"
                                          class="ui submit inverted button button_submit">
-                                        Guardar Cambios
+                                        Aceptar
                                     </div>
                                 </div>
                             </div>
@@ -409,6 +409,14 @@
 
                                     </ul>
                                 </div>
+                                <div class="ui red message" style="display: none;" id="messageNewInstitutioneror">
+                                    
+                                    <div class="header">
+                                        <p id="exitNewUniversity">Debe indicar la ciudad de la nueva institución</p>
+                                    </div>
+                                    <ul class="list">
+                                    </ul>
+                                </div>
                                 <div class="ui red message" style="display: none;" id="messageSaveVinculationerror">
                                     <i class="close icon" id="cierramensajedeinstitutoserror"></i>
                                     <div class="header">
@@ -421,6 +429,24 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 {{--Áreas de formación--}}
                 <div class="title">
@@ -524,6 +550,25 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 {{--Áreas de interés--}}
                 <div class="title">
@@ -632,10 +677,28 @@
                     </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 {{--Configuración general de cuenta--}}
                 <div class="title">
                     <i class="dropdown icon"></i>
-                    Configuración general de cuenta
+                    Cambiar contraseña
                 </div>
                 <div class="content">
                     <div class="transition hidden">

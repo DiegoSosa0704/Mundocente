@@ -191,29 +191,39 @@ $("#agregaInstituto").click(function(){
 
 $("#addInstituteNew").click(function(){
 	var name_new = $("#otherInstitute").val();
+	var id_lugar = $('#selectCity').val();
 	var ruta = "addUniversityNew";
 	var token = $("#token").val();
+	console.log("lugar prueba nuevo: "+id_lugar);
 
 
-if(name_new!=''){
+	if(id_lugar!=null && id_lugar!=''){
+		if(name_new!=''){
 		$.ajax({
-		url: ruta,
-		headers: {'X-CSRF-TOKEN': token},
-		type: 'POST',
-		dataType: 'json',
-		data:{name_new_institute: name_new},
-		success:function(info){
-			console.log('Se agregó ');
-			$("#listadeinstitutosvinculados").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'>Se ha enviado la solicitud para agregar una nueva universidad - ("+name_new+") está por el momento inactiva </div> </div>");
+			url: ruta,
+			headers: {'X-CSRF-TOKEN': token},
+			type: 'POST',
+			dataType: 'json',
+			data:{name_new_institute: name_new,id_lugar_city: id_lugar},
+				success:function(info){
+					console.log('Se agregó ');
+					$("#listadeinstitutosvinculados").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'>Se ha enviado la solicitud para agregar una nueva universidad - ("+name_new+") está por el momento inactiva </div> </div>");
+					$('#messageNewInstitutioneror').removeClass('error');
+					$('#messageNewInstitutioneror').addClass('green');
+					$('#exitNewUniversity').html('Se Agregó la institución correctamente para ser verificada');
+				}
+			});
+		}else{
+			$('#messageNewInstitutioneror').removeClass('green');
+			$('#messageNewInstitutioneror').addClass('error');
+			$('#exitNewUniversity').html('Ingrese nombre de nueva institución');
 		}
-	});
-}
+	}else{
+		$('#messageNewInstitutioneror').css('display', 'block');
+	}
 
 
-	
-	
-	
-	
+
 });
 
 
