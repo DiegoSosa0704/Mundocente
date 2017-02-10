@@ -198,5 +198,6 @@
 </script>
 {!!Html::script('js/selectDinamic.js')!!}
 {!!Html::script('js/create.publications.js')!!}
+
 </body>
 </html>

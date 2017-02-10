@@ -38,8 +38,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+         if (Auth::check()) {
+            return Redirect::to('publications');
+        }else{
+             return view('home');
+        }
+        
     }
+
+
+
 
 
 
@@ -228,7 +236,12 @@ public function callInstitutionMy(){
      */
     public function login()
     {
-        return view('login');
+        if (Auth::check()) {
+            return Redirect::to('publications');
+        }else{
+             return view('login');
+        }
+       
     }
 
 
@@ -240,8 +253,27 @@ public function callInstitutionMy(){
      */
     public function registrar()
     {
-        return view('registro', ['existe' => '0']);
+         if (Auth::check()) {
+            return Redirect::to('publications');
+        }else{
+             return view('registro', ['existe' => '0']);
+        }
+        
     }
+
+
+
+
+
+
+
+
+
+
+public function returnListPublicationsInterest(){
+    return DB::table('publicacions')->get();
+
+}
 
 
 
@@ -253,12 +285,13 @@ public function callInstitutionMy(){
      */
     public function publications()
     {
+        $listPublications = $this->returnListPublicationsInterest();
         
             if(Auth::user()->email==''){
                 Auth::logout();
                 return Redirect::to('userExist');
             }else{
-                return view('main.publication');
+                return view('main.publication', compact('listPublications'));
             }
 
         

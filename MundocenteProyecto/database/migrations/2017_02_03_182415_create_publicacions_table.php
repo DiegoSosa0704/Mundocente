@@ -33,6 +33,8 @@ class CreatePublicacionsTable extends Migration
             $table->foreign('id_lugar_fk')->references('id_lugar')->on('lugars');
             $table->integer('id_user_fk')->unsigned();
             $table->foreign('id_user_fk')->references('id')->on('users');
+            $table->integer('id_institution_fk')->unsigned();
+            $table->foreign('id_institution_fk')->references('id_institution')->on('institucions');
 
 
             $table->timestamps();

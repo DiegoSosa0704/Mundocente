@@ -318,6 +318,7 @@ var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 var hourStart = $('#inputvaluehourStart').val();
 var hourFinish = $('#inputvaluehourFinish').val();
+var imagePublication = $('#imagePublication').val();
 
 
 
@@ -351,7 +352,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
@@ -365,7 +366,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
                                             area: area, disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},

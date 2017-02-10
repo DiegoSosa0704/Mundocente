@@ -170,6 +170,7 @@ class PublicationsController extends Controller
                     'description_publication' => $request['description'],
                     'sector_publication' => $request['sector_request'],
                     'url_publication' => $request['url_link'],
+                    'url_photo_publication' => $request['url_image'],
                     'date_start' => "".$fecha_inicio,
                     'date_end' => "".$fecha_fin,
                     'hour_start' => $request['hour_i'],
@@ -316,6 +317,10 @@ class PublicationsController extends Controller
            
         }
     }
+
+
+
+
 
 
 

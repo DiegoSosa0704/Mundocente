@@ -372,8 +372,27 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="ui eleven wide column">
                     <h2 class="ui header">Últimas publicaciones</h2>
+
+
+                    @foreach($listPublications as $publication)
                     <div id="result-announcement" class="ui raised card menu segment" style="width: 100%;">
                         {{--Titulo--}}
                         <div class="content">
@@ -386,7 +405,7 @@
                                     <a class="item" href="#">Mis publicaciones</a>
                                 </div>
                             </div>
-                            <a><h3 class="header">Título de convocatoria</h3></a>
+                            <a><h3 class="header">{{$publication->title_publication}}</h3></a>
                         </div>
                         {{--Institución--}}
                         <div class="content">
@@ -401,9 +420,9 @@
                         <div class="extra content">
                             <div class="ui stackable grid">
                                 <div class="eleven wide column">
-                                    <span><b>Desde: </b> dd/mm/aaaa</span>
+                                    <span><b>Desde: </b> {{$publication->date_start}}</span>
                                     <br>
-                                    <span><b>Hasta: </b> dd/mm/aaaa</span>
+                                    <span><b>Hasta: </b> {{$publication->date_end}}</span>
                                 </div>
                                 <div class="five wide column">
                                     <button class="ui teal right floated labeled icon button">
@@ -414,6 +433,18 @@
                             </div>
                         </div>
                     </div>
+
+                    @endforeach
+
+
+
+
+                    
+
+
+
+
+
                     <div id="result-paper" class="ui raised card menu segment" style="width: 100%;">
                         {{--Titulo--}}
                         <div class="content">
@@ -548,6 +579,21 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

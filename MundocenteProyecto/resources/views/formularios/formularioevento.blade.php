@@ -243,7 +243,7 @@
                     <span>
                         <label for="file" class="ui blue button button_load">
                             Cargar
-                            <input type="file" id="file" style="display:none">
+                            <input type="file" id="file" style="display:none" id="imagePublication" value="">
                         </label>
                     </span>
                 </div>
