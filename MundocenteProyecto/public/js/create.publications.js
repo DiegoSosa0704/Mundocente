@@ -444,6 +444,7 @@ $(function(){
         var dataForm = new FormData($("#formularioimage")[0]);
         var routeimage = "upload-image-publication";
         var token = $("#token").val();
+        console.log(dataForm);
         $.ajax({
             url: routeimage,
             headers: {'X-CSRF-TOKEN': token},

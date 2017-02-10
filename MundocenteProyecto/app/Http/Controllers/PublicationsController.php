@@ -79,7 +79,7 @@ class PublicationsController extends Controller
             $routAux = $file["tmp_name"];
             $size = $file["size"];
             $dimensions = getimagesize($routAux);
-
+            
             $withImage = $dimensions[0];
             $heigthImage = $dimensions[1];
             $name_folder = "files/";

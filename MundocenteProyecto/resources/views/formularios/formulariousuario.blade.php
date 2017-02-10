@@ -84,7 +84,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="{!!Auth::user()->photo_url!!}">
+                                        <img src="{!!Auth::user()->photo_url!!}" id="newimageperfil" >
+                                        <input type="hidden" name="newimageinputperfil" id="hiddenewphoto" value="images/user.png">
                                     </div>
                                     {{--<span>
                                     <img class="ui middle aligned small circular image"
@@ -278,6 +279,34 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 {{--Vinculación laboral--}}
                 <div class="title">
@@ -991,7 +1020,24 @@
                             var newImage = dkrm.canvas.toDataURL();
                             fileStorageLocation = newImage;
                             //Imagen base 64
-                            console.log(fileStorageLocation);
+                            $('#newimageperfil').attr('src', newImage);
+                            
+                            
+
+                            var routeimage = "chage-photo-perfil";
+                            var token = $("#token").val();
+                            
+                            $.ajax({
+                                url: routeimage,
+                                headers: {'X-CSRF-TOKEN': token},
+                                type: "POST",
+                                data: {newImage: newImage},
+                                success: function(info){
+                                    
+                                    $('#hiddenewphoto').val(info);
+                                }
+                            });
+
                         }
                     }
                 },

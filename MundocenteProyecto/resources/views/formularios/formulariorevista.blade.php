@@ -22,7 +22,8 @@
                 <div class="line"></div>
             </div>
             <div class="ui piled left aligned very padded segment">
-                <form class="ui form" id="form">
+                <div class="ui form" id="form">
+                <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                     <h4 class="ui dividing header">Información general</h4>
                     <div class="field">
                         <div class="ui  large horizontal label ">Institución que publica la revista:
@@ -34,19 +35,54 @@
                         </select>
                     </div>
                     </div>
+
+
                     <div class="field">
-                        <div class="ui inverted large horizontal label color_2">País:
-                            <div class="detail">Nisi viverra.</div>
+                        <div class="ui inverted large horizontal label color_2">
+                            <div class="detail" id="name_country_title"></div>
                         </div>
                     </div>
                     <div class="field">
-                        <div class="ui inverted large horizontal label color_3">Ciudad:
-                            <div class="detail">Lorem sit .</div>
+                        <div class="ui inverted large horizontal label color_3">
+                            <div class="detail" id="name_city_title"></div>
                         </div>
                     </div>
+
+
+                      <div class="two fields" style="display: none;" >
+                    <div class="required field">
+                        
+                        <select class="ui search dropdown" name="country" disabled="true" placeholder="seleccione país de la convocatoria" id="selectCountry">
+                                <option value="">Seleccione país</option>
+                                @foreach($lugares as $lugar)
+                                
+                                    <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                @endforeach
+                            </select>
+
+                       
+
+                    </div>
+                    <div class="required field" id="cityChange">
+                        
+                             <select class="ui search dropdown" name="city" disabled="true" placeholder="Seleccione Ciudad" id="selectCity">
+                                <option value="">Seleccione ciudad</option>
+                            </select>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
                     <div class="required field">
                         <label>Título</label>
-                        <input name="titleMaxLength" type="text">
+                        {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
                     </div>
                     <label style="font-size:.92307692em;"><b>¿La revista se encuentra indexada?</b></label>
                     <div class="inline field">
@@ -136,33 +172,31 @@
 
 
                     <!--Areas de conocimiento-->
-                    <h4 class="ui dividing header">Áreas de conocimiento</h4>
-                     <div class="three fields" id="contentSelectArea">
-                    <div class="required field">
-                        <label>Gran área</label>
+            <h4 class="ui dividing header">Áreas de conocimiento</h4>
+                <div class="three fields" id="contentSelectArea">
+                        <div class="required field">
+                            <label>Gran área</label>
 
-                        <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
-                            <option value="">Gran Área</option>
-                            @foreach($gran_areas as $gran_area)
-                                <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
-                            @endforeach
-                        </select>
-                        
-                       
-                    </div>
-                    <div class="field">
-                        <label>Área</label>
-                        {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                      
-                    </div>
-                    <div class="field">
-                        <label>Disciplina</label>
-                        {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search multiple dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                     
-                    </div>
+                            <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
+                                <option value="">Gran Área</option>
+                                @foreach($gran_areas as $gran_area)
+                                    <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                @endforeach
+                            </select>
+                            
+                           
+                        </div>
+                        <div class="field">
+                            <label>Área</label>
+                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
+                          
+                        </div>
+                        <div class="field">
+                            <label>Disciplina</label>
+                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
+                         
+                        </div>
                 </div>
-
-
                 <div class="ui checkbox" id="check_area_all">
                               <input type="checkbox" id="valueCheckallArea"  value="1">
                               <label>Todas las áreas</label>
@@ -176,238 +210,95 @@
 
 
 
-
-
-
-
-
-
-                    <h4 class="ui dividing header">Información de contacto</h4>
-                    <div class="field">
-                        <label>Imagen o logo de la revista</label>
-                        <img class="ui middle aligned medium rounded image" src="images/public-image.png">
-                        <span>
+            <div class="field">
+                    <label>Imagen o logo del evento</label>
+                    <img class="ui middle aligned medium rounded image" src="images/public-image.png" id="imageNewShow">
+                    <span>
+                    <input type="hidden" name="imaTemp" id="imageAuxTemp" value="">
                         <label for="file" class="ui blue button button_load">
                             Cargar
-                            <input type="file" id="file" style="display:none">
+                            
+                             <form method="post" id="formularioimage" enctype="multipart/form-data">
+                                 <input type="file" name="file" id="file" accept="image/*" required style="display:none">
+                                 
+                            </form>
                         </label>
                     </span>
+                </div>
+
+
+
+
+
+
+
+
+
+    <h4 class="ui dividing header">Información de contacto</h4>
+
+             <div class="ui info compact small message">
+                    <p>Debe ingresar al menos uno de los siguientes campos.</p>
+            </div>   
+                <div class="two fields">
+                    <div class="required field">
+                        <label>Enlace</label>
+                        
+                        {!!Form::text('link', null, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
                     </div>
-                    <div class="ui info compact small message">
-                        <p>Debe ingresar al menos uno de los siguientes campos.</p>
+                    <div class="required field">
+                        <label>Datos de contacto </label>
+                        
+                        {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                     </div>
-                    <div class="two fields">
-                        <div class="required field">
-                            <label>Enlace</label>
-                            <input name="link" type="text" placeholder="URL">
-                        </div>
-                        <div class="required field">
-                            <label>Datos de contacto </label>
-                            <input name="contact_data" type="text" placeholder="Nombre, e-mail y/o teléfono">
-                        </div>
-                    </div>
+                </div>
+
+
+
+
+
+
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
-                            <button type="submit" form="form" onclick="validateForm()"
+                            <a type="submit" form="form" 
                                     class="ui inverted submit button button_submit">
                                 Publicar
-                            </button>
+                            </a>
                         </div>
                     </div>
-                    <div class="ui error message"></div>
-                </form>
+                    <br>
+                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
+                                              
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                </div>
+                </div>
             </div>
         </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="text/javascript">
-        function validateForm() {
-            var $form = $('.ui.form'),
-                allFields = $form.form('get values')
-                ;
-            if (allFields.indexed_paper == false) {
-                if (allFields.contact_data == false && allFields.link == false) {
-                    $('.ui.form')
-                        .form({
-                            on: 'blur',
-                            fields: {
-                                titleMaxLength: {
-                                    identifier: 'titleMaxLength',
-                                    rules: [
-                                        {
-                                            type: 'maxLength[150]',
-                                            prompt: 'El título no puede ser mayor a 150 caracteres'
-                                        },
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Titulo'
-                                        }
-                                    ]
-                                },
-                                large_area: {
-                                    identifier: 'large_area',
-                                    rules: [
-                                        {
-                                            type: 'minCount[1]',
-                                            prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                        }
-                                    ]
-                                },
-                                link: {
-                                    identifier: 'link',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Enlace'
-                                        }
-                                    ]
-                                },
-                                contact_data: {
-                                    identifier: 'contact_data',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Datos de contacto'
-                                        }
-                                    ]
-                                }
-                            }
-                        })
-                    ;
-                } else {
-                    $('.ui.form')
-                        .form({
-                            on: 'blur',
-                            fields: {
-                                titleMaxLength: {
-                                    identifier: 'titleMaxLength',
-                                    rules: [
-                                        {
-                                            type: 'maxLength[150]',
-                                            prompt: 'El título no puede ser mayor a 150 caracteres'
-                                        }, {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Titulo'
-                                        }
-                                    ]
-                                },
-                                large_area: {
-                                    identifier: 'large_area',
-                                    rules: [
-                                        {
-                                            type: 'minCount[1]',
-                                            prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                        }
-                                    ]
-                                }
-                            }
-                        })
-                    ;
-                }
-            } else {
-                if (allFields.contact_data == false && allFields.link == false) {
-                    $('.ui.form')
-                        .form({
-                            on: 'blur',
-                            fields: {
-                                titleMaxLength: {
-                                    identifier: 'titleMaxLength',
-                                    rules: [
-                                        {
-                                            type: 'maxLength[150]',
-                                            prompt: 'El título no puede ser mayor a 150 caracteres'
-                                        }, {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Titulo'
-                                        }
-                                    ]
-                                },
-                                large_area: {
-                                    identifier: 'large_area',
-                                    rules: [
-                                        {
-                                            type: 'minCount[1]',
-                                            prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                        }
-                                    ]
-                                },
-                                link: {
-                                    identifier: 'link',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Enlace'
-                                        }
-                                    ]
-                                },
-                                contact_data: {
-                                    identifier: 'contact_data',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Datos de contacto'
-                                        }
-                                    ]
-                                },
-                                name: {
-                                    identifier: 'name',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor seleccione un valor en Nombre'
-                                        }
-                                    ]
-                                }
-                            }
-                        })
-                    ;
-                } else {
-                    $('.ui.form')
-                        .form({
-                            on: 'blur',
-                            fields: {
-                                titleMaxLength: {
-                                    identifier: 'titleMaxLength',
-                                    rules: [
-                                        {
-                                            type: 'maxLength[150]',
-                                            prompt: 'El título no puede ser mayor a 150 caracteres'
-                                        }, {
-                                            type: 'empty',
-                                            prompt: 'Porfavor introduzca un valor en Titulo'
-                                        }
-                                    ]
-                                },
-                                large_area: {
-                                    identifier: 'large_area',
-                                    rules: [
-                                        {
-                                            type: 'minCount[1]',
-                                            prompt: 'Porfavor seleccione al menos un valor en Gran Área'
-                                        }
-                                    ]
-                                },
-                                name: {
-                                    identifier: 'name',
-                                    rules: [
-                                        {
-                                            type: 'empty',
-                                            prompt: 'Porfavor seleccione un valor en Nombre'
-                                        }
-                                    ]
-                                }
-                            }
-                        })
-                    ;
-                }
-            }
-
-        }
-
-
-
-
-        function showAdvancedSearch() {
+     function showAdvancedSearch() {
             $('#indexing-data').toggle("slow");
         }
 

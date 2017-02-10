@@ -129,6 +129,7 @@ class UserController extends Controller
                 ->update(['name' => $request['name'],
                     'curriculo_url'=>$request['link_curriculum'],
                     'nivel_formacion'=>$request['level_training'],
+                    'photo_url' => $request['newimageinputperfil'],
                     'recibe_not'=>'si']);
             
             DB::table('tema_notificacion_usuarios')->where('id_user_fk', Auth::user()->id)->delete();
@@ -148,6 +149,7 @@ class UserController extends Controller
                 ->update(['name' => $request['name'],
                     'curriculo_url'=>$request['link_curriculum'],
                     'nivel_formacion'=>$request['level_training'],
+                    'photo_url' => $request['newimageinputperfil'],
                     'recibe_not'=>'no']);
             DB::table('tema_notificacion_usuarios')->where('id_user_fk', Auth::user()->id)->delete();
         }
@@ -158,7 +160,22 @@ class UserController extends Controller
 
 
 
+public function uploadPhotoPerfil(Request $request){
 
+     if($request->ajax()){
+        $imageCod = ''.$request['newImage'];     
+        list(, $imageCod) = explode(';', $imageCod);
+        list(, $imageCod) = explode(',', $imageCod);
+
+        $imageCod = base64_decode($imageCod);
+
+        file_put_contents('fotosperfil/'.Auth::user()->id.'.png', $imageCod);
+
+        return 'fotosperfil/'.Auth::user()->id.'.png';
+           
+        }
+
+}
 
 
 
