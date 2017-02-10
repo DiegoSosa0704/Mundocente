@@ -239,13 +239,23 @@
 
                 <div class="field">
                     <label>Imagen o logo del evento</label>
-                    <img class="ui middle aligned medium rounded image" src="images/public-image.png">
+                    <img class="ui middle aligned medium rounded image" src="images/public-image.png" id="imageNewShow">
                     <span>
+                    <input type="hidden" name="imaTemp" id="imageAuxTemp" value="">
                         <label for="file" class="ui blue button button_load">
                             Cargar
-                            <input type="file" id="file" style="display:none" id="imagePublication" value="">
+                            
+                             <form method="post" id="formularioimage" enctype="multipart/form-data">
+                                 <input type="file" name="file" id="file" accept="image/*" required style="display:none">
+                                 
+                            </form>
                         </label>
                     </span>
+
+
+                   
+                    
+
                 </div>
 
 

@@ -67,6 +67,52 @@ class PublicationsController extends Controller
 
 
 
+
+
+    public function uploadImagePublication(){
+        $publication_last= Publicacion::all();
+        $last_id_publication = $publication_last->last()->id_publication;
+        if(isset($_FILES["file"])){
+            $file = $_FILES["file"];
+            $name_image = $file["name"];
+            $type = $file["type"];
+            $routAux = $file["tmp_name"];
+            $size = $file["size"];
+            $dimensions = getimagesize($routAux);
+
+            $withImage = $dimensions[0];
+            $heigthImage = $dimensions[1];
+            $name_folder = "files/";
+          
+                $srcImage = $name_folder.$last_id_publication.$name_image;
+                move_uploaded_file($routAux, $srcImage);
+                
+               
+
+                if($type == 'image/jpg' || $type == 'image/jpeg'){
+                    $image =  imagecreatefromjpeg($srcImage);
+                }else if($type == 'image/png'){
+                    $image =  imagecreatefrompng($srcImage);
+                }else if($type == 'image/gif'){
+                    $image =  imagecreatefromgif($srcImage);
+                }
+                
+                
+                $imageScaled = imagescale($image, 100);
+                
+                imagejpeg($image, $srcImage,20);
+                
+                imagedestroy($image);
+
+                $imageSize = getimagesize($srcImage);
+                
+            
+        }
+        return $srcImage;
+    }
+
+
+
 /**
      * Método que sirve para crear una nueva convocatoria
      *

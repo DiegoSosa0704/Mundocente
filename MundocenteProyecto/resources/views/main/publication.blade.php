@@ -407,15 +407,28 @@
                             </div>
                             <a><h3 class="header">{{$publication->title_publication}}</h3></a>
                         </div>
-                        {{--Institución--}}
-                        <div class="content">
-                            <div class="description">
-                                <div class="ui large label">
-                                    <i class="student icon"></i>
-                                    <a class="detail">Institución</a>
-                                </div>
-                            </div>
+
+                        <div class="ui items content">
+                            <div class="item">
+                        
+                                    @if($publication->url_photo_publication != '')
+                                    <div class="ui medium image">
+                                                <img src="{{$publication->url_photo_publication}}" >
+                                    </div>
+                                    @endif
+                                    {{--Institución--}}
+                                    <div class="content">
+                                        <div class="description">
+                                            <div class="ui large label">
+                                                <i class="student icon"></i>
+                                                <a class="detail">Institución</a>
+                                            </div>
+                                        </div>
+                                    </div>
                         </div>
+                        </div>
+
+
                         {{--Footer--}}
                         <div class="extra content">
                             <div class="ui stackable grid">
@@ -462,7 +475,7 @@
                         <div class="ui items content">
                             <div class="item">
                                 <div class="ui medium image">
-                                    <img src="images/revista1.jpg">
+                                    <img src="images/revista1.jpg" width="300" height="300">
                                 </div>
                                 <div class="middle aligned content">
                                     {{--Institución--}}
@@ -500,7 +513,7 @@
                         <div class="ui items content">
                             <div class="item">
                                 <div class="ui medium image">
-                                    <img src="images/revista2.jpg">
+                                    <img src="images/revista2.jpg" width="300" height="300">
                                 </div>
                                 <div class="middle aligned content">
                                     {{--Institución--}}

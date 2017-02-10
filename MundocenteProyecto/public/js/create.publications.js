@@ -318,7 +318,7 @@ var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 var hourStart = $('#inputvaluehourStart').val();
 var hourFinish = $('#inputvaluehourFinish').val();
-var imagePublication = $('#imagePublication').val();
+var imagePublication = $('#imageAuxTemp').val();
 
 
 
@@ -437,9 +437,28 @@ var token = $("#token").val();
 
 
 
+//sube imagen pra publicación
 
+$(function(){
+    $("input[name='file']").on("change", function(){
+        var dataForm = new FormData($("#formularioimage")[0]);
+        var routeimage = "upload-image-publication";
+        var token = $("#token").val();
+        $.ajax({
+            url: routeimage,
+            headers: {'X-CSRF-TOKEN': token},
+            type: "POST",
+            data: dataForm,
+            contentType: false,
+            processData: false, 
+            success: function(info){
+                $('#imageAuxTemp').val(info);
+                $('#imageNewShow').attr('src',info);
 
-
+            }
+        });
+    });
+});
 
 
 

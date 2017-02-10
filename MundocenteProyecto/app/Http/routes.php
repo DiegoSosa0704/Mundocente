@@ -95,3 +95,5 @@ Route::post('add-evento', 'PublicationsController@agregarEvento');
 Route::post('add-revista', 'PublicationsController@agregarRevista');
 Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
 
+Route::post('upload-image-publication', 'PublicationsController@uploadImagePublication');
+
