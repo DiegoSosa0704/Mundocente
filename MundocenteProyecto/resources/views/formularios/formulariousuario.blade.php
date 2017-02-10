@@ -1,10 +1,46 @@
 @extends('main.main')
 
 @section('content')
+
+    {!!Html::style('css/darkroom.css')!!}
+    {!!Html::script('js/fabric.js')!!}
+    {!!Html::script('js/darkroom.js')!!}
+
+    <style>
+
+        .ui.modal {
+            position: relative;
+            top:35%;
+        }
+
+        .image-container {
+            display: inline-block;
+            max-width: 100%;
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #e2e2e2;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+
+        .image-container.target {
+            margin-top: 40px;
+        }
+
+        .image-container img {
+            max-width: 300px;
+            max-height: 300px;
+            min-width: 100px;
+            min-height:100px;
+        }
+
+    </style>
+
     <!--Contenido-->
     <div class="pusher" style="background-color: #EEEEEE;">
         <div class="ui container center aligned">
-            <h1 class="ui header">Cuenta</h1>
+            <h1 class="ui header">Configuración de cuenta</h1>
             <div>
                 <div class="line"></div>
                 <div data-width="79" data-height="27"
@@ -35,15 +71,29 @@
                             <div class="equal width fields">
                                 <div class="field">
                                     <label>Foto de perfil</label>
-
-                                    <span>
-                                <label for="file" class="ui inverted button button_load">
-                                    <input type="file" id="file" style="display:none">
+                                    <div class="ui small circular image">
+                                        <div class="ui dimmer">
+                                            <div class="content">
+                                                <div class="center">
+                                                    <span>
+                                                        <label for="file-input" class="ui blue button">
+                                                            <input type="file" name="file-input" accept="image/*" id="file-input" style="display:none">
+                                                            Cargar Foto
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="{!!Auth::user()->photo_url!!}">
+                                    </div>
+                                    {{--<span>
                                     <img class="ui middle aligned small circular image"
                                          src="{!!Auth::user()->photo_url!!}">
+                                <label for="file" class="ui inverted button button_load">
+                                    <input type="file" id="file" style="display:none">
                                     Cargar Foto
                                 </label>
-                            </span>
+                            </span>--}}
                                 </div>
                             </div>
 
@@ -126,7 +176,8 @@
                                             No
                                         </label>
                                         <div class="ui toggle checkbox" onclick="showNotificationType()">
-                                            <input type="checkbox" name="notification" tabindex="0" checked="checked" class="hidden"
+                                            <input type="checkbox" name="notification" tabindex="0" checked="checked"
+                                                   class="hidden"
                                                    value="true">
                                         </div>
                                         <label>
@@ -139,7 +190,8 @@
                                             No
                                         </label>
                                         <div class="ui toggle checkbox" onclick="showNotificationType()">
-                                            <input type="checkbox" name="notification" tabindex="0" class="hidden" value="false">
+                                            <input type="checkbox" name="notification" tabindex="0" class="hidden"
+                                                   value="false">
                                         </div>
                                         <label>
                                             Si
@@ -189,7 +241,8 @@
                                     </div>
                                 </div>
                             @else
-                                <div class="ui notification_type raised segment" id="notification_type" style="display: none;">
+                                <div class="ui notification_type raised segment" id="notification_type"
+                                     style="display: none;">
                                     <div class="required grouped fields">
                                         <label>Notificaciones de: </label>
 
@@ -256,7 +309,8 @@
                                             <label>Ciudad</label>
 
 
-                                            <select class="ui search dropdown" name="city" placeholder="Seleccione Ciudad"
+                                            <select class="ui search dropdown" name="city"
+                                                    placeholder="Seleccione Ciudad"
                                                     id="selectCity">
 
                                                 <option value="">Seleccione ciudad</option>
@@ -267,7 +321,8 @@
                                         </div>
                                     </div>
                                     <div class="ui info compact small message">
-                                        <p>Si su institución no se encuentra en la lista, podrá suministrarla en el campo
+                                        <p>Si su institución no se encuentra en la lista, podrá suministrarla en el
+                                            campo
                                             "Otra". </p>
                                     </div>
 
@@ -283,7 +338,8 @@
 
                                             </select>
                                             <div class="ui horizontal divider">
-                                                <a class="ui label button color_1" id="agregaInstituto">Agregar Institución</a>
+                                                <a class="ui label button color_1" id="agregaInstituto">Agregar
+                                                    Institución</a>
                                             </div>
                                         </div>
                                         <div class="field">
@@ -302,10 +358,12 @@
                                                 <div class="item" id="institutionList{{$institu->id_institution}}">
                                                     <div class="right floated content">
                                                         <a class="ui label button color_3"
-                                                           onclick="delete_institution_vinul({{$institu->id_institution}})">Eliminar <i class="trash icon"></i></a>
+                                                           onclick="delete_institution_vinul({{$institu->id_institution}})">Eliminar
+                                                            <i class="trash icon"></i></a>
                                                     </div>
                                                     <div class="content">
-                                                        {{$institu->name_institution}} - ({{$institu->state_institution}})
+                                                        {{$institu->name_institution}} -
+                                                        ({{$institu->state_institution}})
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -356,17 +414,19 @@
                                                 @endforeach
                                             </select>
                                             <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addGranAreaFormation">Agregar Gran Área</a>
+                                                <a type="submit" class="ui label button color_1"
+                                                   id="addGranAreaFormation">Agregar Gran Área</a>
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list" id="list_large_area_training">
+                                                <div class="ui divided list selected_list"
+                                                     id="list_large_area_training">
                                                     @foreach($gran_areas_de_formacion as $gran_area_f)
                                                         <div class="item"
                                                              id="listLargeAreTrainingItem{{$gran_area_f->id_areas_formacion}}">
                                                             <div class="right floated content">
                                                                 <a class="ui label button color_3"
-                                                                   onclick="deleteLargeAreaTraining({{$gran_area_f->id_areas_formacion}})">Eliminar  </a>
+                                                                   onclick="deleteLargeAreaTraining({{$gran_area_f->id_areas_formacion}})">Eliminar </a>
                                                             </div>
                                                             <div class="content">
                                                                 {{$gran_area_f->name_theme}}
@@ -380,13 +440,15 @@
                                             <label>Área</label>
                                             {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
                                             <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addAreaFormation">Agregar Área</a>
+                                                <a type="submit" class="ui label button color_1" id="addAreaFormation">Agregar
+                                                    Área</a>
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
                                                 <div class="ui divided list selected_list" id="list_area_training">
                                                     @foreach($areas_de_formacion as $area_f)
-                                                        <div class="item" id="listAreTrainingItem{{$area_f->id_areas_formacion}}">
+                                                        <div class="item"
+                                                             id="listAreTrainingItem{{$area_f->id_areas_formacion}}">
                                                             <div class="right floated content">
                                                                 <a class="ui label button color_3"
                                                                    onclick="deleteAreaTraining({{$area_f->id_areas_formacion}})">Eliminar </a>
@@ -403,11 +465,13 @@
                                             <label>Disciplina</label>
                                             {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
                                             <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addDisciplineAreaFormation">Agregar Disciplina</a>
+                                                <a type="submit" class="ui label button color_1"
+                                                   id="addDisciplineAreaFormation">Agregar Disciplina</a>
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list" id="list_discipline_area_training">
+                                                <div class="ui divided list selected_list"
+                                                     id="list_discipline_area_training">
                                                     @foreach($disciplina_de_formacion as $disciplina_formacion)
                                                         <div class="item"
                                                              id="listDisciplineAreTrainingItem{{$disciplina_formacion->id_areas_formacion}}">
@@ -453,11 +517,13 @@
                                                 @endforeach
                                             </select>
                                             <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addDisciplineAreaInterest">Agregar Gran Área</a>
+                                                <a type="submit" class="ui label button color_1"
+                                                   id="addDisciplineAreaInterest">Agregar Gran Área</a>
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list" id="list_discipline_area_Interest">
+                                                <div class="ui divided list selected_list"
+                                                     id="list_discipline_area_Interest">
                                                     @foreach($gran_areas_de_interes as $gran_area_i)
                                                         <div class="item"
                                                              id="listDisciplineAreInterestItem{{$gran_area_i->id_areas_interes}}">
@@ -479,7 +545,8 @@
                                             <label>Área</label>
                                             {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_interes'])!!}
                                             <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addAreaInterest">Agregar Área</a>
+                                                <a type="submit" class="ui label button color_1" id="addAreaInterest">Agregar
+                                                    Área</a>
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
@@ -505,11 +572,13 @@
                                             <label>Disciplina</label>
                                             {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_interes'])!!}
                                             <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addAreaInterestDiscipline">Agregar Disciplina</a>
+                                                <a type="submit" class="ui label button color_1"
+                                                   id="addAreaInterestDiscipline">Agregar Disciplina</a>
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list" id="list_area_Interest_discipline">
+                                                <div class="ui divided list selected_list"
+                                                     id="list_area_Interest_discipline">
                                                     @foreach($disciplina_de_interes as $gran_area_i)
                                                         <div class="item"
                                                              id="listAreInterestItemDiscipline{{$gran_area_i->id_areas_interes}}">
@@ -549,7 +618,8 @@
 
                                         <div class="required field">
                                             <label>Correo electrónico</label>
-                                            <input type="text" name="email" value="{!!Auth::user()->email!!}" disabled="true">
+                                            <input type="text" name="email" value="{!!Auth::user()->email!!}"
+                                                   disabled="true">
                                         </div>
                                         <div class="required field " id="passwordChangeNow">
                                             <label>Contraseña Actual</label>
@@ -611,10 +681,12 @@
                                     <div class="field">
                                         <div class="ui radio checkbox">
                                             @if(Auth::user()->state_user=='activo')
-                                                <input type="radio" id="activacion_cuenta" name="accountActivate" checked="checked"
+                                                <input type="radio" id="activacion_cuenta" name="accountActivate"
+                                                       checked="checked"
                                                        value="1">
                                             @else
-                                                <input type="radio" id="activacion_cuenta" name="accountActivate" value="1">
+                                                <input type="radio" id="activacion_cuenta" name="accountActivate"
+                                                       value="1">
                                             @endif
 
                                             <label>Activa</label>
@@ -626,7 +698,8 @@
                                                 <input type="radio" id="inactivacion_cuenta" name="accountActivate"
                                                        checked="checked" value="2">
                                             @else
-                                                <input type="radio" id="inactivacion_cuenta" name="accountActivate" value="2">
+                                                <input type="radio" id="inactivacion_cuenta" name="accountActivate"
+                                                       value="2">
                                             @endif
                                             <label>Inactiva</label>
                                         </div>
@@ -641,7 +714,8 @@
 
                                 <div class="ui right aligned stackable grid">
                                     <div class="sixteen wide column">
-                                        <a form="form" class="ui submit inverted button button_submit" id="changeAccountActive">
+                                        <a form="form" class="ui submit inverted button button_submit"
+                                           id="changeAccountActive">
                                             Aceptar
                                         </a>
                                     </div>
@@ -665,6 +739,24 @@
             </div>
         </div>
     </div>
+
+    <div class="ui small modal">
+        <h2 class="ui center aligned header">Añade o cambia tu foto de perfil</h2>
+        <div class="content">
+            <div class="ui equals center aligned width grid">
+                <div class="column">
+                    <figure class="image-container target">
+                        <img src="" alt="DomoKun" id="blah">
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui approve button color_3">Guardar</div>
+            <div class="ui cancel button color_2">Cancelar</div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         function validateFormAccount() {
             var $form = $('.ui.form'),
@@ -808,6 +900,10 @@
 
         }
 
+        $('#buttonChangePhoto').on('click', function () {
+            $('.ui.modal').modal('show');
+        });
+
         function showNotificationType() {
 
             if ($('#notification_type').is(":visible")) {
@@ -837,6 +933,12 @@
             })
         ;
 
+        $('.image')
+            .dimmer({
+                on: 'hover'
+            })
+        ;
+
         $('.ui.radio.checkbox')
             .checkbox()
         ;
@@ -849,5 +951,58 @@
         $('.ui.accordion')
             .accordion()
         ;
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                    console.log();
+                    editPhoto(e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#file-input").change(function () {
+            $('.ui.modal').modal('show');
+            readURL(this);
+        });
+        function editPhoto() {
+            var dkrm = new Darkroom('#blah', {
+                // Size options
+                minWidth: 100,
+                minHeight: 100,
+                maxWidth: 400,
+                maxHeight: 400,
+                ratio: 4 / 3,
+                backgroundColor: '#000',
+
+                // Plugins options
+                plugins: {
+                    crop: {
+                        quickCropKey: 67, //key "c"
+                        /*minHeight: 50,
+                         minWidth: 50,
+                         ratio: 4 / 3*/
+                    },
+                    save: {
+                        callback: function() {
+                            this.darkroom.selfDestroy(); // Cleanup
+                            var newImage = dkrm.canvas.toDataURL();
+                            fileStorageLocation = newImage;
+                            //Imagen base 64
+                            console.log(fileStorageLocation);
+                        }
+                    }
+                },
+
+                // Post initialize script
+                initialize: function () {
+                    var cropPlugin = this.plugins['crop'];
+                    //cropPlugin.selectZone(170, 25, 300, 300);
+                    cropPlugin.requireFocus();
+                }
+            });
+        }
     </script>
 @stop
