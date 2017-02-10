@@ -10,6 +10,7 @@ use Mundocente\Publicacion;
 use Mundocente\AreasPublicacion;
 use Auth;
 use DB;
+use Mundocente\RevistaNivel;
 
 class PublicationsController extends Controller
 {
@@ -305,7 +306,7 @@ class PublicationsController extends Controller
                       if (!empty($request['disciplines'])) {
                         echo "<br>entró a id";
                         for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
-                            echo "for ----> "+$request['disciplines'][$i];
+                            
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
                                 'id_theme_fk' => $request['disciplines'][$i],
@@ -332,6 +333,16 @@ class PublicationsController extends Controller
                                 'id_publication_fk' => $last_id_publication,
                                 'id_theme_fk' => 0,
                             ]);
+                }
+
+
+                if (!empty($request['arraylevels'])) {
+                    for ($i=0; $i < count($request['arraylevels']); $i++) { 
+                        RevistaNivel::create([
+                            'id_publications_fk' => $last_id_publication,
+                            'id_level_fk' => $request['arraylevels'][$i],
+                            ]);
+                    }
                 }
                 
               

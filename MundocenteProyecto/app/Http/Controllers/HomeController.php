@@ -272,7 +272,6 @@ public function callInstitutionMy(){
 
 public function returnListPublicationsInterest(){
     return DB::table('publicacions')->get();
-
 }
 
 
@@ -335,10 +334,13 @@ public function returnListPublicationsInterest(){
 
             $lugares = $this->callLocationCountry();
 
-            
+            $indexpaper = DB::table('indices')->get();
+            $clasificationpaper = DB::table('nivels')->get();
+
+            $quantityIndex = DB::table('indices')->count();
 
 
-        return view('formularios.formulariorevista', compact('lugares', 'institucionesVinvulado', 'gran_areas'));
+        return view('formularios.formulariorevista', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'indexpaper', 'clasificationpaper'), ['quantityIndex' => $quantityIndex]);
 
         
     }

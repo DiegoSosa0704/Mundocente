@@ -679,6 +679,7 @@ console.log('');
 							
 							
 							if(info==1){
+								$('#messageErrorChangePassword').css("display", "block");
 								$("#passwordChangeNow").removeClass("error");
 								$("#repeat_password_change").removeClass("error");
 								$("#passwordChangeNew").removeClass("error");

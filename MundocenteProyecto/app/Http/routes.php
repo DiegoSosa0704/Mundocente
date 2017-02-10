@@ -15,7 +15,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('login', 'HomeController@login');
 Route::get('publications', 'HomeController@publications');
-Route::get('edit-perfil', 'HomeController@editarmiperfil');
+Route::get('editando-perfil', 'HomeController@editarmiperfil');
 Route::get('publicar-convocatoria', 'HomeController@publicarconvocatoria');
 Route::get('publicar-revista', 'HomeController@publicarrevista');
 Route::get('publicar-solicitud', 'HomeController@publicarSolicitud');

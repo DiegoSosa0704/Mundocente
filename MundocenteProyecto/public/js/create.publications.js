@@ -490,16 +490,35 @@ var checkSelectedAllArea = $('#valueCheckallArea').val();
 
 var imagePublication = $('#imageAuxTemp').val();
 
+var quantityIndex = $('#idquantitypaperindex').val();
+
 
 
 var indexada = '';
 
 if($("#checkpaperindex").is(':checked') ) {
     indexada = 'si';
+    var level = [];
+    for (var i = 0; i < quantityIndex; i++) {
+        level[i] = $('#selectpaperindex'+i).val();
+    }
+    var levelValidate = [];
+
+    for (var i = 0; i < level.length; i++) {
+        if(level[i]!=null && level[i]!=''){
+            levelValidate.push(level[i]);
+        }
+    }
+
+    for (var i = 0; i < levelValidate.length; i++) {
+        console.log("datos válidos indexción: "+levelValidate[i]);
+    }
 }else{
     indexada = 'no';
 }
-console.log('es indexada : '+indexada);
+
+
+
 
 var ruta = "add-revista";
 var token = $("#token").val();
@@ -508,8 +527,6 @@ var token = $("#token").val();
    if(institution.length != 0){
         if(country.length != 0){
             if(city != null ){
-                
-                    
                         if(largeArea.length != 0 || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
@@ -520,7 +537,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
                                               title: title, url_link: link, contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
@@ -533,7 +550,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
                                              large_area: largeArea, area: area, disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){

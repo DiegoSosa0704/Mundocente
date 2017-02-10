@@ -45,7 +45,7 @@
     </div>
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
-        <div class="ui aligned center inverted tiny header"><a href="edit-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
+        <div class="ui aligned center inverted tiny header"><a href="editando-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
     </div>
     <a class=" item" href="publications" id="optionMainHome">
         <i class="grid layout icon"></i> Inicio
@@ -92,7 +92,7 @@
                 <span>{!!Auth::user()->name!!}</span>
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden">
-                    <a class="item" href="edit-perfil"><i class="user icon"></i>Cuenta</a>
+                    <a class="item" href="editando-perfil"><i class="user icon"></i>Cuenta</a>
                     <a class="item"><i class="star icon"></i>Favoritos</a>
                     <a class="item"><i class="bookmark icon"></i>Guardados</a>
                     <a class="item"><i class="setting icon"></i>Configuración</a>
@@ -116,7 +116,7 @@
             <i class="dropdown icon"></i>
             Perfil
             <div class="menu">
-                <a href="edit-perfil">
+                <a href="editando-perfil">
                     <div class="item">Cuenta</div>
                 </a>
                 <div class="item">Favoritos</div>

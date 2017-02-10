@@ -23,6 +23,11 @@
             </div>
             <div class="ui piled left aligned very padded segment">
                 <div class="ui form" id="form">
+
+
+
+
+
                 <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                     <h4 class="ui dividing header">Información general</h4>
                     <div class="field">
@@ -37,6 +42,12 @@
                     </div>
 
 
+
+
+
+
+
+
                     <div class="field">
                         <div class="ui inverted large horizontal label color_2">
                             <div class="detail" id="name_country_title"></div>
@@ -49,9 +60,16 @@
                     </div>
 
 
-                      <div class="two fields" style="display: none;" >
+                
+
+
+
+
+
+
+
+                <div class="two fields" style="display: none;" >
                     <div class="required field">
-                        
                         <select class="ui search dropdown" name="country" disabled="true" placeholder="seleccione país de la convocatoria" id="selectCountry">
                                 <option value="">Seleccione país</option>
                                 @foreach($lugares as $lugar)
@@ -59,12 +77,8 @@
                                     <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
                                 @endforeach
                             </select>
-
-                       
-
                     </div>
                     <div class="required field" id="cityChange">
-                        
                              <select class="ui search dropdown" name="city" disabled="true" placeholder="Seleccione Ciudad" id="selectCity">
                                 <option value="">Seleccione ciudad</option>
                             </select>
@@ -88,6 +102,14 @@
 
 
 
+
+
+
+
+
+
+
+
                     <label style="font-size:.92307692em;"><b>¿La revista se encuentra indexada?</b></label>
                     <div class="inline field">
                         <label>
@@ -101,72 +123,36 @@
                         </label>
                     </div>
                     <!--Datos de indexación-->
-                    <div id="indexing-data" class="ui segment" style="display: none;">
+                    <div id="indexing-data" class="ui " style="display: none;">
                         <h4 class="ui dividing header" style="padding-top: 10px">Datos de indexación</h4>
-                        <div class="required field">
-                            <label>Índice Uno</label>
+                        <div class=" field">
+                            
+                        @foreach($indexpaper as $index)
+                        
                             <div class="two fields">
+                            <label style="padding-top: 12px;">{{$index->name_index}}</label>
                                 <div class="field">
-                                    <select name="name" class="ui fluid dropdown">
-                                        <option value="">Nombre</option>
-                                        <option value="name-1">Nombre-1</option>
-                                        <option value="name-2">Nombre-2</option>
-                                    </select>
-                                </div>
-                                <div class="field">
-                                    <select name="level" class="ui fluid dropdown">
-                                        <option value="">Nivel</option>
-                                        <option value="lvl-1">Nivel-1</option>
-                                        <option value="lvl-2">Nivel-2</option>
-                                    </select>
+                                <select name="name" class="ui fluid dropdown" id="selectpaperindex{{$index->id_index}}">
+                                        @foreach($clasificationpaper as $clasification)
+                                                <option value="">Clasficación</option>
+                                                @if($clasification->id_index_fk==$index->id_index)
+                                                    <option value="{{$clasification->id_level}}">{{$clasification->value_level}}</option>
+                                                @endif
+                                        @endforeach
+                                   </select>
                                 </div>
                             </div>
+                        @endforeach
                         </div>
-                        <div class="field">
-                            <label>Índice Dos</label>
-                            <div class="two fields">
-                                <div class="field">
-                                    <select name="name_2" class="ui fluid dropdown">
-                                        <option value="">Nombre</option>
-                                        <option value="name-1">Nombre-1</option>
-                                        <option value="name-1">Nombre-2</option>
-                                    </select>
-                                </div>
-                                <div class="field">
-                                    <select name="level_2" class="ui fluid dropdown">
-                                        <option value="">Nivel</option>
-                                        <option value="lvl-1">Nivel-1</option>
-                                        <option value="lvl-2">Nivel-2</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label>Índice Tres</label>
-                            <div class="two fields">
-                                <div class="field">
-                                    <select name="name_3" class="ui fluid dropdown">
-                                        <option value="">Nombre</option>
-                                        <option value="name-1">Nombre-1</option>
-                                        <option value="name-1">Nombre-1</option>
-                                    </select>
-                                </div>
-                                <div class="field">
-                                    <select name="level_3" class="ui fluid dropdown">
-                                        <option value="">Nivel</option>
-                                        <option value="lvl-1">Nivel-1</option>
-                                        <option value="lvl-2">Nivel-2</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                    
+
                     </div>
 
 
 
+                    <input type="hidden" name="quantityindexlevel" id="idquantitypaperindex" value="{{$quantityIndex}}">
 
-
-
+                   
 
 
 
@@ -180,25 +166,20 @@
                 <div class="three fields" id="contentSelectArea">
                         <div class="required field">
                             <label>Gran área</label>
-
                             <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
                                 <option value="">Gran Área</option>
                                 @foreach($gran_areas as $gran_area)
                                     <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
                                 @endforeach
                             </select>
-                            
-                           
                         </div>
                         <div class="field">
                             <label>Área</label>
                             {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                          
                         </div>
                         <div class="field">
                             <label>Disciplina</label>
                             {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                         
                         </div>
                 </div>
                 <div class="ui checkbox" id="check_area_all">
@@ -214,9 +195,9 @@
 
 
 
-            <div class="field">
-            <br>
-            <br>
+                <div class="field">
+                <br>
+                <br>
                     <label>Imagen o portada de la revista</label>
                     <br>
                     <img class="ui middle aligned medium rounded image" src="images/public-image.png" id="imageNewShow">
