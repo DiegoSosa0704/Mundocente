@@ -84,7 +84,7 @@ class PublicationsController extends Controller
             $heigthImage = $dimensions[1];
             $name_folder = "files/";
           
-                $srcImage = $name_folder.$last_id_publication.$name_image;
+                $srcImage = $name_folder.Auth::user()->id.$last_id_publication.$name_image;
                 move_uploaded_file($routAux, $srcImage);
                 
                
@@ -206,8 +206,6 @@ class PublicationsController extends Controller
     {
            if($request->ajax()){
                    
-               
-                
                 $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
                 $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
                 
@@ -284,6 +282,59 @@ class PublicationsController extends Controller
     {
            if($request->ajax()){
                 
+                 Publicacion::create([
+                    'title_publication' => $request['title'],
+                    'url_publication' => $request['url_link'],
+                    'url_photo_publication' => $request['url_image'],
+                    'contact_pubication' => $request['contact'],
+                    'state_publication' => 'activo',
+                    'id_type_publication' => 3,
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+
+                ]);
+
+
+                $publication_last= Publicacion::all();
+                $last_id_publication = $publication_last->last()->id_publication;
+                
+                if ($request['allArea']=='1') {
+                      if (!empty($request['disciplines'])) {
+                        echo "<br>entró a id";
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            echo "for ----> "+$request['disciplines'][$i];
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
+                        }
+                     }
+                        echo "large: ".$request['large_area'];
+                        if(!empty($request['large_area'])){
+
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['large_area'],
+                            ]);
+                        }
+                         if(!empty($request['area'])){
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => $request['area'],
+                            ]);
+                        }
+
+                }else{
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $last_id_publication,
+                                'id_theme_fk' => 0,
+                            ]);
+                }
+                
+              
+                
+                
+               
                return  0;
            
         }

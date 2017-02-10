@@ -84,13 +84,17 @@
                         <label>Título</label>
                         {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
                     </div>
+
+
+
+
                     <label style="font-size:.92307692em;"><b>¿La revista se encuentra indexada?</b></label>
                     <div class="inline field">
                         <label>
                             No
                         </label>
                         <div class="ui toggle checkbox" onclick="showAdvancedSearch()">
-                            <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden">
+                            <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden" id="checkpaperindex">
                         </div>
                         <label>
                             Si
@@ -211,7 +215,10 @@
 
 
             <div class="field">
-                    <label>Imagen o logo del evento</label>
+            <br>
+            <br>
+                    <label>Imagen o portada de la revista</label>
+                    <br>
                     <img class="ui middle aligned medium rounded image" src="images/public-image.png" id="imageNewShow">
                     <span>
                     <input type="hidden" name="imaTemp" id="imageAuxTemp" value="">
@@ -259,8 +266,7 @@
 
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
-                            <a type="submit" form="form" 
-                                    class="ui inverted submit button button_submit">
+                            <a type="submit" form="form" class="ui inverted submit button button_submit" id="buttonaddpaper">
                                 Publicar
                             </a>
                         </div>
