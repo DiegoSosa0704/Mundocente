@@ -287,6 +287,23 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--**************************  model login -->
 <div class="ui tiny modal login">
     <i class="close icon"></i>
@@ -305,6 +322,13 @@
                 {!!Form::password('password', ['type' => 'password', 'placeholder' => 'Contraseña'])!!}
             </div>
         </div>
+        <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" tabindex="0" class="hidden" name="checkboxrememberpassword">
+              <label>Recordar contraseña</label>
+            </div>
+        </div>
+
         {!!Form::submit('Ingresar', ['class'=>'ui fluid primary large submit button', 'style'=>'background-color: #96407A;'])!!}
         <div class="ui error message"></div>
         @include('errors.error_login')
@@ -337,6 +361,24 @@
         ¿No está registrado? <a href="signup">Registrarse</a>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--**************************  model registro -->
@@ -395,6 +437,17 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 <script type="text/javascript">
@@ -451,6 +504,9 @@
             .modal('show')
         ;
     });
+    $('.ui.checkbox')
+      .checkbox()
+    ;
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
 </script>

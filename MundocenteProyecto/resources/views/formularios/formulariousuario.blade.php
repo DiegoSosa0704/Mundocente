@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @davidsanchezuptc
+ Sign out
+ Watch 2
+  Star 0
+  Fork 1 DiegoSosa0704/Mundocente
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathMundocente/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php
+d85a087  4 hours ago
+@davidSanchezTorres davidSanchezTorres Se agrega tarea de agregar nueva institución
+2 contributors @davidSanchezTorres @DiegoSosa0704
+RawBlameHistory     
+1117 lines (938 sloc)  55.3 KB
 @extends('main.main')
 
 @section('content')
@@ -7,12 +25,10 @@
     {!!Html::script('js/darkroom.js')!!}
 
     <style>
-
         .ui.modal {
             position: relative;
             top:35%;
         }
-
         .image-container {
             display: inline-block;
             max-width: 100%;
@@ -23,18 +39,15 @@
             border-bottom: 1px solid #ccc;
             border-right: 1px solid #ccc;
         }
-
         .image-container.target {
             margin-top: 40px;
         }
-
         .image-container img {
             max-width: 300px;
             max-height: 300px;
             min-width: 100px;
             min-height:100px;
         }
-
     </style>
 
     <!--Contenido-->
@@ -97,6 +110,17 @@
                             </span>--}}
                                 </div>
                             </div>
+                            <br>
+
+
+                            <div class="ui green message" style="display: none;" id="messageChangePhotoPerfil">
+                                    
+                                    <div class="header">
+                                        <p>Se guardó la foto correctamente</p>
+                                    </div>
+                            </div>
+                            <br>
+
 
                             <div class="equal width fields">
                                 <div class="required field">
@@ -409,7 +433,7 @@
 
                                     </ul>
                                 </div>
-                                <div class="ui red message" style="display: none;" id="messageNewInstitutioneror">
+                                <div class="ui error message" style="display: none;" id="messageNewInstitutioneror">
                                     
                                     <div class="header">
                                         <p id="exitNewUniversity">Debe indicar la ciudad de la nueva institución</p>
@@ -417,7 +441,7 @@
                                     <ul class="list">
                                     </ul>
                                 </div>
-                                <div class="ui red message" style="display: none;" id="messageSaveVinculationerror">
+                                <div class="ui error message" style="display: none;" id="messageSaveVinculationerror">
                                     <i class="close icon" id="cierramensajedeinstitutoserror"></i>
                                     <div class="header">
                                         No se ha seleccionado la Institución correctamente
@@ -740,7 +764,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="ui red message" id="messageErrorChangePassword" style="display: none;">
+                                    <div class="ui error message" id="messageErrorChangePassword" style="display: none;">
 
                                         <div class="header">
                                             <p id="errorsChangePasswordp">Errores</p>
@@ -829,11 +853,20 @@
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 
+
+
+
+  
+
+
     <div class="ui small modal">
-        <h2 class="ui center aligned header">Añade o cambia tu foto de perfil</h2>
+        <h2 class="ui center aligned header">Cambia tu foto de perfil</h2>
         <div class="content">
             <div class="ui equals center aligned width grid">
                 <div class="column">
@@ -844,160 +877,17 @@
             </div>
         </div>
         <div class="actions">
-            <div class="ui approve button color_3">Guardar</div>
-            <div class="ui cancel button color_2">Cancelar</div>
+            
+            <div class="ui cancel button color_2">Salir</div>
         </div>
     </div>
 
     <script type="text/javascript">
-        function validateFormAccount() {
-            var $form = $('.ui.form'),
-                allFields = $form.form('get values'),
-                notifications = $form.form('get value', 'notification_type')
-                ;
-
-            if (allFields.link_curriculum == false && allFields.load_curriculum == false) {
-                $('.ui.form')
-                    .form({
-                        on: 'blur',
-                        fields: {
-                            name: {
-                                identifier: 'name',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Nombres'
-                                    }
-                                ]
-                            },
-                            link_curriculum: {
-                                identifier: 'link_curriculum',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un Enlace en Currículo'
-                                    }
-                                ]
-                            },
-                            load_curriculum: {
-                                identifier: 'load_curriculum',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un Archivo en Currículo'
-                                    }
-                                ]
-                            },
-                            level_training: {
-                                identifier: 'level_training',
-                                rules: [
-                                    {
-                                        type: 'checked',
-                                        prompt: 'Porfavor seleccione un valor en Nivel de formación'
-                                    }
-                                ]
-                            },
-                            email: {
-                                identifier: 'email',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Correo electrónico'
-                                    },
-                                    {
-                                        type: 'email',
-                                        prompt: 'Porfavor introduzca un valor valido en Correo electrónico'
-                                    }
-                                ]
-                            },
-                        }
-                    })
-                ;
-            } else {
-                $('.ui.form')
-                    .form({
-                        on: 'blur',
-                        fields: {
-                            name: {
-                                identifier: 'name',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Nombres'
-                                    }
-                                ]
-                            },
-                            last_name: {
-                                identifier: 'last_name',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Apellidos'
-                                    }
-                                ]
-                            },
-                            title_college: {
-                                identifier: 'title_college',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Estudios'
-                                    }
-                                ]
-                            },
-                            level_training: {
-                                identifier: 'level_training',
-                                rules: [
-                                    {
-                                        type: 'checked',
-                                        prompt: 'Porfavor seleccione un valor en Nivel de formación'
-                                    }
-                                ]
-                            },
-                            email: {
-                                identifier: 'email',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Correo electrónico'
-                                    },
-                                    {
-                                        type: 'email',
-                                        prompt: 'Porfavor introduzca un valor valido en Correo electrónico'
-                                    }
-                                ]
-                            },
-                            password: {
-                                identifier: 'password',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Contraseña'
-                                    }
-                                ]
-                            },
-                            repeat_password: {
-                                identifier: 'repeat_password',
-                                rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Porfavor introduzca un valor en Repetir contraseña'
-                                    }
-                                ]
-                            }
-                        }
-                    })
-                ;
-            }
-
-        }
-
+      
         $('#buttonChangePhoto').on('click', function () {
             $('.ui.modal').modal('show');
         });
-
         function showNotificationType() {
-
             if ($('#notification_type').is(":visible")) {
                 $('#notification_type').toggle("fast");
                 $('#recibe_not').val(false);
@@ -1005,18 +895,14 @@
                 $('#notification_type').toggle("show");
                 $('#recibe_not').val(true)
             }
-
         }
-
         $('.message .close')
             .on('click', function () {
                 if ($('#messageSaveVinculation').is(":visible")) {
                     $('#messageSaveVinculation').toggle("fast");
                 }
-
             })
         ;
-
         $('.message .close')
             .on('click', function () {
                 if ($('#messageSaveVinculationerror').is(":visible")) {
@@ -1024,13 +910,11 @@
                 }
             })
         ;
-
         $('.image')
             .dimmer({
                 on: 'hover'
             })
         ;
-
         $('.ui.radio.checkbox')
             .checkbox()
         ;
@@ -1043,7 +927,6 @@
         $('.ui.accordion')
             .accordion()
         ;
-
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -1066,9 +949,8 @@
                 minHeight: 100,
                 maxWidth: 400,
                 maxHeight: 400,
-                ratio: 4 / 3,
-                backgroundColor: '#000',
-
+                ratio: 4 / 4,
+                backgroundColor: '#1E555C',
                 // Plugins options
                 plugins: {
                     crop: {
@@ -1086,7 +968,6 @@
                             $('#newimageperfil').attr('src', newImage);
                             
                             
-
                             var routeimage = "chage-photo-perfil";
                             var token = $("#token").val();
                             
@@ -1098,13 +979,13 @@
                                 success: function(info){
                                     
                                     $('#hiddenewphoto').val(info);
+                                    $('#messageChangePhotoPerfil').css('display', 'block');
+
                                 }
                             });
-
                         }
                     }
                 },
-
                 // Post initialize script
                 initialize: function () {
                     var cropPlugin = this.plugins['crop'];
@@ -1115,3 +996,5 @@
         }
     </script>
 @stop
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

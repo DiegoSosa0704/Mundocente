@@ -153,7 +153,7 @@ class UserController extends Controller
                     'recibe_not'=>'no']);
             DB::table('tema_notificacion_usuarios')->where('id_user_fk', Auth::user()->id)->delete();
         }
-        return Redirect::to('edit-perfil');
+        return Redirect::to('editando-perfil');
 
 
     }

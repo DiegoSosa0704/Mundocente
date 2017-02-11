@@ -44,10 +44,10 @@
         <img src="images/logo.png">
     </div>
     <div class="item item_profile">
-        <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}">
+        <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
         <div class="ui aligned center inverted tiny header"><a href="editando-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
     </div>
-    <a class=" item" href="publications" id="optionMainHome">
+    <a class=" item" href="publicaciones" id="optionMainHome">
         <i class="grid layout icon"></i> Inicio
     </a>
   
@@ -62,7 +62,7 @@
             <a class="item" id="optionMainRequest" href="publicar-solicitud">Solicitud</a>
         </div>
     </div>
-    <a class=" item" href="publications">
+    <a class=" item" href="publicaciones">
         <i class="alarm icon"></i> Notificaciones (2)
     </a>
 </div>
@@ -128,9 +128,32 @@
     </div>
 </div>--}}
 
+
 <!--   Aquí está todo el contenido de publication.blade.php-->
 
 @yield('content')
+
+
+
+
+  <div class="ui inverted vertical footer segment" style="background: #242533;">
+    <div class="ui center aligned container">
+        <div class="ui stackable inverted divided grid">
+            <div class="column">
+                <h4 class="ui inverted header">Iniciativa apoyada por: </h4>
+                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <img src="images/iconop.png" class="ui centered image">
+        <div class="ui horizontal inverted small divided link list">
+            <a class="item" href="#">Site Map</a>
+            <a class="item" href="#">Contact Us</a>
+            <a class="item" href="#">Terms and Conditions</a>
+            <a class="item" href="#">Privacy Policy</a>
+        </div>
+    </div>
+</div>
 
 <script>
     $('.dropdown')

@@ -22,7 +22,7 @@ class HomeController extends Controller
 
 
     public function __construct(){
-        $this->middleware('auth', ['only' => ['editarmiperfil', 'publications', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud']]);
+        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud']]);
 
     }
 
@@ -39,15 +39,23 @@ class HomeController extends Controller
     public function index()
     {
          if (Auth::check()) {
-            return Redirect::to('publications');
+            return Redirect::to('publicaciones');
         }else{
-             return view('home');
+
+            $this->verifyCookies();
+
+            return view('home');
         }
         
     }
 
 
 
+public function verifyCookies(){
+    if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+       return Redirect::to('publicaciones');
+    }
+}
 
 
 
@@ -237,8 +245,9 @@ public function callInstitutionMy(){
     public function login()
     {
         if (Auth::check()) {
-            return Redirect::to('publications');
+            return Redirect::to('publicaciones');
         }else{
+            $this->verifyCookies();
              return view('login');
         }
        
@@ -254,8 +263,9 @@ public function callInstitutionMy(){
     public function registrar()
     {
          if (Auth::check()) {
-            return Redirect::to('publications');
+            return Redirect::to('publicaciones');
         }else{
+            $this->verifyCookies();
              return view('registro', ['existe' => '0']);
         }
         
@@ -268,33 +278,6 @@ public function callInstitutionMy(){
 
 
 
-
-
-public function returnListPublicationsInterest(){
-    return DB::table('publicacions')->get();
-}
-
-
-
-
- /**
-     * Nos lleva a la página de publicaciones
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function publications()
-    {
-        $listPublications = $this->returnListPublicationsInterest();
-        
-            if(Auth::user()->email==''){
-                Auth::logout();
-                return Redirect::to('userExist');
-            }else{
-                return view('main.publication', compact('listPublications'));
-            }
-
-        
-    }
 
 
 

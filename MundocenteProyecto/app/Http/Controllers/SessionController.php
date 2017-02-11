@@ -47,7 +47,21 @@ class SessionController extends Controller
     public function store(SessionRequest $request)
     {
         if(Auth::attempt(['email'=>$request['email'], 'password'=> $request['password']])){
-            return Redirect::to('publications');
+                    if($request['checkboxrememberpassword']=='on'){
+                        if (setcookie("email_cookie",$request['email'], time()+(60*60*24*365),"/")) {
+                            if (setcookie("pass_cookie",$request['password'], time()+(60*60*24*365),"/")) {
+                               
+                            }
+                        }
+                    }else{
+                        if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+                                if (setcookie("email_cookie",$_COOKIE["email_cookie"], time()-(5),"/")) {
+                                    if (setcookie("pass_cookie",$_COOKIE["pass_cookie"], time()-(5),"/")) {
+                                    }
+                                }
+                        } 
+                    }
+            return Redirect::to('publicaciones');
         }
         Session::flash('message-error-session', 'Los datos son incorrectos');
             return Redirect::to('login');
@@ -94,7 +108,7 @@ OAuth::login('facebook',  function($user, $details) {
         }
 
         });
-    return Redirect::to('publications');
+    return Redirect::to('publicaciones');
 
 
         dd(Auth::user());
@@ -144,7 +158,7 @@ OAuth::login('facebook',  function($user, $details) {
         }
 
         });
-    return Redirect::to('publications');
+    return Redirect::to('publicaciones');
 
 
         dd(Auth::user());
@@ -194,7 +208,7 @@ OAuth::login('facebook',  function($user, $details) {
         }
 
         });
-    return Redirect::to('publications');
+    return Redirect::to('publicaciones');
 
 
         dd(Auth::user());
@@ -226,6 +240,12 @@ OAuth::login('facebook',  function($user, $details) {
      */
     public function cerrarsesion()
     {
+        if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+                if (setcookie("email_cookie",$_COOKIE["email_cookie"], time()-(5),"/")) {
+                    if (setcookie("pass_cookie",$_COOKIE["pass_cookie"], time()-(5),"/")) {
+                    }
+                }
+        } 
         Auth::logout();
         return Redirect::to('/');
     }

@@ -14,7 +14,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('login', 'HomeController@login');
-Route::get('publications', 'HomeController@publications');
+
 Route::get('editando-perfil', 'HomeController@editarmiperfil');
 Route::get('publicar-convocatoria', 'HomeController@publicarconvocatoria');
 Route::get('publicar-revista', 'HomeController@publicarrevista');
@@ -97,4 +97,9 @@ Route::post('add-revista', 'PublicationsController@agregarRevista');
 Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
 
 Route::post('upload-image-publication', 'PublicationsController@uploadImagePublication');
+
+
+
+//Resultados de publicaciones
+Route::get('publicaciones', 'ResultController@publications');
 
