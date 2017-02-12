@@ -110,7 +110,7 @@
 
 
 
-                    <label style="font-size:.92307692em;"><b>¿La revista se encuentra indexada?</b></label>
+                    <label><b>¿La revista se encuentra indexada?</b></label>
                     <div class="inline field">
                         <label>
                             No

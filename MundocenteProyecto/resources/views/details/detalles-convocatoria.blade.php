@@ -2,151 +2,164 @@
 
 @section('content')
 
-    {!!Html::style('css/darkroom.css')!!}
-    {!!Html::script('js/fabric.js')!!}
-    {!!Html::script('js/darkroom.js')!!}
 
-    <style>
-
-        .ui.modal {
-            position: relative;
-            top:30%;
-        }
-
-        .image-container {
-            display: inline-block;
-            max-width: 100%;
-            background: white;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #e2e2e2;
-            border-bottom: 1px solid #ccc;
-            border-right: 1px solid #ccc;
-        }
-
-        .image-container.target {
-            margin-top: 40px;
-        }
-
-        .image-container img {
-            max-width: 300px;
-            max-height: 300px;
-        }
-
-    </style>
-
+    <!--Contenido-->
     <div class="pusher" style="background-color: #EEEEEE;">
-        <div class="ui container center aligned">
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <div class="ui small circular image">
-                <div class="ui dimmer">
-                    <div class="content">
-                        <div class="center">
-                            <span>
-                                <label for="file-input" class="ui blue button">
-                                    <input type="file" name="file-input" accept="image/*" id="file-input" style="display:none">
-                                    Cargar Foto
-                                </label>
-                            </span>
+        <!--Top menu fixed-->
+        <div class="segment-title">
+            <div class="ui left aligned container">
+                <h1 class="ui header">Titulo
+                    Convocatoria</h1>
+                <div class="overlay">
+                    <div class="ui secondary menu">
+                        <div class="item">
+                            <a class="ui  large label">
+                                <i class="star yellow icon"></i>
+                                Favorito
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a class="ui image large label">
+                                <i class="check green icon"></i>
+                                Me interesa
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a class="ui large label">
+                                <i class="dont red icon"></i>
+                                Denunciar
+                            </a>
                         </div>
                     </div>
                 </div>
-                <img src="{!!Auth::user()->photo_url!!}">
             </div>
-
-            <div class="ui blue small button" id="editPhoto">Editar</div>
         </div>
-    </div>
+        <div class="ui container">
+            <div class="ui piled very padded segment">
+                <div class="ui equals width stackable form grid">
+                    <div class="two column row">
+                        <div class="column">
+                            <div class="field">
+                                <label>Sector educativo: </label>
+                                <div class="ui large label color_1">Sectores</div>
+                            </div>
+                            <div class="field">
+                                <label>Institución: </label>
+                                <div class="ui large label color_2">Nombre institución</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <label>País: </label>
+                                <div class="ui large label color_2">Nombre del país</div>
+                            </div>
+                            <div class="field">
+                                <label>Ciudad:</label>
+                                <div class="ui large label color_1">Nombre de la Ciudad</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui form">
+                    <div class="two fields">
+                    </div>
+                    <div class="field">
+                        <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
+                        <div class="three fields">
+                            <div class="field">
+                                <div class="ui raised card">
+                                    <div class="content">
+                                        <div class="header">Gran Área</div>
+                                        <div class="ui celled ordered list">
+                                            <div class="item">Cats</div>
+                                            <div class="item">Horses</div>
+                                            <div class="item">Dogs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui raised card">
+                                    <div class="content">
+                                        <div class="header">Área</div>
+                                        <div class="ui celled ordered list">
+                                            <div class="item">Cats</div>
+                                            <div class="item">Horses</div>
+                                            <div class="item">Dogs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui raised card">
+                                    <div class="content">
+                                        <div class="header">Disciplina</div>
+                                        <div class="ui celled ordered list">
+                                            <div class="item">Cats</div>
+                                            <div class="item">Horses</div>
+                                            <div class="item">Dogs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <h5 class="ui header"><b>Detalles</b></h5>
+                        <div class="ui segment">
+                            <span><b>Descripción: </b></span>
+                            <p>In at dolor euismod lacus venenatis aliquet id id sapien. Suspendisse consequat turpis
+                                lorem,
+                                in tristique nibh vestibulum et. Sed porta massa vel purus porta suscipit. Duis pretium
+                                et
+                                arcu vel consequat. Fusce nec felis sed sem ultricies feugiat. Donec sed odio eget erat
+                                fermentum porttitor ut id dui.e</p>
+                            <span><b>Datos de contacto para ampliar información: </b></span>
+                            <p>Nulla facilisi. Sed sed vehicula risus. Phasellus facilisis tellus leo, in aliquam risus
+                                euismod et.</p>
 
-    <div class="ui small modal">
-        <h2 class="ui center aligned header">Mejore su experiencia en Mundocente</h2>
-        <div class="content">
-            <div class="ui equals center aligned width grid">
-                <div class="column">
-                    <figure class="image-container target">
-                        <img src="" alt="DomoKun" id="blah">
-                    </figure>
+
+                            <div class="field">
+                                <label>Fecha:</label>
+                                <div class="ui celled horizontal list">
+                                    <div class="item">
+                                        <span>
+                                            <b>Desde:</b>
+                                            Fecha
+                                        </span>
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            <b>Hasta:</b>
+                                            Fecha
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <span><b>Ver convocatoria: </b></span>
+                            <a class="ui teal tag label">Enlace a convocatoria</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="actions">
-            <div class="ui approve button color_3">Siguiente</div>
-        </div>
     </div>
 
-    <script type="text/javascript" language="javascript">
-
-        $('#buttonChangePhoto').on('click', function () {
-            $('.ui.modal').modal('show');
-        });
-
-        $('.image')
-            .dimmer({
-                on: 'hover'
+    <script type="text/javascript">
+        $('.overlay')
+            .visibility({
+                type: 'fixed',
+                offset: 70 // give some space from top of screen
             })
         ;
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                    console.log();
-                    editPhoto(e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#file-input").change(function () {
-            $('.ui.modal').modal('show');
-            readURL(this);
-        });
-        function editPhoto() {
-            var dkrm = new Darkroom('#blah', {
-                // Size options
-                minWidth: 100,
-                minHeight: 100,
-                maxWidth: 300,
-                maxHeight: 300,
-                ratio: 4 / 3,
-                backgroundColor: '#000',
-
-                // Plugins options
-                plugins: {
-                    crop: {
-                        quickCropKey: 67, //key "c"
-                        /*minHeight: 50,
-                        minWidth: 50,
-                        ratio: 4 / 3*/
-                    },
-                    save: {
-                        callback: function() {
-                            this.darkroom.selfDestroy(); // Cleanup
-                            var newImage = dkrm.canvas.toDataURL();
-                            fileStorageLocation = newImage;
-                            //Imagen base 64
-                            console.log(fileStorageLocation);
-                        }
-                    }
-                },
-
-                // Post initialize script
-                initialize: function () {
-                    var cropPlugin = this.plugins['crop'];
-                    //cropPlugin.selectZone(170, 25, 300, 300);
-                    cropPlugin.requireFocus();
-                }
-            });
-        }
-        $('#editPhoto').on('click', function () {
-            editPhoto();
-        });
-
+        $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'fade'
+            })
+        ;
     </script>
+
 @stop

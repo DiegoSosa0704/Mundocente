@@ -15,6 +15,11 @@
 <style>
     body {
         background-color: #EEEEEE;
+        color: #242533;
+    }
+
+    body p {
+        font-size: 1em;
     }
 
     .ui.menu.sidebar {
@@ -29,12 +34,16 @@
     .ui.fixed.sticky.menu {
         height: 100% !important;
         background-color: #242533;
-        margin-top: 60px;
+        top: 65px;
     }
 
+    .ui.fixed.sticky.menu .item.item_logo {
+        background-color: #DFDADD;
+    }
 
     .ui.fixed.sticky.menu .item.item_profile {
         background: url(../images/fondo-user-2.png) no-repeat 0% 0%/cover;
+        /*background-color: #1E555C;*/
     }
 
     .ui.fixed.top.menu {
@@ -45,17 +54,15 @@
         height: 40px;
     }
 
-    .pusher .ui.container {
-        margin: 30px 0;
-    }
-
     .pusher .ui.container > h1 {
         margin-bottom: 0;
         color: #242533;
     }
 
     .pusher .ui.container .ui.form h4,
-    .pusher .ui.container .ui.form label {
+    .pusher .ui.container .ui.form label,
+    .ui.modal .content.ui.form label,
+    .ui.modal .ui.header {
         color: #242533;
     }
 
@@ -65,6 +72,79 @@
         height: 0.15587em;
         max-width: 10em;
         width: 75%;
+    }
+
+    div.pusher {
+        background-color: #EEEEEE;
+        padding-top: 70px;
+    }
+
+    /* Formularios Publicaciones */
+
+    .pusher .ui.container .ui.form label,
+    .ui.modal .content.ui.form label {
+        font-size: 0.9649em;
+    }
+
+    .pusher .ui.segment .ui.form .message,
+    .ui.modal .content.ui.form .message {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .pusher .ui.segment .ui.form .button_load {
+        background-color: #272838;
+        color: #EEEEEE;
+    }
+
+    .ui.submit.button.button_submit {
+        background-color: #455a64;
+    }
+
+    .pusher .ui.segment .ui.form .ui.segment .ui.segment {
+        padding-bottom: 0;
+    }
+
+    .pusher .ui.segment .ui.form .ui.segment .selected_list {
+        width: 100%;
+        max-height: 145px;
+        overflow: scroll
+    }
+
+    .ui.label.color_1,
+    .ui.button.color_1 {
+        background-color: #AD5691;
+        color: #EEEEEE;
+    }
+
+    .ui.label.color_2,
+    .ui.button.color_2 {
+        background-color: #96407A;
+        color: #EEEEEE;
+    }
+
+    .ui.label.color_3,
+    .ui.button.color_3 {
+        background-color: #793362;
+        color: #EEEEEE;
+    }
+
+    .ui.card .content .header {
+        font-size: 5em;
+    }
+
+    /*INICIO*/
+
+    .pusher .ui.container.start-container .ui.sticky-filter.segment {
+        min-width: 23% !important;
+        max-width: 23% !important;
+        height: 85% !important;
+        overflow: scroll;
+        margin-top: 0;
+    }
+
+    .pusher .ui.container.start-container .ui.sticky-filter.segment .ui.top.attached.label {
+        font-size: 1em;
     }
 
     /* Mobile */
@@ -103,9 +183,15 @@
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
         div.pusher {
             background-color: #EEEEEE;
+            margin-left: 18rem;
         }
 
         .pusher .ui.container {
+            width: 727px;
+        }
+
+        .pusher .ui.container.start-container {
+            width: 1080px;
             padding-left: 18rem;
         }
     }
@@ -115,10 +201,15 @@
     @media only screen and (min-width: 1200px) and (max-width: 1407px) {
         div.pusher {
             background-color: #EEEEEE;
+            margin-left: 18rem;
         }
 
         .pusher .ui.container {
-            width: 1127px;
+            width: 927px;
+        }
+
+        .pusher .ui.container.start-container {
+            width: 1267px;
             padding-left: 18rem;
         }
     }
@@ -128,31 +219,49 @@
     @media only screen and (min-width: 1408px) {
         div.pusher {
             background-color: #EEEEEE;
+            margin-left: 18rem;
         }
 
-        .pusher .ui.container {
-            width: 1358px;
+        .pusher .ui.container.start-container {
+            width: 1458px;
             padding-left: 18rem;
         }
     }
 
-    div.pusher {
-        background-color: #EEEEEE;
-        padding-top: 70px;
+    .overlay {
+        padding: 0em;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+        transition: all 0.5s ease;
+        background: transparent;
     }
+
+    /* change style */
+    .fixed.overlay {
+        background-color: #272838;
+        position: fixed;
+        padding: 0.5em;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .fixed.overlay .menu {
+        left: 200px;
+    }
+
 </style>
+
 <!--Menu Sidebar -->
 <div class="ui left sidebar inverted vertical menu">
     <div class="item">
-        <img src="../images/nombre.png" style="height: 38px">
+        <img src="images/nombre.png" style="height: 38px">
     </div>
     <a class="item">
-        <i class="grid layout icon"></i> Busqueda
+        <i class="search icon"></i> Búsqueda
     </a>
     <div class="item">
-        <i class="home icon"></i> Publicar
+        <i class="write icon"></i> Publicar
         <div class="menu">
-            <a class="active item">Revista</a>
+            <a class=" item">Revista </a>
             <a class="item">Convocatorias</a>
             <a class="item">Eventos</a>
             <a class="item">Invitación</a>
@@ -162,41 +271,30 @@
 <!--Menu visible-->
 <div class="ui vertical inverted large fixed pointing sticky menu">
     <div class="item item_profile">
-        <img class="ui tiny centered circular image" src="../images/user.png">
-        <div class="ui aligned center inverted tiny header">Nombre</div>
+        <img class="ui tiny centered circular image" src="../images/user.png" id="photo-perfil-main">
+        <div class="ui aligned center inverted tiny header"><a href="editando-perfil" style="color: #fff;">Nombre
+            usuario</a></div>
     </div>
-    <a class=" item" href="publications">
-        <i class="grid layout icon"></i> Búsqueda avanzada
+    <a class=" item" href="publicaciones" id="optionMainHome">
+        <i class="grid layout icon"></i> Inicio
     </a>
-    <div class="ui dropdown item">
-        Perfil
-        <i class="ui dropdown icon"></i>
-        <div class="menu">
-            <a class="item" href="edit-perfil"><i class="user icon"></i>Cuenta</a>
-            <a class="item"><i class="star icon"></i>Favoritos</a>
-            <a class="item"><i class="bookmark icon"></i>Guardados</a>
-            <a class="item" href="logout"><i class="close icon"></i>Salir</a>
-        </div>
-    </div>
-    <a class=" item" href="publications">
-        <i class="search icon"></i> Búsqueda
-    </a>
+
     <div class="item">
         <i class="write icon"></i>
         <div class="header">Publicar</div>
         <div class="menu">
-            <a class="item" href="publicar-revista">Revista</a>
-            <a class="item" href="publicar-convocatoria">Convocatorias</a>
-            <a class="item" href="publicar-evento">Eventos</a>
-            <a class="item" href="publicar-solicitud">Solicitud</a>
+            <a class="item" id="optionMainPaper" href="publicar-revista">Revista</a>
+            <a class="item" id="optionMainAnnouncement" href="publicar-convocatoria">Convocatorias</a>
+            <a class="item" id="optionMainEvent" href="publicar-evento">Eventos</a>
+            <a class="item" id="optionMainRequest" href="publicar-solicitud">Solicitud</a>
         </div>
     </div>
-    <a class=" item" href="publications">
+    <a class=" item" href="publicaciones">
         <i class="alarm icon"></i> Notificaciones (2)
     </a>
 </div>
-<!--Top menu fixed-->
 
+<!--Top menu fixed-->
 <div class="ui secondary raised top fixed menu" style="height: 65px;">
     <div class="item item_logo">
         <img src="../images/logo.png" class="ui centered image" style="height: 46px">
@@ -206,23 +304,25 @@
             <input type="text" placeholder="Palabras clave...">
             <select class="ui selection dropdown">
                 <option value="all">Todo</option>
-                <option value="paper">Revistas</option>
-                <option value="announcement">Convocatorias</option>
-                <option value="event">Eventos</option>
-                <option value="request">Solicitudes</option>
+                <option value="announcement">Convocatorias docentes</option>
+                <option value="paper">Revistas científicas</option>
+                <option value="event">Eventos académicos</option>
+                <option value="request_investigator">Solicitudes de investigadores</option>
+                <option value="request_evaluator">Solicitudes de evaluadores</option>
             </select>
-            <div type="submit" class="ui teal button" style="background-color: #AD5691">Buscar</div>
+            <a type="submit" class="ui teal button" style="background-color: #AD5691" href="result">Buscar</a>
         </div>
     </div>
     <div class="right menu" style="padding-right: 30px">
         <div class="item">
-            <div class="ui floating labeled icon dropdown teal button"  style="background-color: #AD5691">
+            <div class="ui floating right labeled icon dropdown teal button" style="background-color: #AD5691">
+                <span>Nombre Usuario</span>
                 <i class="dropdown icon"></i>
-                <span>Cuenta</span>
                 <div class="menu transition hidden">
-                    <a class="item" href="edit-perfil"><i class="user icon"></i>Cuenta</a>
+                    <a class="item" href="editando-perfil"><i class="user icon"></i>Cuenta</a>
                     <a class="item"><i class="star icon"></i>Favoritos</a>
                     <a class="item"><i class="bookmark icon"></i>Guardados</a>
+                    <a class="item"><i class="setting icon"></i>Configuración</a>
                     <a class="item" href="logout"><i class="close icon"></i>Salir</a>
                 </div>
             </div>
@@ -230,94 +330,121 @@
     </div>
 </div>
 
-<!--<div class="main-content-menu ui fixed inverted secondary menu">
-    <div class="item">
-        <img src="../images/logo.png" class="ui centered image" style="height: 40px;">
-    </div>
-    <div class="item">
-        <div class="ui action input" style="width: 700px;">
-            <input type="text" placeholder="Palabras clave...">
-            <select class="ui selection dropdown">
-                <option value="all">Todo</option>
-                <option value="paper">Revistas</option>
-                <option value="announcement">Convocatorias</option>
-                <option value="event">Eventos</option>
-                <option value="request">Solicitudes</option>
-            </select>
-            <div type="submit" class="ui teal button">Buscar</div>
-        </div>
-    </div>
-    <div class="right menu" style="padding-right: 30px">
-        <div class="item">
-            <div class="ui floating labeled icon dropdown teal button">
-                <i class="dropdown icon"></i>
-                <span>Cuenta</span>
-                <div class="menu transition hidden" tabindex="-1">
-                    <div class="item active selected" data-value="drop">Drop</div>
-                    <div class="item" data-value="horizontal flip">Horizontal Flip</div>
-                    <div class="item" data-value="fade up">Fade Up</div>
-                    <div class="item" data-value="scale">Scale</div>
+<!--Contenido-->
+<div class="pusher" style="background-color: #EEEEEE;">
+    <!--Top menu fixed-->
+    <div style="background-color: #272838; height: auto; width: 100%;">
+        <div class="ui left aligned container">
+            <h1 class="ui header" style="color: #A54686; padding-top: 30px; padding-bottom: 0px;">Titulo
+                Convocatoria</h1>
+            <div class="overlay">
+                <div class="ui secondary menu">
+                    <div class="item">
+                        <a class="ui  large label">
+                            <i class="star yellow icon"></i>
+                            Favorito
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="ui image large label">
+                            <i class="check green icon"></i>
+                            Me interesa
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="ui large label">
+                            <i class="dont red icon"></i>
+                            Denunciar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>-->
-<!--Menu top fixed visible-->
-<!--<div class="ui large fixed inverted top menu">
-    <img src="../images/logo.png">
-    <a class="launch item">
-        <i class="content icon"></i>
-        Menu
-    </a>
-    <div class="ui category search item">
-        <div class="ui transparent inverted icon input">
-            <input class="prompt" type="text" placeholder="Search animals...">
-            <i class="search link icon"></i>
-        </div>
-    </div>
-    <div class="right menu">
-        <div class="ui dropdown item">
-            <i class="dropdown icon"></i>
-            Perfil
-            <div class="menu">
-                <div class="item">Cuenta</div>
-                <div class="item">Favoritos</div>
-            </div>
-        </div>
-        <a class="item">Salir</a>
-    </div>
-</div>-->
-<!--Contenido-->
-<div class="pusher" style="background-color: #EEEEEE;">
     <div class="ui container">
-        <div class="start-search" id="start-search">
-            <h1 class="ui header center aligned">Busqueda</h1>
-            <div class="ui two column centered stackable grid">
-                <div class="column">
-                    <div class="ui form">
+        <div class="ui piled very padded segment" style="margin-top: 30px;">
+            <div class="ui equals width form grid">
+                <div class="two column row">
+                    <div class="column">
                         <div class="field">
-                            <div class="ui fluid action input">
-                                <input type="text" placeholder="Escriba palabras para buscar revistas, eventos, etc.">
-                                <div class="ui button">Buscar</div>
-                            </div>
+                            <div class="ui large label color_2"><b>Institución: </b> Nombre de institución</div>
                         </div>
                         <div class="field">
-                            <div class="ui toggle checkbox" onclick="showAdvancedSearch()">
-                                <input type="checkbox">
-                                <label>Busqueda avanzada</label>
-                            </div>
+                            <div class="ui large label color_1"><b>Sector educativo: </b> Sectores </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <div class="ui large label color_2"><b>País: </b> Nombre del país</div>
+                        </div>
+                        <div class="field">
+                            <div class="ui large label color_1"><b>Ciudad: </b> Nombre de la Ciudad</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="revistasfiltro" class="ui raised segment" style="display: none;">
-                <div class="ui internally celled left aligned stackable equal width grid">
-                    <div class="row">
-                        <div class="column">
-                            <button type="button" name="button" class="ui fluid button"></button>
+            <div class="ui form">
+                <div class="two fields">
+                </div>
+                <div class="field">
+                    <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
+                    <div class="three fields">
+                        <div class="field">
+                            <div class="ui card">
+                                <div class="content">
+                                    <div class="header" style="1em">Gran Área</div>
+                                    <div class="ui celled ordered list">
+                                        <div class="item">Cats</div>
+                                        <div class="item">Horses</div>
+                                        <div class="item">Dogs</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="column">
-                            <button type="button" name="button" class="ui fluid button"></button>
+                        <div class="field">
+                            <div class="ui card">
+                                <div class="content">
+                                    <div class="header">Área</div>
+                                    <div class="ui celled ordered list">
+                                        <div class="item">Cats</div>
+                                        <div class="item">Horses</div>
+                                        <div class="item">Dogs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui card">
+                                <div class="content">
+                                    <div class="header">Disciplina</div>
+                                    <div class="ui celled ordered list">
+                                        <div class="item">Cats</div>
+                                        <div class="item">Horses</div>
+                                        <div class="item">Dogs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui segment">
+                        <h5 class="ui header"><b>Detalles</b></h5>
+                        <span><b>Descripción: </b></span>
+                        <p>In at dolor euismod lacus venenatis aliquet id id sapien. Suspendisse consequat turpis lorem,
+                            in tristique nibh vestibulum et. Sed porta massa vel purus porta suscipit. Duis pretium et
+                            arcu vel consequat. Fusce nec felis sed sem ultricies feugiat. Donec sed odio eget erat
+                            fermentum porttitor ut id dui.e</p>
+                        <span><b>Datos de contacto para ampliar información: </b></span>
+                        <p>Nulla facilisi. Sed sed vehicula risus. Phasellus facilisis tellus leo, in aliquam risus
+                            euismod et.</p>
+                        <span><b>Enlace de la convocatoria en la Web: </b></span>
+                        <p><a href="#">http://localhost:63342/Mundocente/Dise%C3%B1o/Dise%C3%B1o-final/inicio-navbar-1.html?_ijt=cpc0m848o8m7aldfcpq8e2prn1</a>
+                        </p>
+                        <span><b>Vigencia: </b></span>
+                        <div class="ui celled horizontal list">
+                            <div class="item"><span><b>Desde:</b></span> Fecha</div>
+                            <div class="item"><span><b>Hasta:</b></span> Fecha</div>
                         </div>
                     </div>
                 </div>
@@ -328,21 +455,12 @@
 
 <script type="text/javascript">
 
-    $('.ui.left.sidebar').sidebar({
-        transition: 'push'
-    });
-    // left is opened by button
-    $('.ui.left.sidebar')
-        .sidebar('attach events', '.menu.fixed .launch.item');
-    $('.ui .dropdown').dropdown();
-
-    function showAdvancedSearch() {
-        $('#revistasfiltro').transition('fade');
-    }
-
-    function showStartSearch() {
-        $('#start-search').transition('fade');
-    }
+    $('.overlay')
+        .visibility({
+            type: 'fixed',
+            offset: 70 // give some space from top of screen
+        })
+    ;
 
     $('.dropdown')
         .dropdown({

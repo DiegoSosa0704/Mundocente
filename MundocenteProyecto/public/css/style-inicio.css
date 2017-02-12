@@ -3,6 +3,41 @@ body {
     color: #242533;
 }
 
+div.pusher {
+    background-color: #EEEEEE;
+    padding-top: 70px;
+}
+
+.line {
+    background: #A54686;
+    display: inline-block;
+    height: 0.15587em;
+    max-width: 10em;
+    width: 75%;
+}
+
+.pusher .ui.container .ui.piled.segment p,
+.pusher .ui.container .ui.piled.segment samp,
+.pusher .ui.container .ui.piled.segment label,
+.pusher .ui.container .ui.piled.segment div,
+.pusher .ui.container .ui.piled.segment .ui.header {
+    color: #242533;
+}
+
+.pusher .ui.container .ui.piled.segment .ui.label {
+    color: #EEEEEE;
+}
+
+.pusher .ui.container .ui.piled.segment p,
+.pusher .ui.container .ui.piled.segment span,
+.pusher .ui.container .ui.piled.segment label {
+    font-size: 1.15em;
+}
+
+.pusher .ui.container .ui.piled.segment .field{
+    padding-top: 0.7em;
+}
+
 .ui.menu.sidebar {
     background-color: #242533;
 }
@@ -15,13 +50,14 @@ body {
 .ui.fixed.sticky.menu {
     height: 100% !important;
     background-color: #242533;
+    top: 65px;
 }
 
-.ui.fixed.sticky.menu .item.item_logo{
+.ui.fixed.sticky.menu .item.item_logo {
     background-color: #DFDADD;
 }
 
-.ui.fixed.sticky.menu .item.item_profile{
+.ui.fixed.sticky.menu .item.item_profile {
     background: url(../images/fondo-user-2.png) no-repeat 0% 0%/cover;
     /*background-color: #1E555C;*/
 }
@@ -34,41 +70,12 @@ body {
     height: 40px;
 }
 
-.pusher .ui.container {
-    margin: 30px 0;
-}
-
 .pusher .ui.container > h1 {
     margin-bottom: 0;
     color: #242533;
 }
 
-.pusher .ui.container .ui.form h4,
-.pusher .ui.container .ui.form label,
-.ui.modal .content.ui.form label,
-.ui.modal .ui.header {
-    color: #242533;
-}
-
-.line {
-    background: #A54686;
-    display: inline-block;
-    height: 0.15587em;
-    max-width: 10em;
-    width: 75%;
-}
-
-div.pusher {
-    background-color: #EEEEEE;
-    padding-top: 60px;
-}
-
 /* Formularios Publicaciones */
-
-.pusher .ui.container .ui.form label,
-.ui.modal .content.ui.form label {
-    font-size: 0.9649em;
-}
 
 .pusher .ui.segment .ui.form .message,
 .ui.modal .content.ui.form .message {
@@ -76,13 +83,13 @@ div.pusher {
     margin-bottom: 5px;
 }
 
-.pusher .ui.segment .ui.form .button_load{
+.pusher .ui.segment .ui.form .button_load {
     background-color: #272838;
     color: #EEEEEE;
 }
 
 .ui.submit.button.button_submit {
-    background-color: #455a64  ;
+    background-color: #455a64;
 }
 
 .pusher .ui.segment .ui.form .ui.segment .ui.segment {
@@ -113,6 +120,14 @@ div.pusher {
     color: #EEEEEE;
 }
 
+.pusher .ui.container .ui.card .content .header {
+    font-size: 1.2em;
+}
+
+.pusher .ui.container .ui.piled.segment {
+    margin: 30px 0;
+}
+
 /*INICIO*/
 
 .pusher .ui.container.start-container .ui.sticky-filter.segment {
@@ -123,8 +138,38 @@ div.pusher {
     margin-top: 0;
 }
 
-.pusher .ui.container.start-container .ui.sticky-filter.segment .ui.top.attached.label{
+.pusher .ui.container.start-container .ui.sticky-filter.segment .ui.top.attached.label {
     font-size: 1em;
+}
+
+/* DETALLES PUBLICACIONES */
+
+.pusher .segment-title {
+    background-color: #272838;
+    height: auto;
+    width: 100%;
+}
+
+.pusher .segment-title .ui.container h1.ui.header{
+    color: #A54686;
+    padding-top: 30px;
+    padding-bottom: 0px;
+}
+
+.overlay {
+    padding: 0em;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+    background: transparent;
+}
+
+/* change style */
+.fixed.overlay {
+    background-color: #272838;
+    position: fixed;
+    padding: 0.5em;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
 /* Mobile */
@@ -163,10 +208,11 @@ div.pusher {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     div.pusher {
         background-color: #EEEEEE;
+        margin-left: 18rem;
     }
 
     .pusher .ui.container {
-        padding-left: 18rem;
+        width: 727px;
     }
 
     .pusher .ui.container.start-container {
@@ -180,11 +226,11 @@ div.pusher {
 @media only screen and (min-width: 1200px) and (max-width: 1407px) {
     div.pusher {
         background-color: #EEEEEE;
+        margin-left: 18rem;
     }
 
     .pusher .ui.container {
-        width: 1127px;
-        padding-left: 18rem;
+        width: 927px;
     }
 
     .pusher .ui.container.start-container {
@@ -198,11 +244,7 @@ div.pusher {
 @media only screen and (min-width: 1408px) {
     div.pusher {
         background-color: #EEEEEE;
-    }
-
-    .pusher .ui.container {
-        width: 1358px;
-        padding-left: 18rem;
+        margin-left: 18rem;
     }
 
     .pusher .ui.container.start-container {
@@ -210,5 +252,3 @@ div.pusher {
         padding-left: 18rem;
     }
 }
-
-

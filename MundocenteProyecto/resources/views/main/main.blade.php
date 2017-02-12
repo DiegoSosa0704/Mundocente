@@ -40,9 +40,6 @@
 </div>
 <!--Menu visible-->
 <div class="ui vertical inverted large fixed pointing sticky menu">
-    <div class="item item_logo">
-        <img src="images/logo.png">
-    </div>
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
         <div class="ui aligned center inverted tiny header"><a href="editando-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
@@ -50,8 +47,7 @@
     <a class=" item" href="publicaciones" id="optionMainHome">
         <i class="grid layout icon"></i> Inicio
     </a>
-  
-    
+
     <div class="item">
         <i class="write icon"></i>
         <div class="header">Publicar</div>
