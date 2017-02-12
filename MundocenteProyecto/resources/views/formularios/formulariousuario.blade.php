@@ -62,8 +62,7 @@
                 <div class="content">
                     <div class="transition hidden">
                         <div class="ui padded left aligned segment">
-                            {!!Form::open(['url'=>'editaperfil', 'method'=> 'POST', 'class'=>'ui form', 'id'=>'form'])!!}
-                            <div class="equal width fields">
+                          <div class="equal width fields">
                                 <div class="field">
                                     <label>Foto de perfil</label>
                                     <div class="ui small circular image">
@@ -80,7 +79,7 @@
                                             </div>
                                         </div>
                                         <img src="{!!Auth::user()->photo_url!!}" id="newimageperfil" >
-                                        <input type="hidden" name="newimageinputperfil" id="hiddenewphoto" value="images/user.png">
+                                        
                                     </div>
                                     {{--<span>
                                     <img class="ui middle aligned small circular image"
@@ -92,6 +91,8 @@
                             </span>--}}
                                 </div>
                             </div>
+                            {!!Form::open(['url'=>'editaperfil', 'method'=> 'POST', 'class'=>'ui form', 'id'=>'form'])!!}
+                          
                             <br>
 
 
@@ -267,14 +268,14 @@
                                     </div>
                                 </div>
                             @endif
-
+                            <input type="hidden" name="newimageinputperfil" id="hiddenewphoto" value="images/user.png">
 
                             <div class="ui right aligned stackable grid">
                                 <div class="sixteen wide column">
-                                    <div form="form" onclick="validateFormAccount()"
+                                    <button form="form" 
                                          class="ui submit inverted button button_submit">
                                         Aceptar
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
                             <div class="ui error message"></div>
@@ -961,7 +962,7 @@
                                 success: function(info){
                                     
                                     $('#hiddenewphoto').val(info);
-                                    $('#messageChangePhotoPerfil').css('display', 'block');
+                                    
 
                                 }
                             });

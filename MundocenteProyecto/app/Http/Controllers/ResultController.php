@@ -53,47 +53,25 @@ public function listPublicationsInterestRecomendation(){
 //Retorna toda la lista de ublicaciones
 public function returnListPublications(){
 
-     
     $listaAreasPublication = DB::table('areas_publicacions')->get();
 
     $listaUniono = DB::table('areas_publicacions')
         ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
         ->where('areas_interes.id_user_fk', Auth::user()->id)
         ->select('areas_publicacions.id_publication_fk')
+        ->orderBy('areas_interes.value_interest', 'asc')
         ->get();
 
-
-
-        
-        
        $listResultArray = array();
-    
-
-        
-        
-        
-
        foreach ($listaUniono as $id_publi) {
-            
             $publication_interest = DB::table('publicacions')
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->where('publicacions.id_publication', $id_publi->id_publication_fk)
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*')
                         ->get();
-                
                 $listResultArray = array_merge($publication_interest, $listResultArray);
-            
         }
-        
-        
-
-        
-        
-
-     
-  
-
     return  $listResultArray;
 }
 

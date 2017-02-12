@@ -118,10 +118,6 @@ class UserController extends Controller
     public function editarusuario(Request $request)
     {
 
-        
-        
-       
-
 
         if($request['notification']==true){
             DB::table('users')

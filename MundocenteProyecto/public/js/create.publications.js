@@ -591,3 +591,14 @@ var token = $("#token").val();
 });
 
 
+
+
+
+function button_id_publication_details(id_publi){
+var id_pubication = id_publi;
+var ruta = "detalles-convocatoria";
+var token = $("#token").val();
+
+   var functionPHP = "<?php HomeController::verdetallesConvocatoria("+id_pubication+"); ?>";
+   console.log(functionPHP);
+}

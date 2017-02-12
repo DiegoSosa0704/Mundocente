@@ -63,8 +63,16 @@ public function verifyCookies(){
 
 
 
-public function verdetallesConvocatoria(){
-    return view('details.detalles-convocatoria');
+public function verdetallesConvocatoria(Request $request){
+    if($request->ajax()){
+        $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->where('publicacions.id_publication', $request['id_publication_details'])
+                            ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*')
+                            ->get();
+        return view('details.detalles-convocatoria', compact('publication_interest'));
+    }
 }
 
 public function verdetallesEvento(){
