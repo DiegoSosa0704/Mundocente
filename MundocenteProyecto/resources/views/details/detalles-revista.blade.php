@@ -18,12 +18,6 @@
                             </a>
                         </div>
                         <div class="item">
-                            <a class="ui image large label">
-                                <i class="check green icon"></i>
-                                Me interesa
-                            </a>
-                        </div>
-                        <div class="item">
                             <a class="ui large label">
                                 <i class="dont red icon"></i>
                                 Denunciar
@@ -105,45 +99,38 @@
                             </div>
                         </div>
                     </div>
+
+                    <label><b>¿La revista se encuentra indexada?</b></label>
+                    <div class="inline field">
+                        <label>
+                            No
+                        </label>
+                        <div class="ui toggle checkbox" onclick="showAdvancedSearch()">
+                            <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden"
+                                   id="checkpaperindex">
+                        </div>
+                        <label>
+                            Si
+                        </label>
+                    </div>
+                    <!--Datos de indexación-->
+                    <div id="indexing-data" class="ui segment" style="display: none;">
+                        <h4 class="ui dividing bold header">Datos de indexación</h4>
+                            <div class="inline field">
+                                <label>Nombre indice</label>
+                                <select name="name" class="ui fluid dropdown"
+                                        id="selectpaperindex">
+                                    <option value="">Clasficación</option>
+                                    <option value="1">Nivel</option>
+                                </select>
+                            </div>
+                    </div>
                     <div class="field">
                         <h5 class="ui header"><b>Detalles</b></h5>
                         <div class="ui segment">
-
-                            <span><b>Descripción: </b></span>
-                            <p>In at dolor euismod lacus venenatis aliquet id id sapien. Suspendisse consequat turpis
-                                lorem,
-                                in tristique nibh vestibulum et. Sed porta massa vel purus porta suscipit. Duis pretium
-                                et
-                                arcu vel consequat. Fusce nec felis sed sem ultricies feugiat. Donec sed odio eget erat
-                                fermentum porttitor ut id dui.e</p>
-
-
                             <span><b>Datos de contacto para ampliar información: </b></span>
                             <p>Nulla facilisi. Sed sed vehicula risus. Phasellus facilisis tellus leo, in aliquam risus
                                 euismod et.</p>
-
-
-                            <div class="field">
-                                <label>Fecha:</label>
-                                <div class="ui celled horizontal list">
-                                    <div class="item">
-                                        <span>
-                                            <b>Desde:</b>
-                                            Fecha
-                                            <b>Hora:</b>
-                                            Hora
-                                        </span>
-                                    </div>
-                                    <div class="item">
-                                        <span>
-                                            <b>Hasta:</b>
-                                            Fecha
-                                            <b>Hora:</b>
-                                            Hora
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <span><b>Ver convocatoria: </b></span>
@@ -167,6 +154,12 @@
                 // you can use any ui transition
                 transition: 'fade'
             })
+        ;
+        function showAdvancedSearch() {
+            $('#indexing-data').toggle("slow");
+        }
+        $('.ui.checkbox')
+            .checkbox()
         ;
     </script>
 
