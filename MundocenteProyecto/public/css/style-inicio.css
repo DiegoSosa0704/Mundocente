@@ -20,7 +20,12 @@ div.pusher {
 .pusher .ui.container .ui.piled.segment samp,
 .pusher .ui.container .ui.piled.segment label,
 .pusher .ui.container .ui.piled.segment div,
-.pusher .ui.container .ui.piled.segment .ui.header {
+.pusher .ui.container .ui.piled.segment .ui.header,
+.ui.modal .content .ui.piled.segment p,
+.ui.modal .content .ui.piled.segment samp,
+.ui.modal .content .ui.piled.segment label,
+.ui.modal .content .ui.piled.segment div,
+.ui.modal .content .ui.piled.segment .ui.header{
     color: #242533;
 }
 
@@ -30,7 +35,10 @@ div.pusher {
 
 .pusher .ui.container .ui.piled.segment p,
 .pusher .ui.container .ui.piled.segment span,
-.pusher .ui.container .ui.piled.segment label {
+.pusher .ui.container .ui.piled.segment label,
+.ui.modal .content p,
+.ui.modal .content span,
+.ui.modal .content label{
     font-size: 1.15em;
 }
 
@@ -131,8 +139,8 @@ div.pusher {
 /*INICIO*/
 
 .pusher .ui.container.start-container .ui.sticky-filter.segment {
-    min-width: 23% !important;
-    max-width: 23% !important;
+    min-width: 21% !important;
+    max-width: 21% !important;
     height: 85% !important;
     overflow: scroll;
     margin-top: 0;
@@ -144,16 +152,19 @@ div.pusher {
 
 /* DETALLES PUBLICACIONES */
 
-.pusher .segment-title {
+.ui.modal .segment-title {
     background-color: #272838;
     height: auto;
     width: 100%;
 }
 
-.pusher .segment-title .ui.container h1.ui.header{
+.ui.modal .content {
+    padding: 30px 40px;
+}
+
+.ui.modal .segment-title .ui.container h1.ui.header{
     color: #A54686;
-    padding-top: 30px;
-    padding-bottom: 0px;
+    padding: 25px 25px 0px 20px;
 }
 
 .overlay {
@@ -214,11 +225,6 @@ div.pusher {
     .pusher .ui.container {
         width: 727px;
     }
-
-    .pusher .ui.container.start-container {
-        width: 1080px;
-        padding-left: 18rem;
-    }
 }
 
 /* Large Monitor */
@@ -232,23 +238,12 @@ div.pusher {
     .pusher .ui.container {
         width: 927px;
     }
-
-    .pusher .ui.container.start-container {
-        width: 1267px;
-        padding-left: 18rem;
-    }
 }
 
 /*Large Monitor 2*/
 
 @media only screen and (min-width: 1408px) {
     div.pusher {
-        background-color: #EEEEEE;
         margin-left: 18rem;
-    }
-
-    .pusher .ui.container.start-container {
-        width: 1458px;
-        padding-left: 18rem;
     }
 }
