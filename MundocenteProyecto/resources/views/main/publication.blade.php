@@ -8,7 +8,7 @@
             <div class="ui stackable grid">
                 <div class="ui five wide form column">
                     <div id="all" class="ui raised padded fixed sticky sticky-filter-all segment"
-                         style="min-width: 23% !important; max-width: 23% !important; min-height: 10% !important;overflow: scroll; margin-top: 0;">
+                         style="min-width: 21% !important; max-width: 21% !important; min-height: 10% !important;overflow: scroll; margin-top: 0;">
                         <div class="ui top left attached label" style="font-size: 1em">Filtrado</div>
                         <div class="ui info message">
                             <div class="header">
@@ -449,22 +449,7 @@
 @endforeach
 
 
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -472,6 +457,11 @@
             </div>
         </div>
     </div>
+
+    @include('details.detalles-convocatoria')
+    @include('details.detalles-evento')
+    @include('details.detalles-revista')
+    @include('details.detalles-solicitud')
     <script type="text/javascript">
         $('.ui.sidebar')
             .sidebar('attach events', '.menu.fixed .launch.item')
