@@ -163,7 +163,7 @@
             </div>
         </div>
         <div class="actions">
-            <a class="ui approve button color_3" href="publications">Siguiente</a>
+            <a class="ui approve button color_3" href="publicaciones">Siguiente</a>
         </div>
     </div>
     <script type="text/javascript">

@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @davidsanchezuptc
- Sign out
- Watch 2
-  Star 0
-  Fork 1 DiegoSosa0704/Mundocente
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathMundocente/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php
-d85a087  4 hours ago
-@davidSanchezTorres davidSanchezTorres Se agrega tarea de agregar nueva institución
-2 contributors @davidSanchezTorres @DiegoSosa0704
-RawBlameHistory     
-1117 lines (938 sloc)  55.3 KB
 @extends('main.main')
 
 @section('content')
@@ -996,5 +978,3 @@ RawBlameHistory
         }
     </script>
 @stop
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

@@ -385,24 +385,26 @@
 
 
 
+@inject('listAreasPublication','Mundocente\Http\Controllers\ResultController')
 
 
+<div class="ui eleven wide column">
+    
 
-                <div class="ui eleven wide column">
-                    <h2 class="ui header">Últimas publicaciones</h2>
-
-
-                    @foreach($listPublications as $publication)
-                    <div id="result-announcement" class="ui raised card menu segment" style="width: 100%;">
+@foreach($listPublications as $publication)
+    <div id="result-announcement" class="ui raised card menu segment" style="width: 100%;">
                         {{--Titulo--}}
                         <div class="content">
                             <div class="ui right floated simple dropdown item">
                                 {{$publication->name_theme_notifications}}
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item" href="#">Guardar publicación</a>
-                                    <a class="item" href="#">Denunciar Publicación</a>
-                                    <a class="item" href="#">Mis publicaciones</a>
+                                    <a class="item disabled">Áreas</a>
+
+                                    @foreach($listAreasPublication->returnAreasPublication($publication->id_publication) as $theme)
+                                        <a class="item" href="#">{{$theme->name_theme}}</a>
+                                    @endforeach
+                                    
                                 </div>
                             </div>
                             <a><h3 class="header">{{$publication->title_publication}}</h3></a>
@@ -427,8 +429,6 @@
                                     </div>
                         </div>
                         </div>
-
-
                         {{--Footer--}}
                         <div class="extra content">
                             <div class="ui stackable grid">
@@ -446,13 +446,14 @@
                             </div>
                         </div>
                     </div>
-
-                    @endforeach
-
+@endforeach
 
 
 
-                </div>
+
+
+
+</div>
 
 
 

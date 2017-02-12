@@ -561,12 +561,12 @@ var token = $("#token").val();
                                 }
                             }else{
                                 removeClassGreenAddError();
-                                $('#idpmessageerrorpublications').html('Debe ingresar url del evento o contacto del interesado');
+                                $('#idpmessageerrorpublications').html('Debe ingresar url donde e encuentre la revista');
                             }
                         }else{
                             removeClassGreenAddError();
 
-                            $('#idpmessageerrorpublications').html('El nombre del evento es obligatorio y debe tener máximo 150 carcteres');
+                            $('#idpmessageerrorpublications').html('El título de la revista es obligatorio y debe tener máximo 150 carcteres');
                         }
                         }else{
                             removeClassGreenAddError();
@@ -576,15 +576,15 @@ var token = $("#token").val();
                 
             }else{
                removeClassGreenAddError();
-                $('#idpmessageerrorpublications').html('Debe agregar la ciudad en donde se realiza el evento');
+                $('#idpmessageerrorpublications').html('Debe agregar la ciudad ');
             }
         }else{
             removeClassGreenAddError();
-            $('#idpmessageerrorpublications').html('Debe seleccionar país en donde se realiza el evento');
+            $('#idpmessageerrorpublications').html('Debe seleccionar país');
         }
    }else{
     removeClassGreenAddError();
-    $('#idpmessageerrorpublications').html('Debe seleccionar institución que realiza el evento');
+    $('#idpmessageerrorpublications').html('Debe seleccionar institución que publica la revista');
    }
         
     

@@ -207,6 +207,7 @@ $("#addInstituteNew").click(function(){
 			data:{name_new_institute: name_new,id_lugar_city: id_lugar},
 				success:function(info){
 					console.log('Se agregó ');
+					$('#messageNewInstitutioneror').css('display', 'block');
 					$("#listadeinstitutosvinculados").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'>Se ha enviado la solicitud para agregar una nueva universidad - ("+name_new+") está por el momento inactiva </div> </div>");
 					$('#messageNewInstitutioneror').removeClass('error');
 					$('#messageNewInstitutioneror').addClass('green');
@@ -214,6 +215,7 @@ $("#addInstituteNew").click(function(){
 				}
 			});
 		}else{
+			$('#messageNewInstitutioneror').css('display', 'block');
 			$('#messageNewInstitutioneror').removeClass('green');
 			$('#messageNewInstitutioneror').addClass('error');
 			$('#exitNewUniversity').html('Ingrese nombre de nueva institución');

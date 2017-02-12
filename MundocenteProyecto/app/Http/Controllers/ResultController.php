@@ -9,6 +9,8 @@ use Auth;
 use Redirect;
 use Mundocente\Http\Requests;
 use Mundocente\Http\Controllers\Controller;
+use Mundocente\Publicacion;
+use Illuminate\Support\Collection as Collection;
 
 class ResultController extends Controller
 {
@@ -34,23 +36,66 @@ class ResultController extends Controller
 
 
 
+public function listPublicationsInterestRecomendation(){
 
-
-
-
-public function returnListPublicationsInterest(){
-
-    $publicationsHome = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*')
+    $publicationsHomeInterestRecomendation = DB::table('recomendaciones')
+                        ->where('id_user_fk', Auth::user()->id)
+                        ->select('recomendaciones.*')
                         ->get();
-
     
-    return $publicationsHome;
+    return $publicationsHomeInterestRecomendation;
 }
 
 
+
+
+
+//Retorna toda la lista de ublicaciones
+public function returnListPublications(){
+
+     
+    $listaAreasPublication = DB::table('areas_publicacions')->get();
+
+    $listaUniono = DB::table('areas_publicacions')
+        ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
+        ->where('areas_interes.id_user_fk', Auth::user()->id)
+        ->select('areas_publicacions.id_publication_fk')
+        ->get();
+
+
+
+        
+        
+       $listResultArray = array();
+    
+
+        
+        
+        
+
+       foreach ($listaUniono as $id_publi) {
+            
+            $publication_interest = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*')
+                        ->get();
+                
+                $listResultArray = array_merge($publication_interest, $listResultArray);
+            
+        }
+        
+        
+
+        
+        
+
+     
+  
+
+    return  $listResultArray;
+}
 
 
  /**
@@ -60,17 +105,58 @@ public function returnListPublicationsInterest(){
      */
     public function publications()
     {
-        $listPublications = $this->returnListPublicationsInterest();
-        
+        $listPublications = $this->returnlistPublications();
+
             if(Auth::user()->email==''){
                 Auth::logout();
                 return Redirect::to('userExist');
             }else{
-                return view('main.publication', compact('listPublications'));
+               return view('main.publication', compact('listPublications'));
             }
-
         
     }
+
+
+public function returnAreasPublication($id_publicatin){
+    $listAreasPublication = DB::table('areas_publicacions')
+        ->join('publicacions', 'areas_publicacions.id_publication_fk', '=', 'publicacions.id_publication')
+        ->join('temas', 'areas_publicacions.id_theme_fk', '=', 'temas.id_tema')
+        ->where('areas_publicacions.id_publication_fk', $id_publicatin)
+        ->select('temas.*')
+        ->get();
+        return $listAreasPublication;
+}
+
+
+
+public function unionThemesInterestAndThemesPublication(){
+    $listaAreasInteres = DB::table('areas_interes')->get();
+    $listaAreasPublication = DB::table('areas_publicacions')->get();
+
+    $listaUniono = DB::table('areas_publicacions')
+        ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
+        ->select('areas_publicacions*')
+        ->get();
+
+        return $listaUniono;
+
+}
+
+
+public function listPublicationsInterest(){
+
+    $publicationsHomeInterest = DB::table('areas_interes')
+                        ->where('id_user_fk', Auth::user()->id)
+                        ->select('areas_interes.*')
+                        ->get();
+    
+    return $publicationsHomeInterest;
+}
+
+
+
+
+
 
 
 

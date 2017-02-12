@@ -53,7 +53,10 @@ class HomeController extends Controller
 
 public function verifyCookies(){
     if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
-       return Redirect::to('publicaciones');
+            if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+           return Redirect::to('publicaciones');
+       }
+
     }
 }
 
