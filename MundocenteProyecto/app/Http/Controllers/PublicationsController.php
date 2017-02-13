@@ -187,12 +187,9 @@ class PublicationsController extends Controller
                 
               
                 
-                
-               
-                echo "<br>";
-               return  0;
-           
         }
+        $cero = 0;
+        return  $cero;
     }
 
 
@@ -478,6 +475,9 @@ class PublicationsController extends Controller
             return response()->json($list_paper_index);
         }
     }
+
+
+    
 
 
 

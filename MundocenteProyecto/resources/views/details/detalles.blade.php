@@ -130,23 +130,56 @@
          <div class="overlay">
                     <div class="ui secondary menu">
                         <div class="item">
-                            <a class="ui  large label">
-                                <i class="star yellow icon"></i>
-                                Favorito
-                            </a>
-                        </div>
-                        <div class="item">
+                            <div class="item">
                             <a class="ui image large label">
-                                <i class="check green icon"></i>
-                                Me interesa
+                                
+                                <div class="ui mini statistic">
+                                  
+                                  <div class="label">
+                                  <i class="star icon"></i>
+                                    Favorito
+                                  </div>
+                                  <div class="value">
+                                    <p id="numberAuqtityFavorite_modal_details"></p>
+                                  </div>
+                                </div>
                             </a>
                         </div>
-                        <div class="item">
-                            <a class="ui large label">
-                                <i class="dont red icon"></i>
-                                Denunciar
+                            
+                        </div>
+                    <div class="item">
+                            <a class="ui image large label">
+                                
+                                <div class="ui mini statistic">
+                                  
+                                  <div class="label">
+                                  <i class="check icon"></i>
+                                    Me interesa
+                                  </div>
+                                  <div class="value">
+                                    <p id="numberAuqtitySave_modal_details"></p>
+                                  </div>
+                                </div>
                             </a>
                         </div>
+
+                    <div class="item">
+                            <a class="ui image large label">
+                                
+                                <div class="ui mini statistic">
+                                  
+                                  <div class="label">
+                                  <i class="thumbs outline down red icon"></i>
+                                    Denunciar
+                                  </div>
+                                  <div class="value">
+                                    <p id="numberAuqtityReport_modal_details"></p>
+                                  </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        
                     </div>
                 </div>
             <div class="ui button">Aceptar</div>

@@ -194,7 +194,7 @@ $("#addInstituteNew").click(function(){
 	var id_lugar = $('#selectCity').val();
 	var ruta = "addUniversityNew";
 	var token = $("#token").val();
-	console.log("lugar prueba nuevo: "+id_lugar);
+	
 
 
 	if(id_lugar!=null && id_lugar!=''){
@@ -696,7 +696,7 @@ console.log('');
 								$("#passwordChangeNow").addClass("error");
 								$('#errorsChangePasswordp').html('La contraseña actual no es correcta');
 							}
-
+							loadLine();
 							}
 						});
 

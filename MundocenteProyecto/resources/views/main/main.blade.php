@@ -20,11 +20,14 @@
 </head>
 <body>
 
+
 <!--Menu Sidebar -->
 <div class="ui left sidebar inverted vertical menu">
+
     <div class="item">
         <img src="images/nombre.png" style="height: 38px">
     </div>
+
     <a class="item">
         <i class="search icon"></i> Búsqueda
     </a>
@@ -37,14 +40,17 @@
             <a class="item">Invitación</a>
         </div>
     </div>
+
 </div>
+
 <!--Menu visible-->
 <div class="ui vertical inverted large fixed pointing sticky menu">
+
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
         <div class="ui aligned center inverted tiny header"><a href="editando-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
     </div>
-    <a class=" item" href="publicaciones" id="optionMainHome">
+    <a class=" item" href="publicaciones" id="optionMainHome" onclick="loadLine()">
         <i class="grid layout icon"></i> Inicio
     </a>
 
@@ -52,10 +58,10 @@
         <i class="write icon"></i>
         <div class="header">Publicar</div>
         <div class="menu">
-            <a class="item" id="optionMainPaper" href="publicar-revista">Revista</a>
-            <a class="item" id="optionMainAnnouncement" href="publicar-convocatoria">Convocatorias</a>
-            <a class="item" id="optionMainEvent" href="publicar-evento">Eventos</a>
-            <a class="item" id="optionMainRequest" href="publicar-solicitud">Solicitud</a>
+            <a class="item" id="optionMainPaper" href="publicar-revista" onclick="loadLine()">Revista</a>
+            <a class="item" id="optionMainAnnouncement" href="publicar-convocatoria" onclick="loadLine()">Convocatorias</a>
+            <a class="item" id="optionMainEvent" href="publicar-evento" onclick="loadLine()">Eventos</a>
+            <a class="item" id="optionMainRequest" href="publicar-solicitud" onclick="loadLine()">Solicitud</a>
         </div>
     </div>
     <a class=" item" href="publicaciones">
@@ -63,11 +69,17 @@
     </a>
 </div>
 
+
+
+
 <!--Top menu fixed-->
-<div class="ui secondary raised top fixed menu" style="height: 65px;">
+<div class="ui secondary raised top fixed menu" style="height: 63px;">
+
+
     <div class="item item_logo">
         <img src="../images/logo.png" class="ui centered image" style="height: 46px">
     </div>
+
     <div class="item" style="width:60%;">
         <div class="ui action input" style="width: 200%;">
             <input type="text" placeholder="Palabras clave...">
@@ -81,23 +93,40 @@
             </select>
             <a type="submit" class="ui teal button" style="background-color: #AD5691" href="result">Buscar</a>
         </div>
+
     </div>
+    
     <div class="right menu" style="padding-right: 30px">
         <div class="item">
-            <div class="ui floating right labeled icon dropdown teal button"  style="background-color: #AD5691">
+            <div class="ui floating right labeled icon dropdown teal button"  style="background-color: #AD5691;">
                 <span>{!!Auth::user()->name!!}</span>
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden">
-                    <a class="item" href="editando-perfil"><i class="user icon"></i>Cuenta</a>
-                    <a class="item"><i class="star icon"></i>Favoritos</a>
-                    <a class="item"><i class="bookmark icon"></i>Guardados</a>
-                    <a class="item"><i class="setting icon"></i>Configuración</a>
+                    <a class="item" href="editando-perfil" onclick="loadLine()"><i class="user icon"></i>Cuenta</a>
+                    <a class="item" onclick="loadLine()"><i class="star icon"></i>Favoritos</a>
+                    <a class="item" onclick="loadLine()"><i class="bookmark icon"></i>Guardados</a>
+                    <a class="item" onclick="loadLine()"><i class="setting icon"></i>Configuración</a>
                     <a class="item" href="logout"><i class="close icon"></i>Salir</a>
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>
+
+
+<!--            Animación para cargado progress -->
+
+<div class="ui indicating progress fixed" data-value="1" data-total="200" id="progressloadfixed" style="background-color: #DFDADD;
+height: 4px;padding-top: 1px;width: 150%;top: -16px;">
+              <div class="bar" style="background: #AD5691;height: 4px;left: -28px;"></div>
+</div>
+
+
+
+
+
 
 {{--<div class="ui fixed inverted top menu">
     <a class="launch item">
@@ -125,8 +154,8 @@
 </div>--}}
 
 
-<!--   Aquí está todo el contenido de publication.blade.php-->
 
+<!--   Aquí está todo el contenido de publication.blade.php-->
 @yield('content')
 
 
@@ -214,7 +243,12 @@
             }
         })
     ;
+
+
+
+
 </script>
+{!!Html::script('js/animationsload.js')!!}
 {!!Html::script('js/selectDinamic.js')!!}
 {!!Html::script('js/create.publications.js')!!}
 {!!Html::script('js/show_details.js')!!}

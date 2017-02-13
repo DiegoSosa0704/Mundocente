@@ -390,7 +390,7 @@
 
 <div class="ui eleven wide column">
     
-
+<input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
 @foreach($listPublications as $publication)
     <div id="result-announcement" class="ui raised card menu segment" style="width: 100%;">
                         {{--Titulo--}}
@@ -442,6 +442,8 @@
                                     <br>
                                     <span><b>Hasta: </b> {{$publication->date_end}}</span>
                                 </div>
+
+
     <input type="hidden" id="title_publication{{$publication->id_publication}}" value="{{$publication->title_publication}}">
     <input type="hidden" id="sector_publication{{$publication->id_publication}}" value="{{$publication->sector_publication}}">
     <input type="hidden" id="name_institution_publication{{$publication->id_publication}}" value="{{$publication->name_institution}}">
@@ -452,6 +454,9 @@
     <input type="hidden" id="date_start_publication{{$publication->id_publication}}" value="{{$publication->date_start}}">
     <input type="hidden" id="date_end_publication{{$publication->id_publication}}" value="{{$publication->date_end}}">
     <input type="hidden" id="photo_publication{{$publication->id_publication}}" value="{{$publication->url_photo_publication}}">
+    <input type="hidden" id="calculatequantityFavorite{{$publication->id_publication}}" value="{{$call_methods->returnPublicationFavorite($publication->id_publication)}}">
+    <input type="hidden" id="calculatequantitySave{{$publication->id_publication}}" value="{{$call_methods->returnPublicationSave($publication->id_publication)}}">
+    <input type="hidden" id="calculatequantityReport{{$publication->id_publication}}" value="{{$call_methods->returnPublicationReport($publication->id_publication)}}">
                                 <div class="five wide column">
                                     <a class="ui teal right floated labeled icon button"  onclick="showDetailsPublication({{$publication->id_publication}})">
                                         Ver detalle

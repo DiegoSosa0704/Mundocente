@@ -92,11 +92,31 @@ $('#div_data_index_clasification').append("<label>"+indices[k].name_index+":    
 	$('#date_end_modal_annoucement').html(date_end_announ);	
 
 
+	var countFavorites = $('#calculatequantityFavorite'+id_publication).val();
+	$('#numberAuqtityFavorite_modal_details').html(countFavorites);	
 
+	var countSave = $('#calculatequantitySave'+id_publication).val();
+	$('#numberAuqtitySave_modal_details').html(countSave);
+
+	var countReport = $('#calculatequantityReport'+id_publication).val();
+	$('#numberAuqtityReport_modal_details').html(countReport);
 
 
 
 	$('.modal.details-announcement')
             .modal('show')
     ;
+
+    var routAddTehemInteres = "add-value-theme-interest-user";
+	var token = $("#token").val();
+
+    $.ajax({
+			url: routAddTehemInteres,
+			headers: {'X-CSRF-TOKEN': token},
+			type: 'POST',
+			dataType: 'json',
+			data:{id_publication_fk: id_publication},
+				success:function(){
+				}
+			});
 }

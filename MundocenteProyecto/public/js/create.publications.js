@@ -1,3 +1,4 @@
+
 //método para publicar convocatoria
 
 $('#addAnnouncement').click(function(){
@@ -42,8 +43,11 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
+                                            
                                         }
                                     });
+                                    loadLine();
+                                    
                                 }else{
                                     deleteInputText();
                                     $.ajax({
@@ -57,8 +61,10 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
+                                            
                                         }
                                     });
+                                   loadLine();
                                    
                                 }
                             }else{
@@ -211,6 +217,7 @@ var token = $("#token").val();
                                             console.log('entró '+info);
                                         }
                                     });
+                                    loadLine();
                                 }else{
                                     deleteInputText();
                                     $.ajax({
@@ -226,6 +233,7 @@ var token = $("#token").val();
                                             console.log('entró '+info);
                                         }
                                     });
+                                    loadLine();
                                    
                                 }
                             }else{
@@ -388,6 +396,7 @@ var token = $("#token").val();
                                             console.log('entró '+info);
                                         }
                                     });
+                                    loadLine();
                                 }else{
                                     deleteInputText();
                                     $.ajax({
@@ -403,6 +412,7 @@ var token = $("#token").val();
                                             console.log('entró '+info);
                                         }
                                     });
+                                    loadLine();
                                    
                                 }
                             }else{
@@ -544,6 +554,7 @@ var token = $("#token").val();
                                             console.log('entró '+info);
                                         }
                                     });
+                                    loadLine();
                                 }else{
                                     deleteInputText();
                                     $.ajax({
@@ -558,7 +569,7 @@ var token = $("#token").val();
                                             console.log('entró '+info);
                                         }
                                     });
-                                   
+                                   loadLine();
                                 }
                             }else{
                                 removeClassGreenAddError();
@@ -595,11 +606,3 @@ var token = $("#token").val();
 
 
 
-function button_id_publication_details(id_publi){
-var id_pubication = id_publi;
-var ruta = "detalles-convocatoria";
-var token = $("#token").val();
-
-   var functionPHP = "<?php HomeController::verdetallesConvocatoria("+id_pubication+"); ?>";
-   console.log(functionPHP);
-}

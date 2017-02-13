@@ -122,6 +122,49 @@ public function unionThemesInterestAndThemesPublication(){
 }
 
 
+public function returnPublicationFavorite($id_publicatin){
+    $quantityFavorite = DB::table('favoritos')
+        ->where('id_publication_fk', $id_publicatin)
+        ->count();
+    return $quantityFavorite;
+}
+
+public function returnPublicationSave($id_publicatin){
+    $quantitySave = DB::table('guardados')
+        ->where('id_publication_fk', $id_publicatin)
+        ->count();
+    return $quantitySave;
+}
+
+public function returnPublicationReport($id_publicatin){
+    $quantityReport = DB::table('denuncias')
+        ->where('id_publication_fk', $id_publicatin)
+        ->count();
+    return $quantityReport;
+}
+
+
+public function addValueThemeInteres(Request $request){
+    if($request->ajax()){
+        $listaUniono = DB::table('areas_publicacions')
+        ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
+        ->where('id_publication_fk', $request['id_publication_fk'])
+        ->select('areas_interes.value_interest','areas_interes.id_areas_interes', 'areas_interes.id_user_fk')
+        ->get();
+
+        foreach ($listaUniono as $id_interest_theme) {
+            $quantutyValueLast = $id_interest_theme->value_interest;
+            DB::table('areas_interes')
+                ->where('id_areas_interes', $id_interest_theme->id_areas_interes)
+                ->where('id_user_fk', Auth::user()->id)
+                ->update(['value_interest' => ($quantutyValueLast+1)]);
+        }
+        return 0;
+    }
+     
+}
+
+
 public function listPublicationsInterest(){
 
     $publicationsHomeInterest = DB::table('areas_interes')
@@ -134,7 +177,6 @@ public function listPublicationsInterest(){
 
 public function returnIndexPublicationPaper($id_publicatin){
 
-    
     $listIndexClasification = DB::table('revista_nivels')
         ->where('id_publications_fk', $id_publicatin)
         ->count();

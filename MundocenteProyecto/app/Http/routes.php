@@ -105,6 +105,8 @@ Route::get('obtener-indices-revistass/{id_publication}', 'PublicationsController
 
 //Resultados de publicaciones
 Route::get('publicaciones', 'ResultController@publications');
+//aumenta el value_interest de la tabla de areas de interés
+Route::post('add-value-theme-interest-user', 'ResultController@addValueThemeInteres');
 
 
 
