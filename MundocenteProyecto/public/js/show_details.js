@@ -54,6 +54,36 @@ function showDetailsPublication(id_publication) {
 	}else{
 		$('#link_modal_announcement').css('display', 'none');
 	}
+
+	$('#space_image_modal_details').css('display', 'block');
+	var url_photo = $('#photo_publication'+id_publication).val();
+	if(url_photo!=''){
+		$('#image_modal_publication').attr('src', url_photo);
+	}else{
+		$('#space_image_modal_details').css('display', 'none');
+	}
+
+	var indexada = $('#id_type_publication'+id_publication).val();
+	$('#indexing-data-modal-details').css('display', 'none');
+	if(indexada==1){
+		$('#indexing-data-modal-details').css('display', 'block');
+		var level_index = "";
+			$.get('obtener-niveles-revistass/'+id_publication, function(level_clasification, ciudad){
+			for (var i = 0 ; i < level_clasification.length; i++) {
+				var id_indice = level_clasification[i].id_index_fk;
+				level_index = level_clasification[i].value_level;
+					$.get('obtener-indices-revistass/'+level_clasification[i].id_level, function(indices, ciudad){
+						for (var k = 0 ; k < indices.length; k++) {						
+$('#div_data_index_clasification').append("<label>"+indices[k].name_index+":    </label> <span> "+indices[k].value_level+"</span><br>");
+							}
+						});
+				}
+			});
+
+	}else{
+		$('#indexing-data-modal-details').css('display', 'none');
+		$('#indice_clasificacion_modal_publicacion').html('No está indexda');
+	}
 	
 
 	var date_start_announ = $('#date_start_publication'+id_publication).val();

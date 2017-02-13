@@ -385,7 +385,7 @@
 
 
 
-@inject('listAreasPublication','Mundocente\Http\Controllers\ResultController')
+@inject('call_methods','Mundocente\Http\Controllers\ResultController')
 
 
 <div class="ui eleven wide column">
@@ -401,12 +401,20 @@
                                 <div class="menu">
                                     <a class="item disabled">Áreas</a>
 
-                                    @foreach($listAreasPublication->returnAreasPublication($publication->id_publication) as $theme)
+                                    @foreach($call_methods->returnAreasPublication($publication->id_publication) as $theme)
                                         <a class="item" href="#">{{$theme->name_theme}}</a>
                                     @endforeach
                                 </div>
                             </div>
+
                             <a><h3 class="header">{{$publication->title_publication}}</h3></a>
+                            @if($call_methods->returnIndexPublicationPaper($publication->id_publication) > 0 && $publication->id_type_publication == 2)
+                                <input type="hidden" id="id_type_publication{{$publication->id_publication}}" value="1">
+                                <p>(Indexada)</p>
+                            @elseif($call_methods->returnIndexPublicationPaper($publication->id_publication) == 0 && $publication->id_type_publication == 2)
+                            <input type="hidden" id="id_type_publication{{$publication->id_publication}}" value="0">
+                                <p>(No indexada)</p>
+                            @endif
                         </div>
                         <div class="ui items content">
                             <div class="item">
@@ -443,6 +451,7 @@
     <input type="hidden" id="link_publication{{$publication->id_publication}}" value="{{$publication->url_publication}}">
     <input type="hidden" id="date_start_publication{{$publication->id_publication}}" value="{{$publication->date_start}}">
     <input type="hidden" id="date_end_publication{{$publication->id_publication}}" value="{{$publication->date_end}}">
+    <input type="hidden" id="photo_publication{{$publication->id_publication}}" value="{{$publication->url_photo_publication}}">
                                 <div class="five wide column">
                                     <a class="ui teal right floated labeled icon button"  onclick="showDetailsPublication({{$publication->id_publication}})">
                                         Ver detalle
@@ -477,14 +486,9 @@
         </div>
     </div>
 
-    @include('details.detalles-convocatoria')
 
-    {{--
-    @include('details.detalles-evento')
-    @include('details.detalles-revista')
-    @include('details.detalles-solicitud')
-    --}}
-    
+@include('details.detalles')
+   
 
     <script type="text/javascript">
         $('.ui.sidebar')

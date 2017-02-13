@@ -10,6 +10,7 @@
         <div class="content">
             <div class="ui equals width stackable form grid">
                 <div class="three column row">
+
                 <div class="column">
                         <div class="field">
                             <label>Institución: </label>
@@ -28,12 +29,31 @@
                             <div class="ui large label color_1" id="name_city_modal_anouncement"></div>
                         </div>
                     </div>
+                    <div class="column" id="space_image_modal_details">
+                        <div class="field">
+                        <br>
+                            
+                            <div class="field">
+                                <img class="ui centered medium image" src="images/public-image.png" alt="" id="image_modal_publication">
+                            </div>
+                        </div>
+                    </div>
                    
                 </div>
             </div>
             <div class="ui form">
-                <div class="two fields">
+            
+
+                <br>
+                  <!--Datos de indexación-->
+                <div id="indexing-data-modal-details" class="ui segment" style="display: none;">
+                    <h4 class="ui dividing bold header">Indexada en:</h4>
+                    <div class="inline field" id="div_data_index_clasification">
+                        
+                        
+                    </div>
                 </div>
+                
                 <div class="field">
                     <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
                     <div class="three fields">

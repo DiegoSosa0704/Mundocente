@@ -132,6 +132,15 @@ public function listPublicationsInterest(){
     return $publicationsHomeInterest;
 }
 
+public function returnIndexPublicationPaper($id_publicatin){
+
+    
+    $listIndexClasification = DB::table('revista_nivels')
+        ->where('id_publications_fk', $id_publicatin)
+        ->count();
+        return $listIndexClasification;
+}
+
 
 
 

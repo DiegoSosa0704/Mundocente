@@ -154,6 +154,7 @@ function deleteInputText(){
 $('#addRequestbutton').click(function(){
 
 var institution = $('#selectMVinculation').val();
+var city = $('#selectCity').val();
 var dateStart = $('#dateStartid').val();
 var dateFinish = $('#dateFinishid').val();
 var title = $('#titleid').val();
@@ -203,7 +204,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{sector_request: sector,type_request:type_request, id_institute: institution, 
+                                        data:{id_city:city, sector_request: sector,type_request:type_request, id_institute: institution, 
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, 
                                             contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
@@ -217,7 +218,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{sector_request: sector,type_request:type_request, id_institute: institution, 
+                                        data:{id_city:city,sector_request: sector,type_request:type_request, id_institute: institution, 
                                             dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
                                             area: area, disciplines: disciplines, title: title, contact: contacts,
                                              description: description, allArea: '1'},
@@ -499,12 +500,12 @@ var indexada = '';
 if($("#checkpaperindex").is(':checked') ) {
     indexada = 'si';
     var level = [];
-    for (var i = 0; i < quantityIndex; i++) {
+    for (var i = 0; i <= quantityIndex; i++) {
         level[i] = $('#selectpaperindex'+i).val();
     }
     var levelValidate = [];
 
-    for (var i = 0; i < level.length; i++) {
+    for (var i = 0; i <= level.length; i++) {
         if(level[i]!=null && level[i]!=''){
             levelValidate.push(level[i]);
         }

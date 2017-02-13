@@ -98,9 +98,13 @@ Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
 
 Route::post('upload-image-publication', 'PublicationsController@uploadImagePublication');
 Route::get('obtener-areas-pulicacion/{id_publication}', 'PublicationsController@obtienetablaareas');
-
+//retorna los índices y clasificaciones de cada revista
+Route::get('obtener-niveles-revistass/{id_publication}', 'PublicationsController@obtenerClasificaciones');
+Route::get('obtener-indices-revistass/{id_publication}', 'PublicationsController@obtenerTiposIndexacion');
 
 
 //Resultados de publicaciones
 Route::get('publicaciones', 'ResultController@publications');
+
+
 

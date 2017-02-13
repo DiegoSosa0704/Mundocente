@@ -291,7 +291,7 @@ class PublicationsController extends Controller
                     'url_photo_publication' => $request['url_image'],
                     'contact_pubication' => $request['contact'],
                     'state_publication' => 'activo',
-                    'id_type_publication' => 3,
+                    'id_type_publication' => 2,
                     'id_institution_fk' => $request['id_institute'],
                     'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
@@ -380,6 +380,7 @@ class PublicationsController extends Controller
                     'id_institution_fk' => $request['id_institute'],
                     'id_type_publication' => $request['type_request'],
                     'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
                 ]);
 
 
@@ -450,6 +451,33 @@ class PublicationsController extends Controller
     }
 
 
+//Método que extrae todos los índices y clasificaciones de una revista
+
+
+ public function obtenerClasificaciones(Request $request, $id_publication){
+        if($request->ajax()){
+            $list_paper_index = DB::table('revista_nivels')
+                ->join('nivels','revista_nivels.id_level_fk','=','nivels.id_level')
+                ->where('revista_nivels.id_publications_fk', $id_publication)
+                ->select('nivels.*')
+                ->get();
+            return response()->json($list_paper_index);
+        }
+    }
+
+//Método que extrae todos los índices y clasificaciones de una revista
+
+
+ public function obtenerTiposIndexacion(Request $request, $id_level){
+        if($request->ajax()){
+            $list_paper_index = DB::table('nivels')
+                ->join('indices','nivels.id_index_fk','=','indices.id_index')
+                ->where('nivels.id_level', $id_level)
+                ->select('indices.*', 'nivels.*')
+                ->get();
+            return response()->json($list_paper_index);
+        }
+    }
 
 
 

@@ -45,6 +45,23 @@
 
 
 
+                   <div class="two fields" style="display: none;" >
+                    <div class="required field">
+                        <select class="ui search dropdown" name="country" disabled="true" placeholder="seleccione país de la convocatoria" id="selectCountry">
+                                <option value="">Seleccione país</option>
+                                @foreach($lugares as $lugar)
+                                
+                                    <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="required field" id="cityChange">
+                             <select class="ui search dropdown" name="city" disabled="true" placeholder="Seleccione Ciudad" id="selectCity">
+                                <option value="">Seleccione ciudad</option>
+                            </select>
+                    </div>
+                </div>
+
 
 
 
