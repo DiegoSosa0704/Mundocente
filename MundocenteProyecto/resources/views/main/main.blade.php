@@ -217,6 +217,7 @@
 </script>
 {!!Html::script('js/selectDinamic.js')!!}
 {!!Html::script('js/create.publications.js')!!}
+{!!Html::script('js/show_details.js')!!}
 
 </body>
 </html>

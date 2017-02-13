@@ -2,9 +2,112 @@
         <i class="close icon"></i>
         <div class="segment-title">
             <div class="ui left aligned container">
-                <h1 class="ui header">Titulo
+                <h1 class="ui header" id="title_modal_announcement">
                     Convocatoria </h1>
-                <div class="overlay">
+               <br>
+            </div>
+        </div>
+        <div class="content">
+            <div class="ui equals width stackable form grid">
+                <div class="three column row">
+                <div class="column">
+                        <div class="field">
+                            <label>Institución: </label>
+                            <div class="ui large label color_2" id="institution_modal_announcement"></div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label>Sector educativo: </label>
+                            <div class="ui large label color_1" id="sector_modal_announcement"></div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label>Ciudad:</label>
+                            <div class="ui large label color_1" id="name_city_modal_anouncement"></div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="ui form">
+                <div class="two fields">
+                </div>
+                <div class="field">
+                    <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
+                    <div class="three fields">
+                        <div class="field">
+                            <div class="ui raised card">
+                                <div class="content">
+                                    <div class="header">Gran Área</div>
+                                    <div class="ui celled ordered list" id="div_gran_area_modal_annoncement">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui raised card">
+                                <div class="content">
+                                    <div class="header">Área</div>
+                                    <div class="ui celled ordered list" id="div_area_modal_annoncement">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui raised card">
+                                <div class="content">
+                                    <div class="header">Disciplina</div>
+                                    <div class="ui celled ordered list" id="div_disciplina_modal_annoncement">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <h5 class="ui header"><b>Detalles</b></h5>
+                    <div class="ui segment">
+                        <span><b>Descripción: </b></span>
+                        <p id="text_description_modal_announcement"></p>
+                        <span><b>Para más información: </b></span>
+                        <a class="ui teal tag label" id="link_modal_announcement">Enlace a convocatoria</a>
+                        <p id="contact_modal_announcement"></p>
+                        
+                        
+
+                        <div class="field">
+                        <br>
+                            <label>Fecha:</label>
+                            <div class="ui celled horizontal list">
+                                <div class="item">
+                                <span>
+                                    <b>Desde:</b>
+                                    <span id="date_start_modal_annoucement"></span>
+                                </span>
+                                </div>
+                                <div class="item">
+                                <span>
+                                    <b>Hasta:</b>
+                                    <span id="date_end_modal_annoucement"></span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+         <div class="overlay">
                     <div class="ui secondary menu">
                         <div class="item">
                             <a class="ui  large label">
@@ -26,124 +129,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="content">
-            <div class="ui equals width stackable form grid">
-                <div class="two column row">
-                    <div class="column">
-                        <div class="field">
-                            <label>Sector educativo: </label>
-                            <div class="ui large label color_1">Sectores</div>
-                        </div>
-                        <div class="field">
-                            <label>Institución: </label>
-                            <div class="ui large label color_2">Nombre institución</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="field">
-                            <label>País: </label>
-                            <div class="ui large label color_2">Nombre del país</div>
-                        </div>
-                        <div class="field">
-                            <label>Ciudad:</label>
-                            <div class="ui large label color_1">Nombre de la Ciudad</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui form">
-                <div class="two fields">
-                </div>
-                <div class="field">
-                    <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
-                    <div class="three fields">
-                        <div class="field">
-                            <div class="ui raised card">
-                                <div class="content">
-                                    <div class="header">Gran Área</div>
-                                    <div class="ui celled ordered list">
-                                        <div class="item">Cats</div>
-                                        <div class="item">Horses</div>
-                                        <div class="item">Dogs</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui raised card">
-                                <div class="content">
-                                    <div class="header">Área</div>
-                                    <div class="ui celled ordered list">
-                                        <div class="item">Cats</div>
-                                        <div class="item">Horses</div>
-                                        <div class="item">Dogs</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui raised card">
-                                <div class="content">
-                                    <div class="header">Disciplina</div>
-                                    <div class="ui celled ordered list">
-                                        <div class="item">Cats</div>
-                                        <div class="item">Horses</div>
-                                        <div class="item">Dogs</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <h5 class="ui header"><b>Detalles</b></h5>
-                    <div class="ui segment">
-                        <span><b>Descripción: </b></span>
-                        <p>In at dolor euismod lacus venenatis aliquet id id sapien. Suspendisse consequat turpis
-                            lorem,
-                            in tristique nibh vestibulum et. Sed porta massa vel purus porta suscipit. Duis pretium
-                            et
-                            arcu vel consequat. Fusce nec felis sed sem ultricies feugiat. Donec sed odio eget erat
-                            fermentum porttitor ut id dui.e</p>
-                        <span><b>Datos de contacto para ampliar información: </b></span>
-                        <p>Nulla facilisi. Sed sed vehicula risus. Phasellus facilisis tellus leo, in aliquam risus
-                            euismod et.</p>
-
-
-                        <div class="field">
-                            <label>Fecha:</label>
-                            <div class="ui celled horizontal list">
-                                <div class="item">
-                                <span>
-                                    <b>Desde:</b>
-                                    Fecha
-                                </span>
-                                </div>
-                                <div class="item">
-                                <span>
-                                    <b>Hasta:</b>
-                                    Fecha
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <span><b>Ver convocatoria: </b></span>
-                        <a class="ui teal tag label">Enlace a convocatoria</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="actions">
             <div class="ui button">Aceptar</div>
         </div>
     </div>
 
-    <script type="text/javascript">
-        $('.modal.details-announcement')
-            .modal('show')
-        ;
-    </script>
+   

@@ -97,6 +97,7 @@ Route::post('add-revista', 'PublicationsController@agregarRevista');
 Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
 
 Route::post('upload-image-publication', 'PublicationsController@uploadImagePublication');
+Route::get('obtener-areas-pulicacion/{id_publication}', 'PublicationsController@obtienetablaareas');
 
 
 

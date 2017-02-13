@@ -404,15 +404,12 @@
                                     @foreach($listAreasPublication->returnAreasPublication($publication->id_publication) as $theme)
                                         <a class="item" href="#">{{$theme->name_theme}}</a>
                                     @endforeach
-                                    
                                 </div>
                             </div>
                             <a><h3 class="header">{{$publication->title_publication}}</h3></a>
                         </div>
-
                         <div class="ui items content">
                             <div class="item">
-                        
                                     @if($publication->url_photo_publication != '')
                                     <div class="ui medium image">
                                                 <img src="{{$publication->url_photo_publication}}" >
@@ -437,8 +434,17 @@
                                     <br>
                                     <span><b>Hasta: </b> {{$publication->date_end}}</span>
                                 </div>
+    <input type="hidden" id="title_publication{{$publication->id_publication}}" value="{{$publication->title_publication}}">
+    <input type="hidden" id="sector_publication{{$publication->id_publication}}" value="{{$publication->sector_publication}}">
+    <input type="hidden" id="name_institution_publication{{$publication->id_publication}}" value="{{$publication->name_institution}}">
+    <input type="hidden" id="description_publication{{$publication->id_publication}}" value="{{$publication->description_publication}}">
+    <input type="hidden" id="name_city_publication{{$publication->id_publication}}" value="{{$publication->name_lugar}}">
+    <input type="hidden" id="contact_publication{{$publication->id_publication}}" value="{{$publication->contact_pubication}}">
+    <input type="hidden" id="link_publication{{$publication->id_publication}}" value="{{$publication->url_publication}}">
+    <input type="hidden" id="date_start_publication{{$publication->id_publication}}" value="{{$publication->date_start}}">
+    <input type="hidden" id="date_end_publication{{$publication->id_publication}}" value="{{$publication->date_end}}">
                                 <div class="five wide column">
-                                    <a class="ui teal right floated labeled icon button" target="_blank" href="{{$publication->url_publication}}">
+                                    <a class="ui teal right floated labeled icon button"  onclick="showDetailsPublication({{$publication->id_publication}})">
                                         Ver detalle
                                         <i class="linkify icon"></i>
                                     </a>
@@ -448,8 +454,21 @@
                     </div>
 @endforeach
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </div>
+
+
 
 
 
@@ -459,9 +478,14 @@
     </div>
 
     @include('details.detalles-convocatoria')
+
+    {{--
     @include('details.detalles-evento')
     @include('details.detalles-revista')
     @include('details.detalles-solicitud')
+    --}}
+    
+
     <script type="text/javascript">
         $('.ui.sidebar')
             .sidebar('attach events', '.menu.fixed .launch.item')

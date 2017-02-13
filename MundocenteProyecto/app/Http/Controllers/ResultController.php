@@ -67,8 +67,9 @@ public function returnListPublications(){
             $publication_interest = DB::table('publicacions')
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $id_publi->id_publication_fk)
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*')
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->get();
                 $listResultArray = array_merge($publication_interest, $listResultArray);
         }

@@ -437,6 +437,21 @@ class PublicationsController extends Controller
 
 
 
+//Método ue retorna los lugares de la publicación
+
+  public function obtienetablaareas(Request $request, $id_publication){
+        if($request->ajax()){
+            $areas = DB::table('areas_publicacions')
+                ->join('temas','areas_publicacions.id_theme_fk','=','temas.id_tema')
+                ->where('areas_publicacions.id_publication_fk', $id_publication)
+                ->get();
+            return response()->json($areas);
+        }
+    }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
