@@ -83,7 +83,7 @@
     <div class="item" style="width:60%;">
         
         {!!Form::open(['url'=>'publicaciones-resultados', 'method'=> 'POST', 'class'=>'ui action input', 'style'=>'width: 200%'])!!}
-        {!!Form::text('text_search', null, ['type' => 'text', 'placeholder' => 'Palabras clave...', 'autocomplete'=>'false'])!!}
+        {!!Form::text('text_search', null, ['type' => 'text', 'placeholder' => 'Ingrese título de publicación', 'autocomplete'=>'false'])!!}
             <select class="ui selection dropdown" name="search_type_publication">
                 <option value="6">Todo</option>
                 <option value="1">Convocatorias docentes</option>

@@ -332,6 +332,8 @@ public function uploadPhotoPerfil(Request $request){
 
     public function agregarGranAreaDeInterest(Request $request){
         if($request->ajax()){
+
+            $listRecomendations = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $request['id_gran_area_formacion_institute'])->delete();
             
              $quantityThemes = DB::table('areas_interes')
                 ->where('id_user_fk', Auth::user()->id)
