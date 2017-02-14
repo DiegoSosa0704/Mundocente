@@ -30,6 +30,11 @@ use Hash;
 class UserController extends Controller
 {
 
+     public function __construct(){
+        $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest']]);
+        
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -320,7 +325,7 @@ public function uploadPhotoPerfil(Request $request){
 
     public function eliminarVinculacion(Request $request){
         if($request->ajax()){
-            DB::table('vinculacions')->where('id_institution_fk', $request['id_institute'])->delete();
+            DB::table('vinculacions')->where('id_institution_fk', $request['id_institute'])->where('id_user_fk', Auth::user()->id)->delete();
             return 0;
         }
     }
@@ -378,7 +383,7 @@ public function uploadPhotoPerfil(Request $request){
 
     public function eliminarGranAreaDeFormacion(Request $request){
         if($request->ajax()){
-            DB::table('areas_formacions')->where('id_areas_formacion', $request['id_gran_area_formcion'])->delete();
+            DB::table('areas_formacions')->where('id_areas_formacion', $request['id_gran_area_formcion'])->where('id_user_fk', Auth::user()->id)->delete();
             return 0;
         }
     }
@@ -438,7 +443,7 @@ public function uploadPhotoPerfil(Request $request){
 
     public function eliminarGranAreaDeInterest(Request $request){
         if($request->ajax()){
-            DB::table('areas_interes')->where('id_areas_interes', $request['id_gran_area_interes'])->delete();
+            DB::table('areas_interes')->where('id_areas_interes', $request['id_gran_area_interes'])->where('id_user_fk', Auth::user()->id)->delete();
             return 0;
         }
     }

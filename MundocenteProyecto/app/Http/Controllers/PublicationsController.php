@@ -14,6 +14,15 @@ use Mundocente\RevistaNivel;
 
 class PublicationsController extends Controller
 {
+
+
+
+     public function __construct(){
+        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas']]);
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *

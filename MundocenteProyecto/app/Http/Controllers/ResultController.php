@@ -18,7 +18,7 @@ class ResultController extends Controller
 
 
      public function __construct(){
-        $this->middleware('auth', ['only' => ['publications']]);
+        $this->middleware('auth', ['only' => ['publications', 'searchPublicationForWordKey', 'listPublicationsInterestRecomendation','returnListPublications', 'addValueThemeInteres']]);
         global $porciones;
     }
 

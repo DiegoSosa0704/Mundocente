@@ -93,7 +93,7 @@
                 <option value="5">Solicitudes de evaluadores</option>
             </select>
             
-            <button type="submit"
+            <button type="submit"  onclick="loadLine()"
                  class="ui submit button button_submit" style="background-color: #AD5691;color: #fff;">
                 Buscar
             </button>
