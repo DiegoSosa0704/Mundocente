@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Password;
 use Mundocente\Http\Controllers\Auth\PasswordController;
 
 
+
 use Hash;
 
 
@@ -49,6 +50,20 @@ class UserController extends Controller
     {
         //
     }
+
+
+
+
+
+public function callLocationCountry(){
+    return DB::table('lugars')->where('type_lugar','country')->get();
+}
+
+public function callLargesAreasTheme(){
+    return DB::table('temas')->where('type_theme', 'gran_area')->get();
+}
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -80,15 +95,14 @@ class UserController extends Controller
 
             ]);
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+
                 return Redirect::to('registration');
+
             }
         }
 
 
     }
-
-
-
 
 
 
@@ -101,7 +115,60 @@ class UserController extends Controller
      */
     public function showRegistrationInit()
     {
-        return view('registration');
+       
+
+        $lugares = $this->callLocationCountry();
+        
+        $gran_areas = $this->callLargesAreasTheme();
+
+
+
+        $gran_areas_de_interes = DB::table('areas_interes')
+            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
+            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->where('temas.type_theme', 'gran_area')
+            ->select('temas.*', 'areas_interes.*')
+            ->get();
+
+         $areas_de_interes = DB::table('areas_interes')
+            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
+            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->where('temas.type_theme', 'area')
+            ->select('temas.*', 'areas_interes.*')
+            ->get();
+
+
+        $disciplina_de_interes = DB::table('areas_interes')
+            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
+            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->where('temas.type_theme', 'disciplina')
+            ->select('temas.*', 'areas_interes.*')
+            ->get();
+
+
+        $institucionesVinvulado = DB::table('vinculacions')
+            ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
+            ->join('users', 'vinculacions.id_user_fk', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->select('institucions.*')
+            ->get();
+
+
+         $recibonotifide = DB::table('tema__notificacions')
+         ->select('id_type_publications', 'name_theme_notifications')
+         ->get();
+
+         $milista_notificacion_recibe = DB::table('tema_notificacion_usuarios')
+         ->where('id_user_fk', Auth::user()->id)
+         ->select('id_type_notifications_fk')
+         ->get();
+
+
+            return view('registration', compact('lugares', 'gran_areas', 'gran_areas_de_interes', 'areas_de_interes', 'disciplina_de_interes', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
+
     }
 
 

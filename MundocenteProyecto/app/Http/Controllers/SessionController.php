@@ -16,6 +16,7 @@ use Mundocente\Http\Requests;
 use Mundocente\Http\Requests\SessionRequest;
 use Mundocente\Http\Controllers\Controller;
 
+
 class SessionController extends Controller
 {
     /**
@@ -110,8 +111,6 @@ OAuth::login('facebook',  function($user, $details) {
         });
     return Redirect::to('publicaciones');
 
-
-        dd(Auth::user());
        
         
     }
@@ -161,8 +160,6 @@ OAuth::login('facebook',  function($user, $details) {
     return Redirect::to('publicaciones');
 
 
-        dd(Auth::user());
-         
         
         
     }
@@ -209,11 +206,7 @@ OAuth::login('facebook',  function($user, $details) {
 
         });
     return Redirect::to('publicaciones');
-
-
-        dd(Auth::user());
-         
-         
+     
         
         
     }

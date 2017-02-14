@@ -246,11 +246,24 @@ public function returnListPublications(){
         $resultArrayRecomendationAndInterest = array_merge($listResultArray, $listResultArrayRecomendation);
         
         
+        if(count($resultArrayRecomendationAndInterest)==0){
+             $listPublications = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
+                        ->take(50)
+                        ->orderBy('publicacions.count_view', 'desc')
+                        ->get();
 
+          return $listPublications;
+        }else{
+            return  $resultArrayRecomendationAndInterest;
+        }
         
 
 
-    return  $listResultArray;
+    
 }
 
 
@@ -324,8 +337,6 @@ public function returnPublicationReport($id_publicatin){
 public function addValueThemeInteres(Request $request){
     if($request->ajax()){
 
-
-
         $listaUniono = DB::table('areas_publicacions')
         ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
         ->where('id_publication_fk', $request['id_publication_fk'])
@@ -338,7 +349,7 @@ public function addValueThemeInteres(Request $request){
         ->select('areas_interes.value_interest','areas_interes.id_areas_interes', 'areas_interes.id_user_fk')
         ->count();
 
-        if($cuantyThemeInteres>0){
+        if($cuantyThemeInteres==0){
              foreach ($listaUniono as $id_interest_theme) {
             $quantutyValueLast = $id_interest_theme->value_interest;
 
@@ -347,6 +358,7 @@ public function addValueThemeInteres(Request $request){
                 ->where('id_user_fk', Auth::user()->id)
                 ->update(['value_interest' => ($quantutyValueLast+1)]);
             }
+            
         }else{
 
             $listThemesNewRecomendation = DB::table('areas_publicacions')
@@ -379,13 +391,14 @@ public function addValueThemeInteres(Request $request){
                     }
                     
                 }
-
+                
                 
             }
+            return 1;
 
        
 
-        return 0;
+        
     }
      
 }

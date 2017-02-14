@@ -28,144 +28,249 @@
             <div class="ui approve button color_3">Siguiente</div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
     <div class="ui second coupled modal">
         <h2 class="ui center aligned header">Vinculación laboral</h2>
         <div class="content ui form">
-            <div class="grouped fields">
-                <label>Sector educativo</label>
-                <div class="field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="sector" tabindex="0" class="hidden">
-                        <label>Universitario</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="sector" tabindex="0" class="hidden">
-                        <label>Preescolar, básica y media</label>
-                    </div>
-                </div>
-            </div>
-            <div class="two fields">
-                <div class="field">
-                    <label>País</label>
-                    <select class="ui fluid search dropdown" name="large_area" id="selectCountry">
-                        <option value="">Ciudad</option>
-                        <option value="large_area-1">Gran Área 1</option>
-                        <option value="large_area-2">Gran Área 2</option>
-                    </select>
-                </div>
-                <div class="field" id="cityChange">
-                    <label>Ciudad</label>
-                    <select class="ui fluid search dropdown" name="large_area" id="selectCity">
-                        <option value="">Ciudad</option>
-                        <option value="large_area-1">Gran Área 1</option>
-                        <option value="large_area-2">Gran Área 2</option>
-                    </select>
-                </div>
-            </div>
-            <div class="field">
-                <label>Intitución</label>
-                <div class="ui info compact small message">
-                    <p>Si su institución no se encuentra en la lista, podrá suministrarla en el campo "Otra". </p>
-                </div>
-                <div class="two fields" id="institutionChange">
-                    <div class="field">
-                        <select class="ui search dropdown">
-                            <option value="">Institución</option>
-                            <option value="AL">Alabama</option>
-                        </select>
-                        <div class="ui horizontal divider">
-                            <a class="ui label button color_1" id="agregaInstituto">Agregar Institución</a>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui action input">
-                            <input placeholder="Nombre Instituto" id="otherInstitute" type="text" value="">
-                            <div class="ui label button color_2" id="addInstituteNew">Nuevo</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui raised segment">
-                <label><b>Viculado con:</b></label>
-                <div class="ui divided list selected_list" id="listadeinstitutosvinculados"></div>
-            </div>
+            
+            <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+                                <div class="required field">
+                                    <div class="two fields">
+                                        <div class="required field">
+                                            <label>País en donde se encuentra la universidad</label>
+
+                                            <select class="ui search dropdown" name="country"
+                                                    placeholder="seleccione país de la institución" id="selectCountry">
+                                                <option value="">Seleccione país</option>
+                                                @foreach($lugares as $lugar)
+
+                                                    <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                                @endforeach
+                                            </select>
+
+
+                                        </div>
+                                        <div class="required field" id="cityChange">
+                                            <label>Ciudad</label>
+
+
+                                            <select class="ui search dropdown" name="city"
+                                                    placeholder="Seleccione Ciudad"
+                                                    id="selectCity">
+
+                                                <option value="">Seleccione ciudad</option>
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="two fields" id="institutionChange">
+                                        <div class="required field">
+                                            <label>Institución</label>
+
+
+                                            <select class="ui search dropdown" name="institution"
+                                                    placeholder="Seleccione Institución" id="selectInstitution">
+
+                                                <option value="">Seleccione institución</option>
+
+                                            </select>
+                                            <div class="ui horizontal divider">
+                                                <a class="ui label button color_1" id="agregaInstituto">Agregar
+                                                    Institución</a>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label>Otra</label>
+                                            <div class="ui action input">
+                                                <input placeholder="Nombre" id="otherInstitute" type="text" value="">
+                                                <div class="ui button" id="addInstituteNew">Nuevo</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                               
+                                </div>
+                                <div class="ui info green message" style="display: none;" id="messageSaveVinculation">
+                                    <i class="close icon" id="cierramensajedeinstitutos"></i>
+                                    <div class="header">
+                                        Guardó institución con éxito
+                                    </div>
+                                    <ul class="list">
+                                        <li id="idlisaveinstitute"></li>
+
+                                    </ul>
+                                </div>
+                                <div class="ui error message" style="display: none;" id="messageNewInstitutioneror">
+                                    
+                                    <div class="header">
+                                        <p id="exitNewUniversity">Debe indicar la ciudad de la nueva institución</p>
+                                    </div>
+                                    <ul class="list">
+                                    </ul>
+                                </div>
+                                <div class="ui error message" style="display: none;" id="messageSaveVinculationerror">
+                                    <i class="close icon" id="cierramensajedeinstitutoserror"></i>
+                                    <div class="header">
+                                        No se ha seleccionado la Institución correctamente
+                                    </div>
+                                    <ul class="list">
+                                    </ul>
+                                </div>
         </div>
         <div class="actions">
             <div class="ui approve button color_3">Siguiente</div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="ui third coupled modal">
         <h2 class="ui center aligned header">Áreas de interés</h2>
         <div class="content ui form">
-            <div class="ui info message">
-                <div class="header">
-                    Al seleccionar sus áreas de interés podrá obtener información sobre estas con mayor facilidad.
-                </div>
-            </div>
             <div class="field">
-                <div class="three fields">
-                    <div class="required field">
-                        <label>Gran área</label>
-                        <select class="ui fluid search dropdown" name="large_area">
-                            <option value="">Gran Área</option>
-                            <option value="large_area-1">Gran Área 1</option>
-                            <option value="large_area-2">Gran Área 2</option>
-                        </select>
-                        <div class="ui horizontal divider">
-                            <a type="submit" class="ui label button color_1" id="addDisciplineAreaInterest">Agregar Gran
-                                Área</a>
-                        </div>
-                        <div class="ui raised segment">
-                            <label><b>Seleccionados</b></label>
-                            <div class="ui divided list selected_list" id="list_discipline_area_Interest"></div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Área</label>
-                        <select class="ui fluid search dropdown" id="select_area_interes" name="area">
-                            <option selected="selected" value="">Seleccione Área</option>
-                            <option value="0">ninguna seleccionada</option>
-                        </select>
-                        <div class="ui horizontal divider">
-                            <a type="submit" class="ui label button color_1" id="addAreaInterest">Agregar Área</a>
-                        </div>
-                        <div class="ui raised segment">
-                            <label><b>Seleccionados</b></label>
-                            <div class="ui divided list selected_list" id="list_area_Interest"></div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Disciplina</label>
-                        <div class="ui search dropdown selection">
-                            <select id="select_disciplina_interes" name="discipline">
-                                <option selected="selected" value="">Seleccione Disciplina</option>
-                                <option value="0">ninguna seleccionada</option>
-                            </select>
-                            <i class="dropdown icon"></i>
-                            <input class="search" autocomplete="off" tabindex="0">
-                            <div class="default text">Seleccione Disciplina</div>
-                            <div class="menu" tabindex="-1">
-                                <div class="item" data-value="0">ninguna seleccionada</div>
-                            </div>
-                        </div>
-                        <div class="ui horizontal divider">
-                            <a type="submit" class="ui label button color_1" id="addAreaInterestDiscipline">Agregar
-                                Disciplina</a>
-                        </div>
-                        <div class="ui raised segment">
-                            <label><b>Seleccionados</b></label>
-                            <div class="ui divided list selected_list" id="list_area_Interest_discipline"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <div class="three fields">
+                                        <div class="required field">
+                                            <label>Gran área</label>
+                                            <select class="ui fluid search dropdown" name="large_area"
+                                                    id="select_gran_area_interes">
+                                                @foreach($gran_areas as $gran_area)
+                                                    <option value="">Gran Área</option>
+                                                    <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="ui horizontal divider">
+                                                <a type="submit" class="ui label button color_1"
+                                                   id="addDisciplineAreaInterest">Agregar Gran Área</a>
+                                            </div>
+                                            <div class="ui raised segment">
+                                                <label><b>Seleccionados</b></label>
+                                                <div class="ui divided list "
+                                                     id="list_discipline_area_Interest">
+                                                    @foreach($gran_areas_de_interes as $gran_area_i)
+                                                        <div class="item"
+                                                             id="listDisciplineAreInterestItem{{$gran_area_i->id_areas_interes}}">
+                                                            <div class="right floated content">
+                                                                <div class="ui label button color_3"
+                                                                     onclick="deleteDisciplineAreaInterest({{$gran_area_i->id_areas_interes}})">
+                                                                    Eliminar
+                                                                </div>
+                                                            </div>
+                                                            <div class="content">
+                                                                {{$gran_area_i->name_theme}}
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label>Área</label>
+                                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_interes'])!!}
+                                            <div class="ui horizontal divider">
+                                                <a type="submit" class="ui label button color_1" id="addAreaInterest">Agregar
+                                                    Área</a>
+                                            </div>
+                                            <div class="ui raised segment">
+                                                <label><b>Seleccionados</b></label>
+                                                <div class="ui divided list " id="list_area_Interest">
+                                                    @foreach($areas_de_interes as $gran_area_i)
+                                                        <div class="item"
+                                                             id="listAreInterestItem{{$gran_area_i->id_areas_interes}}">
+                                                            <div class="right floated content">
+                                                                <div class="ui label button color_3"
+                                                                     onclick="deleteAreaInterest({{$gran_area_i->id_areas_interes}})">
+                                                                    Eliminar
+                                                                </div>
+                                                            </div>
+                                                            <div class="content">
+                                                                {{$gran_area_i->name_theme}}
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label>Disciplina</label>
+                                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_interes'])!!}
+                                            <div class="ui horizontal divider">
+                                                <a type="submit" class="ui label button color_1"
+                                                   id="addAreaInterestDiscipline">Agregar Disciplina</a>
+                                            </div>
+                                            <div class="ui raised segment">
+                                                <label><b>Seleccionados</b></label>
+                                                <div class="ui divided list "
+                                                     id="list_area_Interest_discipline">
+                                                    @foreach($disciplina_de_interes as $gran_area_i)
+                                                        <div class="item"
+                                                             id="listAreInterestItemDiscipline{{$gran_area_i->id_areas_interes}}">
+                                                            <div class="right floated content">
+                                                                <div class="ui label button color_3"
+                                                                     onclick="deleteAreaInterestDiscipline({{$gran_area_i->id_areas_interes}})">
+                                                                    Eliminar
+                                                                </div>
+                                                            </div>
+                                                            <div class="content">
+                                                                {{$gran_area_i->name_theme}}
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
         </div>
         <div class="actions">
             <a class="ui approve button color_3" href="publicaciones">Siguiente</a>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="text/javascript">
         $('.ui.image_dimmer.image').dimmer({
             on: 'hover'
@@ -192,6 +297,14 @@
         ;
         $('.ui.checkbox')
             .checkbox()
+        ;
+        $('.message .close')
+          .on('click', function() {
+            $(this)
+              .closest('.message')
+              .transition('fade')
+            ;
+          })
         ;
     </script>
 @stop
