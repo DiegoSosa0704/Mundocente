@@ -181,7 +181,7 @@ class PublicationsController extends Controller
                 }else{
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
-                                'id_theme_fk' => 0,
+                                'id_theme_fk' => 1,
                             ]);
                 }
                 
@@ -260,7 +260,7 @@ class PublicationsController extends Controller
                 }else{
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
-                                'id_theme_fk' => 0,
+                                'id_theme_fk' => 1,
                             ]);
                 }
                 
@@ -328,7 +328,7 @@ class PublicationsController extends Controller
                 }else{
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
-                                'id_theme_fk' => 0,
+                                'id_theme_fk' => 1,
                             ]);
                 }
 
@@ -413,7 +413,7 @@ class PublicationsController extends Controller
                 }else{
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
-                                'id_theme_fk' => 0,
+                                'id_theme_fk' => 1,
                             ]);
                 }
                 

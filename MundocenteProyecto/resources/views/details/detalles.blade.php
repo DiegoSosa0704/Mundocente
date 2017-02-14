@@ -95,7 +95,7 @@
                         <span><b>Descripción: </b></span>
                         <p id="text_description_modal_announcement"></p>
                         <span><b>Para más información: </b></span>
-                        <a class="ui teal tag label" id="link_modal_announcement">Enlace a convocatoria</a>
+                        <a class="ui teal tag label" id="link_modal_announcement" target="_black">Enlace a convocatoria</a>
                         <p id="contact_modal_announcement"></p>
                         
                         

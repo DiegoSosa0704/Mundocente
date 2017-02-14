@@ -108,5 +108,8 @@ Route::get('publicaciones', 'ResultController@publications');
 //aumenta el value_interest de la tabla de areas de interés
 Route::post('add-value-theme-interest-user', 'ResultController@addValueThemeInteres');
 
+Route::post('publicaciones-resultados', 'ResultController@searchPublicationForWordKey');
+Route::get('publicaciones-resultados', 'ResultController@publications');
+
 
 

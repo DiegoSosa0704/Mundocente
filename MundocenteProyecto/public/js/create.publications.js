@@ -573,7 +573,7 @@ var token = $("#token").val();
                                 }
                             }else{
                                 removeClassGreenAddError();
-                                $('#idpmessageerrorpublications').html('Debe ingresar url donde e encuentre la revista');
+                                $('#idpmessageerrorpublications').html('Debe ingresar url o algún contacto de la revista');
                             }
                         }else{
                             removeClassGreenAddError();

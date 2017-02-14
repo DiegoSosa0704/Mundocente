@@ -13,7 +13,8 @@ function loadLine(){
       $button.text( $progress.progress('get value') );
       // stop incrementing when complete
       if($progress.progress('is complete')) {
-        clearInterval(window.fakeProgress)        
+        clearInterval(window.fakeProgress)
+        $progress.progress('reset');      
       }
 
     }, 5);
@@ -25,7 +26,7 @@ function loadLine(){
 $('#progressloadfixed')
   .progress({
     duration : 200,
-    total    : 200,
+    total    : 300,
     text     : {
       active: '{value} of {total} done',
 

@@ -81,18 +81,23 @@
     </div>
 
     <div class="item" style="width:60%;">
-        <div class="ui action input" style="width: 200%;">
-            <input type="text" placeholder="Palabras clave...">
-            <select class="ui selection dropdown">
-                <option value="all">Todo</option>
-                <option value="announcement">Convocatorias docentes</option>
-                <option value="paper">Revistas científicas</option>
-                <option value="event">Eventos académicos</option>
-                <option value="request_investigator">Solicitudes de investigadores</option>
-                <option value="request_evaluator">Solicitudes de evaluadores</option>
+        
+        {!!Form::open(['url'=>'publicaciones-resultados', 'method'=> 'POST', 'class'=>'ui action input', 'style'=>'width: 200%'])!!}
+        {!!Form::text('text_search', null, ['type' => 'text', 'placeholder' => 'Palabras clave...', 'autocomplete'=>'false'])!!}
+            <select class="ui selection dropdown" name="search_type_publication">
+                <option value="6">Todo</option>
+                <option value="1">Convocatorias docentes</option>
+                <option value="2">Revistas científicas</option>
+                <option value="3">Eventos académicos</option>
+                <option value="4">Solicitudes de investigadores</option>
+                <option value="5">Solicitudes de evaluadores</option>
             </select>
-            <a type="submit" class="ui teal button" style="background-color: #AD5691" href="result">Buscar</a>
-        </div>
+            
+            <button type="submit"
+                 class="ui submit button button_submit" style="background-color: #AD5691;color: #fff;">
+                Buscar
+            </button>
+        {!!Form::close()!!}
 
     </div>
     
@@ -119,8 +124,8 @@
 <!--            Animación para cargado progress -->
 
 <div class="ui indicating progress fixed" data-value="1" data-total="200" id="progressloadfixed" style="background-color: #DFDADD;
-height: 4px;padding-top: 1px;width: 150%;top: -16px;">
-              <div class="bar" style="background: #AD5691;height: 4px;left: -28px;"></div>
+height: 3px;padding-top: 1px;width: 150%;top: -16px;">
+              <div class="bar" style="background: #AD5691;height: 3px;left: -28px;"></div>
 </div>
 
 

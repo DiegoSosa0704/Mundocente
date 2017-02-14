@@ -98,15 +98,7 @@
                             </div>
                             {!!Form::open(['url'=>'editaperfil', 'method'=> 'POST', 'class'=>'ui form', 'id'=>'form'])!!}
                           
-                            <br>
-
-
-                            <div class="ui green message" style="display: none;" id="messageChangePhotoPerfil">
-                                    
-                                    <div class="header">
-                                        <p>Se guardó la foto correctamente</p>
-                                    </div>
-                            </div>
+                     
                             <br>
 
 
@@ -273,7 +265,7 @@
                                     </div>
                                 </div>
                             @endif
-                            <input type="hidden" name="newimageinputperfil" id="hiddenewphoto" value="images/user.png">
+                            <input type="hidden" name="newimageinputperfil" id="hiddenewphoto" value="{!!Auth::user()->photo_url!!}">
 
                             <div class="ui right aligned stackable grid">
                                 <div class="sixteen wide column">
@@ -394,7 +386,7 @@
 
                                     <div class="ui raised segment">
                                         <label><b>Estoy viculado en:</b></label>
-                                        <div class="ui divided list selected_list" id="listadeinstitutosvinculados">
+                                        <div class="ui divided list " id="listadeinstitutosvinculados">
                                             @foreach($institucionesVinvulado as $institu)
                                                 <div class="item" id="institutionList{{$institu->id_institution}}">
                                                     <div class="right floated content">
@@ -486,7 +478,7 @@
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list"
+                                                <div class="ui divided list "
                                                      id="list_large_area_training">
                                                     @foreach($gran_areas_de_formacion as $gran_area_f)
                                                         <div class="item"
@@ -512,7 +504,7 @@
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list" id="list_area_training">
+                                                <div class="ui divided list " id="list_area_training">
                                                     @foreach($areas_de_formacion as $area_f)
                                                         <div class="item"
                                                              id="listAreTrainingItem{{$area_f->id_areas_formacion}}">
@@ -537,7 +529,7 @@
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list"
+                                                <div class="ui divided list "
                                                      id="list_discipline_area_training">
                                                     @foreach($disciplina_de_formacion as $disciplina_formacion)
                                                         <div class="item"
@@ -608,7 +600,7 @@
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list"
+                                                <div class="ui divided list "
                                                      id="list_discipline_area_Interest">
                                                     @foreach($gran_areas_de_interes as $gran_area_i)
                                                         <div class="item"
@@ -636,7 +628,7 @@
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list" id="list_area_Interest">
+                                                <div class="ui divided list " id="list_area_Interest">
                                                     @foreach($areas_de_interes as $gran_area_i)
                                                         <div class="item"
                                                              id="listAreInterestItem{{$gran_area_i->id_areas_interes}}">
@@ -663,7 +655,7 @@
                                             </div>
                                             <div class="ui raised segment">
                                                 <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list selected_list"
+                                                <div class="ui divided list "
                                                      id="list_area_Interest_discipline">
                                                     @foreach($disciplina_de_interes as $gran_area_i)
                                                         <div class="item"
