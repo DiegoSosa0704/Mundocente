@@ -150,6 +150,28 @@ div.pusher {
     font-size: 1em;
 }
 
+.pusher .ui.container .ui.card{
+    width: 100% !important;
+}
+
+.pusher .ui.container .ui.card .header a.ui.header{
+    color: #242533;
+    padding: 0.5em;
+}
+
+.pusher .ui.container .ui.card .content.content-description {
+    color: #242533;
+    padding: 1.5em 2em;
+}
+
+.pusher .ui.container .ui.card .content.content-description  .ui.label{
+}
+
+.pusher .ui.container .ui.card .image.landscape img {
+    border-radius: 5px !important;
+    padding: 1em 0;
+}
+
 /* DETALLES PUBLICACIONES */
 
 .ui.modal .segment-title {

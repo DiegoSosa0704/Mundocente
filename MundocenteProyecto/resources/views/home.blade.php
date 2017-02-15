@@ -111,9 +111,9 @@
 
 <!-- Servicios -->
 
-<div id="services" class="services">
+<div id="services" class="services scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
     <div class="ui container center aligned inverted">
-        <h1 class="ui header">Servicios</h1>
+        <h1 class="ui header" style="font-size: 3.7em">Servicios</h1>
         <div>
             <div class="line"></div>
             <div data-width="79" data-height="27"
@@ -132,74 +132,86 @@
             necesita un docente para tener las mejores oportunidades de crecimiento laboral y personal de acuerdo con
             sus intereses.
         </div>
-        <div class="ui two column divided padded relaxed stackable grid">
-            <div class="row">
+        <div class="ui two column internally celled padded very relaxed unrelaxed stackable grid">
+            {{--Convocatoria--}}
+            <div class="row" style="background-color: #EEEEEE">
                 <div class="column">
-                    <h2 class="ui header">
-                        <img style="width: 100px" src="images/workspace.png" class="scrollme animateme"
-                             data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-100">
-                        <div class="content">
-                            Convocatorias docentes
-                            <div class="sub header">Entérese oportunamente sobre las oportunidades laborales del ámbito
-                                docente y cumpla con sus metas de crecimiento profesional.
-                            </div>
-                        </div>
-                    </h2>
+                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                         data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-100">
                 </div>
-                <div class="column">
+                <div class="column left aligned" style="margin: auto 0 auto 0">
                     <h2 class="ui header">
-                        <img style="width: 100px" src="images/workspace.png" class="scrollme animateme"
-                             data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="100">
-                        <div class="content">
-                            Revistas científicas
-                            <div class="sub header">Ahorre tiempo buscando las revistas científicas de su área de
-                                interés.
-                            </div>
+                        Convocatorias docentes
+                        <div class="sub header">
+                            Entérese oportunamente sobre las oportunidades laborales del ámbito
+                            docente y cumpla con sus metas de crecimiento profesional.
                         </div>
                     </h2>
                 </div>
             </div>
+            {{--Revista--}}
             <div class="row">
-                <div class="column">
+                <div class="column right aligned" style="margin: auto 0 auto 0">
                     <h2 class="ui header">
-                        <img style="width: 100px" src="images/workspace.png" class="scrollme animateme"
-                             data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-100">
-                        <div class="content">
-                            Eventos académicos
-                            <div class="sub header">Encuentre congresos, seminarios, conferencias y demás eventos
-                                académicos de su interés, para capacitación o presentación de sus resultados de
-                                investigación.
-                            </div>
+                        Eventos académicos
+                        <div class="sub header">Encuentre congresos, seminarios, conferencias y demás eventos
+                            académicos de su interés, para capacitación o presentación de sus resultados de
+                            investigación.
                         </div>
                     </h2>
                 </div>
                 <div class="column">
+                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                         data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="100">
+                </div>
+            </div>
+            {{--Eventos--}}
+            <div class="row" style="background-color: #EEEEEE">
+                <div class="column">
+                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                         data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-100">
+                </div>
+                <div class="column left aligned" style="margin: auto 0 auto 0">
                     <h2 class="ui header">
-                        <img style="width: 100px" src="images/workspace.png" class="scrollme animateme"
-                             data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="100">
-                        <div class="content">
-                            Invitaciones a participar en proyectos
-                            <div class="sub header">Vincúlese a proyectos académicos de diversas instituciones de
-                                educación.
-                            </div>
-                            <div class="sub header">Participe como par evaluador de proyectos, propuestas y resultados
-                                de investigación, presentados por sus colegas.
-                            </div>
+                        Revistas científicas
+                        <div class="sub header">Ahorre tiempo buscando las revistas científicas de su área de
+                            interés.
                         </div>
                     </h2>
                 </div>
             </div>
+            {{--Solicitudes--}}
+            <div class="row">
+                <div class="column right aligned" style="display: flex; justify-content: center; align-items: center;">
+                    <h2 class="ui header">
+                        Invitaciones a participar en proyectos
+                        <div class="sub header">Vincúlese a proyectos académicos de diversas instituciones de
+                            educación.
+                        </div>
+                        <div class="sub header">Participe como par evaluador de proyectos, propuestas y resultados
+                            de investigación, presentados por sus colegas.
+                        </div>
+                    </h2>
+                </div>
+                <div class="column">
+                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                         data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="100">
+                </div>
+            </div>
         </div>
-        <div class="ui small header inverted">En Mundocente ofrecemos la información que
-            necesita un docente para tener las mejores oportunidades de crecimiento laboral y personal de acuerdo con
-            sus intereses.
-        </div>
+    </div>
+</div>
+
+<div class="message-info" id="message-info" style="/*background: url(../images/banner3.jpg) no-repeat 0 0%/cover;*/ background-color: #242533;">
+    <div class="ui center aligned container">
+        <div class="ui header text" style=" color: #AD5691 ;width: 500px; margin: 0 auto 0 auto; padding: 3em 0">Mundocente también le ofrece la oportunidad de recibir notificaciones sobre información
+            relevante de acuerdo con sus intereses profesionales y laborales.</div>
     </div>
 </div>
 
 <!-- Contacto -->
 
-<div id="contact" class="contact">
+<div id="contact" class="contact scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
     <div class="ui center aligned container">
         <h1 class="ui header">Contacto</h1>
         <div>
@@ -239,7 +251,7 @@
                         <label>Mensaje</label>
                         <textarea rows="2"></textarea>
                     </div>
-                    <button class="ui large active button" style="background-color: #600B40; color: #F2EDE4;">
+                    <button class="ui large active button" style="background-color: #96407A; color: #F2EDE4;">
                         <i class="send icon"></i>
                         Enviar
                     </button>
@@ -451,6 +463,28 @@
 </body>
 
 <script type="text/javascript">
+    $(document)
+        .ready(function() {
+            // fix menu when passed
+            $('.message-info')
+                .visibility({
+                    once: false,
+                    onBottomPassed: function() {
+                        console.log("onBottomPassed");
+                    },
+                    onTopVisible: function() {
+                        console.log("onTopVisible");
+                        $('.ui.header.text')
+                            .transition('pulse')
+                        ;
+                    }
+                })
+            ;
+
+        })
+    ;
+
+
     $('.ui.form')
         .form({
             fields: {
