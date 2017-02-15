@@ -166,7 +166,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 
 
 
-  <div class="ui inverted vertical footer segment" style="background: #242533;">
+{{--  <div class="ui inverted vertical footer segment" style="background: #242533;">
     <div class="ui center aligned container">
         <div class="ui stackable inverted divided grid">
             <div class="column">
@@ -183,7 +183,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
             <a class="item" href="#">Privacy Policy</a>
         </div>
     </div>
-</div>
+</div>--}}
 
 <script>
     $('.dropdown')

@@ -33,10 +33,10 @@
     </style>
 
     <!--Contenido-->
-    <div class="pusher" style="background-color: #EEEEEE;">
+    <div class="pusher">
         <div class="segment-title">
             <div class="ui center aligned container">
-                <h1 class="ui header">Configuración de cuenta</h1>
+                <h1 class="ui header" style="color: #A54686;">Configuración de cuenta</h1>
                 <div style="padding-bottom: 20px;">
                     <div class="line"></div>
                     <div data-width="79" data-height="27"

@@ -3,12 +3,49 @@
 @section('content')
 
 
+    <style>
+        .overlay {
+            background-color: #FFF;
+            padding: 0em;
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+            transition: all 0.5s ease;
+            width: 300px;
+        }
+        /* change style */
+        .fixed.overlay {
+            position: fixed;
+            padding: 0.5em;
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+            background-color: #E0E0E0;
+        }
 
+    </style>
 
     <!--Contenido-->
-    <div class="pusher" style="background-color: #EEEEEE;">
+    <div class="pusher">
+        <div class="segment-title">
+            <div class="ui center aligned container">
+                <h1 class="ui header" id="title_modal_announcement" style="color: #A54686;">
+                    Publicar Convocatoria </h1>
+                <br>
+                <div>
+                    <div class="line"></div>
+                    <div data-width="79" data-height="27"
+                         style="display: inline-block; vertical-align: middle; line-height: 0; width: 79px; height: 27px;">
+                        <svg height="27" width="79">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.2 26.4">
+                                <path fill="none" stroke="#A54686" stroke-width="2" d="
+                            M57.3,13.1c-3.2,10.4,10.4,16.1,16.8,8.7c7.1-8.2,0.6-17.8-7-20.1c-19.6-5.2-31.9,18-49,23.1C9.3,27.5-1.7,20.4,1.6,9.8
+                            c3.8-12.4,23.3-9,19.3,4"></path>
+                            </svg>
+                        </svg>
+                    </div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
         <div class="ui container center aligned">
-            <h1 class="ui center aligned header">Publicar Convocatoria</h1>
+            {{--<h1 class="ui center aligned header">Publicar Convocatoria</h1>
             <div>
                 <div class="line"></div>
                 <div data-width="79" data-height="27"
@@ -22,12 +59,23 @@
                     </svg>
                 </div>
                 <div class="line"></div>
-            </div>
+            </div>--}}
             <div class="ui piled very padded left aligned segment">
                 <div class="ui form" id="form">
                     <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
-                    <h4 class="ui dividing header">Información general</h4>
-
+                    <div class="overlay">
+                        <h4 class="ui dividing header" style="">Información general</h4>
+                    </div>
+                   {{-- <div class="overlay">
+                        <div class="ui secondary menu">
+                            <a class="item">
+                                <i class="sidebar icon"></i> Menu
+                            </a>
+                            <a class="item">Option 1</a>
+                            <a class="item">Option 2</a>
+                            <a class="item">Option 3</a>
+                        </div>
+                    </div>--}}
 
                     <div class="field">
                         <div class="ui  large horizontal label color_1">Institución con la que realizará la
@@ -93,8 +141,9 @@
                         </div>
                     </div>
 
-
-                    <h4 class="ui dividing header">Áreas de conocimiento</h4>
+                    <div class="overlay">
+                        <h4 class="ui dividing header" style="color: #793362">Áreas de conocimiento</h4>
+                    </div>
                     <div class="three fields" id="contentSelectArea">
                         <div class="required field">
                             <label>Gran área</label>
@@ -120,13 +169,17 @@
 
                         </div>
                     </div>
-                    <div class="ui checkbox" id="check_area_all">
-                        <input type="checkbox" id="valueCheckallArea" value="1">
-                        <label>Todas las áreas</label>
+                    <div class="field">
+                        <div class="ui checkbox" id="check_area_all">
+                            <input type="checkbox" id="valueCheckallArea" value="1">
+                            <label>Todas las áreas</label>
+                        </div>
                     </div>
 
 
-                    <h4 class="ui dividing header">Detalles</h4>
+                    <div class="overlay">
+                        <h4 class="ui dividing header" style="color: #793362">Detalles</h4>
+                    </div>
                     <div class="required field">
                         <label>Título</label>
                         {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
@@ -181,6 +234,12 @@
     </div>
 
     <script type="text/javascript">
+        $('.overlay')
+            .visibility({
+                type   : 'fixed',
+                offset : 70 // give some space from top of screen
+            })
+        ;
 
         $('#optionMainAnnouncement').addClass('active');
 

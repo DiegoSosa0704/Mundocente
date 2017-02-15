@@ -3,7 +3,7 @@
 @section('content')
 
     <!--Contenido-->
-    <div class="pusher" style="background-color: #EEEEEE;">
+    <div class="pusher pusher-start" style="background-color: #EEEEEE;">
         <div class="ui container start-container">
             <div class="ui stackable grid">
                 <div class="ui five wide form column">

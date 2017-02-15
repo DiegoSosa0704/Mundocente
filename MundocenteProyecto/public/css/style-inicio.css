@@ -1,9 +1,13 @@
 body {
-    background-color: #EEEEEE;
+    background-color: #E0E0E0;
 }
 
-div.pusher {
-    background-color: #EEEEEE;
+body.pushable>.pusher {
+    background: #E0E0E0;
+}
+
+body.pushable>.pusher.pusher-start {
+    background: #E0E0E0;
     padding-top: 70px;
 }
 
@@ -55,7 +59,7 @@ div.pusher {
 .ui.fixed.sticky.menu {
     height: 100% !important;
     background-color: #242533;
-    top: 65px;
+    top: 63px;
 }
 
 .ui.fixed.sticky.menu .item.item_logo {
@@ -81,6 +85,15 @@ div.pusher {
 }
 
 /* Formularios Publicaciones */
+
+.pusher .ui.container .ui.piled.segment .ui.form h4{
+    color: #793362;
+    margin: 0;
+}
+
+.pusher .segment-title .ui.container {
+    padding: 110px 0 20px 0;
+}
 
 .pusher .ui.segment .ui.form .message,
 .ui.modal .content.ui.form .message {
@@ -172,9 +185,10 @@ div.pusher {
 
 /* DETALLES PUBLICACIONES */
 
-.ui.modal .segment-title {
+.ui.modal .segment-title,
+.pusher .segment-title{
     background-color: #272838;
-    height: auto;
+    height: 100%;
     width: 100%;
 }
 
@@ -187,21 +201,21 @@ div.pusher {
     padding: 25px 25px 0px 20px;
 }
 
-.overlay {
+/*.overlay {
     padding: 0em;
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
     transition: all 0.5s ease;
     background: transparent;
 }
 
-/* change style */
+!* change style *!
 .fixed.overlay {
     background-color: #272838;
     position: fixed;
     padding: 0.5em;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-}
+}*/
 
 /* Mobile */
 @media only screen and (max-width: 767px) {
