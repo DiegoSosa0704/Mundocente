@@ -25,27 +25,18 @@
                 <div class="ui form" id="form">
 
 
-
-
-
-                <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+                    <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                     <h4 class="ui dividing header">Información general</h4>
                     <div class="field">
-                        <div class="ui  large horizontal label ">Institución que publica la revista:
-                        <select name="country" class="ui search dropdown" id="selectMVinculation">
-                        <option value="">Seleccione Institución</option>
-                            @foreach($institucionesVinvulado as $inst_vin)
-                                <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
-                            @endforeach
-                        </select>
+                        <div class="ui large horizontal label color_1">Institución que publica la revista:
+                            <select name="country" class="ui search dropdown" id="selectMVinculation">
+                                <option value="">Seleccione Institución</option>
+                                @foreach($institucionesVinvulado as $inst_vin)
+                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    </div>
-
-
-
-
-
-
 
 
                     <div class="field">
@@ -60,38 +51,24 @@
                     </div>
 
 
-                
-
-
-
-
-
-
-
-                <div class="two fields" style="display: none;" >
-                    <div class="required field">
-                        <select class="ui search dropdown" name="country" disabled="true" placeholder="seleccione país de la convocatoria" id="selectCountry">
+                    <div class="two fields" style="display: none;">
+                        <div class="required field">
+                            <select class="ui search dropdown" name="country" disabled="true"
+                                    placeholder="seleccione país de la convocatoria" id="selectCountry">
                                 <option value="">Seleccione país</option>
                                 @foreach($lugares as $lugar)
-                                
+
                                     <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
                                 @endforeach
                             </select>
-                    </div>
-                    <div class="required field" id="cityChange">
-                             <select class="ui search dropdown" name="city" disabled="true" placeholder="Seleccione Ciudad" id="selectCity">
+                        </div>
+                        <div class="required field" id="cityChange">
+                            <select class="ui search dropdown" name="city" disabled="true"
+                                    placeholder="Seleccione Ciudad" id="selectCity">
                                 <option value="">Seleccione ciudad</option>
                             </select>
+                        </div>
                     </div>
-                </div>
-
-
-
-
-
-
-
-
 
 
                     <div class="required field">
@@ -100,23 +77,14 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-
-
                     <label><b>¿La revista se encuentra indexada?</b></label>
                     <div class="inline field">
                         <label>
                             No
                         </label>
                         <div class="ui toggle checkbox" onclick="showAdvancedSearch()">
-                            <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden" id="checkpaperindex">
+                            <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden"
+                                   id="checkpaperindex">
                         </div>
                         <label>
                             Si
@@ -126,47 +94,40 @@
                     <div id="indexing-data" class="ui " style="display: none;">
                         <h4 class="ui dividing header" style="padding-top: 10px">Datos de indexación</h4>
                         <div class=" field">
-                            
-                        @foreach($indexpaper as $index)
-                        
-                            <div class="two fields">
-                            <label style="padding-top: 12px;">{{$index->name_index}}</label>
-                                <div class="field">
-                                <select name="name" class="ui fluid dropdown" id="selectpaperindex{{$index->id_index}}">
-                                        @foreach($clasificationpaper as $clasification)
+
+                            @foreach($indexpaper as $index)
+
+                                <div class="two fields">
+                                    <label style="padding-top: 12px;">{{$index->name_index}}</label>
+                                    <div class="field">
+                                        <select name="name" class="ui fluid dropdown"
+                                                id="selectpaperindex{{$index->id_index}}">
+                                            @foreach($clasificationpaper as $clasification)
                                                 <option value="">Clasficación</option>
                                                 @if($clasification->id_index_fk==$index->id_index)
                                                     <option value="{{$clasification->id_level}}">{{$clasification->value_level}}</option>
                                                 @endif
-                                        @endforeach
-                                   </select>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
                         </div>
-                    
+
 
                     </div>
 
 
-
                     <input type="hidden" name="quantityindexlevel" id="idquantitypaperindex" value="{{$quantityIndex}}">
-
-                   
-
-
-
-
-
-
 
 
                     <!--Areas de conocimiento-->
-            <h4 class="ui dividing header">Áreas de conocimiento</h4>
-                <div class="three fields" id="contentSelectArea">
+                    <h4 class="ui dividing header">Áreas de conocimiento</h4>
+                    <div class="three fields" id="contentSelectArea">
                         <div class="required field">
                             <label>Gran área</label>
-                            <select class="ui fluid search dropdown granarea" name="large_area" id="select_gran_area_formacion">
+                            <select class="ui fluid search dropdown granarea" name="large_area"
+                                    id="select_gran_area_formacion">
                                 <option value="">Gran Área</option>
                                 @foreach($gran_areas as $gran_area)
                                     <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
@@ -181,85 +142,71 @@
                             <label>Disciplina</label>
                             {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
                         </div>
-                </div>
-                <div class="ui checkbox" id="check_area_all">
-                              <input type="checkbox" id="valueCheckallArea"  value="1">
-                              <label>Todas las áreas</label>
-                </div>
+                    </div>
+                    <div class="ui checkbox" id="check_area_all">
+                        <input type="checkbox" id="valueCheckallArea" value="1">
+                        <label>Todas las áreas</label>
+                    </div>
                     <!--Info final-->
 
 
-
-
-
-
-
-
-                <div class="field">
-                <br>
-                <br>
-                    <label>Imagen o portada de la revista</label>
-                    <br>
-                    <img class="ui middle aligned medium rounded image" src="images/public-image.png" id="imageNewShow">
-                    <span>
+                    <div class="field">
+                        <br>
+                        <br>
+                        <label>Imagen o portada de la revista</label>
+                        <br>
+                        <img class="ui middle aligned medium rounded image" src="images/public-image.png"
+                             id="imageNewShow">
+                        <span>
                     <input type="hidden" name="imaTemp" id="imageAuxTemp" value="">
                         <label for="file" class="ui blue button button_load">
                             Cargar
                             
                              <form method="post" id="formularioimage" enctype="multipart/form-data">
-                                 <input type="file" name="file" id="file" accept="image/*" required style="display:none">
+                                 <input type="file" name="file" id="file" accept="image/*" required
+                                        style="display:none">
                                  
                             </form>
                         </label>
                     </span>
-                </div>
-
-
-
-
-
-
-
-
-
-    <h4 class="ui dividing header">Información de contacto</h4>
-
-             <div class="ui info compact small message">
-                    <p>Debe ingresar al menos uno de los siguientes campos.</p>
-            </div>   
-                <div class="two fields">
-                    <div class="required field">
-                        <label>Enlace</label>
-                        
-                        {!!Form::text('link', null, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
                     </div>
-                    <div class="required field">
-                        <label>Datos de contacto </label>
-                        
-                        {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
+
+
+                    <h4 class="ui dividing header">Información de contacto</h4>
+
+                    <div class="ui info compact small message">
+                        <p>Debe ingresar al menos uno de los siguientes campos.</p>
                     </div>
-                </div>
+                    <div class="two fields">
+                        <div class="required field">
+                            <label>Enlace</label>
 
+                            {!!Form::text('link', null, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
+                        </div>
+                        <div class="required field">
+                            <label>Datos de contacto </label>
 
-
-
+                            {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
+                        </div>
+                    </div>
 
 
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
-                            <a type="submit" form="form" class="ui inverted submit button button_submit" id="buttonaddpaper">
+                            <a type="submit" form="form" class="ui inverted submit button button_submit"
+                               id="buttonaddpaper">
                                 Publicar
                             </a>
                         </div>
                     </div>
                     <br>
                     <div class="ui message error" style="display: none;" id="messageErrorpublication">
-                                              
+
                         <ul class="list">
                             <li id="idpmessageerrorpublications"></li>
 
                         </ul>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -285,25 +232,25 @@
 
 
     <script type="text/javascript">
-     function showAdvancedSearch() {
+        function showAdvancedSearch() {
             $('#indexing-data').toggle("slow");
         }
 
 
-         $('#optionMainAnnouncement').removeClass('active');
+        $('#optionMainAnnouncement').removeClass('active');
         $('#optionMainPaper').addClass('active');
         $('#optionMainEvent').removeClass('active');
         $('#optionMainRequest').removeClass('active');
 
-           $('#check_area_all').click(function() {
+        $('#check_area_all').click(function () {
             var checkAl = $('#valueCheckallArea').val();
-             if(checkAl=='2'){
+            if (checkAl == '2') {
                 $('#contentSelectArea').removeClass('disabled');
                 $('#valueCheckallArea').val('1');
-             }else{
+            } else {
                 $('#contentSelectArea').addClass('disabled');
                 $('#valueCheckallArea').val('2');
-             }
+            }
         });
 
         $('.ui.checkbox')

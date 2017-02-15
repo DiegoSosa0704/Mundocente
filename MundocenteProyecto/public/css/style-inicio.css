@@ -1,6 +1,5 @@
 body {
     background-color: #EEEEEE;
-    color: #242533;
 }
 
 div.pusher {
@@ -17,14 +16,12 @@ div.pusher {
 }
 
 .pusher .ui.container .ui.piled.segment p,
-.pusher .ui.container .ui.piled.segment samp,
+.pusher .ui.container .ui.piled.segment span,
 .pusher .ui.container .ui.piled.segment label,
-.pusher .ui.container .ui.piled.segment div,
 .pusher .ui.container .ui.piled.segment .ui.header,
 .ui.modal .content .ui.piled.segment p,
-.ui.modal .content .ui.piled.segment samp,
+.ui.modal .content .ui.piled.segment span,
 .ui.modal .content .ui.piled.segment label,
-.ui.modal .content .ui.piled.segment div,
 .ui.modal .content .ui.piled.segment .ui.header{
     color: #242533;
 }
@@ -91,9 +88,10 @@ div.pusher {
     margin-bottom: 5px;
 }
 
-.pusher .ui.segment .ui.form .button_load {
+.pusher .ui.container .ui.piled.segment  .ui.button.button_load {
     background-color: #272838;
     color: #EEEEEE;
+    font-size: 1em;
 }
 
 .ui.submit.button.button_submit {
