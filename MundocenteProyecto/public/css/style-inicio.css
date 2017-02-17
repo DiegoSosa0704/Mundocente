@@ -31,7 +31,7 @@ body.pushable>.pusher.pusher-start {
 }
 
 .pusher .ui.container .ui.piled.segment .ui.label {
-    color: #EEEEEE;
+    color: #000;
 }
 
 .pusher .ui.container .ui.piled.segment p,

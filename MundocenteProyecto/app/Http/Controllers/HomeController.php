@@ -92,7 +92,7 @@ public function callLocationCountry(){
 }
 
 public function callLargesAreasTheme(){
-    return DB::table('temas')->where('type_theme', 'gran_area')->get();
+    return DB::table('temas')->where('type_theme', 'disciplina')->select('temas.*')->get();
 }
 public function callInstitutionMy(){
     return DB::table('vinculacions')
@@ -116,23 +116,10 @@ public function callInstitutionMy(){
 
        $lugares = $this->callLocationCountry();
         
-        $gran_areas = $this->callLargesAreasTheme();
 
-        $gran_areas_de_formacion = DB::table('areas_formacions')
-            ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'gran_area')
-            ->select('temas.*', 'areas_formacions.*')
-            ->get();
+       
 
-         $areas_de_formacion = DB::table('areas_formacions')
-            ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'area')
-            ->select('temas.*', 'areas_formacions.*')
-            ->get();
+$areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
 
 
         $disciplina_de_formacion = DB::table('areas_formacions')
@@ -140,44 +127,35 @@ public function callInstitutionMy(){
             ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'disciplina')
-            ->select('temas.*', 'areas_formacions.*')
+            ->select('temas.id_tema')
             ->get();
 
+        $listaAreaFormation = array();
+
+        foreach ($disciplina_de_formacion as $area_formation) {
+            $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$area_formation->id_tema);
+                $listaAreaFormation = array_merge($areas, $listaAreaFormation);
+        }
 
 
 
-
-
-
-
-
-
-
-
-        $gran_areas_de_interes = DB::table('areas_interes')
-            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'gran_area')
-            ->select('temas.*', 'areas_interes.*')
-            ->get();
-
-         $areas_de_interes = DB::table('areas_interes')
-            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'area')
-            ->select('temas.*', 'areas_interes.*')
-            ->get();
-
-
-        $disciplina_de_interes = DB::table('areas_interes')
+        $disciplina_de_interest = DB::table('areas_interes')
             ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
             ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
             ->where('temas.type_theme', 'disciplina')
-            ->select('temas.*', 'areas_interes.*')
+            ->select('temas.id_tema')
             ->get();
+
+        $listaAreaInterest = array();
+
+        foreach ($disciplina_de_interest as $area_formation) {
+            $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$area_formation->id_tema);
+                $listaAreaInterest = array_merge($areas, $listaAreaInterest);
+        }
+
+
+
 
 
         $institucionesVinvulado = DB::table('vinculacions')
@@ -198,7 +176,7 @@ public function callInstitutionMy(){
          ->get();
 
 
-            return view('formularios.formulariousuario', compact('lugares', 'gran_areas', 'gran_areas_de_formacion', 'areas_de_formacion', 'disciplina_de_formacion', 'gran_areas_de_interes', 'areas_de_interes', 'disciplina_de_interes', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
+            return view('formularios.formulariousuario', compact('lugares','areas_all', 'listaAreaFormation', 'listaAreaInterest', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
     }
 
 
@@ -228,6 +206,18 @@ public function callInstitutionMy(){
     public function obtenerArea(Request $request, $id_gran_area){
         if($request->ajax()){
             $areas = Tema::mostrarAreas($id_gran_area);
+            return response()->json($areas);
+        }
+    }
+
+     /**
+     * Llama a los temas completo
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function obtenerAreas(Request $request, $id_area){
+        if($request->ajax()){
+            $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$id_area);
             return response()->json($areas);
         }
     }

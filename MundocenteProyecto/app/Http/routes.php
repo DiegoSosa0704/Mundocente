@@ -82,7 +82,9 @@ Route::get('listCity/{id_pais}' , 'HomeController@obtenerCiudades');
 
 
 Route::get('area/{id}' , 'HomeController@obtenerArea');
+Route::get('areas-all/{id}' , 'HomeController@obtenerAreas');
 Route::get('disciplina/{id_pais}' , 'HomeController@obtenerDisciplina');
+Route::get('add-areas-disciplines', 'HomeController@callLargesAreasTheme');
 
 Route::get('university/{id_city}' , 'HomeController@obtenerUniversidades');
 Route::get('get-pocation-institution/{id_institution}', 'HomeController@obtenerPaisYCiudadConInstitucion');

@@ -141,33 +141,51 @@
                         </div>
                     </div>
 
-                    <div class="overlay">
-                        <h4 class="ui dividing header" style="color: #793362">Áreas de conocimiento</h4>
-                    </div>
-                    <div class="three fields" id="contentSelectArea">
-                        <div class="required field">
-                            <label>Gran área</label>
 
-                            <select class="ui fluid search dropdown granarea" name="large_area"
-                                    id="select_gran_area_formacion">
-                                <option value="">Gran Área</option>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="overlay">
+                        <h4 class="ui dividing header" style="color: #793362;">Áreas de conocimiento</h4>
+                    </div>
+                    <div class="field" id="contentSelectArea">
+                      
+                        <div class="required field">
+                            <label>Área</label>
+
+                             <label><b>Datos del área seleccionada</b></label>
+                                    <table class="ui celled table" id="table_show_details_areas">
+                                          <thead>
+                                            <tr><th>Gran Área</th>
+                                            <th>Área</th>
+                                            <th>Disciplina</th>
+                                            
+                                          </tr></thead>
+                                          <tbody id="show_details_area_select">
+                                             
+                                                    
+                                          </tbody>
+                                        </table>
+
+
+                            <select class="ui fluid search dropdown multiple" multiple="true" id="select_disciplina_formacion">
+                                
                                 @foreach($gran_areas as $gran_area)
                                     <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
                                 @endforeach
                             </select>
-
-
+                            
                         </div>
-                        <div class="field">
-                            <label>Área</label>
-                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
 
-                        </div>
-                        <div class="field">
-                            <label>Disciplina</label>
-                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-
-                        </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox" id="check_area_all">
@@ -175,6 +193,19 @@
                             <label>Todas las áreas</label>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     <div class="overlay">
@@ -234,12 +265,7 @@
     </div>
 
     <script type="text/javascript">
-        $('.overlay')
-            .visibility({
-                type   : 'fixed',
-                offset : 70 // give some space from top of screen
-            })
-        ;
+      
 
         $('#optionMainAnnouncement').addClass('active');
 
@@ -271,7 +297,7 @@
             if (checkAl == '2') {
                 $('#contentSelectArea').removeClass('disabled');
                 $('#valueCheckallArea').val('1');
-            } else {
+            }else {
                 $('#contentSelectArea').addClass('disabled');
                 $('#valueCheckallArea').val('2');
             }

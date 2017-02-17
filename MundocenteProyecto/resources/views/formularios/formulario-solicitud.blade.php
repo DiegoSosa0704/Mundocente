@@ -121,30 +121,41 @@
                     </div>
 
 
-                    <h4 class="ui dividing header">Áreas de conocimiento</h4>
-                    <div class="three fields" id="contentSelectArea">
-                        <div class="required field">
-                            <label>Gran área</label>
 
-                            <select class="ui fluid search dropdown granarea" name="large_area"
-                                    id="select_gran_area_formacion">
-                                <option value="">Gran Área</option>
+
+
+
+
+
+
+
+                    <h4 class="ui dividing header">Áreas de conocimiento</h4>
+                    <div class="field" id="contentSelectArea">
+                          <div class="required field">
+                            <label>Área</label>
+
+                             <label><b>Datos del área seleccionada</b></label>
+                                    <table class="ui celled table" id="table_show_details_areas">
+                                          <thead>
+                                            <tr><th>Gran Área</th>
+                                            <th>Área</th>
+                                            <th>Disciplina</th>
+                                            
+                                          </tr></thead>
+                                          <tbody id="show_details_area_select">
+                                             
+                                                    
+                                          </tbody>
+                                        </table>
+
+                             <select class="ui fluid search dropdown multiple" multiple="true"
+                                    id="select_disciplina_formacion" style="color: #000;">
+                                <option value="">Seleccione área</option>
                                 @foreach($gran_areas as $gran_area)
                                     <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
                                 @endforeach
                             </select>
-
-
-                        </div>
-                        <div class="field">
-                            <label>Área</label>
-                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-
-                        </div>
-                        <div class="field">
-                            <label>Disciplina</label>
-                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown multiple', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-
+                            
                         </div>
                     </div>
                     <div class="ui checkbox" id="check_area_all">

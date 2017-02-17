@@ -353,11 +353,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="ui info compact small message">
-                                        <p>Si su institución no se encuentra en la lista, podrá suministrarla en el
-                                            campo
-                                            "Otra". </p>
-                                    </div>
+                                   
 
                                     <div class="two fields" id="institutionChange">
                                         <div class="required field">
@@ -462,93 +458,34 @@
                         <div class="ui padded segment">
                             <div class="ui form">
                                 <div class="field">
-                                    <div class="ui three fields">
-                                        <div class="required field">
-                                            <label>Gran área</label>
-                                            <select class="ui fluid search dropdown" name="large_area"
-                                                    id="select_gran_area_formacion">
-                                                <option value="">Gran Área</option>
-                                                @foreach($gran_areas as $gran_area)
-                                                    <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                    
+                                     <select class="ui fluid search dropdown" id="select_areas_general_search_formation">
+                                                <option value="">Ingrese sus áreas de formación</option>
+                                                @foreach($areas_all as $area)
+                                                    <option value="{{$area->id_tema}}"> {{$area->name_theme}}</option>
                                                 @endforeach
                                             </select>
-                                            <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1"
-                                                   id="addGranAreaFormation">Agregar Gran Área</a>
-                                            </div>
-                                            <div class="ui raised segment">
-                                                <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list "
-                                                     id="list_large_area_training">
-                                                    @foreach($gran_areas_de_formacion as $gran_area_f)
-                                                        <div class="item"
-                                                             id="listLargeAreTrainingItem{{$gran_area_f->id_areas_formacion}}">
-                                                            <div class="right floated content">
-                                                                <a class="ui label button color_3"
-                                                                   onclick="deleteLargeAreaTraining({{$gran_area_f->id_areas_formacion}})">Eliminar </a>
-                                                            </div>
-                                                            <div class="content">
-                                                                {{$gran_area_f->name_theme}}
-                                                            </div>
-                                                        </div>
+                                    <br>
+                                    <label><b>Seleccionados</b></label>
+                                    <table class="ui celled table" id="table_areas_formation">
+                                          <thead>
+                                            <tr><th>Gran Área</th>
+                                            <th>Área</th>
+                                            <th>Disciplina</th>
+                                            <th>Acción</th>
+                                          </tr></thead>
+                                          <tbody id="add_temas_formation">
+                                             @foreach($listaAreaFormation as $disciplina_formacion)
+                                                    <tr id="table_tr_new_area_formation{{$disciplina_formacion->id_tema_disciplina}}">
+                                                       <td> {{$disciplina_formacion->name_tema_gran}} </td>
+                                                       <td>{{$disciplina_formacion->name_tema_area}} </td>
+                                                       <td> {{$disciplina_formacion->name_tema_disciplina}} </td> 
+                                                       <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_disciplina}})'>Eliminar</a></td>
+                                                    </tr>
                                                     @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label>Área</label>
-                                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_formacion'])!!}
-                                            <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addAreaFormation">Agregar
-                                                    Área</a>
-                                            </div>
-                                            <div class="ui raised segment">
-                                                <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list " id="list_area_training">
-                                                    @foreach($areas_de_formacion as $area_f)
-                                                        <div class="item"
-                                                             id="listAreTrainingItem{{$area_f->id_areas_formacion}}">
-                                                            <div class="right floated content">
-                                                                <a class="ui label button color_3"
-                                                                   onclick="deleteAreaTraining({{$area_f->id_areas_formacion}})">Eliminar </a>
-                                                            </div>
-                                                            <div class="content">
-                                                                {{$area_f->name_theme}}
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label>Disciplina</label>
-                                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_formacion'])!!}
-                                            <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1"
-                                                   id="addDisciplineAreaFormation">Agregar Disciplina</a>
-                                            </div>
-                                            <div class="ui raised segment">
-                                                <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list "
-                                                     id="list_discipline_area_training">
-                                                    @foreach($disciplina_de_formacion as $disciplina_formacion)
-                                                        <div class="item"
-                                                             id="listDisciplineAreTrainingItem{{$disciplina_formacion->id_areas_formacion}}">
-                                                            <div class="right floated content">
-                                                                <div class="ui label button color_3"
-                                                                     onclick="deleteDisciplineAreaTraining({{$disciplina_formacion->id_areas_formacion}})">
-                                                                    Eliminar
-                                                                </div>
-                                                            </div>
-                                                            <div class="content">
-                                                                {{$disciplina_formacion->name_theme}}
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                          </tbody>
+                                        </table>
+
                                 </div>
                             </div>
                         </div>
@@ -584,97 +521,33 @@
                         <div class="ui padded segment">
                             <div class="ui form">
                                 <div class="field">
-                                    <div class="three fields">
-                                        <div class="required field">
-                                            <label>Gran área</label>
-                                            <select class="ui fluid search dropdown" name="large_area"
-                                                    id="select_gran_area_interes">
-                                                @foreach($gran_areas as $gran_area)
-                                                    <option value="">Gran Área</option>
-                                                    <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
+                                   
+                                     <select class="ui fluid search dropdown" id="select_areas_general_search_interest">
+                                                <option value="">Ingrese sus áreas de interés</option>
+                                                @foreach($areas_all as $area) 
+                                                    <option value="{{$area->id_tema}}"> {{$area->name_theme}}</option>
                                                 @endforeach
                                             </select>
-                                            <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1"
-                                                   id="addDisciplineAreaInterest">Agregar Gran Área</a>
-                                            </div>
-                                            <div class="ui raised segment">
-                                                <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list "
-                                                     id="list_discipline_area_Interest">
-                                                    @foreach($gran_areas_de_interes as $gran_area_i)
-                                                        <div class="item"
-                                                             id="listDisciplineAreInterestItem{{$gran_area_i->id_areas_interes}}">
-                                                            <div class="right floated content">
-                                                                <div class="ui label button color_3"
-                                                                     onclick="deleteDisciplineAreaInterest({{$gran_area_i->id_areas_interes}})">
-                                                                    Eliminar
-                                                                </div>
-                                                            </div>
-                                                            <div class="content">
-                                                                {{$gran_area_i->name_theme}}
-                                                            </div>
-                                                        </div>
+                                            <br>
+                                       <label><b>Seleccionados</b></label>
+                                    <table class="ui celled table" id="table_areas_interest">
+                                          <thead>
+                                            <tr><th>Gran Área</th>
+                                            <th>Área</th>
+                                            <th>Disciplina</th>
+                                            <th>Acción</th>
+                                          </tr></thead>
+                                          <tbody id="add_temas_formation">
+                                             @foreach($listaAreaInterest as $disciplina_interest)
+                                                    <tr id="table_tr_new_area_interest{{$disciplina_interest->id_tema_disciplina}}">
+                                                       <td> {{$disciplina_interest->name_tema_gran}} </td>
+                                                       <td>{{$disciplina_interest->name_tema_area}} </td>
+                                                       <td> {{$disciplina_interest->name_tema_disciplina}} </td> 
+                                                       <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_disciplina}})'>Eliminar</a></td>
+                                                    </tr>
                                                     @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label>Área</label>
-                                            {!!Form::select('area',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Área', 'id'=>'select_area_interes'])!!}
-                                            <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1" id="addAreaInterest">Agregar
-                                                    Área</a>
-                                            </div>
-                                            <div class="ui raised segment">
-                                                <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list " id="list_area_Interest">
-                                                    @foreach($areas_de_interes as $gran_area_i)
-                                                        <div class="item"
-                                                             id="listAreInterestItem{{$gran_area_i->id_areas_interes}}">
-                                                            <div class="right floated content">
-                                                                <div class="ui label button color_3"
-                                                                     onclick="deleteAreaInterest({{$gran_area_i->id_areas_interes}})">
-                                                                    Eliminar
-                                                                </div>
-                                                            </div>
-                                                            <div class="content">
-                                                                {{$gran_area_i->name_theme}}
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <label>Disciplina</label>
-                                            {!!Form::select('discipline',['ninguna seleccionada'], null, ['class'=>'ui search dropdown', 'placeholder'=>'Seleccione Disciplina', 'id'=>'select_disciplina_interes'])!!}
-                                            <div class="ui horizontal divider">
-                                                <a type="submit" class="ui label button color_1"
-                                                   id="addAreaInterestDiscipline">Agregar Disciplina</a>
-                                            </div>
-                                            <div class="ui raised segment">
-                                                <label><b>Seleccionados</b></label>
-                                                <div class="ui divided list "
-                                                     id="list_area_Interest_discipline">
-                                                    @foreach($disciplina_de_interes as $gran_area_i)
-                                                        <div class="item"
-                                                             id="listAreInterestItemDiscipline{{$gran_area_i->id_areas_interes}}">
-                                                            <div class="right floated content">
-                                                                <div class="ui label button color_3"
-                                                                     onclick="deleteAreaInterestDiscipline({{$gran_area_i->id_areas_interes}})">
-                                                                    Eliminar
-                                                                </div>
-                                                            </div>
-                                                            <div class="content">
-                                                                {{$gran_area_i->name_theme}}
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                          </tbody>
+                                        </table>
                                 </div>
                             </div>
                         </div>

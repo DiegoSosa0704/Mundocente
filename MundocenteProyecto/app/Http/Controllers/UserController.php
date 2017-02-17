@@ -127,32 +127,8 @@ public function callLargesAreasTheme(){
         $gran_areas = $this->callLargesAreasTheme();
 
 
-
-        $gran_areas_de_interes = DB::table('areas_interes')
-            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'gran_area')
-            ->select('temas.*', 'areas_interes.*')
-            ->get();
-
-         $areas_de_interes = DB::table('areas_interes')
-            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'area')
-            ->select('temas.*', 'areas_interes.*')
-            ->get();
-
-
-        $disciplina_de_interes = DB::table('areas_interes')
-            ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
-            ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'disciplina')
-            ->select('temas.*', 'areas_interes.*')
-            ->get();
-
+        $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
+        
 
         $institucionesVinvulado = DB::table('vinculacions')
             ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
@@ -172,7 +148,7 @@ public function callLargesAreasTheme(){
          ->get();
 
 
-            return view('registration', compact('lugares', 'gran_areas', 'gran_areas_de_interes', 'areas_de_interes', 'disciplina_de_interes', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
+            return view('registration', compact('lugares', 'areas_all', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
 
     }
 
@@ -349,20 +325,20 @@ public function uploadPhotoPerfil(Request $request){
             
              $quantityThemes = DB::table('areas_formacions')
                 ->where('id_user_fk', Auth::user()->id)
-                ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                ->where('id_theme_fk', $request['id_area_formacion_add'])
                 ->count();
 
                 if ($quantityThemes==0) {
                      Areas_formacion::create([
                        'id_user_fk' => Auth::user()->id,
-                        'id_theme_fk' =>  $request['id_gran_area_formacion_institute'],
+                        'id_theme_fk' =>  $request['id_area_formacion_add'],
                     ]);
                 }
 
                  $gran_area_formacion =  DB::table('areas_formacions')
                     ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
                      ->where('id_user_fk', Auth::user()->id)
-                     ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                     ->where('id_theme_fk', $request['id_area_formacion_add'])
                      ->select('areas_formacions.*', 'temas.*')
                      ->limit(1)
                      ->get();
@@ -383,7 +359,7 @@ public function uploadPhotoPerfil(Request $request){
 
     public function eliminarGranAreaDeFormacion(Request $request){
         if($request->ajax()){
-            DB::table('areas_formacions')->where('id_areas_formacion', $request['id_gran_area_formcion'])->where('id_user_fk', Auth::user()->id)->delete();
+            DB::table('areas_formacions')->where('id_theme_fk', $request['id_gran_area_formcion'])->where('id_user_fk', Auth::user()->id)->delete();
             return 0;
         }
     }
@@ -405,24 +381,24 @@ public function uploadPhotoPerfil(Request $request){
     public function agregarGranAreaDeInterest(Request $request){
         if($request->ajax()){
 
-            $listRecomendations = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $request['id_gran_area_formacion_institute'])->delete();
+            $listRecomendations = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $request['id_area_interest_add'])->delete();
             
              $quantityThemes = DB::table('areas_interes')
                 ->where('id_user_fk', Auth::user()->id)
-                ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                ->where('id_theme_fk', $request['id_area_interest_add'])
                 ->count();
 
                 if ($quantityThemes==0) {
                      AreasInteres::create([
                        'id_user_fk' => Auth::user()->id,
-                        'id_theme_fk' =>  $request['id_gran_area_formacion_institute'],
+                        'id_theme_fk' =>  $request['id_area_interest_add'],
                     ]);
                 }
 
                  $gran_area_formacion =  DB::table('areas_interes')
                     ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
                      ->where('id_user_fk', Auth::user()->id)
-                     ->where('id_theme_fk', $request['id_gran_area_formacion_institute'])
+                     ->where('id_theme_fk', $request['id_area_interest_add'])
                      ->select('areas_interes.*', 'temas.*')
                      ->limit(1)
                      ->get();
@@ -443,7 +419,7 @@ public function uploadPhotoPerfil(Request $request){
 
     public function eliminarGranAreaDeInterest(Request $request){
         if($request->ajax()){
-            DB::table('areas_interes')->where('id_areas_interes', $request['id_gran_area_interes'])->where('id_user_fk', Auth::user()->id)->delete();
+            DB::table('areas_interes')->where('id_theme_fk', $request['id_gran_area_interest'])->where('id_user_fk', Auth::user()->id)->delete();
             return 0;
         }
     }

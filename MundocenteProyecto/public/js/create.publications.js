@@ -1,3 +1,26 @@
+ var arraySeletedDisciplines = new Array();
+ 
+ // muesra los detalles sobre el área que seleccionó
+$('#select_disciplina_formacion').change(function(event){
+    document.getElementById('show_details_area_select').innerHTML='';
+    if(event.target.value!=''){
+         $.get('areas-all/'+event.target.value+ "" , function(response, ciudad){
+        for (var i = 0 ; i < response.length; i++) {
+                    $('#show_details_area_select').append("<tr><td>"+response[i].name_tema_gran+"</td><td>"+response[i].name_tema_area+"</td><td>"+response[i].name_tema_disciplina+"</td></tr>");
+                    arraySeletedDisciplines.push(response[i].id_tema_disciplina);
+ 
+            }
+        });
+    }
+
+event.target.value=null;
+
+});
+
+
+
+
+
 
 //método para publicar convocatoria
 
@@ -12,10 +35,9 @@ var title = $('#titleid').val();
 var description = $('#descriptionid').val();
 var link = $('#url_publication').val();
 var contacts = $('#cantactsid').val();
-var largeArea = $('#select_gran_area_formacion').val();
-var area = $('#select_area_formacion').val();
-var disciplines = $('#select_disciplina_formacion').val();
+var disciplines_array = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
+
 
 
 
@@ -28,7 +50,7 @@ var token = $("#token").val();
             if(city != null ){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(largeArea.length != 0 || checkSelectedAllArea == 2){
+                        if(arraySeletedDisciplines != '' || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -42,7 +64,7 @@ var token = $("#token").val();
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            console.log('entró 1 '+info);
                                             
                                         }
                                     });
@@ -56,11 +78,10 @@ var token = $("#token").val();
                                         type: 'POST',
                                         dataType: 'json',
                                         data:{id_institute: institution, id_country: country, id_city: city, 
-                                            dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
-                                            area: area, disciplines: disciplines, title: title, url_link: link,
+                                            dateStart: dateStart, dateFinis:dateFinish,disciplines: arraySeletedDisciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            console.log('entró 2 '+info);
                                             
                                         }
                                     });
@@ -78,7 +99,7 @@ var token = $("#token").val();
                         }
                         }else{
                             removeClassGreenAddError();
-                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo una gran área');
+                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo un área');
                         }
                     }else{
                         removeClassGreenAddError();
@@ -167,8 +188,6 @@ var title = $('#titleid').val();
 var description = $('#descriptionid').val();
 
 var contacts = $('#cantactsid').val();
-var largeArea = $('#select_gran_area_formacion').val();
-var area = $('#select_area_formacion').val();
 var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 var type_request = '0';
@@ -193,6 +212,8 @@ if($("#sectorUniversityCheck").is(':checked') && !$("#sectorBasicCheck").is(':ch
 }
 
 
+
+
 var ruta = "add-solicitud";
 var token = $("#token").val();
 
@@ -200,7 +221,7 @@ var token = $("#token").val();
         if(institution.length != 0){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(largeArea.length != 0 || checkSelectedAllArea == 2){
+                        if(arraySeletedDisciplines != '' || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -226,8 +247,8 @@ var token = $("#token").val();
                                         type: 'POST',
                                         dataType: 'json',
                                         data:{id_city:city,sector_request: sector,type_request:type_request, id_institute: institution, 
-                                            dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
-                                            area: area, disciplines: disciplines, title: title, contact: contacts,
+                                            dateStart: dateStart, dateFinis:dateFinish, 
+                                             disciplines: arraySeletedDisciplines, title: title, contact: contacts,
                                              description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
@@ -247,7 +268,7 @@ var token = $("#token").val();
                         }
                         }else{
                             removeClassGreenAddError();
-                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo una gran área');
+                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo un área');
                         }
                     }else{
                         removeClassGreenAddError();
@@ -353,8 +374,6 @@ var title = $('#titleid').val();
 var description = $('#descriptionid').val();
 var link = $('#url_publication').val();
 var contacts = $('#cantactsid').val();
-var largeArea = $('#select_gran_area_formacion').val();
-var area = $('#select_area_formacion').val();
 var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 var hourStart = $('#inputvaluehourStart').val();
@@ -379,7 +398,7 @@ var token = $("#token").val();
             if(city != null ){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(largeArea.length != 0 || checkSelectedAllArea == 2){
+                        if(arraySeletedDisciplines != '' || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -394,6 +413,7 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
+                                            
                                         }
                                     });
                                     loadLine();
@@ -405,15 +425,16 @@ var token = $("#token").val();
                                         type: 'POST',
                                         dataType: 'json',
                                         data:{url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
-                                            dateStart: dateStart, dateFinis:dateFinish, large_area: largeArea, 
-                                            area: area, disciplines: disciplines, title: title, url_link: link,
+                                            dateStart: dateStart, dateFinis:dateFinish, 
+                                             disciplines: arraySeletedDisciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
+                                            
                                         }
                                     });
-                                    loadLine();
-                                   
+                                    
+                                   loadLine();
                                 }
                             }else{
                                 removeClassGreenAddError();
@@ -426,7 +447,7 @@ var token = $("#token").val();
                         }
                         }else{
                             removeClassGreenAddError();
-                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo una gran área');
+                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo un área');
                         }
                     }else{
                         removeClassGreenAddError();
@@ -493,8 +514,6 @@ var title = $('#titleid').val();
 var description = $('#descriptionid').val();
 var link = $('#url_publication').val();
 var contacts = $('#cantactsid').val();
-var largeArea = $('#select_gran_area_formacion').val();
-var area = $('#select_area_formacion').val();
 var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 
@@ -538,7 +557,7 @@ var token = $("#token").val();
    if(institution.length != 0){
         if(country.length != 0){
             if(city != null ){
-                        if(largeArea.length != 0 || checkSelectedAllArea == 2){
+                        if(arraySeletedDisciplines != '' || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -552,6 +571,7 @@ var token = $("#token").val();
                                               title: title, url_link: link, contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
+                                            
                                         }
                                     });
                                     loadLine();
@@ -562,11 +582,11 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
-                                             large_area: largeArea, area: area, disciplines: disciplines, title: title, url_link: link,
+                                        data:{arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, disciplines: arraySeletedDisciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
+                                            
                                         }
                                     });
                                    loadLine();
@@ -582,7 +602,7 @@ var token = $("#token").val();
                         }
                         }else{
                             removeClassGreenAddError();
-                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo una gran área');
+                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo un área');
                         }
                    
                 

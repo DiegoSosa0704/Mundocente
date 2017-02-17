@@ -16,6 +16,8 @@ function showDetailsPublication(id_publication) {
 	document.getElementById('div_gran_area_modal_annoncement').innerHTML='';
 	document.getElementById('div_area_modal_annoncement').innerHTML='';
 	document.getElementById('div_disciplina_modal_annoncement').innerHTML='';
+	
+	
 	$.get('obtener-areas-pulicacion/'+id_publication, function(response, ciudad){
 		for (var i = 0 ; i < response.length; i++) {
 			if(response[i].type_theme=='gran_area'){
@@ -62,7 +64,7 @@ function showDetailsPublication(id_publication) {
 	}else{
 		$('#space_image_modal_details').css('display', 'none');
 	}
-
+document.getElementById('div_data_index_clasification').innerHTML='';
 	var indexada = $('#id_type_publication'+id_publication).val();
 	$('#indexing-data-modal-details').css('display', 'none');
 	if(indexada==1){
