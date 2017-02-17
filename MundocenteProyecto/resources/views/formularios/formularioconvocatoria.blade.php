@@ -93,7 +93,29 @@
                                 @endforeach
                             </select>
                         </div>
+                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
                     </div>
+
+
+                        <div class="field">
+                        <div class="grouped fields">
+                            <label>Sector educativo</label>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="radio" name="sector" id="sectorUniversityCheck"
+                                           value="universitario">
+                                    <label>Universitario</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="radio" name="sector" id="sectorBasicCheck" value="preescolar">
+                                    <label>Preescolar, básica y media</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                     <div class="two fields" id="changeInstitution_location">
@@ -114,7 +136,7 @@
                             <label id="name_city_title">Ciudad</label>
                             <select class="ui search dropdown" name="city" placeholder="Seleccione Ciudad"
                                     id="selectCity">
-                                <option value="">Seleccione ciudad</option>
+                                <option value="" id="enwcityselectedselect">Seleccione ciudad</option>
                             </select>
                         </div>
                     </div>
@@ -264,8 +286,16 @@
         <br>
     </div>
 
+
+    @include('modals.modal_institute_vinculate')
+
     <script type="text/javascript">
-      
+          $('#id_add_new_institute').on('click', function () {
+                $('.ui.addInstitute')
+                    .modal()
+                    .modal('show')
+                ;
+            });
 
         $('#optionMainAnnouncement').addClass('active');
 

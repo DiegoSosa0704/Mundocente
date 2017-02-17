@@ -37,7 +37,7 @@ var link = $('#url_publication').val();
 var contacts = $('#cantactsid').val();
 var disciplines_array = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
-
+var sector = $('#sectorUniversityCheck').val();
 
 
 
@@ -60,7 +60,7 @@ var token = $("#token").val();
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{id_institute: institution, id_country: country, id_city: city, 
+                                        data:{id_institute: institution,sector_request: sector, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
@@ -78,7 +78,7 @@ var token = $("#token").val();
                                         type: 'POST',
                                         dataType: 'json',
                                         data:{id_institute: institution, id_country: country, id_city: city, 
-                                            dateStart: dateStart, dateFinis:dateFinish,disciplines: arraySeletedDisciplines, title: title, url_link: link,
+                                            dateStart: dateStart,sector_request: sector, dateFinis:dateFinish,disciplines: arraySeletedDisciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró 2 '+info);

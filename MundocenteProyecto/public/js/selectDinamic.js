@@ -24,6 +24,32 @@ $('#selectCountry').change(function(event){
 
 
 
+//Llena el campo ciudad con el país correspondiente en model
+$('#selectCountrymodel').change(function(event){
+	$('#cityChangemodel').toggle("fast");
+	$('#selectCitymodel').empty();
+	$('#selectInstitutionmodel').empty();
+
+	
+
+	$.get('listCity/'+event.target.value+ "" , function(response, ciudad){
+
+		for (var i = 0 ; i < response.length; i++) {
+			$('#selectCitymodel').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
+		}
+		
+	});
+	$('#selectCitymodel').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCitymodel > option[value="0"]').attr('selected', 'selected');
+	$('#cityChangemodel').toggle("show");
+
+	
+
+});
+
+
+
+
 
 
 
@@ -46,10 +72,38 @@ $('#selectCity').change(function(event){
 	    $('#selectInstitution').append('<option value="0" disabled="true">Seleccione Institución</option>');
 		$('#selectInstitution > option[value="0"]').attr('selected', 'selected');
 		$('#institutionChange').toggle("show");
+});
+
+
+
+
+
+
+
+
+//llena el campo de instituciones según la ciudad seleccionada
+$('#selectCitymodel').change(function(event){
+
+	$('#institutionChangemodel').toggle("fast");
+	
+	$('#selectInstitutionmodel').empty();
+	
+
+	$.get('university/'+event.target.value+ "" , function(response, ciudad){
+
+		for (var i = 0 ; i < response.length; i++) {
+			$('#selectInstitutionmodel').append("<option value='"+response[i].id_institution+"'> "+ response[i].name_institution +" </option>");
+		}
+		
+	});
+	    $('#selectInstitutionmodel').append('<option value="0" disabled="true">Seleccione Institución</option>');
+		$('#selectInstitutionmodel > option[value="0"]').attr('selected', 'selected');
+		$('#institutionChangemodel').toggle("show");
 
 	
 	
 });
+
 
 
 
@@ -125,6 +179,78 @@ $("#agregaInstituto").click(function(){
 
 
 
+
+
+//Agegar institución donde labora
+
+$("#agregaInstitutomodel").click(function(){
+	var id_instituto = $("#selectInstitutionmodel").val();
+	var ruta = "addUniversity";
+	var token = $("#token").val();
+	
+	if(id_instituto==null || id_instituto==0){
+		
+		
+		
+		if($('#messageSaveVinculationerrormodel').is(":visible")){
+                
+            }else{
+            	$('#messageSaveVinculationerrormodel').toggle("show");
+            }
+
+		if($('#messageSaveVinculationmodel').is(":visible")){
+                $('#messageSaveVinculationmodel').toggle("fast");
+            }
+	}else{
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_institute: id_instituto},
+		success:function(info){
+			
+			if ($('#changeInstitution_location').is(":visible")) {
+          $('#changeInstitution_location').toggle('fast');
+        }
+
+        $('#selectCity').empty();
+
+        callCountryCity(id_instituto);
+
+
+	          $('#changeInstitution_location').toggle('show');
+	       
+
+
+		if($('#messageSaveVinculationmodel').is(":visible")){
+                
+            }else{
+            	$('#messageSaveVinculationmodel').toggle("show");
+            }
+
+
+		if($('#messageSaveVinculationerrormodel').is(":visible")){
+                $('#messageSaveVinculationerrormodel').toggle("fast");
+            }
+
+            $("#listadeinstitutosvinculadosmodelmodel").append("<div class='item' id='institutionListmodel"+info.id_institution+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='delete_institution_vinulmodel("+info.id_institution+")'>Eliminar</a> </div>   <div class='content'>"+info.name_institution+" - ("+info.state_institution+")  </div> </div>");
+
+			$( "#idlisaveinstitutemodelmodel" ).append( "Se guardó ("+info.name_institution+") como instituto de tabajo.<br>");
+
+		}
+
+	});
+	}
+	
+});
+
+
+
+
+
+
+
 //Agegar una institución que no existe
 
 $("#addInstituteNew").click(function(){
@@ -168,6 +294,48 @@ $("#addInstituteNew").click(function(){
 
 
 
+//Agegar una institución que no existe
+
+$("#addInstituteNewmodel").click(function(){
+	var name_new = $("#otherInstitutemodel").val();
+	var id_lugar = $('#selectCitymodel').val();
+	var ruta = "addUniversityNew";
+	var token = $("#token").val();
+	
+
+
+	if(id_lugar!=null && id_lugar!=''){
+		if(name_new!=''){
+		$.ajax({
+			url: ruta,
+			headers: {'X-CSRF-TOKEN': token},
+			type: 'POST',
+			dataType: 'json',
+			data:{name_new_institute: name_new,id_lugar_city: id_lugar},
+				success:function(info){
+					console.log('Se agregó ');
+					$('#messageNewInstitutionerormodel').css('display', 'block');
+					$("#listadeinstitutosvinculadosmodel").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'>Se ha enviado la solicitud para agregar una nueva universidad - ("+name_new+") está por el momento inactiva </div> </div>");
+					$('#messageNewInstitutionerormodel').removeClass('error');
+					$('#messageNewInstitutionerormodel').addClass('green');
+					$('#exitNewUniversitymodel').html('Se Agregó la institución correctamente para ser verificada');
+				}
+			});
+		}else{
+			$('#messageNewInstitutionerormodel').css('display', 'block');
+			$('#messageNewInstitutionerormodel').removeClass('green');
+			$('#messageNewInstitutionerormodel').addClass('error');
+			$('#exitNewUniversitymodel').html('Ingrese nombre de nueva institución');
+		}
+	}else{
+		$('#messageNewInstitutionerormodel').css('display', 'block');
+	}
+
+
+
+});
+
+
 
 //Elimina un institución de vinculación
 
@@ -193,7 +361,9 @@ function delete_institution_vinul(id_ins){
 	});
 	
 }
-	
+
+
+
 
 
 
@@ -530,16 +700,32 @@ $('#selectMVinculation').change(function(event){
 
         $('#selectCity').empty();
 
-	$.get('get-pocation-institution/'+event.target.value+ "" , function(response, ciudad){
+				callCountryCity(event.target.value);
+
+	          $('#changeInstitution_location').toggle('show');
+	       
+
+
+
+});
+
+
+
+
+
+
+function callCountryCity(id_institute){
+		$.get('get-pocation-institution/'+id_institute+ "" , function(response, ciudad){
 
 		for (var i = 0 ; i < response.length; i++) {
+
 			
-			$('#name_country_title').html("País - ("+response[i].nombre_pais +")");
-			
+			$('#name_country_title').html("País - (Institución de "+response[i].nombre_pais +")");
+			$('#name_city_title').html("Ciudad - (Institución de "+response[i].nombre_ciudad +")");
 			$("#selectCountry option[value="+ response[i].id_pais +"]").attr("selected",true);
 
 			$('#selectCity').append("<option value="+response[i].id_ciudad+" >"+response[i].nombre_ciudad+"</option>");
-			$('#name_city_title').html("Ciudad - ("+response[i].nombre_ciudad +")");
+			
 			
 			$("#selectCity option[value="+ response[i].id_ciudad +"]").attr("selected",true);
 
@@ -556,18 +742,7 @@ $('#selectMVinculation').change(function(event){
 
 		}
 	});
-
-	          $('#changeInstitution_location').toggle('show');
-	       
-
-
-
-});
-
-
-
-
-
+}
 
 
 

@@ -55,6 +55,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
                     </div>
                     <div class="field">
                         <div class="grouped fields">
@@ -261,7 +262,7 @@
 
 
 
-
+@include('modals.modal_institute_vinculate')
 
 
     <script type="text/javascript">
@@ -282,6 +283,13 @@
                 $('#valueCheckallArea').val('2');
             }
         });
+
+        $('#id_add_new_institute').on('click', function () {
+                $('.ui.addInstitute')
+                    .modal()
+                    .modal('show')
+                ;
+            });
 
 
         $('#timeStart').calendar({

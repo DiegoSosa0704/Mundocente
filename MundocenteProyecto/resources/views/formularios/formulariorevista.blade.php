@@ -57,7 +57,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
                     </div>
+
+                    
 
 
                     <div class="field">
@@ -252,7 +255,7 @@
 
 
 
-
+@include('modals.modal_institute_vinculate')
 
 
 
@@ -264,6 +267,13 @@
         function showAdvancedSearch() {
             $('#indexing-data').toggle("slow");
         }
+
+            $('#id_add_new_institute').on('click', function () {
+                $('.ui.addInstitute')
+                    .modal()
+                    .modal('show')
+                ;
+            });
 
 
         $('#optionMainAnnouncement').removeClass('active');

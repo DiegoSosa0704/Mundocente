@@ -29,6 +29,11 @@ Route::get('detalles-revista', 'HomeController@verdetallesrevista');
 Route::get('detalles-solicitud', 'HomeController@verdetallesSolicitud');
 
 
+Route::get('mi-peril', 'HomeController@mostrarmiperfil');
+Route::get('mi-publicaciones-favoritas', 'HomeController@mostrarmispublicacionesfavoritas');
+Route::get('interesados', 'HomeController@mostrarinteresados');
+
+
 
 /*Resultado*/
 Route::get('registration', 'UserController@showRegistrationInit');

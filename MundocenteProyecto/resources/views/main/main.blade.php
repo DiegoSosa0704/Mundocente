@@ -48,7 +48,7 @@
 
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
-        <div class="ui aligned center inverted tiny header"><a href="editando-perfil" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
+        <div class="ui aligned center inverted tiny header"><a href="mi-peril" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
     </div>
     <a class=" item" href="publicaciones" id="optionMainHome" onclick="loadLine()">
         <i class="grid layout icon"></i> Inicio
@@ -64,8 +64,8 @@
             <a class="item" id="optionMainRequest" href="publicar-solicitud" onclick="loadLine()">Solicitud</a>
         </div>
     </div>
-    <a class=" item" href="publicaciones">
-        <i class="alarm icon"></i> Notificaciones (2)
+    <a class=" item" onclick="loadLine()" href="interesados">
+        <i class="alarm icon"></i> Interesados (2)
     </a>
 </div>
 
@@ -107,10 +107,9 @@
                 <span>{!!Auth::user()->name!!}</span>
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden">
-                    <a class="item" href="editando-perfil" onclick="loadLine()"><i class="user icon"></i>Cuenta</a>
-                    <a class="item" onclick="loadLine()"><i class="star icon"></i>Favoritos</a>
-                    <a class="item" onclick="loadLine()"><i class="bookmark icon"></i>Guardados</a>
-                    <a class="item" onclick="loadLine()"><i class="setting icon"></i>Configuración</a>
+                    <a class="item" href="mi-peril" onclick="loadLine()"><i class="user icon"></i>Mi perfil</a>
+                    <a class="item" href="mi-publicaciones-favoritas" onclick="loadLine()"><i class="star icon"></i>Mis Favoritos</a>
+                    <a class="item" href="editando-perfil" onclick="loadLine()"><i class="setting icon"></i>Configuración</a>
                     <a class="item" href="logout"><i class="close icon"></i>Salir</a>
                 </div>
             </div>
@@ -149,8 +148,8 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
                 <a href="editando-perfil">
                     <div class="item">Cuenta</div>
                 </a>
-                <div class="item">Favoritos</div>
-                <a class="item"><i class="bookmark icon"></i>Guardados</a>
+                <div class="item">Mis Favoritos</div>
+                
                 <a class="item"><i class="setting icon"></i>Configuración</a>
             </div>
         </div>

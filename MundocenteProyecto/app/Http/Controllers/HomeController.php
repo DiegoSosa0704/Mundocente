@@ -22,7 +22,7 @@ class HomeController extends Controller
 
 
     public function __construct(){
-        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud']]);
+        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud', 'mostrarmiperfil', 'mostrarmispublicacionesfavoritas', 'mostrarinteresados']]);
 
     }
 
@@ -49,6 +49,38 @@ class HomeController extends Controller
         
     }
 
+
+
+//muestra mi perfil y mis publicaciones
+    public function mostrarmiperfil(){
+
+        $institucionesVinvulado = $this->mispublicaciones();
+
+         $listPublications = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('id_user_fk', Auth::user()->id)
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
+                        ->orderBy('publicacions.created_at', 'desc')
+                        ->paginate(15);
+
+                        
+
+
+        return view('perfil.mi-perfil', compact('listPublications', 'institucionesVinvulado'));
+    }
+
+
+//muestra mis publicaciones favoritas
+    public function mostrarmispublicacionesfavoritas(){
+        return view('perfil.mis-publicaciones-guardadas');
+    }
+
+//muestra interesados en mis publicaciones
+    public function mostrarinteresados(){
+        return view('perfil.lista-interesados');
+    }
 
 
 public function verifyCookies(){
@@ -158,12 +190,7 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
 
 
 
-        $institucionesVinvulado = DB::table('vinculacions')
-            ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
-            ->join('users', 'vinculacions.id_user_fk', '=', 'users.id')
-            ->where('users.id', Auth::user()->id)
-            ->select('institucions.*')
-            ->get();
+        $institucionesVinvulado = $this->mispublicaciones();
 
 
          $recibonotifide = DB::table('tema__notificacions')
@@ -177,6 +204,19 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
 
 
             return view('formularios.formulariousuario', compact('lugares','areas_all', 'listaAreaFormation', 'listaAreaInterest', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
+    }
+
+
+    public function mispublicaciones(){
+       $mispublicaciones =  DB::table('vinculacions')
+            ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
+            ->join('users', 'vinculacions.id_user_fk', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->select('institucions.*')
+            ->get();
+
+        return $mispublicaciones;
+
     }
 
 

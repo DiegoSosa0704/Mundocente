@@ -12,6 +12,9 @@ use Mundocente\Http\Controllers\Controller;
 use Mundocente\Publicacion;
 use Mundocente\Recomendacione;
 
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class ResultController extends Controller
 {
 
@@ -52,9 +55,9 @@ public function searchPublicationForWordKey(Request $request){
                         ->where('tema__notificacions.id_type_publications', $request['search_type_publication'])
                         ->where('publicacions.title_publication', 'like', '%'.$request['text_search'].'%')
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->take(50)
+                        
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
                         
                         
 
@@ -70,9 +73,9 @@ public function searchPublicationForWordKey(Request $request){
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
                         ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->take(50)
+                        
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
                         
                         
 
@@ -87,9 +90,9 @@ public function searchPublicationForWordKey(Request $request){
                         ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->take(50)
+                        
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
 
                         
                         
@@ -104,10 +107,10 @@ public function searchPublicationForWordKey(Request $request){
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
                         ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->take(50)
+                        
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
 
                         
                         
@@ -123,10 +126,10 @@ public function searchPublicationForWordKey(Request $request){
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
                         ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->take(50)
+                        
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
 
                         
                         
@@ -143,10 +146,10 @@ public function searchPublicationForWordKey(Request $request){
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
                         ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->take(50)
+                        
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
 
                         
                         
@@ -163,10 +166,9 @@ public function searchPublicationForWordKey(Request $request){
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
                         ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
                         ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->take(50)
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
                         
                         
 
@@ -184,6 +186,27 @@ public function searchPublicationForWordKey(Request $request){
 }
 
 
+
+
+
+
+  public static function makeLengthAware($collection, $total, $perPage)
+  {
+    $paginator = new LengthAwarePaginator(
+      $collection, 
+      $total, 
+      $perPage, 
+      Paginator::resolveCurrentPage(), 
+      ['path' => Paginator::resolveCurrentPath()]);
+
+    return  $paginator;
+  }
+
+
+
+
+
+
 public function listPublicationsInterestRecomendation(){
     $publicationsHomeInterestRecomendation = DB::table('recomendaciones')
                         ->where('id_user_fk', Auth::user()->id)
@@ -198,7 +221,7 @@ public function returnListInterest(){
         ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
         ->where('areas_interes.id_user_fk', Auth::user()->id)
         ->select('areas_publicacions.id_publication_fk')
-        ->take(50)
+        
         ->orderBy('areas_interes.value_interest', 'asc')
         ->get();
         return $listaUniono;
@@ -225,7 +248,7 @@ public function returnListPublications(){
         ->join('recomendaciones', 'areas_publicacions.id_theme_fk', '=', 'recomendaciones.id_theme_fk')
         ->where('recomendaciones.id_user_fk', Auth::user()->id)
         ->select('areas_publicacions.id_publication_fk')
-        ->take(50)
+        
         ->orderBy('recomendaciones.value_recomendation', 'asc')
         ->get();
 
@@ -252,13 +275,16 @@ public function returnListPublications(){
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->take(50)
                         ->orderBy('publicacions.count_view', 'desc')
-                        ->get();
+                        ->paginate(15);
 
           return $listPublications;
         }else{
-            return  $resultArrayRecomendationAndInterest;
+            $total = count($resultArrayRecomendationAndInterest);
+            
+            $arraNewPagitacion = $this->makeLengthAware($resultArrayRecomendationAndInterest, $total, 15);
+            
+            return  $arraNewPagitacion;
         }
         
 
