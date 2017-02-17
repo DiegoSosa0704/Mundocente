@@ -120,3 +120,10 @@ Route::get('publicaciones-resultados', 'ResultController@publications');
 
 
 
+
+Route::get('lugares-administrador', 'AdminController@administradorlugares');
+Route::get('instituciones-administrador', 'AdminController@administradorinstituciones');
+Route::get('indices-administrador', 'AdminController@administradorindices');
+Route::get('usuarios-administrador', 'AdminController@administradorusuarios');
+Route::get('publicaciones-administrador', 'AdminController@administradorpublicaciones');
+

@@ -65,8 +65,6 @@ class HomeController extends Controller
                         ->orderBy('publicacions.created_at', 'desc')
                         ->paginate(15);
 
-                        
-
 
         return view('perfil.mi-perfil', compact('listPublications', 'institucionesVinvulado'));
     }

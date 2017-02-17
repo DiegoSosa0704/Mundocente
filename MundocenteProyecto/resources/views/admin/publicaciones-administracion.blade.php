@@ -1,0 +1,1 @@
+<h1>administrador de publicaciones</h1>
