@@ -11,14 +11,17 @@ use Mundocente\AreasPublicacion;
 use Auth;
 use DB;
 use Mundocente\RevistaNivel;
-
+use Mundocente\Favorito;
+use Mundocente\Guardado;
+use Mundocente\Notification;
+use Mundocente\Denuncia;
 class PublicationsController extends Controller
 {
 
 
 
      public function __construct(){
-        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas']]);
+        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia']]);
 
     }
 
@@ -389,6 +392,15 @@ class PublicationsController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
 //Método ue retorna los lugares de la publicación
 
   public function obtienetablaareas(Request $request, $id_publication){
@@ -431,7 +443,89 @@ class PublicationsController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//agrega o quita usuarios a la tabla favoritos
+public function agregarafavoritos(Request $request){
+     if($request->ajax()){
+
+        $compareExist = DB::table('favoritos')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk', $request['id_publication'])->count();
+        if($compareExist==0){
+            Favorito::create([
+                   'id_user_fk' => Auth::user()->id,
+                    'id_publication_fk' =>  $request['id_publication'],
+                ]);
+          
+           
+        }else{
+            DB::table('favoritos')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk', $request['id_publication'])->delete();
+        }
+
+        $quantitFavorite = DB::table('favoritos')->where('id_publication_fk', $request['id_publication'])->count();
+            
+            return $quantitFavorite;
+        }
+}
+
+//agrega o quita a tbla de interesados
+
+
+public function agregaraainteresados(Request $request){
+     if($request->ajax()){
+               $compareExist = DB::table('interesados')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk', $request['id_publication'])->count();
+        if($compareExist==0){
+            Guardado::create([
+                   'id_user_fk' => Auth::user()->id,
+                    'id_publication_fk' =>  $request['id_publication'],
+                ]);
+            $id_user_publicator = DB::table('publicacions')->where('id_publication', $request['id_publication'])->select('publicacions.id_user_fk')->get();
+            foreach ($id_user_publicator as $id_p) {
+                 Notification::create([
+                   'id_user_notification' =>$id_p->id_user_fk,
+                ]);
+             }
+        }else{
+            DB::table('interesados')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk', $request['id_publication'])->delete();
+        }
+
+        $quantitFavorite = DB::table('interesados')->where('id_publication_fk', $request['id_publication'])->count();
+            
+            return $quantitFavorite;
+        }
+}
+
     
+
+//agrega o quita usuarios a la tabla denuncias
+public function agregarDenuncia(Request $request){
+     if($request->ajax()){
+        $id_user_publicator = DB::table('publicacions')->where('id_publication', $request['id_publication'])->select('publicacions.id_user_fk')->get();
+            foreach ($id_user_publicator as $id_p) {
+                 Notification::create([
+                   'id_user_notification' =>$id_p->id_user_fk,
+                ]);
+             }
+            Denuncia::create([
+                   'id_user_fk' => Auth::user()->id,
+                    'id_publication_fk' =>  $request['id_publication'],
+                ]);
+            return 0;
+        }
+}
 
 
 

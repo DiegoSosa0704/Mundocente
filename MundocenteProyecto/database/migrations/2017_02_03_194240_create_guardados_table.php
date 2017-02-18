@@ -12,7 +12,7 @@ class CreateGuardadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('guardados', function (Blueprint $table) {
+        Schema::create('interesados', function (Blueprint $table) {
             $table->increments('id_guardado');
             $table->integer('id_user_fk')->unsigned();
             $table->foreign('id_user_fk')->references('id')->on('users');
@@ -29,6 +29,6 @@ class CreateGuardadosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('guardados');
+        Schema::drop('interesados');
     }
 }

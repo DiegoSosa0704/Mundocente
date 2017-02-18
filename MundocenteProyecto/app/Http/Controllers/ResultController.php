@@ -242,34 +242,10 @@ public function returnListPublications(){
                         ->get();
                 $listResultArray = array_merge($publication_interest, $listResultArray);
         }
-
-
-         $listaUnionoRecomendation = DB::table('areas_publicacions')
-        ->join('recomendaciones', 'areas_publicacions.id_theme_fk', '=', 'recomendaciones.id_theme_fk')
-        ->where('recomendaciones.id_user_fk', Auth::user()->id)
-        ->select('areas_publicacions.id_publication_fk')
-        
-        ->orderBy('recomendaciones.value_recomendation', 'asc')
-        ->get();
-
-       $listResultArrayRecomendation = array();
-       foreach ($listaUnionoRecomendation as $id_publi) {
-            $publication_recomendation = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->where('publicacions.id_publication', $id_publi->id_publication_fk)
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->get();
-                $listResultArrayRecomendation = array_merge($publication_recomendation, $listResultArrayRecomendation);
-        }
-
-        $resultArrayRecomendationAndInterest = array();
-
-        $resultArrayRecomendationAndInterest = array_merge($listResultArray, $listResultArrayRecomendation);
         
         
-        if(count($resultArrayRecomendationAndInterest)==0){
+        
+        if(count($listResultArray)==0){
              $listPublications = DB::table('publicacions')
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
@@ -280,9 +256,9 @@ public function returnListPublications(){
 
           return $listPublications;
         }else{
-            $total = count($resultArrayRecomendationAndInterest);
+            $total = count($listResultArray);
             
-            $arraNewPagitacion = $this->makeLengthAware($resultArrayRecomendationAndInterest, $total, 15);
+            $arraNewPagitacion = $this->makeLengthAware($listResultArray, $total, 30);
             
             return  $arraNewPagitacion;
         }
@@ -337,7 +313,7 @@ public function unionThemesInterestAndThemesPublication(){
 
 }
 
-
+//retorna la cantidad de veces que ha sido favorito una publicación
 public function returnPublicationFavorite($id_publicatin){
     $quantityFavorite = DB::table('favoritos')
         ->where('id_publication_fk', $id_publicatin)
@@ -345,13 +321,39 @@ public function returnPublicationFavorite($id_publicatin){
     return $quantityFavorite;
 }
 
+
+//retorna 1 si al usuario logueado la agregó a favoritos la publicación que lleg por parámetro
+public function verifyFavorite($id_publicatin){
+    $quantityFavoriteMy = DB::table('favoritos')
+        ->where('id_publication_fk', $id_publicatin)
+        ->where('id_user_fk', Auth::user()->id)
+        ->count();
+    return $quantityFavoriteMy;
+}
+
+
+
+//retorna la cantidad de veces que ha sido de interés  una publicación
 public function returnPublicationSave($id_publicatin){
-    $quantitySave = DB::table('guardados')
+    $quantitySave = DB::table('interesados')
         ->where('id_publication_fk', $id_publicatin)
         ->count();
     return $quantitySave;
 }
 
+//retorna 1 si al usuario logueado le interesa la publicación que lleg por parámetro
+public function verifyInterest($id_publicatin){
+    $quantityFavoriteMy = DB::table('interesados')
+        ->where('id_publication_fk', $id_publicatin)
+        ->where('id_user_fk', Auth::user()->id)
+        ->count();
+    return $quantityFavoriteMy;
+}
+
+
+
+
+//retorna la cantidad de veces que ha sido denunciado  una publicación
 public function returnPublicationReport($id_publicatin){
     $quantityReport = DB::table('denuncias')
         ->where('id_publication_fk', $id_publicatin)
@@ -369,13 +371,7 @@ public function addValueThemeInteres(Request $request){
         ->select('areas_interes.value_interest','areas_interes.id_areas_interes', 'areas_interes.id_user_fk')
         ->get();
 
-        $cuantyThemeInteres = DB::table('areas_publicacions')
-        ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
-        ->where('id_publication_fk', $request['id_publication_fk'])
-        ->select('areas_interes.value_interest','areas_interes.id_areas_interes', 'areas_interes.id_user_fk')
-        ->count();
 
-        if($cuantyThemeInteres==0){
              foreach ($listaUniono as $id_interest_theme) {
             $quantutyValueLast = $id_interest_theme->value_interest;
 
@@ -385,41 +381,7 @@ public function addValueThemeInteres(Request $request){
                 ->update(['value_interest' => ($quantutyValueLast+1)]);
             }
             
-        }else{
-
-            $listThemesNewRecomendation = DB::table('areas_publicacions')
-            ->where('id_publication_fk', $request['id_publication_fk'])
-            ->select('areas_publicacions.*')
-            ->get();
-
-            foreach ($listThemesNewRecomendation as $theme) {
-                
-                $listRepeat = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $theme->id_theme_fk)->count();
-                if($listRepeat==0){
-                     Recomendacione::create([
-                    'id_user_fk' => Auth::user()->id,
-                    'id_theme_fk' => $theme->id_theme_fk,
-                    ]);
-                }else{
-                    $listThemeExistRecomendation = DB::table('recomendaciones')
-                    ->where('id_theme_fk', $theme->id_theme_fk)
-                    ->where('id_user_fk', Auth::user()->id)
-                    ->select('recomendaciones.*')
-                    ->get();
-
-                    foreach ($listThemeExistRecomendation as $recomenda) {
-                        $quantutyValueLastRecomendation = $recomenda->value_recomendation;
-                         DB::table('recomendaciones')
-                            ->where('id_theme_fk', $recomenda->id_theme_fk)
-                            ->where('id_user_fk', Auth::user()->id)
-                            ->update(['value_recomendation' => ($quantutyValueLastRecomendation+1)]);
-                        }
-                    }
-                    
-                }
-                
-                
-            }
+        
             return 1;
 
        

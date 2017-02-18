@@ -19,7 +19,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
-                                    <select name="large_area" class="ui multiple dropdown">
+                                    <select name="large_area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Gran área</option>
                                         <option value="name-1">Gran área-1</option>
                                         <option value="name-2">Gran área-2</option>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Área</label>
-                                    <select name="area" class="ui multiple dropdown">
+                                    <select name="area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Área</option>
                                         <option value="lvl-1">Área-1</option>
                                         <option value="lvl-2">Área-2</option>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Disciplina</label>
-                                    <select name="discipline" class="ui multiple dropdown">
+                                    <select name="discipline" class="ui multiple dropdown" multiple="true">
                                         <option value="">Disciplina</option>
                                         <option value="discipline-1">Disciplina-1</option>
                                         <option value="discipline-2">Disciplina-2</option>
@@ -86,7 +86,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
-                                    <select name="large_area" class="ui multiple dropdown">
+                                    <select name="large_area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Gran área</option>
                                         <option value="name-1">Gran área-1</option>
                                         <option value="name-2">Gran área-2</option>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Área</label>
-                                    <select name="area" class="ui multiple dropdown">
+                                    <select name="area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Área</option>
                                         <option value="lvl-1">Área-1</option>
                                         <option value="lvl-2">Área-2</option>
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Disciplina</label>
-                                    <select name="discipline" class="ui multiple dropdown">
+                                    <select name="discipline" class="ui multiple dropdown" multiple="true">
                                         <option value="">Disciplina</option>
                                         <option value="discipline-1">Disciplina-1</option>
                                         <option value="discipline-2">Disciplina-2</option>
@@ -168,7 +168,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
-                                    <select name="large_area" class="ui multiple dropdown">
+                                    <select name="large_area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Gran área</option>
                                         <option value="name-1">Gran área-1</option>
                                         <option value="name-2">Gran área-2</option>
@@ -176,7 +176,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Área</label>
-                                    <select name="area" class="ui multiple dropdown">
+                                    <select name="area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Área</option>
                                         <option value="lvl-1">Área-1</option>
                                         <option value="lvl-2">Área-2</option>
@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Disciplina</label>
-                                    <select name="discipline" class="ui multiple dropdown">
+                                    <select name="discipline" class="ui multiple dropdown" multiple="true">
                                         <option value="">Disciplina</option>
                                         <option value="discipline-1">Disciplina-1</option>
                                         <option value="discipline-2">Disciplina-2</option>
@@ -237,7 +237,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
-                                    <select name="large_area" class="ui multiple dropdown">
+                                    <select name="large_area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Gran área</option>
                                         <option value="name-1">Gran área-1</option>
                                         <option value="name-2">Gran área-2</option>
@@ -245,7 +245,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Área</label>
-                                    <select name="area" class="ui multiple dropdown">
+                                    <select name="area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Área</option>
                                         <option value="lvl-1">Área-1</option>
                                         <option value="lvl-2">Área-2</option>
@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Disciplina</label>
-                                    <select name="discipline" class="ui multiple dropdown">
+                                    <select name="discipline" class="ui multiple dropdown" multiple="true">
                                         <option value="">Disciplina</option>
                                         <option value="discipline-1">Disciplina-1</option>
                                         <option value="discipline-2">Disciplina-2</option>
@@ -306,7 +306,7 @@
                             <div class="field">
                                 <div class="field">
                                     <label>Gran área</label>
-                                    <select name="large_area" class="ui multiple dropdown">
+                                    <select name="large_area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Gran área</option>
                                         <option value="name-1">Gran área-1</option>
                                         <option value="name-2">Gran área-2</option>
@@ -314,7 +314,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Área</label>
-                                    <select name="area" class="ui multiple dropdown">
+                                    <select name="area" class="ui multiple dropdown" multiple="true">
                                         <option value="">Área</option>
                                         <option value="lvl-1">Área-1</option>
                                         <option value="lvl-2">Área-2</option>
@@ -322,7 +322,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Disciplina</label>
-                                    <select name="discipline" class="ui multiple dropdown">
+                                    <select name="discipline" class="ui multiple dropdown" multiple="true">
                                         <option value="">Disciplina</option>
                                         <option value="discipline-1">Disciplina-1</option>
                                         <option value="discipline-2">Disciplina-2</option>

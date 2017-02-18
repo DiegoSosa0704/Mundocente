@@ -30,8 +30,8 @@ Route::get('detalles-solicitud', 'HomeController@verdetallesSolicitud');
 
 
 Route::get('mi-peril', 'HomeController@mostrarmiperfil');
-Route::get('mi-publicaciones-favoritas', 'HomeController@mostrarmispublicacionesfavoritas');
-Route::get('interesados', 'HomeController@mostrarinteresados');
+Route::get('mis-publicaciones-favoritas', 'HomeController@mostrarmispublicacionesfavoritas');
+Route::get('notificaciones', 'HomeController@mostrarinteresados');
 
 
 
@@ -110,6 +110,13 @@ Route::get('obtener-niveles-revistass/{id_publication}', 'PublicationsController
 Route::get('obtener-indices-revistass/{id_publication}', 'PublicationsController@obtenerTiposIndexacion');
 
 
+//acciones para las publicaciones
+
+Route::post('add-favorite', 'PublicationsController@agregarafavoritos');
+Route::post('add-interest', 'PublicationsController@agregaraainteresados');
+Route::post('add-report', 'PublicationsController@agregarDenuncia');
+
+
 //Resultados de publicaciones
 Route::get('publicaciones', 'ResultController@publications');
 //aumenta el value_interest de la tabla de areas de interés
@@ -121,9 +128,15 @@ Route::get('publicaciones-resultados', 'ResultController@publications');
 
 
 
+
+//acciones para el administrador
+
 Route::get('lugares-administrador', 'AdminController@administradorlugares');
 Route::get('instituciones-administrador', 'AdminController@administradorinstituciones');
 Route::get('indices-administrador', 'AdminController@administradorindices');
 Route::get('usuarios-administrador', 'AdminController@administradorusuarios');
 Route::get('publicaciones-administrador', 'AdminController@administradorpublicaciones');
+
+
+
 

@@ -21,6 +21,10 @@
 <body>
 
 
+<?php
+$cuanqityNotifications = DB::table('notifications')->where('id_user_notification', Auth::user()->id)->count();
+  ?>
+
 <!--Menu Sidebar -->
 <div class="ui left sidebar inverted vertical menu">
 
@@ -64,8 +68,8 @@
             <a class="item" id="optionMainRequest" href="publicar-solicitud" onclick="loadLine()">Solicitud</a>
         </div>
     </div>
-    <a class=" item" onclick="loadLine()" href="interesados">
-        <i class="alarm icon"></i> Interesados (2)
+    <a class=" item" onclick="loadLine()" href="notificaciones">
+        <i class="alarm icon"></i> Notificaciones ({{$cuanqityNotifications}})
     </a>
 </div>
 
@@ -107,9 +111,11 @@
                 <span>{!!Auth::user()->name!!}</span>
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden">
-                    <a class="item" href="mi-peril" onclick="loadLine()"><i class="user icon"></i>Mi perfil</a>
-                    <a class="item" href="mi-publicaciones-favoritas" onclick="loadLine()"><i class="star icon"></i>Mis Favoritos</a>
-                    <a class="item" href="editando-perfil" onclick="loadLine()"><i class="setting icon"></i>Configuración</a>
+                    <a class="item" onclick="loadLine()" href="mi-peril" ><i class="user icon"></i>Mi perfil</a>
+                    <a class="item" onclick="loadLine()" href="mis-publicaciones-favoritas" ><i class="star icon"></i>Mis Favoritos</a>
+                    <a class="item" onclick="loadLine()" href="notificaciones" ><i class="alarm icon"></i>Notificaciones (2)</a>
+                    <!-- Separador -->
+                    <a class="item" onclick="loadLine()" href="editando-perfil" ><i class="setting icon"></i>Configuración</a>
                     <a class="item" href="logout"><i class="close icon"></i>Salir</a>
                 </div>
             </div>
@@ -256,6 +262,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 {!!Html::script('js/selectDinamic.js')!!}
 {!!Html::script('js/create.publications.js')!!}
 {!!Html::script('js/show_details.js')!!}
+{!!Html::script('js/action-publication.js')!!}
 
 </body>
 </html>

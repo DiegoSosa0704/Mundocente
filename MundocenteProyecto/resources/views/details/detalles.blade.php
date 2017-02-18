@@ -125,60 +125,8 @@
         </div>
     </div>
     <div class="actions">
-        <div class="overlay">
-            <div class="ui secondary menu">
-                <div class="item">
-                    <div class="item">
-                        <a class="ui image large label">
-
-                            <div class="ui mini statistic">
-
-                                <div class="label">
-                                    <i class="star icon"></i>
-                                    Favorito
-                                </div>
-                                <div class="value">
-                                    <p id="numberAuqtityFavorite_modal_details"></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-                <div class="item">
-                    <a class="ui image large label">
-
-                        <div class="ui mini statistic">
-
-                            <div class="label">
-                                <i class="check icon"></i>
-                                Me interesa
-                            </div>
-                            <div class="value">
-                                <p id="numberAuqtitySave_modal_details"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="item">
-                    <a class="ui image large label">
-                        <div class="ui mini statistic">
-                            <div class="label">
-                                <i class="thumbs outline down red icon"></i>
-                                Denunciar
-                            </div>
-                            <div class="value">
-                                <p id="numberAuqtityReport_modal_details"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
-            </div>
-        </div>
-        <div class="ui button">Aceptar</div>
+        
+        <button class="ui button red" id="button_report_details" >Denunciar publicación</button>
     </div>
 </div>
 

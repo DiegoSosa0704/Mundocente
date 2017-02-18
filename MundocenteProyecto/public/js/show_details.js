@@ -103,7 +103,7 @@ $('#div_data_index_clasification').append("<label>"+indices[k].name_index+":    
 	var countReport = $('#calculatequantityReport'+id_publication).val();
 	$('#numberAuqtityReport_modal_details').html(countReport);
 
-
+	$('#button_report_details').attr("onclick", "addIReportPublication("+id_publication+")");
 
 	$('.modal.details-announcement')
             .modal('show')

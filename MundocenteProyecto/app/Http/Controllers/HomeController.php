@@ -15,6 +15,8 @@ use Mundocente\Lugar;
 use Mundocente\Institucion;
 use Mundocente\Tema;
 use Mundocente\Tema_Notificacion;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
 {
@@ -70,15 +72,82 @@ class HomeController extends Controller
     }
 
 
+
+
+  public static function makeLengthAware($collection, $total, $perPage)
+  {
+    $paginator = new LengthAwarePaginator(
+      $collection, 
+      $total, 
+      $perPage, 
+      Paginator::resolveCurrentPage(), 
+      ['path' => Paginator::resolveCurrentPath()]);
+
+    return  $paginator;
+  }
+
+
+
+
+
 //muestra mis publicaciones favoritas
     public function mostrarmispublicacionesfavoritas(){
-        return view('perfil.mis-publicaciones-guardadas');
+          
+
+        
+          $lista_publicaciones_favoritas = DB::table('favoritos')
+        ->where('favoritos.id_user_fk', Auth::user()->id)
+        ->get();
+
+       $listResultArrayRecomendation = array();
+       foreach ($lista_publicaciones_favoritas as $id_publi) {
+            $publication_recomendation = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
+                        ->get();
+                $listResultArrayRecomendation = array_merge($publication_recomendation, $listResultArrayRecomendation);
+        }
+
+
+         $total = count($listResultArrayRecomendation);
+            
+            $listPublications = $this->makeLengthAware($listResultArrayRecomendation, $total, 15);
+            
+
+        return view('perfil.mis-publicaciones-guardadas', compact('listPublications'));
     }
 
 //muestra interesados en mis publicaciones
     public function mostrarinteresados(){
-        return view('perfil.lista-interesados');
+
+        DB::table('notifications')->where('id_user_notification', Auth::user()->id)->delete();
+
+        $lista_interesados = DB::table('interesados')
+                        ->join('publicacions', 'interesados.id_publication_fk', '=', 'publicacions.id_publication')
+                        ->join('users', 'interesados.id_user_fk', '=', 'users.id')
+                        ->where('publicacions.id_user_fk', Auth::user()->id)
+                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id')
+                        ->orderBy('interesados.created_at', 'desc')
+                        ->paginate(20);
+
+
+        $lista_denuncias = DB::table('denuncias')
+                        ->join('publicacions', 'denuncias.id_publication_fk', '=', 'publicacions.id_publication')
+                        ->join('users', 'denuncias.id_user_fk', '=', 'users.id')
+                        ->where('publicacions.id_user_fk', Auth::user()->id)
+                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id')
+                        ->orderBy('denuncias.created_at', 'desc')
+                        ->paginate(20);
+
+        return view('perfil.lista-interesados', compact('lista_interesados', 'lista_denuncias'));
     }
+
+
+
+
 
 
 public function verifyCookies(){
