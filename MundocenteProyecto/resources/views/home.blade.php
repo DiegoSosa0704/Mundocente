@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Mundocente</title>
 
-    {!!Html::style('semantic/out/semantic.min.css')!!}
+    {!!Html::style('semantic/out/semantic.css')!!}
     {!!Html::style('css/style-index.css')!!}
     {!!Html::style('css/scrollbar.css')!!}
     {!!Html::script('js/jquery.min.js')!!}
     {!!Html::script('js/ScrollMagic.min.js')!!}
     {!!Html::script('js/init.js')!!}
-    {!!Html::script('semantic/out/semantic.min.js')!!}
+    {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/jquery.scrollme.js')!!}
     {!!Html::script('js/parallax.min.js')!!}
 

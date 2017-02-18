@@ -8,20 +8,13 @@
                         @foreach($listPublications as $publication)
                             <div class="ui violet raised card">
                                 <div class="content">
-                                    <div class="ui right floated simple dropdown item">
-                                        <i class="dropdown icon"></i>
-                                        <div class="menu">
-                                            <a class="item disabled">Áreas</a>
-                                            @foreach($call_methods->returnAreasPublication($publication->id_publication) as $theme)
-                                                <a class="left item" >{{$theme->name_theme}}</a>
-                                            @endforeach
-                                            <a class="left item" >Denunciar</a>
-                                        </div>
-                                    </div>
+                                    
+                                    
                                     <div class="header">
                                         <a onclick="showDetailsPublication({{$publication->id_publication}})"
                                               class="ui header"><b>{{$publication->title_publication}}</b></a>
                                     </div>
+
                                     @if($call_methods->returnIndexPublicationPaper($publication->id_publication) > 0 && $publication->id_type_publication == 2)
                                         <input type="hidden" id="id_type_publication{{$publication->id_publication}}"
                                                value="1">
@@ -31,13 +24,16 @@
                                                value="0">
                                         <p>(No indexada)</p>
                                     @endif
+
                                 </div>
+
                                 @if($publication->url_photo_publication != '')
                                     <div class="ui large centered image landscape">
                                         <img src="{{$publication->url_photo_publication}}">
                                     </div>
                                 @endif
                                 <div class="content content-description">
+
                                     <div class="description left floated">
                                         <span class="ui header"><b>Institución: </b></span>
                                         <a  class="ui large label color_1">{{$publication->name_institution}}</a>
@@ -49,13 +45,18 @@
                                     </div>
                                 </div>
                                 <div class="extra content">
-                                    <div class="right floated">
-                                        <div onclick="showDetailsPublication({{$publication->id_publication}})"
-                                             class="ui labeled icon tiny button color_2">
-                                            <i class="linkify icon"></i>
-                                            Ver detalles
-                                        </div>
-                                    </div>
+                                <div class="right floated">
+                                @if($publication->id_type_publication==1)
+                                <a class="ui blue right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Convocatoria</a>
+                                @elseif($publication->id_type_publication==2)
+                                <a class="ui green right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"> <i class="linkify icon"></i>Revista</a>
+                                @elseif($publication->id_type_publication==2)
+                                <a class="ui red right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Evento</a>
+                                @else
+                                <a class="ui orange right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Solicitud</a>
+                                @endif
+                                </div>
+                                   
                                     <span>
 
                                     @if($call_methods->verifyFavorite($publication->id_publication)==1)

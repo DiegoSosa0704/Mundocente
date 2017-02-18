@@ -24,6 +24,10 @@
             <div class="ui five wide column">
             <div class="ui card">
 			  <div class="content">
+              <img class="ui aligned centered small circular image" src="{!!Auth::user()->photo_url!!}">
+                                         <br>
+                                         <br>
+                                         <br>
 			    <div class="header">{{Auth::user()->name}}</div>
 			    
 

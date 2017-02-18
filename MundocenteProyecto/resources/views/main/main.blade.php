@@ -113,7 +113,7 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
                 <div class="menu transition hidden">
                     <a class="item" onclick="loadLine()" href="mi-peril" ><i class="user icon"></i>Mi perfil</a>
                     <a class="item" onclick="loadLine()" href="mis-publicaciones-favoritas" ><i class="star icon"></i>Mis Favoritos</a>
-                    <a class="item" onclick="loadLine()" href="notificaciones" ><i class="alarm icon"></i>Notificaciones (2)</a>
+                    <a class="item" onclick="loadLine()" href="notificaciones" ><i class="alarm icon"></i>Notificaciones ({{$cuanqityNotifications}})</a>
                     <!-- Separador -->
                     <a class="item" onclick="loadLine()" href="editando-perfil" ><i class="setting icon"></i>Configuración</a>
                     <a class="item" href="logout"><i class="close icon"></i>Salir</a>
@@ -138,57 +138,12 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 
 
 
-{{--<div class="ui fixed inverted top menu">
-    <a class="launch item">
-        <i class="content icon"></i>
-        Menu
-    </a>
-    <div class="item">
-        <b>Servicio:</b> Búsqueda
-    </div>
-    <div class="right menu">
-        <div class="ui dropdown item">
-            <i class="dropdown icon"></i>
-            Perfil
-            <div class="menu">
-                <a href="editando-perfil">
-                    <div class="item">Cuenta</div>
-                </a>
-                <div class="item">Mis Favoritos</div>
-                
-                <a class="item"><i class="setting icon"></i>Configuración</a>
-            </div>
-        </div>
-        <a class="item" href="logout">Salir</a>
-    </div>
-</div>--}}
 
 
 
 <!--   Aquí está todo el contenido de publication.blade.php-->
 @yield('content')
 
-
-
-
-{{--  <div class="ui inverted vertical footer segment" style="background: #242533;">
-    <div class="ui center aligned container">
-        <div class="ui stackable inverted divided grid">
-            <div class="column">
-                <h4 class="ui inverted header">Iniciativa apoyada por: </h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-            </div>
-        </div>
-        <div class="ui inverted section divider"></div>
-        <img src="images/iconop.png" class="ui centered image">
-        <div class="ui horizontal inverted small divided link list">
-            <a class="item" href="#">Site Map</a>
-            <a class="item" href="#">Contact Us</a>
-            <a class="item" href="#">Terms and Conditions</a>
-            <a class="item" href="#">Privacy Policy</a>
-        </div>
-    </div>
-</div>--}}
 
 <script>
     $('.dropdown')

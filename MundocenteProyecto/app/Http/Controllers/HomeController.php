@@ -108,6 +108,7 @@ class HomeController extends Controller
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $id_publi->id_publication_fk)
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
+                        ->distinct()
                         ->get();
                 $listResultArrayRecomendation = array_merge($publication_recomendation, $listResultArrayRecomendation);
                 

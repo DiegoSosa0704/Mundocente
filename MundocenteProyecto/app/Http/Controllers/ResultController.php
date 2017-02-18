@@ -176,14 +176,7 @@ public function searchPublicationForWordKey(Request $request){
 
             return view('main.publication', compact('listPublications'));
         }
-    }
-
-
-
-  
-
-    
-  
+    }  
 }
 
 
@@ -206,14 +199,30 @@ public function listPublicationsInterestRecomendation(){
 
 
 public function returnListInterest(){
-    $listaUniono = DB::table('areas_publicacions')
-        ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
-        ->where('areas_interes.id_user_fk', Auth::user()->id)
-        ->select('areas_publicacions.id_publication_fk')
-        
-        ->orderBy('areas_interes.value_interest', 'asc')
-        ->get();
-        return $listaUniono;
+
+  
+    $recomendationMax = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->take(1)->max('value_recomendation');
+    
+    $listUniThemefk = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('value_recomendation', $recomendationMax)->take(1)->get();
+
+    $id_theme_recomenda = 0;
+    foreach ($listUniThemefk as $id_theme_recomendation) {
+        $id_theme_recomenda = $id_theme_recomendation->id_theme_fk;
+    }
+    
+     $listaUniono = DB::table('areas_publicacions')
+            ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
+            ->where('areas_interes.id_user_fk', Auth::user()->id)
+            ->orWhere('areas_interes.id_theme_fk', $id_theme_recomenda)
+            ->select('areas_publicacions.id_publication_fk')
+            ->orderBy('areas_interes.value_interest', 'asc')
+            ->distinct()
+            ->get();
+       return $listaUniono; 
+    
+
+
+ 
 }
 
 
@@ -247,17 +256,9 @@ public function returnListPublications(){
         }else{
            
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-
-        
         $collection = new Collection($listResultArray);
-
-        
-        $perPage = 20;
-
-        
+        $perPage = 20;        
         $currentPageSearchResults = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
-
-        
           $paginatedSearchResults = new LengthAwarePaginator(
             $currentPageSearchResults,
             count($collection),
@@ -265,10 +266,6 @@ public function returnListPublications(){
             Paginator::resolveCurrentPage(),
             ['path' => Paginator::resolveCurrentPath()]
             );
-
-          //dd($paginatedSearchResults);
-
-       
             return  $paginatedSearchResults;
         }
         
@@ -371,8 +368,58 @@ public function returnPublicationReport($id_publicatin){
 }
 
 
+
+
+
+
+
+
+
+
+
 public function addValueThemeInteres(Request $request){
     if($request->ajax()){
+
+     $listThemesGeneral = DB::table('areas_publicacions')
+    ->where('id_publication_fk', $request['id_publication_fk'])
+    ->select('id_theme_fk')
+    ->get();
+
+    
+    foreach ($listThemesGeneral as $area) {
+         $existThemeInterest = DB::table('areas_interes')
+        ->where('id_theme_fk', $area->id_theme_fk)
+        ->where('id_user_fk', Auth::user()->id)
+        ->count();
+        
+        if($existThemeInterest==0){
+            $existRecomendation =  DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $area->id_theme_fk)->count();
+            
+            if($existRecomendation==0){
+                
+            Recomendacione::create([
+                'id_user_fk' => Auth::user()->id,
+                'id_theme_fk' => $area->id_theme_fk,
+                ]);
+            }else{
+                
+                $list_exit_ecomendation =  DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $area->id_theme_fk)->get();
+
+                foreach ($list_exit_ecomendation as $recomen) {
+                    $newVlueRecomendation = $recomen->value_recomendation;
+                    DB::table('recomendaciones')
+                    ->where('id_user_fk', Auth::user()->id)
+                    ->where('id_theme_fk', $area->id_theme_fk)
+                    ->update(['value_recomendation' => ($newVlueRecomendation+1)]);
+                }
+                }
+            }
+            
+        }
+    
+    
+
+
 
         $listaUniono = DB::table('areas_publicacions')
         ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
@@ -381,7 +428,7 @@ public function addValueThemeInteres(Request $request){
         ->get();
 
 
-             foreach ($listaUniono as $id_interest_theme) {
+            foreach ($listaUniono as $id_interest_theme) {
             $quantutyValueLast = $id_interest_theme->value_interest;
 
             DB::table('areas_interes')
@@ -389,13 +436,24 @@ public function addValueThemeInteres(Request $request){
                 ->where('id_user_fk', Auth::user()->id)
                 ->update(['value_interest' => ($quantutyValueLast+1)]);
             }
+
+
+
+            $quantityValueeCountView = DB::table('publicacions')->where('id_publication', $request['id_publication_fk'])->get();
+             
+             foreach ($quantityValueeCountView as $publication) {
+                 $auqntity = $publication->count_view;
+                  DB::table('publicacions')
+                     ->where('id_publication', $publication->id_publication)
+                     ->update(['count_view' => ($auqntity+1)]);
+             }
             
-        
-            return 1;
+            
+                
 
-       
 
-        
+            
+            return 1;        
     }
      
 }

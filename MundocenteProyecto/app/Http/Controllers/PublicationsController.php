@@ -469,7 +469,14 @@ public function agregarafavoritos(Request $request){
                    'id_user_fk' => Auth::user()->id,
                     'id_publication_fk' =>  $request['id_publication'],
                 ]);
-          
+            $quantityValueeCountView = DB::table('publicacions')->where('id_publication', $request['id_publication'])->get();
+             
+             foreach ($quantityValueeCountView as $publication) {
+                 $auqntity = $publication->count_view;
+                  DB::table('publicacions')
+                     ->where('id_publication', $publication->id_publication)
+                     ->update(['count_view' => ($auqntity+1)]);
+             }
            
         }else{
             DB::table('favoritos')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk', $request['id_publication'])->delete();
@@ -497,6 +504,14 @@ public function agregaraainteresados(Request $request){
                  Notification::create([
                    'id_user_notification' =>$id_p->id_user_fk,
                 ]);
+             }
+              $quantityValueeCountView = DB::table('publicacions')->where('id_publication', $request['id_publication'])->get();
+             
+             foreach ($quantityValueeCountView as $publication) {
+                 $auqntity = $publication->count_view;
+                  DB::table('publicacions')
+                     ->where('id_publication', $publication->id_publication)
+                     ->update(['count_view' => ($auqntity+1)]);
              }
         }else{
             DB::table('interesados')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk', $request['id_publication'])->delete();
