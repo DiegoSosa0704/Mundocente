@@ -138,5 +138,4 @@ Route::get('usuarios-administrador', 'AdminController@administradorusuarios');
 Route::get('publicaciones-administrador', 'AdminController@administradorpublicaciones');
 
 
-
-
+Route::get('administration', 'AdminController@mainAdmin');

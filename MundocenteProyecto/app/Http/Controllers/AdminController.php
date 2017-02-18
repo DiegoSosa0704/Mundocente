@@ -19,8 +19,9 @@ class AdminController extends Controller
         //
     }
 
-
-
+    public function mainAdmin(){
+        return view('main.main-admin');
+    }
 
     public function administradorlugares(){
         return view('admin.lugares-administracion');
