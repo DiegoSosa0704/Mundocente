@@ -14,6 +14,7 @@ use Mundocente\Recomendacione;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class ResultController extends Controller
 {
@@ -190,18 +191,6 @@ public function searchPublicationForWordKey(Request $request){
 
 
 
-  public static function makeLengthAware($collection, $total, $perPage)
-  {
-    $paginator = new LengthAwarePaginator(
-      $collection, 
-      $total, 
-      $perPage, 
-      Paginator::resolveCurrentPage(), 
-      ['path' => Paginator::resolveCurrentPath()]);
-
-    return  $paginator;
-  }
-
 
 
 
@@ -256,11 +245,31 @@ public function returnListPublications(){
 
           return $listPublications;
         }else{
-            $total = count($listResultArray);
-            
-            $arraNewPagitacion = $this->makeLengthAware($listResultArray, $total, 30);
-            
-            return  $arraNewPagitacion;
+           
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+        
+        $collection = new Collection($listResultArray);
+
+        
+        $perPage = 20;
+
+        
+        $currentPageSearchResults = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+        
+          $paginatedSearchResults = new LengthAwarePaginator(
+            $currentPageSearchResults,
+            count($collection),
+            $perPage,
+            Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]
+            );
+
+          //dd($paginatedSearchResults);
+
+       
+            return  $paginatedSearchResults;
         }
         
 

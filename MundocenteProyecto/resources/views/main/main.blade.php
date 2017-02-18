@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Mundocente</title>
     <!--<link rel="stylesheet" href="css/style-inicio-fixed.css">-->
-    {!!Html::style('semantic/out/semantic.min.css')!!}
+    {!!Html::style('semantic/out/semantic.css')!!}
     {!!Html::style('css/scrollbar.css')!!}
     {!!Html::style('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.6/calendar.min.css')!!}
     {!!Html::style('css/style-inicio.css')!!}
@@ -263,6 +263,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 {!!Html::script('js/create.publications.js')!!}
 {!!Html::script('js/show_details.js')!!}
 {!!Html::script('js/action-publication.js')!!}
+{!!Html::script('js/loadscroll.js')!!}
 
 </body>
 </html>

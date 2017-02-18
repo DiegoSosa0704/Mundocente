@@ -17,6 +17,7 @@ use Mundocente\Tema;
 use Mundocente\Tema_Notificacion;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class HomeController extends Controller
 {
@@ -53,6 +54,11 @@ class HomeController extends Controller
 
 
 
+
+
+
+
+
 //muestra mi perfil y mis publicaciones
     public function mostrarmiperfil(){
 
@@ -65,8 +71,10 @@ class HomeController extends Controller
                         ->where('id_user_fk', Auth::user()->id)
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.created_at', 'desc')
-                        ->paginate(15);
+                        ->paginate(30);
 
+
+                        //dd($listPublications);
 
         return view('perfil.mi-perfil', compact('listPublications', 'institucionesVinvulado'));
     }
@@ -74,17 +82,10 @@ class HomeController extends Controller
 
 
 
-  public static function makeLengthAware($collection, $total, $perPage)
-  {
-    $paginator = new LengthAwarePaginator(
-      $collection, 
-      $total, 
-      $perPage, 
-      Paginator::resolveCurrentPage(), 
-      ['path' => Paginator::resolveCurrentPath()]);
 
-    return  $paginator;
-  }
+
+
+
 
 
 
@@ -109,16 +110,46 @@ class HomeController extends Controller
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->get();
                 $listResultArrayRecomendation = array_merge($publication_recomendation, $listResultArrayRecomendation);
+                
         }
 
 
-         $total = count($listResultArrayRecomendation);
+         
             
-            $listPublications = $this->makeLengthAware($listResultArrayRecomendation, $total, 15);
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+        $collection = new Collection($listResultArrayRecomendation);
+        
+
+        
+        $perPage = 15;
+
+        
+        $currentPageSearchResults = $collection->slice (($currentPage - 1) * $perPage, $perPage) -> all ();
+
+        
+          $listPublications = new LengthAwarePaginator(
+            $currentPageSearchResults,
+            count($collection),
+            $perPage,
+            Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]
+            );
+          //dd($listPublications);
             
 
         return view('perfil.mis-publicaciones-guardadas', compact('listPublications'));
     }
+
+
+
+
+
+
+
+
+
+
 
 //muestra interesados en mis publicaciones
     public function mostrarinteresados(){
@@ -144,6 +175,15 @@ class HomeController extends Controller
 
         return view('perfil.lista-interesados', compact('lista_interesados', 'lista_denuncias'));
     }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -201,6 +241,22 @@ public function callInstitutionMy(){
             ->select('institucions.*')
             ->get();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -272,6 +328,19 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
 
             return view('formularios.formulariousuario', compact('lugares','areas_all', 'listaAreaFormation', 'listaAreaInterest', 'institucionesVinvulado', 'recibonotifide', 'milista_notificacion_recibe'));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function mispublicaciones(){

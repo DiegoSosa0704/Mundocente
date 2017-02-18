@@ -5,18 +5,26 @@
     <!--Contenido-->
     <div class="pusher pusher-start" style="background-color: #EEEEEE;">
         <div class="ui container start-container">
-            <div class="ui stackable grid">
+            <div class="ui stackable grid" id="list-publication-main-index">
                
             @include('formularios.filtros')
 
-
-            @include('details.lista-publicaciones')
-
+            
+                 @include('details.lista-publicaciones')
+            
+            
             </div>
+
+            
+<div style="padding-left:32%;">{!!$listPublications->render()!!}</div>
 
 
         </div>
-        {!! $listPublications->render() !!}
+        <br>
+        <br>
+        <br>
+        <br>
+        
     </div>
 
 

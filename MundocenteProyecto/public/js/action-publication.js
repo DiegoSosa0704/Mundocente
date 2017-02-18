@@ -14,14 +14,15 @@ function addFavoritePublication(id_publication){
 		success:function(info){
 			$('#favorite_button'+id_publication_fk).html('<i class="star icon"></i>'+info+' Favorito');
 			
+		}
+	});
+
 			var color = $('#favorite_button'+id_publication_fk).css('color');
 			if(color == 'rgb(214, 219, 71)'){
 				$('#favorite_button'+id_publication_fk).css('color','rgb(150,150,150)');
 			}else{
 				$('#favorite_button'+id_publication_fk).css('color','rgb(214, 219, 71)');
 			}
-		}
-	});
 
 	
 	
@@ -46,17 +47,19 @@ function addInterestPublication(id_publication){
 		data:{id_publication: id_publication_fk},
 		success:function(info){
 			$('#interest_button'+id_publication_fk).html('<i class="like icon"></i> '+info+' Me interesa');
-            var color = $('#interest_button'+id_publication_fk).css('color');
+            
+
+		}
+
+	});
+
+	var color = $('#interest_button'+id_publication_fk).css('color');
 
 			if(color == 'rgb(221, 13, 41)'){
 				$('#interest_button'+id_publication_fk).css('color','rgb(150,150,150)');
 			}else{
 				$('#interest_button'+id_publication_fk).css('color','rgb(221, 13, 41)');
 			}
-
-		}
-
-	});
 	
 }
 
