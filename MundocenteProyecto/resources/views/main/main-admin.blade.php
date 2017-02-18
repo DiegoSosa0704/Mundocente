@@ -53,8 +53,8 @@
     <h1 class="ui header">Administración</h1>
     <div class="ui pointing secondary menu">
         <a class="item" data-tab="places">Lugares</a>
-        <a class="item active" data-tab="indices">Indíces</a>
-        <a class="item" data-tab="institutions">Instituciones</a>
+        <a class="item" data-tab="indices">Indíces</a>
+        <a class="item active" data-tab="institutions">Instituciones</a>
         <a class="item" data-tab="publications">Publicaciones</a>
         <a class="item" data-tab="users">Usuarios</a>
     </div>
@@ -63,11 +63,11 @@
         @include('admin.lugares-administracion')
     </div>
     {{--Indices--}}
-    <div class="ui bottom attached tab segment active" data-tab="indices">
+    <div class="ui bottom attached tab segment" data-tab="indices">
         @include('admin.indices-administracion')
     </div>
     {{--Institutions--}}
-    <div class="ui bottom attached tab segment" data-tab="institutions">
+    <div class="ui bottom attached tab segment active" data-tab="institutions">
         @include('admin.instituciones-administracion')
     </div>
     {{--publications--}}
@@ -93,17 +93,24 @@
 </div>
 </body>
 
+{{--Lugares--}}
 @include('modals.modalAddPlaces')
 @include('modals.modalEditPlaces')
 
+{{--Índices--}}
 @include('modals.modalAddIndice')
 @include('modals.modalEditIndice')
+
+{{--Instituciones--}}
+@include('modals.modalAddInstitution')
+@include('modals.modalEditInstitution')
 
 <script>
     $('.menu .item')
         .tab()
     ;
 
+    /*Modal - Lugares*/
     $('.ui.button-places.button').on('click', function () {
         $('.ui.modal.places')
             .modal('show')
@@ -116,6 +123,7 @@
         ;
     });
 
+    /*Modal - Índices*/
     $('.ui.button-indice.button').on('click', function () {
         $('.ui.modal.indice')
             .modal('show')
@@ -124,6 +132,19 @@
 
     $('.ui.button-edit-indice.button').on('click', function () {
         $('.ui.modal.edit-indice')
+            .modal('show')
+        ;
+    });
+
+    /*Modal - Instituciones*/
+    $('.ui.button-institution.button').on('click', function () {
+        $('.ui.modal.institution')
+            .modal('show')
+        ;
+    });
+
+    $('.ui.button-edit-institution.button').on('click', function () {
+        $('.ui.modal.edit-institution')
             .modal('show')
         ;
     });
