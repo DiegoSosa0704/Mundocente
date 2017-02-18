@@ -52,18 +52,18 @@
 <div class="ui main container">
     <h1 class="ui header">Administración</h1>
     <div class="ui pointing secondary menu">
-        <a class="item active" data-tab="places">Lugares</a>
-        <a class="item" data-tab="indices">Indíces</a>
+        <a class="item" data-tab="places">Lugares</a>
+        <a class="item active" data-tab="indices">Indíces</a>
         <a class="item" data-tab="institutions">Instituciones</a>
         <a class="item" data-tab="publications">Publicaciones</a>
         <a class="item" data-tab="users">Usuarios</a>
     </div>
     {{--Places--}}
-    <div class="ui bottom attached tab segment active" data-tab="places">
+    <div class="ui bottom attached tab segment" data-tab="places">
         @include('admin.lugares-administracion')
     </div>
     {{--Indices--}}
-    <div class="ui bottom attached tab segment" data-tab="indices">
+    <div class="ui bottom attached tab segment active" data-tab="indices">
         @include('admin.indices-administracion')
     </div>
     {{--Institutions--}}
@@ -96,6 +96,9 @@
 @include('modals.modalAddPlaces')
 @include('modals.modalEditPlaces')
 
+@include('modals.modalAddIndice')
+@include('modals.modalEditIndice')
+
 <script>
     $('.menu .item')
         .tab()
@@ -109,6 +112,18 @@
 
     $('.ui.button-edit-places.button').on('click', function () {
         $('.ui.modal.edit-places')
+            .modal('show')
+        ;
+    });
+
+    $('.ui.button-indice.button').on('click', function () {
+        $('.ui.modal.indice')
+            .modal('show')
+        ;
+    });
+
+    $('.ui.button-edit-indice.button').on('click', function () {
+        $('.ui.modal.edit-indice')
             .modal('show')
         ;
     });
