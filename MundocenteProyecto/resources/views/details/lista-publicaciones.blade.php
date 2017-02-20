@@ -38,11 +38,14 @@
                                         <span class="ui header"><b>Institución: </b></span>
                                         <a  class="ui large label color_1">{{$publication->name_institution}}</a>
                                     </div>
-                                    <div class="right floated" style="color:#B2AAAA;">
+                                    @if($publication->id_type_publication!=2)
+                                     <div class="right floated" style="color:#B2AAAA;">
                                         <span><b>Desde: </b> {{$publication->date_start}}</span>
                                         <br>
                                         <span><b>Hasta: </b> {{$publication->date_end}}</span>
                                     </div>
+                                    @endif
+                                   
                                 </div>
                                 <div class="extra content">
                                 <div class="right floated">
@@ -131,6 +134,11 @@
 
                         <br>
                         <br>
+
+
+                        @if(count($listPublications)==0)
+                        <h2>No se encontraron resultados</h2>
+                        @endif
                     </div>
 
                 </div>

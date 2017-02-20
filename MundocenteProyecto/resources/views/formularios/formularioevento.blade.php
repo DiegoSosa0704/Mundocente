@@ -57,7 +57,24 @@
                         </div>
                         <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
                     </div>
-                    <div class="field">
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div id="details_edit_institution_selected" style="display: none;">
+                        <div class="field">
                         <div class="grouped fields">
                             <label>Sector educativo</label>
                             <div class="field">
@@ -77,9 +94,10 @@
                     </div>
 
 
+
                     <div class="two fields" id="changeInstitution_location">
                         <div class="required field">
-                            <label id="name_country_title">País</label>
+                            <label >País</label>
                             <select class="ui search dropdown" name="country"
                                     placeholder="seleccione país de la convocatoria" id="selectCountry">
                                 <option value="">Seleccione país</option>
@@ -92,13 +110,51 @@
 
                         </div>
                         <div class="required field" id="cityChange">
-                            <label id="name_city_title">Ciudad</label>
+                            <label>Ciudad</label>
                             <select class="ui search dropdown" name="city" placeholder="Seleccione Ciudad"
                                     id="selectCity">
-                                <option value="">Seleccione ciudad</option>
+                                <option value="" id="enwcityselectedselect">Seleccione ciudad</option>
                             </select>
                         </div>
                     </div>
+
+
+
+                    </div>
+                        
+
+
+
+
+
+
+
+
+
+                    <div id="details_institution_selected" style="display: none;">
+                         <div class="field">
+                            <label>La convocatoria se realiza en:</label>
+                            <div class="ui inverted large horizontal label color_2">
+                                    <div class="detail" id="name_country_title"></div>
+                                </div>
+                                 <div class="ui inverted large horizontal label color_3">
+                                    <div class="detail" id="name_city_title"></div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui inverted large horizontal label color_2">
+                                    <div class="detail" id="name_institute_title_select"></div>
+                                </div>
+                                <div class="ui inverted large horizontal label color_2">
+                                    <div class="detail" id="name_sector_title_select"></div>
+                                </div>
+                            </div>
+                            <a id="edit_lugar_and_city_instituion_selected" style="cursor: pointer;">Editar</a>
+                    </div>
+                    
+                    
+
+                    
 
 
                     <div class="required field">

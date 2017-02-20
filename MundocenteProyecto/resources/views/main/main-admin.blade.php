@@ -52,9 +52,9 @@
 <div class="ui main container">
     <h1 class="ui header">Administración</h1>
     <div class="ui pointing secondary menu">
-        <a class="item" data-tab="places">Lugares</a>
+        <a class="item active" data-tab="places">Lugares</a>
         <a class="item" data-tab="indices">Indíces</a>
-        <a class="item active" data-tab="institutions">Instituciones</a>
+        <a class="item " data-tab="institutions">Instituciones</a>
         <a class="item" data-tab="publications">Publicaciones</a>
         <a class="item" data-tab="users">Usuarios</a>
     </div>

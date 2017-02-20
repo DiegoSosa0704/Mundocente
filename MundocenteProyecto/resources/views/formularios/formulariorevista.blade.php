@@ -62,17 +62,20 @@
 
                     
 
-
                     <div class="field">
-                        <div class="ui inverted large horizontal label color_2">
+                    <div class="ui inverted large horizontal label color_2">
                             <div class="detail" id="name_country_title"></div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui inverted large horizontal label color_3">
+                         <div class="ui inverted large horizontal label color_3">
                             <div class="detail" id="name_city_title"></div>
                         </div>
                     </div>
+                    <div class="field">
+                        <div class="ui inverted large horizontal label color_2">
+                            <div class="detail" id="name_institute_title_select"></div>
+                        </div>
+                    </div>
+                  
 
 
                     <div class="two fields" style="display: none;">

@@ -30,14 +30,14 @@
                     </div>
                 </div>
                 <div class="column" id="space_image_modal_details">
-                    <div class="field">
+                    
                         <br>
 
                         <div class="field">
                             <img class="ui centered medium image" src="images/public-image.png" alt=""
-                                 id="image_modal_publication">
+                                 id="image_modal_publication" >
                         </div>
-                    </div>
+                    
                 </div>
 
             </div>
@@ -57,38 +57,29 @@
 
             <div class="field">
                 <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
-                <div class="three fields">
-                    <div class="field">
-                        <div class="ui raised card">
-                            <div class="content">
-                                <div class="header">Gran Área</div>
-                                <div class="ui celled ordered list" id="div_gran_area_modal_annoncement">
+                
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui raised card">
-                            <div class="content">
-                                <div class="header">Área</div>
-                                <div class="ui celled ordered list" id="div_area_modal_annoncement">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui raised card">
-                            <div class="content">
-                                <div class="header">Disciplina</div>
-                                <div class="ui celled ordered list" id="div_disciplina_modal_annoncement">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <br>
+                   <label><b>Seleccionados</b></label>
+                                    <table class="ui celled table" id="table_areas_formation_details">
+                                          <thead>
+                                            <tr><th>Gran Área</th>
+                                            <th>Área</th>
+                                            <th>Disciplina</th>
+                                            
+                                          </tr></thead>
+                                          <tbody id="add_temas_formation_details">
+                                             
+                                                    <tr>
+                                                       <td>  </td>
+                                                       <td></td>
+                                                       <td> </td> 
+                                                    </tr>
+                                                    
+                                          </tbody>
+                                        </table>
             </div>
             <div class="field">
                 <h5 class="ui header"><b>Detalles</b></h5>

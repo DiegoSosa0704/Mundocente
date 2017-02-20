@@ -151,10 +151,11 @@ body.pushable>.pusher.pusher-start {
 
 .pusher .ui.container.start-container .ui.sticky-filter.segment {
     min-width: 21% !important;
-    max-width: 21% !important;
+    max-width: 23% !important;
     height: 85% !important;
     overflow: scroll;
-    margin-top: 0;
+    margin-top: 5px;
+    left: 21%;
 }
 
 .pusher .ui.container.start-container .ui.sticky-filter.segment .ui.top.attached.label {

@@ -19,29 +19,13 @@ class AdminController extends Controller
         //
     }
 
+
+    //Se le manda toda la información de toda la base de datos
     public function mainAdmin(){
         return view('main.main-admin');
     }
 
-    public function administradorlugares(){
-        return view('admin.lugares-administracion');
-    }
-
-    public function administradorinstituciones(){
-        return view('admin.instituciones-administracion');
-    }
-
-    public function administradorindices(){
-        return view('admin.indices-administracion');
-    }
-
-    public function administradorusuarios(){
-        return view('admin.usuarios-administracion');
-    }
-
-     public function administradorpublicaciones(){
-        return view('admin.publicaciones-administracion');
-    }
+    
     /**
      * Show the form for creating a new resource.
      *

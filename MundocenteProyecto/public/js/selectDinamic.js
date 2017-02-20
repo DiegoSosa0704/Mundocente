@@ -11,9 +11,11 @@ $('#selectCountry').change(function(event){
 
 		for (var i = 0 ; i < response.length; i++) {
 			$('#selectCity').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
+
 		}
 		
 	});
+	event.target.value = null;
 	$('#selectCity').append('<option value="0" disabled="true">Ninguno</option>');
 	$('#selectCity > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange').toggle("show");
@@ -215,6 +217,9 @@ $("#agregaInstitutomodel").click(function(){
         }
 
         $('#selectCity').empty();
+
+        $('#selectMVinculation').append("<option value="+id_instituto+" >"+info.name_institution+"</option>");
+		$("#selectMVinculation option[value="+ id_instituto +"]").attr("selected",true);
 
         callCountryCity(id_instituto);
 
@@ -694,19 +699,14 @@ $('#changeAccountActive').click(function(){
 
 //LLena el campo de país y ciudad segun la universidad que seleccione
 $('#selectMVinculation').change(function(event){
-	if ($('#changeInstitution_location').is(":visible")) {
-          $('#changeInstitution_location').toggle('fast');
-        }
+	
 
         $('#selectCity').empty();
 
-				callCountryCity(event.target.value);
+		callCountryCity(event.target.value);
 
-	          $('#changeInstitution_location').toggle('show');
+        
 	       
-
-
-
 });
 
 
@@ -715,17 +715,24 @@ $('#selectMVinculation').change(function(event){
 
 
 function callCountryCity(id_institute){
+	$('#details_edit_institution_selected').css('display', 'none');
+		$('#details_institution_selected').css('display', 'block');
 		$.get('get-pocation-institution/'+id_institute+ "" , function(response, ciudad){
 
 		for (var i = 0 ; i < response.length; i++) {
 
+			$('#name_institute_title_select').html("Institución: "+response[i].nombre_institucion +"");
+			$('#name_country_title').html("País: "+response[i].nombre_pais +"");
+			$('#name_city_title').html("Ciudad: "+response[i].nombre_ciudad +"");
+			if(response[i].setor_institution=='preescolar'){
+				$('#name_sector_title_select').html("Sector: "+response[i].setor_institution+", básica y media");
+			}else{
+				$('#name_sector_title_select').html("Sector: "+response[i].setor_institution);
+			}
 			
-			$('#name_country_title').html("País - (Institución de "+response[i].nombre_pais +")");
-			$('#name_city_title').html("Ciudad - (Institución de "+response[i].nombre_ciudad +")");
 			$("#selectCountry option[value="+ response[i].id_pais +"]").attr("selected",true);
 
 			$('#selectCity').append("<option value="+response[i].id_ciudad+" >"+response[i].nombre_ciudad+"</option>");
-			
 			
 			$("#selectCity option[value="+ response[i].id_ciudad +"]").attr("selected",true);
 
@@ -743,6 +750,11 @@ function callCountryCity(id_institute){
 		}
 	});
 }
+
+$('#edit_lugar_and_city_instituion_selected').click(function(){
+	$('#details_edit_institution_selected').css('display', 'block');
+	$('#details_institution_selected').css('display', 'none');
+});
 
 
 

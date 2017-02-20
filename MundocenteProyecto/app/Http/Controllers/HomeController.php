@@ -113,19 +113,12 @@ class HomeController extends Controller
                 $listResultArrayRecomendation = array_merge($publication_recomendation, $listResultArrayRecomendation);
                 
         }
-
-
-         
-            
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
 
         $collection = new Collection($listResultArrayRecomendation);
         
+        $perPage = 20;
 
-        
-        $perPage = 15;
-
-        
         $currentPageSearchResults = $collection->slice (($currentPage - 1) * $perPage, $perPage) -> all ();
 
         
@@ -136,7 +129,7 @@ class HomeController extends Controller
             Paginator::resolveCurrentPage(),
             ['path' => Paginator::resolveCurrentPath()]
             );
-          //dd($listPublications);
+        
             
 
         return view('perfil.mis-publicaciones-guardadas', compact('listPublications'));

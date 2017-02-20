@@ -37,146 +37,256 @@ class ResultController extends Controller
         
     }
 
+    public function returnWordProcces($word){
+        $wordFinishSinse = "";
+        $wordFinishSinse = str_replace(" se ", " ", $word);
+        $wordFinishSinde = "";
+        $wordFinishSinde = str_replace(" de ", " ", $wordFinishSinse);
+        $wordFinishSinpara = "";
+        $wordFinishSinpara = str_replace(" para ", " ", $wordFinishSinde);
+        $wordFinishSinpor = "";
+        $wordFinishSinpor = str_replace(" por ", " ", $wordFinishSinpara);
+        $wordFinishSiny = "";
+        $wordFinishSiny = str_replace(" y ", " ", $wordFinishSinpor);
+        $wordFinishSinla = "";
+        $wordFinishSinla = str_replace(" la ", " ", $wordFinishSiny);
+        $wordFinishSines = "";
+        $wordFinishSines = str_replace(" es ", " ", $wordFinishSinla);
+        $wordFinishSinen = "";
+        $wordFinishSinen = str_replace(" en ", " ", $wordFinishSines);
+        $wordFinishSinuna = "";
+        $wordFinishSinuna = str_replace(" una ", " ", $wordFinishSinen);
+        $wordFinishSinun = "";
+        $wordFinishSinun = str_replace(" un ", " ", $wordFinishSinuna);
+        $wordFinishSicon = "";
+        $wordFinishSicon = str_replace(" con ", " ", $wordFinishSinun);
+        $wordFinishSina = "";
+        $wordFinishSina = str_replace(" a ", " ", $wordFinishSicon);
+        $wordFinishSinque = "";
+        $wordFinishSinque = str_replace(" que ", " ", $wordFinishSina);
+        $wordFinishSinmuy = "";
+        $wordFinishSinmuy = str_replace(" muy ", " ", $wordFinishSinque);
+        $wordFinishSinmucho = "";
+        $wordFinishSinmucho = str_replace(" mucho ", " ", $wordFinishSinmuy);
+        $wordFinishSinmuchos = "";
+        $wordFinishSinmuchos = str_replace(" muchos ", " ", $wordFinishSinmucho);
+        $wordFinishSinellos = "";
+        $wordFinishSinellos = str_replace(" ellos ", " ", $wordFinishSinmuchos);
+        $wordFinishSinellas = "";
+        $wordFinishSinellas = str_replace(" ellas ", " ", $wordFinishSinellos);
+        $wordFinishSinel = "";
+        $wordFinishSinel = str_replace(" el ", " ", $wordFinishSinellas);
+        $wordFinishSinlas = "";
+        $wordFinishSinlas = str_replace(" las ", " ", $wordFinishSinel);
+        $wordFinishSinlos = "";
+        $wordFinishSinlos = str_replace(" los ", " ", $wordFinishSinlas);
+        $wordFinishSinlo = "";
+        $wordFinishSinlo = str_replace(" lo ", " ", $wordFinishSinlos);
+        $wordFinishSinsFinal = "";
+        $wordFinishSinsFinal = str_replace("s ", " ", $wordFinishSinlo);
+        //dd($wordFinishSinsFinal);
+        return $wordFinishSinsFinal;
+    }
+
 
 public function searchPublicationForWordKey(Request $request){
 
-    $title_separate  = $request['text_search'];
+    $title_separate  = $this->returnWordProcces($request['text_search']);
+
+    
     
     $porciones = explode(" ", $title_separate);
-
-    $cuantity_title = count($porciones);
-
     
-    if($request['search_type_publication']!=6){
+    $cuantity_title = count($porciones);
+    
+    $listResultArray = array();
 
-        $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->where('tema__notificacions.id_type_publications', $request['search_type_publication'])
-                        ->where('publicacions.title_publication', 'like', '%'.$request['text_search'].'%')
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-                        
-                        
 
-          return view('main.publication', compact('listPublications'));
-    }else{
-
-    if($cuantity_title==1){
+    if($request['search_type_publication']==6){
+        if($cuantity_title==1){
         
-            $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-                        
-                        
-
-          return view('main.publication', compact('listPublications'));
+           foreach ($this->returnListInterest() as $id_publi) {
+                $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                            ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                            ->get();
+                            
+                    $listResultArray = array_merge($publication_interest, $listResultArray);
+            }
 
     }else if($cuantity_title==2){
-            $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-
-                        
-                        
-
-            return view('main.publication', compact('listPublications'));
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
         }else if($cuantity_title==3){
-            $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
-                        ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-
-                        
-                        
-
-            return view('main.publication', compact('listPublications'));
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
         }else if($cuantity_title==4){
-            $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
-                        ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-
-                        
-                        
-
-            return view('main.publication', compact('listPublications'));
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
         }else if($cuantity_title==5){
-            $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
-                        ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-
-                        
-                        
-
-            return view('main.publication', compact('listPublications'));
-        }else if($cuantity_title>5){
-            $listPublications = DB::table('publicacions')
-                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
-                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
-                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
-                        ->orWhere('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
-                        ->orWhere('publicacions.description_publication', 'like', '%'.$porciones[0].'%')
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
-                        ->orderBy('publicacions.count_view', 'desc')
-                        ->paginate(15);
-                        
-                        
-
-
-            return view('main.publication', compact('listPublications'));
+                   foreach ($this->returnListInterest() as $id_publi) {
+                        $publication_interest = DB::table('publicacions')
+                                    ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                    ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                    ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                    ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                    ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                    ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                    ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                    ->where('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
+                                    ->where('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
+                                    ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                    ->get();
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                    }
+        }else if($cuantity_title==6){
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[5].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
+                
+        }else if($cuantity_title==7){
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[5].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[6].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
+                
+        }else if($cuantity_title==8){
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[5].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[6].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[7].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
+                
+        }else if($cuantity_title>=9){
+               foreach ($this->returnListInterest() as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[1].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[2].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[3].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[4].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[5].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[6].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[7].'%')
+                                ->where('publicacions.title_publication', 'like', '%'.$porciones[8].'%')
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                }
+                
         }
-    }  
+    }else{
+         foreach ($this->returnListInterest() as $id_publi) {
+                $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                            ->where('publicacions.id_type_publication', $request['search_type_publication'])
+                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                            ->where('publicacions.title_publication', 'like', '%'.$porciones[0].'%')
+                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                            ->get();
+                            
+                    $listResultArray = array_merge($publication_interest, $listResultArray);
+            }
+    }
+
+    
+
+            $currentPageSearch = LengthAwarePaginator::resolveCurrentPage();
+            $collectionSearch = new Collection($listResultArray);
+            $perPage = 100;        
+            $currentPageSearchResultsSearch = $collectionSearch->slice(($currentPageSearch - 1) * $perPage, $perPage)->all();
+            $listPublications = new LengthAwarePaginator(
+            $currentPageSearchResultsSearch,
+            count($collectionSearch),
+            $perPage,
+            Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]
+            );
+          
+            return view('main.publication', compact('listPublications'));
+   
 }
 
 
@@ -209,15 +319,17 @@ public function returnListInterest(){
     foreach ($listUniThemefk as $id_theme_recomendation) {
         $id_theme_recomenda = $id_theme_recomendation->id_theme_fk;
     }
-    
+
+
      $listaUniono = DB::table('areas_publicacions')
             ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
             ->where('areas_interes.id_user_fk', Auth::user()->id)
-            ->orWhere('areas_interes.id_theme_fk', $id_theme_recomenda)
+            ->orWhere('areas_publicacions.id_theme_fk', $id_theme_recomenda)
             ->select('areas_publicacions.id_publication_fk')
             ->orderBy('areas_interes.value_interest', 'asc')
             ->distinct()
             ->get();
+             
        return $listaUniono; 
     
 
@@ -236,7 +348,7 @@ public function returnListPublications(){
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $id_publi->id_publication_fk)
-                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
+                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
                         ->get();
                 $listResultArray = array_merge($publication_interest, $listResultArray);
         }

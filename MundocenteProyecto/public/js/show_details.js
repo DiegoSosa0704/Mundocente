@@ -13,25 +13,26 @@ function showDetailsPublication(id_publication) {
 	var name_institution = $('#name_institution_publication'+id_publication).val();
 	$('#institution_modal_announcement').html(name_institution);	
 
-	document.getElementById('div_gran_area_modal_annoncement').innerHTML='';
-	document.getElementById('div_area_modal_annoncement').innerHTML='';
-	document.getElementById('div_disciplina_modal_annoncement').innerHTML='';
 	
-	
+	document.getElementById('add_temas_formation_details').innerHTML='';
 	$.get('obtener-areas-pulicacion/'+id_publication, function(response, ciudad){
 		for (var i = 0 ; i < response.length; i++) {
-			if(response[i].type_theme=='gran_area'){
-				$('#div_gran_area_modal_annoncement').append("<div class='item'>"+response[i].name_theme+"</div>");
-			}
-			if(response[i].type_theme=='area'){
-				$('#div_area_modal_annoncement').append("<div class='item'>"+response[i].name_theme+"</div>");
-			}
-			if(response[i].type_theme=='disciplina'){
-				$('#div_disciplina_modal_annoncement').append("<div class='item'>"+response[i].name_theme+"</div>");
-			}
+			
+			$.get('areas-all/'+response[i].id_tema+ "" , function(response_all, ciudad){
+				
+					for (var i = 0 ; i < response_all.length; i++) {
+						$('#add_temas_formation_details').append("<tr><td>"+response_all[i].name_tema_gran+"</td><td>"+response_all[i].name_tema_area+"</td><td>"+response_all[i].name_tema_disciplina+" </td> </tr>");
+					}
+						
+				
+			});
 			
 		}
 	});
+
+
+
+
 
 
 	var city_announcement = $('#name_city_publication'+id_publication).val();

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/icono.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Mundocente</title>
@@ -87,8 +89,8 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
     <div class="item" style="width:60%;">
         
         {!!Form::open(['url'=>'publicaciones-resultados', 'method'=> 'POST', 'class'=>'ui action input', 'style'=>'width: 200%'])!!}
-        {!!Form::text('text_search', null, ['type' => 'text', 'placeholder' => 'Ingrese título de publicación', 'autocomplete'=>'false'])!!}
-            <select class="ui selection dropdown" name="search_type_publication">
+        {!!Form::text('text_search', null, ['type' => 'text', 'placeholder' => 'Ingrese título de publicación', 'autocomplete'=>'false', 'required'=>'true'])!!}
+           <select class="ui selection dropdown" name="search_type_publication" >
                 <option value="6">Todo</option>
                 <option value="1">Convocatorias docentes</option>
                 <option value="2">Revistas científicas</option>
@@ -151,59 +153,43 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
             transition: 'scale',
             onChange: function (value, text, $selectedItem) {
                 switch (value) {
-                    case 'all':
-                        $('#all').toggle(true);
-                        $('#paper').toggle(false);
-                        $('#announcement').toggle(false);
-                        $('#event').toggle(false);
-                        $('#request').toggle(false);
+                    case '1':
+                        $('#filter_paper').toggle(false);
+                        $('#filter_announcement').toggle(true);
+                        $('#filter_event').toggle(false);
+                        $('#filter_request_evaluator').toggle(false);
+                        $('#filter_request_investigator').toggle(false);
                         break;
-                    case 'paper':
-                        $('#all').toggle(false);
-                        $('#paper').toggle(true);
-                        $('#announcement').toggle(false);
-                        $('#event').toggle(false);
-                        $('#request_evaluator').toggle(false);
-                        $('#request_investigator').toggle(false);
+                    case '3':
+                        $('#filter_paper').toggle(false);
+                        $('#filter_announcement').toggle(false);
+                        $('#filter_event').toggle(true);
+                        $('#filter_request_evaluator').toggle(false);
+                        $('#filter_request_investigator').toggle(false);
                         break;
-                    case 'announcement':
-                        $('#all').toggle(false);
-                        $('#paper').toggle(false);
-                        $('#announcement').toggle(true);
-                        $('#event').toggle(false);
-                        $('#request_evaluator').toggle(false);
-                        $('#request_investigator').toggle(false);
+                    case '4':
+                        $('#filter_paper').toggle(false);
+                        $('#filter_announcement').toggle(false);
+                        $('#filter_event').toggle(false);
+                        $('#filter_request_evaluator').toggle(false);
+                        $('#filter_request_investigator').toggle(true);
                         break;
-                    case 'event':
-                        $('#all').toggle(false);
-                        $('#paper').toggle(false);
-                        $('#announcement').toggle(false);
-                        $('#event').toggle(true);
-                        $('#request_evaluator').toggle(false);
-                        $('#request_investigator').toggle(false);
+                    case '5':
+                        $('#filter_paper').toggle(false);
+                        $('#filter_announcement').toggle(false);
+                        $('#filter_event').toggle(false);
+                        $('#filter_request_evaluator').toggle(true);
+                        $('#filter_request_investigator').toggle(false);
                         break;
-                    case 'request_investigator':
-                        $('#all').toggle(false);
-                        $('#paper').toggle(false);
-                        $('#announcement').toggle(false);
-                        $('#event').toggle(false);
-                        $('#request_evaluator').toggle(false);
-                        $('#request_investigator').toggle(true);
-                        break;
-                    case 'request_evaluator':
-                        $('#all').toggle(false);
-                        $('#paper').toggle(false);
-                        $('#announcement').toggle(false);
-                        $('#event').toggle(false);
-                        $('#request_evaluator').toggle(true);
-                        $('#request_investigator').toggle(false);
+                    case '2':
+                        $('#filter_paper').toggle(true);
+                        $('#filter_announcement').toggle(false);
+                        $('#filter_event').toggle(false);
+                        $('#filter_request_evaluator').toggle(false);
+                        $('#filter_request_investigator').toggle(false);
                         break;
                     default:
-                        $('#paper').toggle(true);
-                        $('#announcement').toggle(false);
-                        $('#event').toggle(false);
-                        $('#request_evaluator').toggle(false);
-                        $('#request_investigator').toggle(false);
+                        
                 }
             }
         })
