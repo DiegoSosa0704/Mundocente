@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b2510a9-d97f-4aa6-b466-b2a3e043afdf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalAddInstitution.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalEditInstitution.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/instituciones-administracion.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/instituciones-administracion.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/publicaciones-administracion.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/publicaciones-administracion.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php" />
     </list>
     <ignored path="C:\Users\diego\Documents\Diego\Mundocente\Diseno\Mundocente\.idea\shelf/" />
@@ -31,51 +35,53 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main-admin.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php">
+      <file leaf-file-name="formulariorevista.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="139" column="29" lean-forward="false" selection-start-line="139" selection-start-column="29" selection-end-line="139" selection-end-column="29" />
+            <state relative-caret-position="255">
+              <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+              <folding>
+                <element signature="e#1536#1557#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formularioconvocatoria.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="65" column="62" lean-forward="false" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modalAddInstitution.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalAddInstitution.blade.php">
+      <file leaf-file-name="formularioevento.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="6" />
+            <state relative-caret-position="272">
+              <caret line="34" column="62" lean-forward="false" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modalEditInstitution.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalEditInstitution.blade.php">
+      <file leaf-file-name="style-inicio.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="48" column="48" lean-forward="false" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+            <state relative-caret-position="185">
+              <caret line="124" column="11" lean-forward="false" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="instituciones-administracion.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/instituciones-administracion.blade.php">
+      <file leaf-file-name="inicio-navbar-1.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Diseño/Diseño-final/inicio-navbar-1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="73" lean-forward="false" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lugares-administracion.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/lugares-administracion.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="65" column="41" lean-forward="true" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+            <state relative-caret-position="185">
+              <caret line="113" column="14" lean-forward="false" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -93,11 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>agregar</find>
-      <find>agregar in</find>
-      <find>contraseña</find>
-      <find>instituci</find>
-      <find>message</find>
       <find>area</find>
       <find>nuevo</find>
       <find>jQuery</find>
@@ -118,11 +119,16 @@
       <find>overla</find>
       <find>titl</find>
       <find>piled</find>
-      <find>.piled</find>
-      <find>title</find>
       <find>primary</find>
       <find>button-edit-places</find>
       <find>institutions</find>
+      <find>scrol</find>
+      <find>h4</find>
+      <find>.ui.header</find>
+      <find>title</find>
+      <find>.piled</find>
+      <find>ui.segment</find>
+      <find>desea</find>
     </findStrings>
     <replaceStrings>
       <replace>6</replace>
@@ -164,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Diseño/Diseño-final.html" />
         <option value="$PROJECT_DIR$/Diseño/Diseño-final/Calendar.html" />
         <option value="$PROJECT_DIR$/Diseño/Diseño-final/Acount.html" />
         <option value="$PROJECT_DIR$/Diseño/css/style-index.css" />
@@ -193,13 +198,7 @@
         <option value="$PROJECT_DIR$/MundocenteProyecto/public/css/style-index.css" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/details/detalles.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modal_institute_vinculate.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/app/Http/routes.php" />
@@ -212,9 +211,16 @@
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalEditIndice.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalAddIndice.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/instituciones-administracion.blade.php" />
-        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalAddInstitution.blade.php" />
         <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalEditInstitution.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/publicaciones-administracion.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php" />
+        <option value="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php" />
       </list>
     </option>
   </component>
@@ -246,6 +252,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,59 +324,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modals" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mundocente" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mundocente" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MundocenteProyecto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mundocente" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mundocente" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MundocenteProyecto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="formularios" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -418,14 +374,20 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Mockups pdf" />
+              <option name="myItemId" value="MundocenteProyecto" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -451,132 +413,6 @@
       <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\public\images" />
       <recent name="C:\Users\diego\Documents\Diego\Mundocente\Diseno\Mundocente\Diseño\Diseño-final" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/app/Http/Controllers/HomeController.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/app/Http/Controllers/PublicationsController.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/app/Http/Controllers/ResultController.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/js/action-publication.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/details/lista-publicaciones.blade.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/home.blade.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/login.blade.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main.blade.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/main/publication.blade.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/perfil/mi-perfil.blade.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/resources/views/registro.blade.php</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/files/1202ciiq.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/js/loadscroll.js</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/semantic/out/semantic.min.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/MundocenteProyecto/public/semantic/out/semantic.min.js</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="ErlangApplicationRunConfiguration" factoryName="Erlang Application" show_console_on_std_err="false" show_console_on_std_out="false">
@@ -767,7 +603,9 @@
       <workItem from="1487349887675" duration="5562000" />
       <workItem from="1487370873150" duration="6004000" />
       <workItem from="1487381240427" duration="3518000" />
-      <workItem from="1487444827770" duration="9834000" />
+      <workItem from="1487444827770" duration="9883000" />
+      <workItem from="1487609983142" duration="3924000" />
+      <workItem from="1487716992701" duration="4496000" />
     </task>
     <task id="LOCAL-00001" summary="Actualización de diseño. Nuevas imagenes del logo oficial de Mundocente.">
       <created>1484671010422</created>
@@ -1000,11 +838,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487452326703</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Agrego diseño inicial en Gestión de instituciones - administrador.">
+      <created>1487455843880</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1487455843880</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="533013000" />
+    <option name="totallyTimeSpent" value="541482000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1019,7 +864,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.290469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29954615" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1084,7 +929,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Añado configuración de temas para el framework Semantic-ui y diseño de login." />
     <MESSAGE value="Culmino  diseño de login y agrego diseño de formulario para la publicación de Revistas  con funcionalidad responsive y formularios validados." />
     <MESSAGE value="Creación de 2 carpetas para separar diseños iniciales de los finales. Agrego diseño final para el apartado de Publicar Convocatoria, cambios en Publicar Revista-Articulo y documento de ejemplo para el manejo de Calendarios en el Framework Semantic-ui." />
     <MESSAGE value="Agrego diseño final de formularios para las secciones de Publicar evento y Publicar invitación. También diseño inicial para el apartado Cuenta. Añado imágenes  y cambios en el diseño de Publicar Revista y Publicar Convocatoria." />
@@ -1109,21 +953,14 @@
     <MESSAGE value="Cambio diseño de títulos en  formularios." />
     <MESSAGE value="Agrego diseño de Gestion de lugares  - administrador." />
     <MESSAGE value="Agrego diseño inicial de Gestion de índices de revistas  - administrador." />
-    <option name="LAST_COMMIT_MESSAGE" value="Agrego diseño inicial de Gestion de índices de revistas  - administrador." />
+    <MESSAGE value="Agrego diseño inicial en Gestión de instituciones - administrador." />
+    <option name="LAST_COMMIT_MESSAGE" value="Agrego diseño inicial en Gestión de instituciones - administrador." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="358" column="16" lean-forward="false" selection-start-line="358" selection-start-column="16" selection-end-line="358" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/result.blade.php" />
     <entry file="file://$PROJECT_DIR$/Diseño/Diseño-final/Calendar.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1217,13 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Diseño/Diseño-final/inicio-navbar-1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3315">
-          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/details/detalles-revista.blade.php" />
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/details/detalles-solicitud.blade.php" />
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/details/detalles-convocatoria.blade.php" />
@@ -1235,60 +1065,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="28" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="47" lean-forward="false" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" column="34" lean-forward="true" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/publicaciones-administracion.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/filtros.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3366">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1324,7 +1104,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1126">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1332,7 +1111,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1340,9 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1350,15 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="348" column="29" lean-forward="false" selection-start-line="348" selection-start-column="23" selection-end-line="348" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1366,7 +1132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1374,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="34" lean-forward="false" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1382,7 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
           <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="51" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1390,15 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="125" column="29" lean-forward="false" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1406,7 +1160,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1414,31 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/instituciones-administracion.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="73" lean-forward="false" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/lugares-administracion.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="41" lean-forward="true" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="139" column="29" lean-forward="false" selection-start-line="139" selection-start-column="29" selection-end-line="139" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1446,15 +1174,144 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalEditInstitution.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
+        <state relative-caret-position="421">
           <caret line="48" column="48" lean-forward="false" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/lugares-administracion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/instituciones-administracion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="21" column="27" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="143" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/main/main-admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="44" lean-forward="false" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio-fixed.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/admin/publicaciones-administracion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="210" column="17" lean-forward="false" selection-start-line="210" selection-start-column="17" selection-end-line="210" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#tr#2;n#tbody#0;n#table#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#tr#3;n#tbody#0;n#table#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#tr#4;n#tbody#0;n#table#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#tr#6;n#tbody#0;n#table#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#2;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/filtros.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulario-solicitud.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="631" column="0" lean-forward="true" selection-start-line="631" selection-start-column="0" selection-end-line="631" selection-end-column="0" />
+          <folding>
+            <element signature="e#1075#1104#0#HTML" expanded="true" />
+            <element signature="e#2247#2376#0#HTML" expanded="false" />
+            <element signature="e#2393#14127#0#HTML" expanded="false" />
+            <element signature="e#14339#20494#0#HTML" expanded="false" />
+            <element signature="e#14437#20444#0#HTML" expanded="false" />
+            <element signature="e#20802#23051#0#HTML" expanded="false" />
+            <element signature="e#23405#25641#0#HTML" expanded="false" />
+            <element signature="e#26078#28691#0#HTML" expanded="false" />
+            <element signature="e#29095#32085#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/css/style-inicio.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="124" column="11" lean-forward="false" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Diseño/Diseño-final/inicio-navbar-1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="113" column="14" lean-forward="false" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioconvocatoria.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="65" column="62" lean-forward="false" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="34" column="62" lean-forward="false" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+          <folding>
+            <element signature="e#1536#1557#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -51,11 +51,11 @@
 
 <div class="ui main container">
     <h1 class="ui header">Administración</h1>
-    <div class="ui pointing secondary menu">
-        <a class="item active" data-tab="places">Lugares</a>
+    <div class="ui top attached tabular menu">
+        <a class="item" data-tab="places">Lugares</a>
         <a class="item" data-tab="indices">Indíces</a>
-        <a class="item " data-tab="institutions">Instituciones</a>
-        <a class="item" data-tab="publications">Publicaciones</a>
+        <a class="item" data-tab="institutions">Instituciones</a>
+        <a class="item active" data-tab="publications">Publicaciones</a>
         <a class="item" data-tab="users">Usuarios</a>
     </div>
     {{--Places--}}
@@ -67,11 +67,11 @@
         @include('admin.indices-administracion')
     </div>
     {{--Institutions--}}
-    <div class="ui bottom attached tab segment active" data-tab="institutions">
+    <div class="ui bottom attached tab segment" data-tab="institutions">
         @include('admin.instituciones-administracion')
     </div>
     {{--publications--}}
-    <div class="ui bottom attached tab segment" data-tab="publications">
+    <div class="ui bottom attached tab segment active" data-tab="publications">
         @include('admin.publicaciones-administracion')
     </div>
     {{--Users--}}
@@ -104,6 +104,7 @@
 {{--Instituciones--}}
 @include('modals.modalAddInstitution')
 @include('modals.modalEditInstitution')
+
 
 <script>
     $('.menu .item')

@@ -27,27 +27,12 @@
             </div>
         </div>
         <div class="ui container center aligned">
-            {{--<h1 class="ui center aligned header">Publicar Evento</h1>
-            <div>
-                <div class="line"></div>
-                <div data-width="79" data-height="27"
-                     style="display: inline-block; vertical-align: middle; line-height: 0; width: 79px; height: 27px;">
-                    <svg height="27" width="79">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.2 26.4">
-                            <path fill="none" stroke="#A54686" stroke-width="2" d="
-                            M57.3,13.1c-3.2,10.4,10.4,16.1,16.8,8.7c7.1-8.2,0.6-17.8-7-20.1c-19.6-5.2-31.9,18-49,23.1C9.3,27.5-1.7,20.4,1.6,9.8
-                            c3.8-12.4,23.3-9,19.3,4"></path>
-                        </svg>
-                    </svg>
-                </div>
-                <div class="line"></div>
-            </div>--}}
-            <div class="ui piled very padded left aligned segment">
+            <div class="ui raised padded left aligned segment">
                 <div class="ui form" id="form">
                     <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
                     <h4 class="ui dividing header">Información general</h4>
                     <div class="field">
-                        <div class="ui  large horizontal label color_1">Institución que publica el evento:
+                        <div class="ui  large horizontal label">Institución que publica el evento:
                             <select name="country" class="ui search dropdown" id="selectMVinculation">
                                 <option value="">Seleccione Institución</option>
                                 @foreach($institucionesVinvulado as $inst_vin)
