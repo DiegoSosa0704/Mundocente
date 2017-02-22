@@ -186,11 +186,16 @@ body.pushable>.pusher.pusher-start {
 
 /* DETALLES PUBLICACIONES */
 
-.ui.modal .segment-title,
 .pusher .segment-title{
     /*background-color: #2C1431;*/
     background: url(../images/fondo.jpg) no-repeat 0 100%/cover;
     height: 360px;
+    width: 100%;
+}
+
+.ui.modal .segment-title {
+    background-color: #242533;
+    height: 13%;
     width: 100%;
 }
 

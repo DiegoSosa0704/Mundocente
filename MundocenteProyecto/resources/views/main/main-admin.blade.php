@@ -8,11 +8,14 @@
 
     <!-- Site Properties -->
     <title>Fixed Menu Example - Semantic</title>
+
     {!!Html::style('semantic/out/semantic.css')!!}
     {!!Html::style('css/scrollbar.css')!!}
     {!!Html::style('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.6/calendar.min.css')!!}
     {!!Html::style('css/style-inicio.css')!!}
     {!!Html::script('js/jquery.min.js')!!}
+    {!!Html::script('http://code.jquery.com/jquery-latest.min.js')!!}
+    {!!Html::script('js/jquery.tablesort.js')!!}
     {!!Html::script('js/init.js')!!}
     {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/calendar.js')!!}
@@ -105,6 +108,10 @@
 @include('modals.modalAddInstitution')
 @include('modals.modalEditInstitution')
 
+{{--Publicaciones--}}
+@include('modals.modalAddPublication')
+@include('modals.modalEditPublication')
+
 
 <script>
     $('.menu .item')
@@ -150,8 +157,23 @@
         ;
     });
 
+    /*Modal - Publicaciónes*/
+    $('.ui.button-publication.button').on('click', function () {
+        $('.ui.modal.publication')
+            .modal('show')
+        ;
+    });
+
+    $('.ui.button-edit-publication.button').on('click', function () {
+        $('.ui.modal.edit-publication')
+            .modal('show')
+        ;
+    });
+
     $('.ui.dropdown')
         .dropdown()
     ;
+
+    $('.table').tablesort();
 </script>
 </html>
