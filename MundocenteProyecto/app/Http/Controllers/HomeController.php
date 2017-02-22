@@ -368,8 +368,14 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
 
 
 
+
+
+
+
+
+
      /**
-     * Llama a los temas gran_areas
+     * Llama a los temas areas
      *
      * @return \Illuminate\Http\Response
      */

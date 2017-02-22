@@ -22,7 +22,7 @@ class ResultController extends Controller
 
 
      public function __construct(){
-        $this->middleware('auth', ['only' => ['publications', 'searchPublicationForWordKey', 'listPublicationsInterestRecomendation','returnListPublications', 'addValueThemeInteres']]);
+        $this->middleware('auth', ['only' => ['index','publications', 'searchPublicationForWordKey', 'listPublicationsInterestRecomendation','returnListPublications', 'addValueThemeInteres', 'buscarconocatorias']]);
         global $porciones;
     }
 
@@ -34,7 +34,7 @@ class ResultController extends Controller
      */
     public function index()
     {
-        
+           
     }
 
     public function returnWordProcces($word){
@@ -275,7 +275,7 @@ public function searchPublicationForWordKey(Request $request){
 
             $currentPageSearch = LengthAwarePaginator::resolveCurrentPage();
             $collectionSearch = new Collection($listResultArray);
-            $perPage = 100;        
+            $perPage = 1000;        
             $currentPageSearchResultsSearch = $collectionSearch->slice(($currentPageSearch - 1) * $perPage, $perPage)->all();
             $listPublications = new LengthAwarePaginator(
             $currentPageSearchResultsSearch,
@@ -369,7 +369,7 @@ public function returnListPublications(){
            
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $collection = new Collection($listResultArray);
-        $perPage = 20;        
+        $perPage = 30;        
         $currentPageSearchResults = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
           $paginatedSearchResults = new LengthAwarePaginator(
             $currentPageSearchResults,
@@ -588,6 +588,10 @@ public function returnIndexPublicationPaper($id_publicatin){
         ->count();
         return $listIndexClasification;
 }
+
+
+
+
 
 
 

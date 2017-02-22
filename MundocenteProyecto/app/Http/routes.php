@@ -35,6 +35,7 @@ Route::get('notificaciones', 'HomeController@mostrarinteresados');
 
 
 
+
 /*Resultado*/
 Route::get('registration', 'UserController@showRegistrationInit');
 
@@ -86,6 +87,7 @@ Route::get('loginlinkedin', 'SessionController@sesionlinkedin');
 Route::get('listCity/{id_pais}' , 'HomeController@obtenerCiudades');
 
 
+
 Route::get('area/{id}' , 'HomeController@obtenerArea');
 Route::get('areas-all/{id}' , 'HomeController@obtenerAreas');
 Route::get('disciplina/{id_pais}' , 'HomeController@obtenerDisciplina');
@@ -129,7 +131,27 @@ Route::get('publicaciones-resultados', 'ResultController@publications');
 
 
 
-//acciones para el administrador
+
+
+//Filtros
+Route::post('buscar-convocatorias', 'FilterController@buscarconocatorias');
+Route::get('buscar-convocatorias', 'ResultController@publications');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------- acciones para el administrador
 
 Route::get('lugares-administrador', 'AdminController@administradorlugares');
 Route::get('instituciones-administrador', 'AdminController@administradorinstituciones');
@@ -139,3 +161,7 @@ Route::get('publicaciones-administrador', 'AdminController@administradorpublicac
 
 
 Route::get('administration', 'AdminController@mainAdmin');
+
+
+
+

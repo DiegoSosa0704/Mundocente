@@ -71,7 +71,12 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
         </div>
     </div>
     <a class=" item" onclick="loadLine()" href="notificaciones">
-        <i class="alarm icon"></i> Notificaciones ({{$cuanqityNotifications}})
+    @if($cuanqityNotifications>0)
+    <i class="alarm icon"></i> Notificaciones <div class="floating ui red label">{{$cuanqityNotifications}}</div>  
+    @else
+    <i class="alarm icon"></i> Notificaciones </div>  
+    @endif
+        
     </a>
 </div>
 
@@ -188,6 +193,13 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
                         $('#filter_request_evaluator').toggle(false);
                         $('#filter_request_investigator').toggle(false);
                         break;
+                    case '6':
+                        $('#filter_paper').toggle(false);
+                        $('#filter_announcement').toggle(false);
+                        $('#filter_event').toggle(false);
+                        $('#filter_request_evaluator').toggle(false);
+                        $('#filter_request_investigator').toggle(false);
+                        break;
                     default:
                         
                 }
@@ -205,6 +217,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 {!!Html::script('js/show_details.js')!!}
 {!!Html::script('js/action-publication.js')!!}
 {!!Html::script('js/loadscroll.js')!!}
+{!!Html::script('js/action-filter.js')!!}
 
 </body>
 </html>

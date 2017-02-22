@@ -12,7 +12,7 @@ function addFavoritePublication(id_publication){
 		dataType: 'json',
 		data:{id_publication: id_publication_fk},
 		success:function(info){
-			$('#favorite_button'+id_publication_fk).html('<i class="star icon"></i>'+info+' Favorito');
+			$('#favorite_button'+id_publication_fk).html('<i class="star icon"></i> '+info+' Favorito');
 			
 		}
 	});
