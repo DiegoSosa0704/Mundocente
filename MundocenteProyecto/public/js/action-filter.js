@@ -9,7 +9,9 @@ $('#change_filter_gran_area_annoucement').change(function (event) {
 			$('#chanfe_filter_annoucemnt_area').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
-	$('#chanfe_filter_annoucemnt_area').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#discipline_filter_annoucement').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_annoucement > option[value="0"]').attr('selected', 'selected');
+	$('#chanfe_filter_annoucemnt_area').append('<option value="0" disabled="true"></option>');
 	$('#chanfe_filter_annoucemnt_area > option[value="0"]').attr('selected', 'selected');
 	$('#change_filter_annoucement').toggle("show");
 });
@@ -24,6 +26,8 @@ $('#change_filter_annoucement').change(function (event) {
 			$('#discipline_filter_annoucement').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+	$('#discipline_filter_annoucement').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_annoucement > option[value="0"]').attr('selected', 'selected');
 	$('#div_change_disscipline_annoucement').toggle("show");
 });
 
@@ -39,7 +43,7 @@ $('#select_country_filter_annoucement').change(function(event){
 		}
 	});
 
-	$('#selectCity_filter_annoucement').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCity_filter_annoucement').append('<option value="0" disabled="true"></option>');
 	$('#selectCity_filter_annoucement > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange_div_annoucement').toggle("show");
 });
@@ -104,7 +108,9 @@ $('#change_filter_gran_area_paper').change(function (event) {
 			$('#chanfe_filter_paper_area').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
-	$('#chanfe_filter_paper_area').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#discipline_filter_paper').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_paper > option[value="0"]').attr('selected', 'selected');
+	$('#chanfe_filter_paper_area').append('<option value="0" disabled="true"></option>');
 	$('#chanfe_filter_paper_area > option[value="0"]').attr('selected', 'selected');
 	$('#change_filter_paper_div').toggle("show");
 });
@@ -119,6 +125,8 @@ $('#chanfe_filter_paper_area').change(function (event) {
 			$('#discipline_filter_paper').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+	$('#discipline_filter_paper').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_paper > option[value="0"]').attr('selected', 'selected');
 	$('#div_change_disscipline_paper').toggle("show");
 });
 
@@ -133,7 +141,7 @@ $('#select_country_filter_paper').change(function(event){
 			$('#selectCity_filter_paper').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
 		}
 	});
-	$('#selectCity_filter_paper').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCity_filter_paper').append('<option value="0" disabled="true"></option>');
 	$('#selectCity_filter_paper > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange_div_paper').toggle("show");
 });
@@ -186,7 +194,9 @@ $('#change_filter_gran_area_event').change(function (event) {
 			$('#chanfe_filter_event_area').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
-	$('#chanfe_filter_event_area').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#discipline_filter_event').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_event > option[value="0"]').attr('selected', 'selected');
+	$('#chanfe_filter_event_area').append('<option value="0" disabled="true"></option>');
 	$('#chanfe_filter_event_area > option[value="0"]').attr('selected', 'selected');
 	$('#change_filter_event_div').toggle("show");
 });
@@ -201,6 +211,8 @@ $('#chanfe_filter_event_area').change(function (event) {
 			$('#discipline_filter_event').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+	$('#discipline_filter_event').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_event > option[value="0"]').attr('selected', 'selected');
 	$('#div_change_disscipline_event').toggle("show");
 });
 
@@ -214,7 +226,7 @@ $('#select_country_filter_event').change(function(event){
 			$('#selectCity_filter_event').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
 		}
 	});
-	$('#selectCity_filter_event').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCity_filter_event').append('<option value="0" disabled="true"></option>');
 	$('#selectCity_filter_event > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange_div_event').toggle("show");
 });
@@ -265,7 +277,9 @@ $('#change_filter_gran_area_inve').change(function (event) {
 			$('#chanfe_filter_inve_area').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
-	$('#chanfe_filter_inve_area').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#discipline_filter_inve').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_inve > option[value="0"]').attr('selected', 'selected');
+	$('#chanfe_filter_inve_area').append('<option value="0" disabled="true"></option>');
 	$('#chanfe_filter_inve_area > option[value="0"]').attr('selected', 'selected');
 	$('#change_filter_inve_div').toggle("show");
 });
@@ -280,6 +294,8 @@ $('#chanfe_filter_inve_area').change(function (event) {
 			$('#discipline_filter_inve').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+	$('#discipline_filter_inve').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_inve > option[value="0"]').attr('selected', 'selected');
 	$('#div_change_disscipline_inve').toggle("show");
 });
 //select país convocatoria
@@ -292,7 +308,7 @@ $('#select_country_filter_inve').change(function(event){
 			$('#selectCity_filter_inve').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
 		}
 	});
-	$('#selectCity_filter_inve').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCity_filter_inve').append('<option value="0" disabled="true"></option>');
 	$('#selectCity_filter_inve > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange_div_inve').toggle("show");
 });
@@ -343,7 +359,9 @@ $('#change_filter_gran_area_eva').change(function (event) {
 			$('#chanfe_filter_eva_area').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
-	$('#chanfe_filter_eva_area').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#discipline_filter_eva').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_eva > option[value="0"]').attr('selected', 'selected');
+	$('#chanfe_filter_eva_area').append('<option value="0" disabled="true"></option>');
 	$('#chanfe_filter_eva_area > option[value="0"]').attr('selected', 'selected');
 	$('#change_filter_eva_div').toggle("show");
 });
@@ -358,6 +376,8 @@ $('#chanfe_filter_eva_area').change(function (event) {
 			$('#discipline_filter_eva').append("<option value='"+response[i].id_tema+"'> "+ response[i].name_theme +" </option>");
 		}
 	});
+	$('#discipline_filter_eva').append('<option value="0" disabled="true"></option>');
+	$('#discipline_filter_eva > option[value="0"]').attr('selected', 'selected');
 	$('#div_change_disscipline_eva').toggle("show");
 });
 
@@ -371,7 +391,7 @@ $('#select_country_filter_eva').change(function(event){
 			$('#selectCity_filter_eva').append("<option value='"+response[i].id_lugar+"'> "+ response[i].name_lugar +" </option>");
 		}
 	});
-	$('#selectCity_filter_eva').append('<option value="0" disabled="true">Ninguno</option>');
+	$('#selectCity_filter_eva').append('<option value="0" disabled="true"></option>');
 	$('#selectCity_filter_eva > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange_div_eva').toggle("show");
 });

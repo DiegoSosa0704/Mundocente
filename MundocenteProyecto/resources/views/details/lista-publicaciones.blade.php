@@ -53,7 +53,7 @@
                                 <a class="ui blue right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Convocatoria</a>
                                 @elseif($publication->id_type_publication==2)
                                 <a class="ui green right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"> <i class="linkify icon"></i>Revista</a>
-                                @elseif($publication->id_type_publication==2)
+                                @elseif($publication->id_type_publication==3)
                                 <a class="ui red right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Evento</a>
                                 @else
                                 <a class="ui orange right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Solicitud</a>

@@ -134,9 +134,20 @@ Route::get('publicaciones-resultados', 'ResultController@publications');
 
 
 //Filtros
-Route::post('buscar-convocatorias', 'FilterController@buscarconocatorias');
-Route::get('buscar-convocatorias', 'ResultController@publications');
+Route::post('resultados-convocatorias', 'FilternnouceentController@buscarconocatorias');
+Route::get('resultados-convocatorias', 'ResultController@publications');
 
+Route::post('solicitud-evaluadores', 'FilterEvaController@buscarevaluadores');
+Route::get('solicitud-evaluadores', 'ResultController@publications');
+
+Route::post('resultados-eventos', 'FilterEventController@buscareventos');
+Route::get('resultados-eventos', 'ResultController@publications');
+
+Route::post('solicitud-proyectos', 'FilterInveController@buscarsolicitudesInve');
+Route::get('solicitud-proyectos', 'ResultController@publications');
+
+Route::post('resultados-revistas', 'FilterPaperController@buscarrevistas');
+Route::get('resultados-revistas', 'ResultController@publications');
 
 
 

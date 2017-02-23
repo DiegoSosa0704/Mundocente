@@ -10,8 +10,9 @@
                         
 
 
-                            {!!Form::open(['url'=>'buscar-convocatorias', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
+                            {!!Form::open(['url'=>'resultados-convocatorias', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
                             <div class="field">
+                            <input type="hidden" name="type_filter_search_annoucement" value="1">
                                 <div class="required field">
                                     <label>Gran área</label>
                                     <select name="large_area_filter_annoucement" id="change_filter_gran_area_annoucement" class="ui search dropdown" >
@@ -29,8 +30,8 @@
                                 </div>
                                 <div class="field" id="div_change_disscipline_annoucement">
                                     <label>Disciplina</label>
-                                    <select name="discipline_filter_annoucement_name[]" class="ui search dropdown multiple" multiple="true" id="discipline_filter_annoucement">
-                                        <option value="">Seleccione Disciplinas</option>
+                                    <select name="discipline_filter_annoucement_name" class="ui search dropdown" id="discipline_filter_annoucement">
+                                        <option value="">Seleccione Disciplina</option>
                                         
                                     </select>
                                 </div>
@@ -90,8 +91,9 @@
 
                     <div id="filter_paper" class="ui padded fixed sticky sticky-filter segment">
                         <div class="ui green top left attached label">Filtro de Revistas</div>
-                        <div class="ui small form">
+                        {!!Form::open(['url'=>'resultados-revistas', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
                             <div class="field">
+                            <input type="hidden" name="type_filter_search_paper" value="2">
                                 <div class="field">
                                     <label>Gran área</label>
                                     <select name="large_area_filter_paper" class="ui search dropdown" id="change_filter_gran_area_paper">
@@ -109,8 +111,8 @@
                                 </div>
                                 <div class="field" id="div_change_disscipline_paper">
                                     <label>Disciplina</label>
-                                    <select name="discipline_paper_filter" class="ui search dropdown multiple" multiple="true" id="discipline_filter_paper">
-                                        <option value="">Seleccione Disciplinas</option>
+                                    <select name="discipline_paper_filter" class="ui search dropdown" id="discipline_filter_paper">
+                                        <option value="">Seleccione Disciplina</option>
                                     </select>
                                 </div>
                             </div>
@@ -157,7 +159,7 @@
                               <i class="search icon"></i>
                               Buscar
                             </button>
-                        </div>
+                        {!!Form::close()!!}
                     </div>
 
 
@@ -170,8 +172,9 @@
 
                     <div id="filter_event" class="ui padded fixed sticky sticky-filter segment"  style="display: none;">
                         <div class="ui red top left attached label">Filtro de Eventos</div>
-                        <div class="ui small form">
+                        {!!Form::open(['url'=>'resultados-eventos', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
                             <div class="field">
+                            <input type="hidden" name="type_filter_search_event" value="3">
                                 <div class="field">
                                     <label>Seleccione Gran área</label>
                                     <select name="large_area_event_filter" class="ui search dropdown" id="change_filter_gran_area_event">
@@ -188,8 +191,8 @@
                                     </select>
                                 </div>
                                 <div class="field" id="div_change_disscipline_event">
-                                    <label>Seleccione Disciplinas</label>
-                                    <select name="discipline_event_filter" class="ui search dropdown multiple" multiple="true" id="discipline_filter_event">
+                                    <label>Seleccione Disciplina</label>
+                                    <select name="discipline_event_filter" class="ui search dropdown" id="discipline_filter_event">
                                         <option value="">Disciplina</option>
                                     </select>
                                 </div>
@@ -222,7 +225,7 @@
                               <i class="search icon"></i>
                               Buscar
                             </button>
-                        </div>
+                        {!!Form::close()!!}
                     </div>
 
 
@@ -240,8 +243,9 @@
 
                     <div id="filter_request_investigator" class="ui padded fixed sticky sticky-filter segment"  style="display: none;">
                         <div class="ui orange top left attached label">Filtro de Solicitud a investigadores</div>
-                        <div class="ui small form">
+                        {!!Form::open(['url'=>'solicitud-proyectos', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
                             <div class="field">
+                            <input type="hidden" name="type_filter_search_inve" value="4">
                                 <div class="field">
                                     <label>Gran área</label>
                                     <select name="large_area_request_inve_filter" class="ui search dropdown" id="change_filter_gran_area_inve">
@@ -259,8 +263,8 @@
                                 </div>
                                 <div class="field" id="div_change_disscipline_inve">
                                     <label>Disciplina</label>
-                                    <select name="discipline_request_inve_filter" class="ui search dropdown multiple" multiple="true" id="discipline_filter_inve">
-                                        <option value="">Seleccione Disciplinas</option>
+                                    <select name="discipline_request_inve_filter" class="ui search dropdown" id="discipline_filter_inve">
+                                        <option value="">Seleccione Disciplina</option>
                                     </select>
                                 </div>
                             </div>
@@ -292,7 +296,7 @@
                               <i class="search icon"></i>
                               Buscar
                             </button>
-                        </div>
+                        {!!Form::close()!!}
                     </div>
 
 
@@ -309,8 +313,9 @@
 
                     <div id="filter_request_evaluator" class="ui padded fixed sticky sticky-filter segment"  style="display: none;">
                         <div class="ui orange top left attached label">Filtro de Solicitud a evaluadores</div>
-                        <div class="ui small form">
+                        {!!Form::open(['url'=>'solicitud-evaluadores', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
                             <div class="field">
+                            <input type="hidden" name="type_filter_search_eva" value="5">
                                 <div class="field">
                                     <label>Gran área</label>
                                     <select name="large_area_request_eva_filter" class="ui search dropdown" id="change_filter_gran_area_eva">
@@ -328,8 +333,8 @@
                                 </div>
                                 <div class="field" id="div_change_disscipline_eva">
                                     <label>Disciplina</label>
-                                    <select name="discipline_request_eva_filter" class="ui search dropdown multiple" multiple="true" id="discipline_filter_eva">
-                                        <option value="">Seleccione Disciplinas</option>
+                                    <select name="discipline_request_eva_filter" class="ui search dropdown" id="discipline_filter_eva">
+                                        <option value="">Seleccione Disciplina</option>
                                     </select>
                                 </div>
                             </div>
@@ -361,7 +366,7 @@
                               <i class="search icon"></i>
                               Buscar
                             </button>
-                        </div>
+                        {!!Form::close()!!}
                     </div>
 
 
