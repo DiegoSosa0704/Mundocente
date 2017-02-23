@@ -22,21 +22,20 @@
             <a class="item" data-tab="disable-publication">Publicaciones Inhabilitadas</a>
         </div>
         <div class="ui tab segment active" data-tab="publication" >
-            <table class="ui purple compact celled definition unstackable sortable table">
+            <table class="ui sortable celled unstackable table">
                 <thead class="full-width">
                 <tr class="center aligned">
-                    <th rowspan="2">Id</th>
-                    <th rowspan="2">Tipo</th>
-                    <th colspan="2">Usuario Publicador</th>
-                    <th rowspan="2">Título</th>
-                    <th rowspan="2">Sector</th>
-                    <th rowspan="2">Institución</th>
-                    <th rowspan="2">Estado Publicación</th>
-                    <th rowspan="2">Editar</th>
+                    <th>Id</th>
+                    <th>Tipo</th>
+                    <th>Nombre Publicador</th>
+                    <th>E-Mail Publicador</th>
+                    <th>Título</th>
+                    <th>Sector</th>
+                    <th>Institución</th>
+                    <th>Estado Publicación</th>
+                    <th>Editar</th>
                 </tr>
                 <tr class="center aligned">
-                    <th>Nombre</th>
-                    <th>E-Mail</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,7 +45,7 @@
                     <td>Diego</td>
                     <td>Diego</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Escolar</td>
+                    <td>a</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
@@ -61,11 +60,11 @@
                 </tr>
                 <tr class="center aligned">
                     <td>3</td>
-                    <td>Revista</td>
+                    <td>aRevista</td>
                     <td>Luis</td>
                     <td>Luis</td>
-                    <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
+                    <td>aLas Cebollas Crecen  </td>
+                    <td>b</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
@@ -84,8 +83,8 @@
                     <td>Marta</td>
                     <td>Marta</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
-                    <td>UPTC</td>
+                    <td>c</td>
+                    <td>aUPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
                             <i class="edit icon"></i> Inhabilitar
@@ -103,7 +102,7 @@
                     <td>Zapato</td>
                     <td>Zapato</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
+                    <td>d</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
@@ -140,21 +139,20 @@
             </table>
         </div>
         <div class="ui tab segment" data-tab="denounced-publication" >
-            <table class="ui purple compact celled definition unstackable sortable table">
+            <table class="ui sortable celled unstackable table">
                 <thead class="full-width">
                 <tr class="center aligned">
-                    <th rowspan="2">Id</th>
-                    <th rowspan="2">Tipo</th>
-                    <th colspan="2">Usuario Publicador</th>
-                    <th rowspan="2">Título</th>
-                    <th rowspan="2">Sector</th>
-                    <th rowspan="2">Institución</th>
-                    <th rowspan="2">Estado Publicación</th>
-                    <th rowspan="2">Editar</th>
+                    <th>Id</th>
+                    <th>Tipo</th>
+                    <th>Nombre Publicador</th>
+                    <th>E-Mail Publicador</th>
+                    <th>Título</th>
+                    <th>Sector</th>
+                    <th>Institución</th>
+                    <th>Estado Publicación</th>
+                    <th>Editar</th>
                 </tr>
                 <tr class="center aligned">
-                    <th>Nombre</th>
-                    <th>E-Mail</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -164,7 +162,7 @@
                     <td>Diego</td>
                     <td>Diego</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Escolar</td>
+                    <td>a</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
@@ -179,11 +177,11 @@
                 </tr>
                 <tr class="center aligned">
                     <td>3</td>
-                    <td>Revista</td>
+                    <td>aRevista</td>
                     <td>Luis</td>
                     <td>Luis</td>
-                    <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
+                    <td>aLas Cebollas Crecen  </td>
+                    <td>b</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
@@ -202,8 +200,8 @@
                     <td>Marta</td>
                     <td>Marta</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
-                    <td>UPTC</td>
+                    <td>c</td>
+                    <td>aUPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
                             <i class="edit icon"></i> Inhabilitar
@@ -221,7 +219,7 @@
                     <td>Zapato</td>
                     <td>Zapato</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
+                    <td>d</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">
@@ -258,31 +256,87 @@
             </table>
         </div>
         <div class="ui tab segment" data-tab="disable-publication" >
-            <table class="ui purple compact celled definition unstackable sortable table">
+            <table class="ui sortable celled unstackable table">
                 <thead class="full-width">
                 <tr class="center aligned">
-                    <th rowspan="2">Id</th>
-                    <th rowspan="2">Tipo</th>
-                    <th colspan="2">Usuario Publicador</th>
-                    <th rowspan="2">Título</th>
-                    <th rowspan="2">Sector</th>
-                    <th rowspan="2">Institución</th>
-                    <th rowspan="2">Estado Publicación</th>
-                    <th rowspan="2">Editar</th>
+                    <th>Id</th>
+                    <th>Tipo</th>
+                    <th>Nombre Publicador</th>
+                    <th>E-Mail Publicador</th>
+                    <th>Título</th>
+                    <th>Sector</th>
+                    <th>Institución</th>
+                    <th>Estado Publicación</th>
+                    <th>Editar</th>
                 </tr>
                 <tr class="center aligned">
-                    <th>Nombre</th>
-                    <th>E-Mail</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="center aligned">
-                    <td>02345435341</td>
+                    <td>2</td>
                     <td>Revista</td>
-                    <td>Edison</td>
-                    <td>Edison.solano@uptc.edu.co</td>
+                    <td>Diego</td>
+                    <td>Diego</td>
                     <td>Las Cebollas Crecen </td>
-                    <td>Universitario</td>
+                    <td>a</td>
+                    <td>UPTC</td>
+                    <td class="collapsing">
+                        <div class="ui right floated small  labeled icon  color_3 color_3 button">
+                            <i class="edit icon"></i> Habilitar
+                        </div>
+                    </td>
+                    <td class="collapsing">
+                        <div class="ui right floated small  labeled icon button-edit-publication color_3 color_3 button">
+                            <i class="edit icon"></i> Editar
+                        </div>
+                    </td>
+                </tr>
+                <tr class="center aligned">
+                    <td>3</td>
+                    <td>aRevista</td>
+                    <td>Luis</td>
+                    <td>Luis</td>
+                    <td>aLas Cebollas Crecen  </td>
+                    <td>b</td>
+                    <td>UPTC</td>
+                    <td class="collapsing">
+                        <div class="ui right floated small  labeled icon  color_3 color_3 button">
+                            <i class="edit icon"></i> Habilitar
+                        </div>
+                    </td>
+                    <td class="collapsing">
+                        <div class="ui right floated small  labeled icon button-edit-publication color_3 color_3 button">
+                            <i class="edit icon"></i> Editar
+                        </div>
+                    </td>
+                </tr>
+                <tr class="center aligned">
+                    <td>4</td>
+                    <td>Revista</td>
+                    <td>Marta</td>
+                    <td>Marta</td>
+                    <td>Las Cebollas Crecen </td>
+                    <td>c</td>
+                    <td>aUPTC</td>
+                    <td class="collapsing">
+                        <div class="ui right floated small  labeled icon  color_3 color_3 button">
+                            <i class="edit icon"></i> Habilitar
+                        </div>
+                    </td>
+                    <td class="collapsing">
+                        <div class="ui right floated small  labeled icon button-edit-publication color_3 color_3 button">
+                            <i class="edit icon"></i> Editar
+                        </div>
+                    </td>
+                </tr>
+                <tr class="center aligned">
+                    <td>5</td>
+                    <td>Revista</td>
+                    <td>Zapato</td>
+                    <td>Zapato</td>
+                    <td>Las Cebollas Crecen </td>
+                    <td>d</td>
                     <td>UPTC</td>
                     <td class="collapsing">
                         <div class="ui right floated small  labeled icon  color_3 color_3 button">

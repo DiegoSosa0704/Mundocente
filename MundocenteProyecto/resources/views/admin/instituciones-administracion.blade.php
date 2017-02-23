@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="column">
-        <table class="ui compact celled definition stackable table">
+        <table class="ui sortable celled unstackable table">
             <thead class="full-width">
             <tr class="center aligned">
                 <th>Id</th>

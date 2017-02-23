@@ -9,17 +9,16 @@
     <!-- Site Properties -->
     <title>Fixed Menu Example - Semantic</title>
 
+    {!!Html::script('js/jquery.min.js')!!}
+    {!!Html::script('http://code.jquery.com/jquery-latest.min.js')!!}
+    {!!Html::script('js/jquery.tablesort.js')!!}
     {!!Html::style('semantic/out/semantic.css')!!}
     {!!Html::style('css/scrollbar.css')!!}
     {!!Html::style('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.6/calendar.min.css')!!}
     {!!Html::style('css/style-inicio.css')!!}
-    {!!Html::script('js/jquery.min.js')!!}
-    {!!Html::script('http://code.jquery.com/jquery-latest.min.js')!!}
-    {!!Html::script('js/jquery.tablesort.js')!!}
     {!!Html::script('js/init.js')!!}
     {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/calendar.js')!!}
-
 
     <style type="text/css">
         body {
@@ -112,6 +111,9 @@
 @include('modals.modalAddPublication')
 @include('modals.modalEditPublication')
 
+{{--User--}}
+@include('modals.modalAddUser')
+@include('modals.modalEditUser')
 
 <script>
     $('.menu .item')
@@ -170,10 +172,23 @@
         ;
     });
 
+    /*Modal - Usuarios*/
+    $('.ui.button-user.button').on('click', function () {
+        $('.ui.modal.user')
+            .modal('show')
+        ;
+    });
+
+    $('.ui.button-edit-user.button').on('click', function () {
+        $('.ui.modal.edit-user')
+            .modal('show')
+        ;
+    });
+
     $('.ui.dropdown')
         .dropdown()
     ;
 
-    $('.table').tablesort();
+    $('.table').tablesort().data('tablesort');;
 </script>
 </html>
