@@ -147,7 +147,9 @@ public function searchDisciplinesAreasFilter($id_dicsiplina){
 
 
 
-
+public function searcIndex($idPublication){
+    return DB::table('revista_nivels')->where('id_publications_fk', $idPublication)->count();
+}
 
 
 
@@ -157,11 +159,10 @@ public function buscarrevistas(Request $request){
     $listResultArray = array();
     
 
+    echo "indexada: ".$request['indexed'];
+    if($request['indexed']=='all'){
 
-
-    if ($request['city_filter_city_paper']=='') {
-       
-       
+    if ($request['city_filter_city_paper']=='') {       
     if (isset($request['large_area_filter_paper'])) {
        
         if(!isset($request['area_paper_filter'])){
@@ -215,15 +216,7 @@ public function buscarrevistas(Request $request){
         }
         
     }
-
-
-
-
-
-
-
     }else{
-
          if ($request['institution_filter_isntitution_paper']=='') {
            
 
@@ -346,10 +339,466 @@ public function buscarrevistas(Request $request){
         }
 
 
+    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }else if($request['indexed']=='si'){
+
+    if ($request['city_filter_city_paper']=='') {       
+    if (isset($request['large_area_filter_paper'])) {
+       
+        if(!isset($request['area_paper_filter'])){
+
+            if(!isset($request['discipline_paper_filter']) ){
+    
+                 foreach ($this->searchLargeAreasFilter($request['large_area_filter_paper']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                        if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                        
+                }
+            }
+        }
+    }
+    if (isset($request['area_paper_filter'])) {
+        if(!isset($request['discipline_paper_filter']) ){
+
+            foreach ($this->searchAreasFilter($request['area_paper_filter']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+                
+        }
+    }
+    if (isset($request['discipline_paper_filter'])) {
+        if (isset($request['area_paper_filter'])){
+             foreach ($this->searchDisciplinesAreasFilter($request['discipline_paper_filter']) as $id_publi) {
+                $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                            ->get();
+                     if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+            }
+        }
+        
+    }
+
+
+
+
+
+
+
+    }else{
+
+         if ($request['institution_filter_isntitution_paper']=='') {
+           
+
+       
+          if (isset($request['large_area_filter_paper'])) {
+        if(!isset($request['area_paper_filter'])){
+
+            if(!isset($request['discipline_paper_filter']) ){
+    
+                 foreach ($this->searchLargeAreasFilter($request['large_area_filter_paper']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.id_lugar_fk', $request['city_filter_city_paper'])
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+            }
+        }
+    }
+    if (isset($request['area_paper_filter'])) {
+        if(!isset($request['discipline_paper_filter']) ){
+
+            foreach ($this->searchAreasFilter($request['area_paper_filter']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.id_lugar_fk', $request['city_filter_city_paper'])
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+                
+        }
+    }
+    if (isset($request['discipline_paper_filter'])) {
+        if (isset($request['area_paper_filter'])){
+             foreach ($this->searchDisciplinesAreasFilter($request['discipline_paper_filter']) as $id_publi) {
+                $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                            ->where('publicacions.id_lugar_fk', $request['city_filter_city_paper'])
+                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                            ->get();
+                     if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+            }
+        }
+        
+    }
+        }else{
+                     if (isset($request['large_area_filter_paper'])) {
+                    if(!isset($request['area_paper_filter'])){
+
+                        if(!isset($request['discipline_paper_filter']) ){
+                
+                             foreach ($this->searchLargeAreasFilter($request['large_area_filter_paper']) as $id_publi) {
+                                $publication_interest = DB::table('publicacions')
+                                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                            ->where('publicacions.id_institution_fk', $request['institution_filter_isntitution_paper'])
+                                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                            ->get();
+                                     if($this->searcIndex($id_publi->id_publication_fk)>0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                            }
+                        }
+                    }
+                }
+                if (isset($request['area_paper_filter'])) {
+                    if(!isset($request['discipline_paper_filter']) ){
+
+                        foreach ($this->searchAreasFilter($request['area_paper_filter']) as $id_publi) {
+                                $publication_interest = DB::table('publicacions')
+                                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                            ->where('publicacions.id_institution_fk', $request['institution_filter_isntitution_paper'])
+                                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                            ->get();
+                                     if($this->searcIndex($id_publi->id_publication_fk)>0){
+                                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                                        }
+                            }
+                            
+                    }
+                }
+                if (isset($request['discipline_paper_filter'])) {
+                    if (isset($request['area_paper_filter'])){
+                         foreach ($this->searchDisciplinesAreasFilter($request['discipline_paper_filter']) as $id_publi) {
+                            $publication_interest = DB::table('publicacions')
+                                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                        ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                        ->where('publicacions.id_institution_fk', $request['institution_filter_isntitution_paper'])
+                                        ->where('id_type_publication',$request['type_filter_search_paper'])
+                                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                        ->get();
+                                 if($this->searcIndex($id_publi->id_publication_fk)>0){
+                                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                                    }
+                        }
+                    }
+                    
+                }
+        }
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }else{
+
+    if ($request['city_filter_city_paper']=='') {       
+    if (isset($request['large_area_filter_paper'])) {
+       
+        if(!isset($request['area_paper_filter'])){
+
+            if(!isset($request['discipline_paper_filter']) ){
+    
+                 foreach ($this->searchLargeAreasFilter($request['large_area_filter_paper']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)==0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+            }
+        }
+    }
+    if (isset($request['area_paper_filter'])) {
+        if(!isset($request['discipline_paper_filter']) ){
+
+            foreach ($this->searchAreasFilter($request['area_paper_filter']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)==0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+                
+        }
+    }
+    if (isset($request['discipline_paper_filter'])) {
+        if (isset($request['area_paper_filter'])){
+             foreach ($this->searchDisciplinesAreasFilter($request['discipline_paper_filter']) as $id_publi) {
+                $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                            ->get();
+                     if($this->searcIndex($id_publi->id_publication_fk)==0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+            }
+        }
+        
+    }
+
+
+
+
+
+
+
+    }else{
+
+         if ($request['institution_filter_isntitution_paper']=='') {
+           
+
+       
+          if (isset($request['large_area_filter_paper'])) {
+        if(!isset($request['area_paper_filter'])){
+
+            if(!isset($request['discipline_paper_filter']) ){
+    
+                 foreach ($this->searchLargeAreasFilter($request['large_area_filter_paper']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.id_lugar_fk', $request['city_filter_city_paper'])
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)==0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+            }
+        }
+    }
+    if (isset($request['area_paper_filter'])) {
+        if(!isset($request['discipline_paper_filter']) ){
+
+            foreach ($this->searchAreasFilter($request['area_paper_filter']) as $id_publi) {
+                    $publication_interest = DB::table('publicacions')
+                                ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                ->where('publicacions.id_lugar_fk', $request['city_filter_city_paper'])
+                                ->where('id_type_publication',$request['type_filter_search_paper'])
+                                ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                ->get();
+                         if($this->searcIndex($id_publi->id_publication_fk)==0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+                }
+                
+        }
+    }
+    if (isset($request['discipline_paper_filter'])) {
+        if (isset($request['area_paper_filter'])){
+             foreach ($this->searchDisciplinesAreasFilter($request['discipline_paper_filter']) as $id_publi) {
+                $publication_interest = DB::table('publicacions')
+                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                            ->where('publicacions.id_lugar_fk', $request['city_filter_city_paper'])
+                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                            ->get();
+                     if($this->searcIndex($id_publi->id_publication_fk)==0){
+                            $listResultArray = array_merge($publication_interest, $listResultArray);
+                        }
+            }
+        }
+        
+    }
+
+
+        }else{
+
+           
+                     if (isset($request['large_area_filter_paper'])) {
+                    if(!isset($request['area_paper_filter'])){
+
+                        if(!isset($request['discipline_paper_filter']) ){
+                
+                             foreach ($this->searchLargeAreasFilter($request['large_area_filter_paper']) as $id_publi) {
+                                $publication_interest = DB::table('publicacions')
+                                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                            ->where('publicacions.id_institution_fk', $request['institution_filter_isntitution_paper'])
+                                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                            ->get();
+                                     if($this->searcIndex($id_publi->id_publication_fk)==0){
+                                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                                    }
+                            }
+                        }
+                    }
+                }
+                if (isset($request['area_paper_filter'])) {
+                    if(!isset($request['discipline_paper_filter']) ){
+
+                        foreach ($this->searchAreasFilter($request['area_paper_filter']) as $id_publi) {
+                                $publication_interest = DB::table('publicacions')
+                                            ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                            ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                            ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                            ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                            ->where('publicacions.id_institution_fk', $request['institution_filter_isntitution_paper'])
+                                            ->where('id_type_publication',$request['type_filter_search_paper'])
+                                            ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                            ->get();
+                                     if($this->searcIndex($id_publi->id_publication_fk)==0){
+                                        $listResultArray = array_merge($publication_interest, $listResultArray);
+                                    }
+                            }
+                            
+                    }
+                }
+                if (isset($request['discipline_paper_filter'])) {
+                    if (isset($request['area_paper_filter'])){
+                         foreach ($this->searchDisciplinesAreasFilter($request['discipline_paper_filter']) as $id_publi) {
+                            $publication_interest = DB::table('publicacions')
+                                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                                        ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                                        ->where('publicacions.id_institution_fk', $request['institution_filter_isntitution_paper'])
+                                        ->where('id_type_publication',$request['type_filter_search_paper'])
+                                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                                        ->get();
+                                         if($this->searcIndex($id_publi->id_publication_fk)==0){
+                                                $listResultArray = array_merge($publication_interest, $listResultArray);
+                                            }
+                        }
+                    }
+                    
+                }
+        }
+
+
+    }
+
+    }
+
+
+
 
 
 

@@ -143,17 +143,24 @@
                             <div class="grouped fields">
                                 <label>Indexada</label>
                                 <div class="field">
+                                    <div class="ui radio checkbox checked">
+                                        <input type="radio" name="indexed" checked="checked" value="all">
+                                        <label>Todo</label>
+                                    </div>
+                                </div>
+                                <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" name="indexed">
+                                        <input type="radio" name="indexed" value="si">
                                         <label>Si</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
-                                        <input type="radio" name="indexed">
+                                        <input type="radio" name="indexed" value="no">
                                         <label>No</label>
                                     </div>
                                 </div>
+                                
                             </div>
                             <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;">
                               <i class="search icon"></i>
