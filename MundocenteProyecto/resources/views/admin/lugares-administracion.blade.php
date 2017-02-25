@@ -1,3 +1,8 @@
+<?php
+$countrys = DB::table('lugars')->paginate(20);
+?>
+
+
 <div class="ui stackable equal width padded grid container">
     <div class="column">
         <h3 class="ui dividing header">Gestión De Lugares</h3>
@@ -19,110 +24,39 @@
         <table class="ui sortable celled unstackable table">
             <thead class="full-width">
             <tr class="center aligned">
-                <th>Id</th>
+                <th>Lugar</th>
                 <th>Tipo</th>
-                <th>País</th>
-                <th>Ciudad</th>
-                <th>Editar</th>
+                <th>Acción</th>
             </tr>
             </thead>
             <tbody>
+
+            @foreach($countrys as $country)
+
             <tr class="center aligned">
-                <td>John Lilki</td>
-                <td>September 14, 2013</td>
-                <td>jhlilk22@yahoo.com</td>
-                <td>No</td>
+                <td>{{$country->name_lugar}}</td>
+                @if($country->type_lugar=='country')
+                <td>País</td>
+                @endif
+                @if($country->type_lugar=='city')
+                <td>Ciudad</td>
+                @endif
                 <td class="collapsing">
                     <div class="ui right floated small  labeled icon button-edit-places color_3  color_3 button">
                         <i class="edit icon"></i> Editar
                     </div>
                 </td>
             </tr>
-            <tr class="center aligned">
-                <td>Jamie Harington</td>
-                <td>January 11, 2014</td>
-                <td>jamieharingonton@yahoo.com</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-places color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-places color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-places color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-places color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-places color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small labeled icon button-edit-places color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
+          @endforeach
+         
+          
             </tbody>
-            <tfoot class="full-width">
-            <tr>
-                <th colspan="5">
-                    <div class="ui right floated pagination menu">
-                        <a class="icon item">
-                            <i class="left chevron icon"></i>
-                        </a>
-                        <a class="item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
-                        <a class="icon item">
-                            <i class="right chevron icon"></i>
-                        </a>
-                    </div>
-                </th>
-            </tr>
-            </tfoot>
+            
+
+            
         </table>
+        <tfoot class="full-width">
+        <div>{!!$countrys->render()!!}</div>
+        </tfoot>
     </div>
 </div>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>Fixed Menu Example - Semantic</title>
+    <title>Administrador - Mundocente</title>
 
     {!!Html::script('js/jquery.min.js')!!}
     {!!Html::script('http://code.jquery.com/jquery-latest.min.js')!!}

@@ -1,3 +1,8 @@
+<?php
+$niveles = DB::table('nivels')
+        ->join('indices','nivels.id_index_fk','=','indices.id_index')
+        ->paginate(20);
+?>
 <div class="ui stackable equal width padded grid container">
     <div class="column">
         <h3 class="ui dividing header">Gestión de índices de revistas</h3>
@@ -19,102 +24,29 @@
         <table class="ui sortable celled unstackable table">
             <thead class="full-width">
             <tr class="center aligned">
-                <th>Id</th>
                 <th>Índice</th>
-                <th>Nivel</th>
-                <th>Editar</th>
+                <th>niveles</th>
+                <th>Acción</th>
             </tr>
             </thead>
             <tbody>
+
+            @foreach($niveles as $index)
             <tr class="center aligned">
-                <td>John Lilki</td>
-                <td>September 14, 2013</td>
-                <td>jhlilk22@yahoo.com</td>
+                <td>{{$index->name_index}}</td>
+                <td>{{$index->value_level}}</td>
                 <td class="collapsing">
                     <div class="ui right floated small  labeled icon button-edit-indice color_3  color_3 button">
                         <i class="edit icon"></i> Editar
                     </div>
                 </td>
             </tr>
-            <tr class="center aligned">
-                <td>Jamie Harington</td>
-                <td>January 11, 2014</td>
-                <td>jamieharingonton@yahoo.com</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-indice color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-indice color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-indice color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-indice color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-indice color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td class="collapsing">
-                    <div class="ui right floated small labeled icon button-edit-indice color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
+            @endforeach
             </tbody>
-            <tfoot class="full-width">
-            <tr>
-                <th colspan="5">
-                    <div class="ui right floated pagination menu">
-                        <a class="icon item">
-                            <i class="left chevron icon"></i>
-                        </a>
-                        <a class="item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
-                        <a class="icon item">
-                            <i class="right chevron icon"></i>
-                        </a>
-                    </div>
-                </th>
-            </tr>
-            </tfoot>
+        
         </table>
+        <tfoot class="full-width">
+            <div>{!!$niveles->render()!!}</div>
+        </tfoot>
     </div>
 </div>

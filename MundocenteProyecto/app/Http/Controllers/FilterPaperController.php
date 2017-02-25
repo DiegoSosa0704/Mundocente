@@ -159,7 +159,7 @@ public function buscarrevistas(Request $request){
     $listResultArray = array();
     
 
-    echo "indexada: ".$request['indexed'];
+    
     if($request['indexed']=='all'){
 
     if ($request['city_filter_city_paper']=='') {       

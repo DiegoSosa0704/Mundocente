@@ -1,3 +1,8 @@
+<?php  
+$instituciones = DB::table('institucions')
+        ->join('lugars', 'institucions.id_lugar_fk','=','lugars.id_lugar')
+        ->paginate(20);
+?>
 <div class="ui stackable equal width padded grid container">
     <div class="column">
         <h3 class="ui dividing header">Gestión de Instituciones</h3>
@@ -19,126 +24,41 @@
         <table class="ui sortable celled unstackable table">
             <thead class="full-width">
             <tr class="center aligned">
-                <th>Id</th>
+                <th>nombre</th>
                 <th>Sector</th>
-                <th>País</th>
+                <th>Teléfono</th>
                 <th>Ciudad</th>
-                <th>Nombre</th>
                 <th>Estado</th>
-                <th>Editar</th>
+                <th>Acción</th>
             </tr>
             </thead>
             <tbody>
+
+            @foreach($instituciones as $institution)
             <tr class="center aligned">
-                <td>John Lilki</td>
-                <td>September 14, 2013</td>
-                <td>jhlilk22@yahoo.com</td>
-                <td>No</td>
-                <td>No</td>
-                <td>No</td>
+                <td>{{$institution->name_institution}}</td>
+                @if($institution->setor_institution=='universitario')
+                <td>Universitario</td>
+                @else
+                <td>Preescolar, Básica y Media</td>
+                @endif
+                <td>{{$institution->telephone_institution}}</td>
+                <td>{{$institution->name_lugar}}</td>
+                <td>{{$institution->state_institution}}</td>
                 <td class="collapsing">
                     <div class="ui right floated small  labeled icon button-edit-institution color_3 color_3 button">
                         <i class="edit icon"></i> Editar
                     </div>
                 </td>
             </tr>
-            <tr class="center aligned">
-                <td>Jamie Harington</td>
-                <td>January 11, 2014</td>
-                <td>jamieharingonton@yahoo.com</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-institution color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-institution color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-institution color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-institution color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small  labeled icon button-edit-institution color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
-            <tr class="center aligned">
-                <td>Jill Lewis</td>
-                <td>May 11, 2014</td>
-                <td>jilsewris22@yahoo.com</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td class="collapsing">
-                    <div class="ui right floated small labeled icon button-edit-institution color_3  button">
-                        <i class="edit icon"></i> Editar
-                    </div>
-                </td>
-            </tr>
+            @endforeach
+    
             </tbody>
-            <tfoot class="full-width">
-            <tr>
-                <th colspan="7">
-                    <div class="ui right floated pagination menu">
-                        <a class="icon item">
-                            <i class="left chevron icon"></i>
-                        </a>
-                        <a class="item">1</a>
-                        <a class="item">2</a>
-                        <a class="item">3</a>
-                        <a class="item">4</a>
-                        <a class="icon item">
-                            <i class="right chevron icon"></i>
-                        </a>
-                    </div>
-                </th>
-            </tr>
-            </tfoot>
+
+          
         </table>
+        <tfoot class="full-width">
+            <div>{!!$instituciones->render()!!}</div>
+        </tfoot>
     </div>
 </div>
