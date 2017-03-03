@@ -60,6 +60,13 @@
                             <div class="detail" id="name_institute_title_select"></div>
                         </div>
                     </div>
+
+
+
+
+
+
+
                   
 
 
@@ -133,6 +140,27 @@
                     <input type="hidden" name="quantityindexlevel" id="idquantitypaperindex" value="{{$quantityIndex}}">
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')
                     <!--Areas de conocimiento-->
                     <h4 class="ui dividing header">Áreas de conocimiento</h4>
                     <div class="field" id="contentSelectArea">
@@ -149,17 +177,23 @@
                                           </tr></thead>
                                           <tbody id="show_details_area_select">
                                              
-                                                    
                                           </tbody>
                                         </table>
 
-                             <select class="ui fluid search dropdown multiple" multiple="true"
-                                    id="select_disciplina_formacion" style="color: #000;">
-                                <option value="">Seleccione área</option>
-                                @foreach($gran_areas as $gran_area)
-                                    <option value="{{$gran_area->id_tema}}"> {{$gran_area->name_theme}}</option>
-                                @endforeach
-                            </select>
+<select class="ui fluid search dropdown multiple" multiple="true" id="select_disciplina_formacion">
+
+@foreach($gran_areas as $gran_area)
+
+<option value="{{$gran_area->id_tema}}" >{{$gran_area->name_theme}}</option>
+    @foreach($call_methods_theme->call_areas($gran_area->id_tema) as $area)
+    <option value="{{$area->id_tema}}" > {{$gran_area->name_theme}} - {{$area->name_theme}}</option>
+         @foreach($call_methods_theme->call_disciplines($area->id_tema) as $disci)
+        <option value="{{$disci->id_tema}}" >{{$gran_area->name_theme}} - {{$area->name_theme}} - {{$disci->name_theme}}</option>
+        @endforeach
+    @endforeach
+    
+@endforeach
+</select>
                             
                         </div>
                     </div>

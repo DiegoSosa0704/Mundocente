@@ -84,6 +84,48 @@ class HomeController extends Controller
 
 
 
+    //muestra mi perfil y mis publicaciones
+    public function mostrarmiperfildeUsuario($id_user){
+    	
+
+        $institucionesVinvulado = $this->mispublicacionesdeUsuario($id_user);
+        $listPublications =  array();
+         $listPublicUser = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('id_user_fk', $id_user)
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
+                        ->orderBy('publicacions.created_at', 'desc')
+                        ->get();
+                        //echo "id: ".$id_user;
+
+                        $currentPageSearch = LengthAwarePaginator::resolveCurrentPage();
+			            $collection = new Collection($listPublicUser);
+			            $perPage = 30;        
+			            $currentPageSearchResultsSearch = $collection->slice(($currentPageSearch - 1) * $perPage, $perPage)->all();
+			            
+			            $listPublications = new LengthAwarePaginator(
+			            $currentPageSearchResultsSearch,
+			            count($collection),
+			            $perPage,
+			            Paginator::resolveCurrentPage(),
+			            ['path' => Paginator::resolveCurrentPath()]
+			            );
+			            
+                       //dd($listPublications);
+
+         $user_perfil = DB::table('users')->where('id', $id_user)->select('name', 'email', 'curriculo_url', 'photo_url', 'nivel_formacion')->get();
+         
+
+       return view('perfil.perfil-usuario', compact('listPublications', 'institucionesVinvulado', 'user_perfil'));
+    }
+
+
+
+
+
+
 
 
 
@@ -223,10 +265,20 @@ public function verdetallesSolicitud(){
 public function callLocationCountry(){
     return DB::table('lugars')->where('type_lugar','country')->get();
 }
-
 public function callLargesAreasTheme(){
-    return DB::table('temas')->where('type_theme', 'disciplina')->select('temas.*')->get();
+    return DB::table('temas')->where('type_theme', 'gran_area')->where('id_tema', '!=','1')->get();
 }
+
+public function call_areas($id_area){
+	return DB::table('temas')->where('type_theme', 'area')->where('id_tema_area', $id_area)->get();
+}
+public function call_disciplines($id_area){
+	return DB::table('temas')->where('type_theme', 'disciplina')->where('id_tema_area', $id_area)->get();
+}
+
+//public function callLargesAreasTheme(){
+    //return DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina, ag.type_theme as tipo_area_gran, aa.type_theme as tipo_area, ad.type_theme as tipo_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema');
+//}
 public function callInstitutionMy(){
     return DB::table('vinculacions')
             ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
@@ -268,21 +320,36 @@ public function callInstitutionMy(){
 
        
 
-$areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
+$areas_all = DB::table('temas')->where('type_theme', 'gran_area')->get();
 
 
         $disciplina_de_formacion = DB::table('areas_formacions')
             ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
             ->join('users', 'areas_formacions.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'disciplina')
             ->select('temas.id_tema')
             ->get();
 
         $listaAreaFormation = array();
 
         foreach ($disciplina_de_formacion as $area_formation) {
-            $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$area_formation->id_tema);
+            //$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$area_formation->id_tema);
+                	$gran = DB::table('temas')->where('id_tema', $area_formation->id_tema)->get();
+                	foreach ($gran as $g) {
+        		
+        		if ($g->type_theme=='gran_area') {
+
+        			$areas = DB::select('select id_tema as id_tema_gran, name_theme as name_tema_gran, type_theme
+        				from temas 
+        				where id_tema='.$g->id_tema);
+        		}else if ($g->type_theme=='area') {
+        			$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, aa.type_theme from temas ag, temas aa where aa.id_tema_area=ag.id_tema and aa.id_tema='.$g->id_tema);
+        		}else if ($g->type_theme=='disciplina') {
+        			$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina, ad.type_theme from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$g->id_tema);
+        		}
+        	}
+
+
                 $listaAreaFormation = array_merge($areas, $listaAreaFormation);
         }
 
@@ -292,17 +359,36 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
             ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
             ->join('users', 'areas_interes.id_user_fk', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
-            ->where('temas.type_theme', 'disciplina')
             ->select('temas.id_tema')
             ->get();
 
         $listaAreaInterest = array();
 
         foreach ($disciplina_de_interest as $area_formation) {
-            $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$area_formation->id_tema);
+           // $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$area_formation->id_tema);
+                
+
+
+            $gran = DB::table('temas')->where('id_tema', $area_formation->id_tema)->get();
+        	
+        	foreach ($gran as $g) {
+        		
+        		if ($g->type_theme=='gran_area') {
+
+        			$areas = DB::select('select id_tema as id_tema_gran, name_theme as name_tema_gran, type_theme
+        				from temas 
+        				where id_tema='.$g->id_tema);
+        		}else if ($g->type_theme=='area') {
+        			$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, aa.type_theme from temas ag, temas aa where aa.id_tema_area=ag.id_tema and aa.id_tema='.$g->id_tema);
+        		}else if ($g->type_theme=='disciplina') {
+        			$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina, ad.type_theme from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$g->id_tema);
+        		}
+        	}
+
                 $listaAreaInterest = array_merge($areas, $listaAreaInterest);
         }
 
+        //dd($listaAreaInterest);
 
 
 
@@ -330,6 +416,18 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
 
 
 
+
+ public function mispublicacionesdeUsuario($id_user){
+       $mispublicaciones =  DB::table('vinculacions')
+            ->join('institucions', 'vinculacions.id_institution_fk', '=', 'institucions.id_institution')
+            ->join('users', 'vinculacions.id_user_fk', '=', 'users.id')
+            ->where('users.id', $id_user)
+            ->select('institucions.*')
+            ->get();
+
+        return $mispublicaciones;
+
+    }
 
 
 
@@ -393,7 +491,22 @@ $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
      */
     public function obtenerAreas(Request $request, $id_area){
         if($request->ajax()){
-            $areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$id_area);
+        	$gran = DB::table('temas')->where('id_tema', $id_area)->get();
+        	
+        	foreach ($gran as $g) {
+        		
+        		if ($g->type_theme=='gran_area') {
+
+        			$areas = DB::select('select id_tema as id_tema_gran, name_theme as name_tema_gran
+        				from temas 
+        				where id_tema='.$id_area);
+        		}else if ($g->type_theme=='area') {
+        			$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area from temas ag, temas aa where aa.id_tema_area=ag.id_tema and aa.id_tema='.$id_area);
+        		}else if ($g->type_theme=='disciplina') {
+        			$areas = DB::select('select ag.id_tema as id_tema_gran, aa.id_tema as id_tema_area, ad.id_tema as id_tema_disciplina, ag.name_theme as name_tema_gran, aa.name_theme as name_tema_area, ad.name_theme as name_tema_disciplina from temas ag, temas aa, temas ad where ad.id_tema_area=aa.id_tema and aa.id_tema_area=ag.id_tema and ad.id_tema='.$id_area);
+        		}
+        	}
+            
             return response()->json($areas);
         }
     }

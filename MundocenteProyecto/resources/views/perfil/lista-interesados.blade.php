@@ -20,7 +20,7 @@
 					  <div class="item">
 					    <img class="ui avatar image" src="{{$usersInterest->photo_url}}">
 					    <div class="content">
-					      <a class="header">A {{$usersInterest->name}}</a>
+					         <a class="header" type="submit" href="usuario/{{$usersInterest->id}}" >A {{$usersInterest->name}}</a>
 					      <div class="description">Le interesó la publicación: <a><b>{{$usersInterest->title_publication}}</b></a></div>
 					    </div>
 					  </div>

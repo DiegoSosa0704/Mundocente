@@ -100,7 +100,7 @@
             <div class="title">
                 <h1 class="ui header inverted" style="font-size: 4em; color: #F2EDE4;">
                     Mundocente
-                    <div class="sub header" style="color: #CC4452; font-size: 0.45em;">La Web de los docentes
+                    <div class="sub header" style="color: #CC4452; font-size: 0.45em;">En construcción, La Web de los docentes
                         investigadores
                     </div>
                 </h1>

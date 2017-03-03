@@ -397,6 +397,11 @@
                 </div>
 
 
+
+
+
+
+@inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')
                 {{--Áreas de formación--}}
                 <div class="title">
                     <i class="dropdown icon"></i>
@@ -409,8 +414,15 @@
 
                                 <select class="ui fluid search dropdown" id="select_areas_general_search_formation">
                                     <option value="">Ingrese sus áreas de formación</option>
-                                    @foreach($areas_all as $area)
-                                        <option value="{{$area->id_tema}}"> {{$area->name_theme}}</option>
+                                    @foreach($areas_all as $gran_area)
+                                        
+<option value="{{$gran_area->id_tema}}" >{{$gran_area->name_theme}}</option>
+    @foreach($call_methods_theme->call_areas($gran_area->id_tema) as $area)
+    <option value="{{$area->id_tema}}" > {{$gran_area->name_theme}} - {{$area->name_theme}}</option>
+         @foreach($call_methods_theme->call_disciplines($area->id_tema) as $disci)
+        <option value="{{$disci->id_tema}}" >{{$gran_area->name_theme}} - {{$area->name_theme}} - {{$disci->name_theme}}</option>
+        @endforeach
+    @endforeach
                                     @endforeach
                                 </select>
                                 <br>
@@ -426,7 +438,8 @@
                                     </thead>
                                     <tbody id="add_temas_formation">
                                     @foreach($listaAreaFormation as $disciplina_formacion)
-                                        <tr id="table_tr_new_area_formation{{$disciplina_formacion->id_tema_disciplina}}">
+                                            @if($disciplina_formacion->type_theme=='disciplina')
+                                     <tr id="table_tr_new_area_formation{{$disciplina_formacion->id_tema_disciplina}}">
                                             <td> {{$disciplina_formacion->name_tema_gran}} </td>
                                             <td>{{$disciplina_formacion->name_tema_area}} </td>
                                             <td> {{$disciplina_formacion->name_tema_disciplina}} </td>
@@ -434,6 +447,25 @@
                                                    onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_disciplina}})'>Eliminar</a>
                                             </td>
                                         </tr>
+                                    @elseif($disciplina_formacion->type_theme=='area')
+                                    <tr id="table_tr_new_area_formation{{$disciplina_formacion->id_tema_area}}">
+                                            <td> {{$disciplina_formacion->name_tema_gran}} </td>
+                                            <td>{{$disciplina_formacion->name_tema_area}} </td>
+                                            <td> - </td>
+                                            <td><a class='ui label button color_3'
+                                                   onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_area}})'>Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    @else
+                                    <tr id="table_tr_new_area_formation{{$disciplina_formacion->id_tema_gran}}">
+                                            <td> {{$disciplina_formacion->name_tema_gran}} </td>
+                                            <td> - </td>
+                                            <td> - </td>
+                                            <td><a class='ui label button color_3'
+                                                   onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_gran}})'>Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    @endif
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -454,12 +486,25 @@
                         <div class="ui form">
                             <div class="field">
 
-                                <select class="ui fluid search dropdown" id="select_areas_general_search_interest">
-                                    <option value="">Ingrese sus áreas de interés</option>
-                                    @foreach($areas_all as $area)
-                                        <option value="{{$area->id_tema}}"> {{$area->name_theme}}</option>
-                                    @endforeach
-                                </select>
+                               
+
+
+
+<select class="ui fluid search dropdown " id="select_areas_general_search_interest">
+
+@foreach($areas_all as $gran_area)
+
+<option value="{{$gran_area->id_tema}}" >{{$gran_area->name_theme}}</option>
+    @foreach($call_methods_theme->call_areas($gran_area->id_tema) as $area)
+    <option value="{{$area->id_tema}}" > {{$gran_area->name_theme}} - {{$area->name_theme}}</option>
+         @foreach($call_methods_theme->call_disciplines($area->id_tema) as $disci)
+        <option value="{{$disci->id_tema}}" >{{$gran_area->name_theme}} - {{$area->name_theme}} - {{$disci->name_theme}}</option>
+        @endforeach
+    @endforeach
+    
+@endforeach
+</select>
+
                                 <br>
                                 <label><b>Seleccionados</b></label>
                                 <table class="ui celled table" id="table_areas_interest">
@@ -473,7 +518,8 @@
                                     </thead>
                                     <tbody id="add_temas_formation">
                                     @foreach($listaAreaInterest as $disciplina_interest)
-                                        <tr id="table_tr_new_area_interest{{$disciplina_interest->id_tema_disciplina}}">
+                                    @if($disciplina_interest->type_theme=='disciplina')
+                                     <tr id="table_tr_new_area_interest{{$disciplina_interest->id_tema_disciplina}}">
                                             <td> {{$disciplina_interest->name_tema_gran}} </td>
                                             <td>{{$disciplina_interest->name_tema_area}} </td>
                                             <td> {{$disciplina_interest->name_tema_disciplina}} </td>
@@ -481,6 +527,26 @@
                                                    onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_disciplina}})'>Eliminar</a>
                                             </td>
                                         </tr>
+                                    @elseif($disciplina_interest->type_theme=='area')
+                                    <tr id="table_tr_new_area_interest{{$disciplina_interest->id_tema_area}}">
+                                            <td> {{$disciplina_interest->name_tema_gran}} </td>
+                                            <td>{{$disciplina_interest->name_tema_area}} </td>
+                                            <td> - </td>
+                                            <td><a class='ui label button color_3'
+                                                   onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_area}})'>Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    @else
+                                    <tr id="table_tr_new_area_interest{{$disciplina_interest->id_tema_gran}}">
+                                            <td> {{$disciplina_interest->name_tema_gran}} </td>
+                                            <td> - </td>
+                                            <td> - </td>
+                                            <td><a class='ui label button color_3'
+                                                   onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_gran}})'>Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                       
                                     @endforeach
                                     </tbody>
                                 </table>
