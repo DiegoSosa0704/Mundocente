@@ -38,6 +38,12 @@
 			      <span>{{$user_peril->email}}</span>
 			      
 			    </div>
+                 <br>
+                <span>Nombre de usuario</span>
+                <div class="meta">
+                  <span>{{$user_peril->last_name}}</span>
+                  
+                </div>
 			    <br>
 			    <span>Link de mi Currículo</span>
 			    <a href="{{$user_peril->curriculo_url}}">{{$user_peril->curriculo_url}}</a>
@@ -48,6 +54,14 @@
 			      <span>{{$user_peril->nivel_formacion}}</span>
 			      
 			    </div>
+                <?php
+                $esmiperfil = 0;
+                ?>
+
+                @if(Auth::user()->id==$user_peril->id)
+                <?php $esmiperfil=1;?>
+                
+                @endif
                 @endforeach
 
 
@@ -70,7 +84,9 @@
                                     
                  <br>
                  <br>
-			    
+			    @if($esmiperfil==1)
+                <a href="editando-perfil">Editar perfil</a>
+                @endif
 			  </div>
 			</div>
             </div>

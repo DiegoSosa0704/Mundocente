@@ -108,12 +108,27 @@ OAuth::login('facebook',  function($user, $details) {
             $user->save();
         }
 
+        $numerRan = rand(5, 1000);
+
+            $emailAuth = $details->email;
+                $emailUser = $this->creation_user_name_diferent($emailAuth);
+                DB::table('users')
+                ->where('email', $details->email)
+                ->update(['last_name' => $emailUser.''.$numerRan]);
+
         });
-    return Redirect::to('publicaciones');
+    return Redirect::to('registration');
 
        
         
     }
+
+      public function creation_user_name_diferent($email){
+        $pos = strpos($email, "@");
+        $newName = iconv_substr($email,0,$pos);
+        return $newName;
+    }
+
 
 
 
@@ -156,8 +171,18 @@ OAuth::login('facebook',  function($user, $details) {
             $user->save();
         }
 
+
+
+        $numerRan = rand(5, 1000);
+
+            $emailAuth = $details->email;
+                $emailUser = $this->creation_user_name_diferent($emailAuth);
+                DB::table('users')
+                ->where('email', $details->email)
+                ->update(['last_name' => $emailUser.''.$numerRan]);
+
         });
-    return Redirect::to('publicaciones');
+    return Redirect::to('registration');
 
 
         
@@ -204,8 +229,16 @@ OAuth::login('facebook',  function($user, $details) {
             $user->save();
         }
 
+        $numerRan = rand(5, 1000);
+
+            $emailAuth = $details->email;
+                $emailUser = $this->creation_user_name_diferent($emailAuth);
+                DB::table('users')
+                ->where('email', $details->email)
+                ->update(['last_name' => $emailUser.''.$numerRan]);
+
         });
-    return Redirect::to('publicaciones');
+    return Redirect::to('registration');
      
         
         

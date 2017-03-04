@@ -18,12 +18,13 @@
 
 				@foreach($lista_interesados as $usersInterest)
 					  <div class="item">
-					    <img class="ui avatar image" src="{{$usersInterest->photo_url}}">
+					    <a href="{{$usersInterest->last_name}}"><img class="ui avatar image" src="{{$usersInterest->photo_url}}"></a>
 					    <div class="content">
-					         <a class="header" type="submit" href="usuario/{{$usersInterest->id}}" >A {{$usersInterest->name}}</a>
+					         <a class="header" type="submit" href="{{$usersInterest->last_name}}" >A {{$usersInterest->name}}</a>
 					      <div class="description">Le interesó la publicación: <a><b>{{$usersInterest->title_publication}}</b></a></div>
 					    </div>
 					  </div>
+					  <br>
 				@endforeach
 
 				</div>
@@ -48,9 +49,9 @@
 
 				@foreach($lista_denuncias as $usersInterest)
 					  <div class="item">
-					    <img class="ui avatar image" src="{{$usersInterest->photo_url}}">
+					   <a href="{{$usersInterest->last_name}}"> <img class="ui avatar image" src="{{$usersInterest->photo_url}}"></a>
 					    <div class="content">
-					      <a class="header">{{$usersInterest->name}}</a>
+					      <a class="header"  href="{{$usersInterest->last_name}}">{{$usersInterest->name}}</a>
 					      <div class="description">Ha denunciado la publicación: <a><b>{{$usersInterest->title_publication}}</b></a></div>
 					    </div>
 					  </div>

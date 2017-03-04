@@ -31,11 +31,18 @@
 			    <div class="header">{{Auth::user()->name}}</div>
 			    
 
+
 			    <div class="meta">
 			      <span>{{Auth::user()->email}}</span>
 			      
 			    </div>
 			    <br>
+                <span>Nombre de usuario</span>
+                <div class="meta">
+                  <span>{{Auth::user()->last_name}}</span>
+                  
+                </div>
+                <br>
 			    <span>Link de mi Currículo</span>
 			    <a href="{{Auth::user()->curriculo_url}}">{{Auth::user()->curriculo_url}}</a>
 			    <br>
@@ -45,6 +52,12 @@
 			      <span>{{Auth::user()->nivel_formacion}}</span>
 			      
 			    </div>
+
+                <span>Nombre de usuario</span>
+                <div class="meta">
+                  <span>{{Auth::user()->nivel_formacion}}</span>
+                  
+                </div>
 
 			    <br>
 			    

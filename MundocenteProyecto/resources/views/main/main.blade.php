@@ -54,7 +54,7 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
 
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
-        <div class="ui aligned center inverted tiny header"><a href="mi-peril" style="color: #fff;">{!!Auth::user()->name!!} {!!Auth::user()->last_name!!}</a></div>
+        <div class="ui aligned center inverted tiny header"><a href="mi-peril" style="color: #fff;">{!!Auth::user()->name!!} </a></div>
     </div>
     <a class=" item" href="publicaciones" id="optionMainHome" onclick="loadLine()">
         <i class="grid layout icon"></i> Inicio

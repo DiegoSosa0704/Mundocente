@@ -33,9 +33,7 @@ Route::get('mi-peril', 'HomeController@mostrarmiperfil');
 Route::get('mis-publicaciones-favoritas', 'HomeController@mostrarmispublicacionesfavoritas');
 Route::get('notificaciones', 'HomeController@mostrarinteresados');
 
-//perfil de usuario
-//Route::get('perfil-usuario', 'HomeController@mostrarmiperfildeUsuario');
-Route::get('usuario/{id_user}', 'HomeController@mostrarmiperfildeUsuario');
+
 
 
 
@@ -176,6 +174,16 @@ Route::get('publicaciones-administrador', 'AdminController@administradorpublicac
 
 
 Route::get('administration', 'AdminController@mainAdmin');
+
+
+
+
+
+
+
+//perfil de usuario
+//Route::get('perfil-usuario', 'HomeController@mostrarmiperfildeUsuario');
+Route::get('/{last_name}', 'HomeController@mostrarmiperfildeUsuario');
 
 
 

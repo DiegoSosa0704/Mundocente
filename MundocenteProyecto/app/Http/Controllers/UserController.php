@@ -99,16 +99,25 @@ public function callLargesAreasTheme(){
                 'state_user' => 'activo',
 
             ]);
+             
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-
+                $emailAuth = Auth::user()->email;
+                $emailUser = $this->creation_user_name_diferent($emailAuth);
+                DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['last_name' => $emailUser.''.Auth::user()->id]);
                 return Redirect::to('registration');
 
             }
         }
-
-
     }
 
+
+    public function creation_user_name_diferent($email){
+        $pos = strpos($email, "@");
+        $newName = iconv_substr($email,0,$pos);
+        return $newName;
+    }
 
 
 

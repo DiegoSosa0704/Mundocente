@@ -25,7 +25,7 @@ class HomeController extends Controller
 
 
     public function __construct(){
-        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud', 'mostrarmiperfil', 'mostrarmispublicacionesfavoritas', 'mostrarinteresados']]);
+        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud', 'mostrarmiperfil', 'mostrarmispublicacionesfavoritas', 'mostrarinteresados' ,'mostrarmiperfildeUsuario']]);
 
     }
 
@@ -85,11 +85,17 @@ class HomeController extends Controller
 
 
     //muestra mi perfil y mis publicaciones
-    public function mostrarmiperfildeUsuario($id_user){
+    public function mostrarmiperfildeUsuario($user_name){
     	
-
-        $institucionesVinvulado = $this->mispublicacionesdeUsuario($id_user);
+    	$id_user_search = DB::table('users')->where('last_name',$user_name)->get();
+    	$id_user = 0;
+    	foreach ($id_user_search as $user) {
+    		$id_user = $user->id;
+    	}
+    	if($id_user!=0){
+    	$institucionesVinvulado = $this->mispublicacionesdeUsuario($id_user);
         $listPublications =  array();
+
          $listPublicUser = DB::table('publicacions')
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
@@ -115,10 +121,15 @@ class HomeController extends Controller
 			            
                        //dd($listPublications);
 
-         $user_perfil = DB::table('users')->where('id', $id_user)->select('name', 'email', 'curriculo_url', 'photo_url', 'nivel_formacion')->get();
+         $user_perfil = DB::table('users')->where('id', $id_user)->select('name', 'email', 'curriculo_url', 'photo_url', 'nivel_formacion', 'last_name', 'id')->get();
          
 
        return view('perfil.perfil-usuario', compact('listPublications', 'institucionesVinvulado', 'user_perfil'));
+    	}else{
+    		return Redirect::to('NotFountPage/404/');
+    	}
+    	
+        
     }
 
 
@@ -196,16 +207,15 @@ class HomeController extends Controller
                         ->join('publicacions', 'interesados.id_publication_fk', '=', 'publicacions.id_publication')
                         ->join('users', 'interesados.id_user_fk', '=', 'users.id')
                         ->where('publicacions.id_user_fk', Auth::user()->id)
-                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id')
+                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id', 'users.last_name')
                         ->orderBy('interesados.created_at', 'desc')
                         ->paginate(20);
-
 
         $lista_denuncias = DB::table('denuncias')
                         ->join('publicacions', 'denuncias.id_publication_fk', '=', 'publicacions.id_publication')
                         ->join('users', 'denuncias.id_user_fk', '=', 'users.id')
                         ->where('publicacions.id_user_fk', Auth::user()->id)
-                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id')
+                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id', 'users.last_name')
                         ->orderBy('denuncias.created_at', 'desc')
                         ->paginate(20);
 
