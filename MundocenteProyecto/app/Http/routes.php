@@ -12,6 +12,9 @@
 */
 
 
+
+
+
 Route::get('/', 'HomeController@index');
 Route::get('login', 'HomeController@login');
 
@@ -99,6 +102,14 @@ Route::get('university/{id_city}' , 'HomeController@obtenerUniversidades');
 Route::get('get-pocation-institution/{id_institution}', 'HomeController@obtenerPaisYCiudadConInstitucion');
 
 
+//mostrar editar publicaciones
+
+Route::post('editar-convocatoria', 'HomeController@editarConvocatoria');
+Route::post('editar-evento', 'HomeController@editarEvento');
+Route::post('editar-revista', 'HomeController@editarRevista');
+Route::post('editar-solicitud', 'HomeController@editarSolicitud');
+
+
 
 //crear publicaciones
 
@@ -106,6 +117,10 @@ Route::post('add-announcement', 'PublicationsController@agregarConvocatoria');
 Route::post('add-evento', 'PublicationsController@agregarEvento');
 Route::post('add-revista', 'PublicationsController@agregarRevista');
 Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
+
+
+
+
 
 Route::post('upload-image-publication', 'PublicationsController@uploadImagePublication');
 Route::get('obtener-areas-pulicacion/{id_publication}', 'PublicationsController@obtienetablaareas');

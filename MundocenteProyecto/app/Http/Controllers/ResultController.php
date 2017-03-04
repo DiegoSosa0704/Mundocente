@@ -308,29 +308,68 @@ public function listPublicationsInterestRecomendation(){
 }
 
 
+
+
+
+
+
+
+
+//  Retorna lista de intrés y recomendaciones
+
 public function returnListInterest(){
-
   
-    $recomendationMax = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->take(1)->max('value_recomendation');
-    
-    $listUniThemefk = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('value_recomendation', $recomendationMax)->take(1)->get();
+   
 
-    $id_theme_recomenda = 0;
-    foreach ($listUniThemefk as $id_theme_recomendation) {
-        $id_theme_recomenda = $id_theme_recomendation->id_theme_fk;
-    }
+    $listResultArrayUnionIntRecom = array();
 
+
+
+
+   
 
      $listaUniono = DB::table('areas_publicacions')
             ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
             ->where('areas_interes.id_user_fk', Auth::user()->id)
-            ->orWhere('areas_publicacions.id_theme_fk', $id_theme_recomenda)
             ->select('areas_publicacions.id_publication_fk')
             ->orderBy('areas_interes.value_interest', 'asc')
             ->distinct()
             ->get();
-             
-       return $listaUniono; 
+
+
+        $listResultArrayUnionIntRecom = array_merge($listaUniono, $listResultArrayUnionIntRecom);
+
+
+         $listaUnionoTodosTheme = DB::table('areas_publicacions')
+            ->where('areas_publicacions.id_theme_fk', '1')
+            ->select('areas_publicacions.id_publication_fk')
+            ->take(10)
+            ->distinct()
+            ->get();
+
+            //dd($listaUnionoTodosTheme);
+
+        $listResultArrayUnionIntRecom = array_merge($listaUnionoTodosTheme, $listResultArrayUnionIntRecom);
+
+
+        $listaUnionoRecom = DB::table('areas_publicacions')
+            ->join('recomendaciones', 'areas_publicacions.id_theme_fk', '=', 'recomendaciones.id_theme_fk')
+            ->where('recomendaciones.id_user_fk', Auth::user()->id)
+            ->select('areas_publicacions.id_publication_fk')
+            ->orderBy('recomendaciones.value_recomendation', 'asc')
+            ->distinct()
+            ->get();
+
+
+        $listResultArrayUnionIntRecom = array_merge($listaUnionoRecom, $listResultArrayUnionIntRecom);
+
+
+        $collectionSearch = collect($listResultArrayUnionIntRecom);
+        
+        $uniqueList = $collectionSearch->unique();
+        
+        //dd($uniqueList);
+       return $uniqueList; 
     
 
 
@@ -369,7 +408,7 @@ public function returnListPublications(){
            
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $collection = new Collection($listResultArray);
-        $perPage = 30;        
+        $perPage = 40;        
         $currentPageSearchResults = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
           $paginatedSearchResults = new LengthAwarePaginator(
             $currentPageSearchResults,

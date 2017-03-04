@@ -51,7 +51,7 @@ var token = $("#token").val();
             if(city != null ){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(disciplines != '' || checkSelectedAllArea == 2){
+                        if(disciplines != null || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -222,7 +222,7 @@ var token = $("#token").val();
         if(institution.length != 0){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(disciplines != '' || checkSelectedAllArea == 2){
+                        if(disciplines != null || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -399,7 +399,7 @@ var token = $("#token").val();
             if(city != null ){
                 if(dateStart.length != 0){
                     if(dateFinish.length != 0){
-                        if(disciplines != '' || checkSelectedAllArea == 2){
+                        if(disciplines != null || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
@@ -558,7 +558,7 @@ var token = $("#token").val();
    if(institution.length != 0){
         if(country.length != 0){
             if(city != null ){
-                        if(disciplines != '' || checkSelectedAllArea == 2){
+                        if(disciplines != null || checkSelectedAllArea == 2){
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){

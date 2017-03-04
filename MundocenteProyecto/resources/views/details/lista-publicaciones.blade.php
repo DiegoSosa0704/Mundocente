@@ -10,9 +10,49 @@
                                 <div class="content">
                                     
                                     
-                                    <div class="header">
+                                    <div class="header ">
+
+                                     <!--  Si la publicación es mía sale Editar-->
+                                              @if(Auth::user()->id==$publication->id_user_fk)
+
+
+
+ @if($publication->id_type_publication==1)
+{!!Form::open(['url'=>'editar-convocatoria' , 'method'=>'POST'])!!}
+<input type="hidden" name="id_convocatoria_edit" value="{{$publication->id_publication}}">
+<button type="submit" class="ui basic button" style="float: right;">Editar <i class="edit icon"> </i> </button>
+{!!Form::close()!!}
+@elseif($publication->id_type_publication==2)
+{!!Form::open(['url'=>'editar-revista' , 'method'=>'POST'])!!}
+<input type="hidden" name="id_revista_edit" value="{{$publication->id_publication}}">
+<button type="submit" class="ui basic button" style="float: right;">Editar <i class="edit icon"> </i> </button>
+{!!Form::close()!!}
+@elseif($publication->id_type_publication==3)
+{!!Form::open(['url'=>'editar-evento' , 'method'=>'POST'])!!}
+<input type="hidden" name="id_event_edit" value="{{$publication->id_publication}}">
+<button type="submit" class="ui basic button" style="float: right;">Editar <i class="edit icon"> </i> </button>
+{!!Form::close()!!}
+@else
+{!!Form::open(['url'=>'editar-solicitud' , 'method'=>'POST'])!!}
+<input type="hidden" name="id_request_edit" value="{{$publication->id_publication}}">
+<button type="submit" class="ui basic button" style="float: right;">Editar <i class="edit icon"> </i> </button>
+{!!Form::close()!!}
+@endif
+
+
+                                              @endif
+
+<!--  Si la publicación es mía sale Editar   Fin -->
+
                                         <a onclick="showDetailsPublication({{$publication->id_publication}})"
                                               class="ui header"><b>{{$publication->title_publication}}</b></a>
+
+
+
+ 
+
+
+
                                     </div>
 
                                     @if($call_methods->returnIndexPublicationPaper($publication->id_publication) > 0 && $publication->id_type_publication == 2)

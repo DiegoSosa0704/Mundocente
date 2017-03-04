@@ -25,7 +25,7 @@ class HomeController extends Controller
 
 
     public function __construct(){
-        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud', 'mostrarmiperfil', 'mostrarmispublicacionesfavoritas', 'mostrarinteresados' ,'mostrarmiperfildeUsuario']]);
+        $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud', 'mostrarmiperfil', 'mostrarmispublicacionesfavoritas', 'mostrarinteresados' ,'mostrarmiperfildeUsuario', 'editarConvocatoria', 'editarEvento' ,'editarRevista', 'editarSolicitud']]);
 
     }
 
@@ -41,14 +41,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-         if (Auth::check()) {
-            return Redirect::to('publicaciones');
-        }else{
 
-            $this->verifyCookies();
 
-            return view('home');
-        }
+
+    	if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+            if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+	           return Redirect::to('publicaciones');
+	       }
+    	}else{
+    		if (Auth::check()) {
+	            return Redirect::to('publicaciones');
+	        }else{
+
+	            //$this->verifyCookies();
+
+	            return view('home');
+	        }
+    	}
         
     }
 
@@ -126,7 +135,7 @@ class HomeController extends Controller
 
        return view('perfil.perfil-usuario', compact('listPublications', 'institucionesVinvulado', 'user_perfil'));
     	}else{
-    		return Redirect::to('NotFountPage/404/');
+    		return Redirect::to('publicaciones');
     	}
     	
         
@@ -206,16 +215,20 @@ class HomeController extends Controller
         $lista_interesados = DB::table('interesados')
                         ->join('publicacions', 'interesados.id_publication_fk', '=', 'publicacions.id_publication')
                         ->join('users', 'interesados.id_user_fk', '=', 'users.id')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_user_fk', Auth::user()->id)
-                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id', 'users.last_name')
+                        ->select('publicacions.*', 'users.name', 'users.photo_url', 'users.id', 'users.last_name', 'institucions.name_institution',  'lugars.name_lugar')
                         ->orderBy('interesados.created_at', 'desc')
                         ->paginate(20);
 
         $lista_denuncias = DB::table('denuncias')
                         ->join('publicacions', 'denuncias.id_publication_fk', '=', 'publicacions.id_publication')
                         ->join('users', 'denuncias.id_user_fk', '=', 'users.id')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_user_fk', Auth::user()->id)
-                        ->select('publicacions.id_publication', 'publicacions.title_publication', 'users.name', 'users.photo_url', 'users.id', 'users.last_name')
+                        ->select('publicacions.*', 'users.name', 'users.photo_url', 'users.id', 'users.last_name', 'institucions.name_institution',  'lugars.name_lugar')
                         ->orderBy('denuncias.created_at', 'desc')
                         ->paginate(20);
 
@@ -239,9 +252,8 @@ class HomeController extends Controller
 public function verifyCookies(){
     if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
             if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
-           return Redirect::to('publicaciones');
-       }
-
+	           return Redirect::to('publicaciones');
+	       }
     }
 }
 
@@ -544,6 +556,15 @@ $areas_all = DB::table('temas')->where('type_theme', 'gran_area')->get();
      */
     public function login()
     {
+
+
+    	if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+    		if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+    			return Redirect::to('publicaciones');
+    		}
+    	}
+
+
         if (Auth::check()) {
             return Redirect::to('publicaciones');
         }else{
@@ -572,8 +593,116 @@ $areas_all = DB::table('temas')->where('type_theme', 'gran_area')->get();
     }
 
 
+//obtiene el país de la ciudad de la publicación
+public function getCountryPublicationLugar($id_city){
+    return DB::select('select DISTINCT p.id_lugar, p.name_lugar, c.type_lugar from lugars p, lugars c where p.id_lugar=c.id_lugar_fk and  p.id_lugar='.$id_city);
+}
 
 
+
+
+
+
+
+
+//método para editar convocatoria
+    public function editarConvocatoria(Request $request){
+        //return "editando convocatoria ".$request['id_convocatoria_edit'];
+        
+
+        $institucionesVinvulado = $this->callInstitutionMy();
+        $gran_areas = $this->callLargesAreasTheme();
+        $lugares = $this->callLocationCountry();
+
+
+        $publication_unique = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.id_publication', $request['id_convocatoria_edit'])
+                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                        ->get();
+
+        $listThemesPub = DB::table('areas_publicacions')
+                ->join('publicacions', 'areas_publicacions.id_publication_fk', '=', 'publicacions.id_publication')
+                ->join('temas', 'areas_publicacions.id_theme_fk', '=', 'temas.id_tema')
+                ->where('publicacions.id_publication', $request['id_convocatoria_edit'])
+                ->select('temas.*')
+                ->get();
+        //dd($listThemesPub);
+
+
+        return view('editPublication.formularioconvocatoriaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'publication_unique', 'listThemesPub'));
+     
+
+    }
+
+//método para editar revista
+    public function editarRevista(Request $request){
+        //return "editando revista ".$request['id_revista_edit'];
+        
+            $institucionesVinvulado = $this->callInstitutionMy();
+        $gran_areas = $this->callLargesAreasTheme();
+        $lugares = $this->callLocationCountry();
+        $indexpaper = DB::table('indices')->get();
+        $clasificationpaper = DB::table('nivels')->get();
+        $quantityIndex = DB::table('indices')->count();
+        return view('editPublication.formulariorevistaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'indexpaper', 'clasificationpaper'), ['quantityIndex' => $quantityIndex]);
+      
+        
+    }
+
+
+//método para editar evento
+    public function editarEvento(Request $request){
+        //return "editando evento ".$request['id_event_edit'];
+        $institucionesVinvulado = $this->callInstitutionMy();
+        $gran_areas = $this->callLargesAreasTheme();
+        $lugares = $this->callLocationCountry();
+        $publication_unique = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.id_publication', $request['id_event_edit'])
+                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                        ->get();
+
+        $listThemesPub = DB::table('areas_publicacions')
+                ->join('publicacions', 'areas_publicacions.id_publication_fk', '=', 'publicacions.id_publication')
+                ->join('temas', 'areas_publicacions.id_theme_fk', '=', 'temas.id_tema')
+                ->where('publicacions.id_publication', $request['id_event_edit'])
+                ->select('temas.*')
+                ->get();
+        //dd($listThemesPub);
+        return view('editPublication.formularioeventoedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'publication_unique', 'listThemesPub'));
+    }
+
+
+//método para editar solicitud
+    public function editarSolicitud(Request $request){
+        //return "editando soliciud ".$request['id_request_edit'];
+        $institucionesVinvulado = $this->callInstitutionMy();
+        $gran_areas = $this->callLargesAreasTheme();
+        $lugares = $this->callLocationCountry();
+
+        $publication_unique = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.id_publication', $request['id_request_edit'])
+                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                        ->get();
+
+        $listThemesPub = DB::table('areas_publicacions')
+                ->join('publicacions', 'areas_publicacions.id_publication_fk', '=', 'publicacions.id_publication')
+                ->join('temas', 'areas_publicacions.id_theme_fk', '=', 'temas.id_tema')
+                ->where('publicacions.id_publication', $request['id_request_edit'])
+                ->select('temas.*')
+                ->get();
+        //dd($listThemesPub);
+
+        return view('editPublication.formulario-solicitudedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'listThemesPub', 'publication_unique'));
+    }
 
 
 

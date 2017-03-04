@@ -38,6 +38,9 @@ class PublicationsController extends Controller
 
 
 
+
+
+
     public function converterToDateMysql($date){
         
         $sincoma = str_replace(",", "", $date);

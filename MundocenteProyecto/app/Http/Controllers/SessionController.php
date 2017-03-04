@@ -108,13 +108,13 @@ OAuth::login('facebook',  function($user, $details) {
             $user->save();
         }
 
-        $numerRan = rand(5, 1000);
+        
 
             $emailAuth = $details->email;
                 $emailUser = $this->creation_user_name_diferent($emailAuth);
                 DB::table('users')
                 ->where('email', $details->email)
-                ->update(['last_name' => $emailUser.''.$numerRan]);
+                ->update(['last_name' => $emailUser.'005']);
 
         });
     return Redirect::to('registration');
@@ -173,13 +173,13 @@ OAuth::login('facebook',  function($user, $details) {
 
 
 
-        $numerRan = rand(5, 1000);
+        
 
             $emailAuth = $details->email;
                 $emailUser = $this->creation_user_name_diferent($emailAuth);
                 DB::table('users')
                 ->where('email', $details->email)
-                ->update(['last_name' => $emailUser.''.$numerRan]);
+                ->update(['last_name' => $emailUser.'005']);
 
         });
     return Redirect::to('registration');
@@ -229,18 +229,17 @@ OAuth::login('facebook',  function($user, $details) {
             $user->save();
         }
 
-        $numerRan = rand(5, 1000);
+        
 
             $emailAuth = $details->email;
                 $emailUser = $this->creation_user_name_diferent($emailAuth);
                 DB::table('users')
                 ->where('email', $details->email)
-                ->update(['last_name' => $emailUser.''.$numerRan]);
+                ->update(['last_name' => $emailUser.'005']);
 
         });
     return Redirect::to('registration');
-     
-        
+
         
     }
 
