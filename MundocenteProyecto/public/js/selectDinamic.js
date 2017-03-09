@@ -13,7 +13,7 @@ $('#selectCountry').change(function(event){
 		}
 		
 	});
-	//event.target.value = null;
+	event.target.value = null;
 	$('#selectCity').append('<option value="0" disabled="true">Ninguno</option>');
 	$('#selectCity > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange').toggle("show");
@@ -161,7 +161,7 @@ $("#agregaInstituto").click(function(){
                 $('#messageSaveVinculationerror').toggle("fast");
             }
 
-            $("#listadeinstitutosvinculados").append("<div class='item' id='institutionList"+info.id_institution+"'>  <div class='right floated content'><a class='ui label button color_3' onclick='delete_institution_vinul("+info.id_institution+")'>Eliminar</a> </div>   <div class='content'>"+info.name_institution+" - ("+info.state_institution+")  </div> </div>");
+            $("#listadeinstitutosvinculados").append("<div class='item' id='institutionList"+info.id_institution+"'>  <div class='right floated content'><div class='ui label button color_3' onclick='delete_institution_vinul("+info.id_institution+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div> </div>   <div class='content'>"+info.name_institution+" - ("+info.state_institution+")  </div> </div>");
 
 			$( "#idlisaveinstitute" ).append( "Se guardó ("+info.name_institution+") como instituto de tabajo.<br>");
 
@@ -407,11 +407,11 @@ $('#select_areas_general_search_formation').change(function(event){
 					
 
 					if((response[0].name_tema_area==null) && (response[0].name_tema_disciplina == null)){
-						$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td> - </td><td> - </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")'>Eliminar</a></td></tr>");
+						$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td> - </td><td> - </td> <td> <div class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div></td></tr>");
 					}else if((response[0].name_tema_disciplina == null)){
-						$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td> - </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")'>Eliminar</a></td></tr>");
+						$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td> - </td> <td> <div class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div></td></tr>");
 					}else{
-						$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td>"+ response[0].name_tema_disciplina+" </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")'>Eliminar</a></td></tr>");
+						$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td>"+ response[0].name_tema_disciplina+" </td> <td> <div class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div></td></tr>");
 					}
 
 					//$('#add_temas_formation').append("<tr id='table_tr_new_area_formation"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td>"+ response[0].name_tema_disciplina+" </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaTraining("+id_area_formacion+")'>Eliminar</a></td></tr>");
@@ -472,11 +472,11 @@ $('#select_areas_general_search_interest').change(function(event){
 					var id_area_formacion = event.target.value;
 					
 					if((response[0].name_tema_area==null) && (response[0].name_tema_disciplina == null)){
-						$('#table_areas_interest').append("<tr id='table_tr_new_area_interest"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td> - </td><td> - </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+id_area_formacion+")'>Eliminar</a></td></tr>");
+						$('#table_areas_interest').append("<tr id='table_tr_new_area_interest"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td> - </td><td> - </td> <td> <div class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+id_area_formacion+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div></td></tr>");
 					}else if((response[0].name_tema_disciplina == null)){
-						$('#table_areas_interest').append("<tr id='table_tr_new_area_interest"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td> - </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+id_area_formacion+")'>Eliminar</a></td></tr>");
+						$('#table_areas_interest').append("<tr id='table_tr_new_area_interest"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td> - </td> <td> <div class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+id_area_formacion+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div></td></tr>");
 					}else{
-						$('#table_areas_interest').append("<tr id='table_tr_new_area_interest"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td>"+ response[0].name_tema_disciplina+" </td> <td> <a class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+id_area_formacion+")'>Eliminar</a></td></tr>");
+						$('#table_areas_interest').append("<tr id='table_tr_new_area_interest"+id_area_formacion+"'><td> "+ response[0].name_tema_gran+" </td><td>"+ response[0].name_tema_area+" </td><td>"+ response[0].name_tema_disciplina+" </td> <td> <div class='ui label button color_3' onclick='deleteDisciplineAreaInterest("+id_area_formacion+")' style='color: #EEEEEE'><i class='trash icon'></i>Eliminar</div></td></tr>");
 					}
 					
 	var ruta = "addNewLargeAreaInterest";

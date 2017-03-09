@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b2510a9-d97f-4aa6-b466-b2a3e043afdf" name="Default" comment="Agrego actualización de diseño en cue">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/images/add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/images/calendar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/images/certificate.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/images/envelope.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/images/worker.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/modals/modalAddOtherInstitution.blade.php" />
+    <list default="true" id="2b2510a9-d97f-4aa6-b466-b2a3e043afdf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/filtros.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/filtros.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariorevista.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formulariousuario.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/resources/views/home.blade.php" afterPath="$PROJECT_DIR$/MundocenteProyecto/resources/views/home.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js" afterPath="$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js" />
     </list>
     <ignored path="C:\Users\diego\Documents\Diego\Mundocente\Diseno\Mundocente\.idea\shelf/" />
     <ignored path="C:\xampp\htdocs\Mundocente\.idea\shelf/" />
@@ -68,12 +58,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="formularioevento.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="formularioevento.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MundocenteProyecto/resources/views/formularios/formularioevento.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-425">
               <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectDinamic.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1489099539627" expanded="true" signature="4031:4045" ph="..." />
+                <marker date="1489099539627" expanded="true" signature="10466:10480" ph="..." />
+                <marker date="1489099539627" expanded="true" signature="10900:10914" ph="..." />
+                <marker date="1489099539627" expanded="true" signature="11322:11336" ph="..." />
+                <marker date="1489099539627" expanded="true" signature="13276:13290" ph="..." />
+                <marker date="1489099539627" expanded="true" signature="13710:13724" ph="..." />
+                <marker date="1489099539627" expanded="true" signature="14132:14146" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -340,14 +348,6 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modals" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -363,33 +363,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="formularios" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mundocente" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mundocente" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MundocenteProyecto" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -408,6 +382,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -454,11 +432,11 @@
       <recent name="C:\Users\diego\Documents\Diego\Mundocente\Diseno\Mundocente\Diseño" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\public\js" />
       <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\resources\views" />
       <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\resources\views\modals" />
       <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\resources\views\formularios" />
       <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\public\images" />
-      <recent name="C:\xampp\htdocs\Mundocente\MundocenteProyecto\public\js" />
     </key>
   </component>
   <component name="RunManager">
@@ -658,7 +636,7 @@
       <workItem from="1487798329765" duration="1208000" />
       <workItem from="1487801588193" duration="1600000" />
       <workItem from="1487884059244" duration="5844000" />
-      <workItem from="1489102178906" duration="1231000" />
+      <workItem from="1489102178906" duration="1563000" />
     </task>
     <task id="LOCAL-00001" summary="Actualización de diseño. Nuevas imagenes del logo oficial de Mundocente.">
       <created>1484671010422</created>
@@ -912,11 +890,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487802888573</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Agrego actualización de diseño en configuración de cuenta.">
+      <created>1489103514804</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1489103514804</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="559565000" />
+    <option name="totallyTimeSpent" value="559897000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -929,7 +914,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25189108" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -937,7 +922,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33551556" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.65630114" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29296234" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -996,7 +981,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Agrego diseño final de formularios para las secciones de Publicar evento y Publicar invitación. También diseño inicial para el apartado Cuenta. Añado imágenes  y cambios en el diseño de Publicar Revista y Publicar Convocatoria." />
     <MESSAGE value="Agrego cambios de diseño en publicaciones y la sección &quot;Cuenta&quot;." />
     <MESSAGE value="Agrego sección &quot;Cuenta&quot;, corregida y con formularios validados." />
     <MESSAGE value="Agrego nueva vista para la sección &quot;Cuenta&quot; en MundocenteProyecto ." />
@@ -1021,7 +1005,8 @@
     <MESSAGE value="Agrego diseño inicial en Gestión de instituciones - administrador." />
     <MESSAGE value="Agrego cambios de diseño en formularios de publicación." />
     <MESSAGE value="Agrego  diseño para las sección &quot;Gestión de publicaciones&quot; - Administrador." />
-    <option name="LAST_COMMIT_MESSAGE" value="Agrego  diseño para las sección &quot;Gestión de publicaciones&quot; - Administrador." />
+    <MESSAGE value="Agrego actualización de diseño en configuración de cuenta." />
+    <option name="LAST_COMMIT_MESSAGE" value="Agrego actualización de diseño en configuración de cuenta." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1113,13 +1098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1359,6 +1337,22 @@
         <state relative-caret-position="-425">
           <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MundocenteProyecto/public/js/selectDinamic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1489099539627" expanded="true" signature="4031:4045" ph="..." />
+            <marker date="1489099539627" expanded="true" signature="10466:10480" ph="..." />
+            <marker date="1489099539627" expanded="true" signature="10900:10914" ph="..." />
+            <marker date="1489099539627" expanded="true" signature="11322:11336" ph="..." />
+            <marker date="1489099539627" expanded="true" signature="13276:13290" ph="..." />
+            <marker date="1489099539627" expanded="true" signature="13710:13724" ph="..." />
+            <marker date="1489099539627" expanded="true" signature="14132:14146" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
