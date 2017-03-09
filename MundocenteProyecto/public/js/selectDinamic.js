@@ -13,7 +13,7 @@ $('#selectCountry').change(function(event){
 		}
 		
 	});
-	event.target.value = null;
+	//event.target.value = null;
 	$('#selectCity').append('<option value="0" disabled="true">Ninguno</option>');
 	$('#selectCity > option[value="0"]').attr('selected', 'selected');
 	$('#cityChange').toggle("show");

@@ -49,10 +49,6 @@
 
 
 
- 
-
-
-
                                     </div>
 
                                     @if($call_methods->returnIndexPublicationPaper($publication->id_publication) > 0 && $publication->id_type_publication == 2)

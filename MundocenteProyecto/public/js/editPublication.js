@@ -1,30 +1,17 @@
- var disciplines = new Array();
- 
- // muesra los detalles sobre el área que seleccionó
-//$('#select_disciplina_formacion').change(function(event){
-  //  document.getElementById('show_details_area_select').innerHTML='';
-    //if(event.target.value!=''){
-      //   $.get('areas-all/'+event.target.value+ "" , function(response, ciudad){
-        //for (var i = 0 ; i < response.length; i++) {
-          //          $('#show_details_area_select').append("<tr><td>"+response[i].name_tema_gran+"</td><td>"+response[i].name_tema_area+"</td><td>"+response[i].name_tema_disciplina+"</td></tr>");
-            //        disciplines.push(response[i].id_tema_disciplina);
- //
-   //         }
-     //   });
-    //}
-
-//event.target.value=null;
-//
-//});
 
 
+function deleteInputTextEdit(){
+    $('#idpmessageerrorpublications').html('');
+    $('#messageErrorpublication').css('display', 'none');
+    $('#messageErrorpublication').removeClass('error');
+    $('#messageErrorpublication').addClass('green');
+    
+}
 
 
+//método para editar convocatoria
 
-
-//método para publicar convocatoria
-
-$('#addAnnouncement').click(function(){
+$('#editAnnouncement').click(function(){
 
 var institution = $('#selectMVinculation').val();
 var country = $('#selectCountry').val();
@@ -38,7 +25,8 @@ var contacts = $('#cantactsid').val();
 var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 
-var sector = '';
+
+var id_publication = $('#id_publication_edit').val();
 
 if($("#sectorUniversityCheck").is(':checked')) {  
             sector = 'universitario';
@@ -47,7 +35,7 @@ if($("#sectorUniversityCheck").is(':checked')) {
         }
 
 
-var ruta = "add-announcement";
+var ruta = "edit-announcement";
 var token = $("#token").val();
 
 
@@ -60,18 +48,17 @@ var token = $("#token").val();
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
-                                    deleteInputText();
+                                    deleteInputTextEdit();
                                     $.ajax({
                                         url: ruta,
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{id_institute: institution,sector_request: sector, id_country: country, id_city: city, 
+                                        data:{id_p:id_publication, id_institute: institution,sector_request: sector, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró 1 '+info);
-                                            $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
                                         }
@@ -79,18 +66,17 @@ var token = $("#token").val();
                                     loadLine();
                                     
                                 }else{
-                                    deleteInputText();
+                                    deleteInputTextEdit();
                                     $.ajax({
                                         url: ruta,
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{id_institute: institution, id_country: country, id_city: city, 
+                                        data:{id_p:id_publication, id_institute: institution, id_country: country, id_city: city, 
                                             dateStart: dateStart,sector_request: sector, dateFinis:dateFinish,disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró 2 '+info);
-                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
                                             
@@ -139,31 +125,11 @@ var token = $("#token").val();
         
       
 });
-   
 
-function removeClassGreenAddError(){
-    $('#messageErrorpublication').removeClass('green');
-    $('#messageErrorpublication').addClass('error');
-    $('#messageErrorpublication').css('display', 'block');
-}
 
 
 
 
-function deleteInputText(){
-    $('#idpmessageerrorpublications').html('Cargando...');
-    $('#messageErrorpublication').css('display', 'none');
-    $('#titleid').val('');
-    $('#cantactsid').val('');
-    $('#descriptionid').val('');
-    $('#dateFinishid').val('');
-    $('#url_publication').val('');
-    
-    $('#messageErrorpublication').removeClass('error');
-    
-    $('#rangeend').val('');
-    $('#timeFinish').val('');
-}
 
 
 
@@ -182,197 +148,7 @@ function deleteInputText(){
 
 
 
-
-
-
-
-
-
-//método para publicar solicitud
-
-$('#addRequestbutton').click(function(){
-
-var institution = $('#selectMVinculation').val();
-var city = $('#selectCity').val();
-var dateStart = $('#dateStartid').val();
-var dateFinish = $('#dateFinishid').val();
-var title = $('#titleid').val();
-var description = $('#descriptionid').val();
-
-var contacts = $('#cantactsid').val();
-var disciplines = $('#select_disciplina_formacion').val();
-var checkSelectedAllArea = $('#valueCheckallArea').val();
-var type_request = '0';
-
-if($("#radiooptionrequestproyect").is(':checked')) {
-    // 4 es el id de la tabla tema__notificacions con el nombre de solicitud a proyecto
-    type_request = '4';
-}else{
-    // 5 es el id de la tabla tema__notificacions con el nombre de solicitud a evaluador
-    type_request = '5';
-}
-
-
-
-
-var sector = '';
-
-if($("#sectorUniversityCheck").is(':checked') && !$("#sectorBasicCheck").is(':checked')) {
-    sector = 'universitario';
-}else if(!$("#sectorUniversityCheck").is(':checked') && $("#sectorBasicCheck").is(':checked')){
-    sector = 'preescolar';
-}else if($("#sectorUniversityCheck").is(':checked') && $("#sectorBasicCheck").is(':checked')){
-    sector = 'ambos';
-}
-
-
-var ruta = "add-solicitud";
-var token = $("#token").val();
-
-
-        if(institution.length != 0){
-                if(dateStart.length != 0){
-                    if(dateFinish.length != 0){
-                        if(disciplines != null || checkSelectedAllArea == 2){
-                            if(title.length != 0 && title.length < 150){
-                            if(contacts.length != 0){
-                                if(checkSelectedAllArea == 2){
-                                    deleteInputText();
-                                    $.ajax({
-                                        url: ruta,
-                                        headers: {'X-CSRF-TOKEN': token},
-                                        type: 'POST',
-                                        dataType: 'json',
-                                        data:{id_city:city, sector_request: sector,type_request:type_request, id_institute: institution, 
-                                            dateStart: dateStart, dateFinis:dateFinish, title: title, 
-                                            contact: contacts, description: description, allArea: '2'},
-                                        success:function(info){
-                                            console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
-                                        }
-                                    });
-                                    loadLine();
-                                }else{
-                                    deleteInputText();
-                                    $.ajax({
-                                        url: ruta,
-                                        headers: {'X-CSRF-TOKEN': token},
-                                        type: 'POST',
-                                        dataType: 'json',
-                                        data:{id_city:city,sector_request: sector,type_request:type_request, id_institute: institution, 
-                                            dateStart: dateStart, dateFinis:dateFinish, 
-                                             disciplines: disciplines, title: title, contact: contacts,
-                                             description: description, allArea: '1'},
-                                        success:function(info){
-                                            console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
-                                        }
-                                    });
-                                    loadLine();
-                                   
-                                }
-                            }else{
-                                removeClassGreenAddError();
-                                $('#idpmessageerrorpublications').html('Debe ingresar algún dato para poder contactar los interesados');
-                            }
-                        }else{
-                            removeClassGreenAddError();
-
-                            $('#idpmessageerrorpublications').html('El campo título es obligatorio y debe tener máximo 150 carcteres');
-                        }
-                        }else{
-                            removeClassGreenAddError();
-                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo un área');
-                        }
-                    }else{
-                        removeClassGreenAddError();
-                        $('#idpmessageerrorpublications').html('Debe ingresar la fecha de finalización de la solicitud');
-                    }
-                }else{
-                   removeClassGreenAddError();
-                    $('#idpmessageerrorpublications').html('Debe ingresar la fecha de inicio de la solicitud');
-                }
-            }else{
-                removeClassGreenAddError();
-                $('#idpmessageerrorpublications').html('Debe seleccionar institución que realiza la solicitud');
-            }
-        
-       
-     
-        
-        
-      
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//sube imagen pra publicación
-
-$(function(){
-    $("input[name='file']").on("change", function(){
-        var dataForm = new FormData($("#formularioimage")[0]);
-        var routeimage = "upload-image-publication";
-        var token = $("#token").val();
-
-        $.ajax({
-            url: routeimage,
-            headers: {'X-CSRF-TOKEN': token},
-            type: "POST",
-            data: dataForm,
-            contentType: false,
-            processData: false, 
-            success: function(info){
-                $('#imageAuxTemp').val(info);
-                $('#imageNewShow').attr('src',info);
-
-            }
-        });
-    });
-});
-
-
-
-
-
-
-
-
-
-
-
+//método para editar eventos
 
 
 
@@ -380,8 +156,9 @@ $(function(){
 
 //método para publicar evento
 
-$('#addpublicationeventbutton').click(function(){
+$('#editpublicationeventbutton').click(function(){
 
+var id_publication = $('#id_publication_edit').val();
 
 var institution = $('#selectMVinculation').val();
 var country = $('#selectCountry').val();
@@ -407,7 +184,7 @@ if($("#sectorUniversityCheck").is(':checked') && !$("#sectorBasicCheck").is(':ch
     sector = 'ambos';
 }
 
-var ruta = "add-evento";
+var ruta = "edit-event";
 var token = $("#token").val();
 
 
@@ -420,13 +197,13 @@ var token = $("#token").val();
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
-                                    deleteInputText();
+                                    deleteInputTextEdit();
                                     $.ajax({
                                         url: ruta,
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{id_p:id_publication, url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
@@ -434,18 +211,17 @@ var token = $("#token").val();
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
-                                            
                                         }
                                     });
                                     loadLine();
                                 }else{
-                                    deleteInputText();
+                                    deleteInputTextEdit();
                                     $.ajax({
                                         url: ruta,
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{id_p:id_publication, url_image:imagePublication, sector_request: sector, hour_i:hourStart, hour_f: hourFinish, id_institute: institution, id_country: country, id_city: city, 
                                             dateStart: dateStart, dateFinis:dateFinish, 
                                              disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
@@ -494,6 +270,7 @@ var token = $("#token").val();
     $('#idpmessageerrorpublications').html('Debe seleccionar institución que realiza el evento');
    }
         
+       
       
 });
 
@@ -522,9 +299,158 @@ var token = $("#token").val();
 
 
 
+
+
+
+
+
+
+
+//método para publicar evento
+
+$('#editRequestbutton').click(function(){
+
+var id_publication = $('#id_publication_edit').val();
+
+var institution = $('#selectMVinculation').val();
+var city = $('#selectCity').val();
+var dateStart = $('#dateStartid').val();
+var dateFinish = $('#dateFinishid').val();
+var title = $('#titleid').val();
+var description = $('#descriptionid').val();
+
+var contacts = $('#cantactsid').val();
+var disciplines = $('#select_disciplina_formacion').val();
+var checkSelectedAllArea = $('#valueCheckallArea').val();
+var type_request = '0';
+
+if($("#radiooptionrequestproyect").is(':checked')) {
+    // 4 es el id de la tabla tema__notificacions con el nombre de solicitud a proyecto
+    type_request = '4';
+    
+}else{
+    // 5 es el id de la tabla tema__notificacions con el nombre de solicitud a evaluador
+    type_request = '5';
+    
+}
+
+
+
+
+var sector = '';
+
+if($("#sectorUniversityCheck").is(':checked') && !$("#sectorBasicCheck").is(':checked')) {
+    sector = 'universitario';
+}else if(!$("#sectorUniversityCheck").is(':checked') && $("#sectorBasicCheck").is(':checked')){
+    sector = 'preescolar';
+}else if($("#sectorUniversityCheck").is(':checked') && $("#sectorBasicCheck").is(':checked')){
+    sector = 'ambos';
+}
+
+
+var ruta = "edit-request";
+var token = $("#token").val();
+
+
+        if(institution.length != 0){
+                if(dateStart.length != 0){
+                    if(dateFinish.length != 0){
+                        if(disciplines != null || checkSelectedAllArea == 2){
+                            if(title.length != 0 && title.length < 150){
+                            if(contacts.length != 0){
+                                if(checkSelectedAllArea == 2){
+                                    deleteInputTextEdit();
+                                    $.ajax({
+                                        url: ruta,
+                                        headers: {'X-CSRF-TOKEN': token},
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        data:{id_p:id_publication, id_city:city, sector_request: sector,type_request:type_request, id_institute: institution, 
+                                            dateStart: dateStart, dateFinis:dateFinish, title: title, 
+                                            contact: contacts, description: description, allArea: '2'},
+                                        success:function(info){
+                                            console.log('entró '+info);
+                                            $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
+                                        }
+                                    });
+                                    loadLine();
+                                }else{
+                                    deleteInputTextEdit();
+                                    $.ajax({
+                                        url: ruta,
+                                        headers: {'X-CSRF-TOKEN': token},
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        data:{id_p:id_publication, id_city:city,sector_request: sector,type_request:type_request, id_institute: institution, 
+                                            dateStart: dateStart, dateFinis:dateFinish, 
+                                             disciplines: disciplines, title: title, contact: contacts,
+                                             description: description, allArea: '1'},
+                                        success:function(info){
+                                            console.log('entró '+info);
+                                            $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
+                                        }
+                                    });
+                                    loadLine();
+                                   
+                                }
+                            }else{
+                                removeClassGreenAddError();
+                                $('#idpmessageerrorpublications').html('Debe ingresar algún dato para poder contactar los interesados');
+                            }
+                        }else{
+                            removeClassGreenAddError();
+
+                            $('#idpmessageerrorpublications').html('El campo título es obligatorio y debe tener máximo 150 carcteres');
+                        }
+                        }else{
+                            removeClassGreenAddError();
+                            $('#idpmessageerrorpublications').html('Debe ingresar mínimo un área');
+                        }
+                    }else{
+                        removeClassGreenAddError();
+                        $('#idpmessageerrorpublications').html('Debe ingresar la fecha de finalización de la solicitud');
+                    }
+                }else{
+                   removeClassGreenAddError();
+                    $('#idpmessageerrorpublications').html('Debe ingresar la fecha de inicio de la solicitud');
+                }
+            }else{
+                removeClassGreenAddError();
+                $('#idpmessageerrorpublications').html('Debe seleccionar institución que realiza la solicitud');
+            }
+        
+       
+     
+        
+        
+        
+      
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //método para publicar revista científica
 
-$('#buttonaddpaper').click(function(){
+$('#editbuttonaddpaper').click(function(){
+
+var id_publication = $('#id_publication_edit').val();
 
 
 var institution = $('#selectMVinculation').val();
@@ -568,7 +494,7 @@ if($("#checkpaperindex").is(':checked') ) {
 
 
 
-var ruta = "add-revista";
+var ruta = "edit-revista";
 var token = $("#token").val();
 
 
@@ -579,13 +505,13 @@ var token = $("#token").val();
                             if(title.length != 0 && title.length < 150){
                             if(link.length != 0 || contacts.length != 0){
                                 if(checkSelectedAllArea == 2){
-                                    deleteInputText();
+                                    deleteInputTextEdit();
                                     $.ajax({
                                         url: ruta,
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
+                                        data:{id_p:id_publication, arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
                                               title: title, url_link: link, contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
@@ -596,13 +522,13 @@ var token = $("#token").val();
                                     });
                                     loadLine();
                                 }else{
-                                    deleteInputText();
+                                    deleteInputTextEdit();
                                     $.ajax({
                                         url: ruta,
                                         headers: {'X-CSRF-TOKEN': token},
                                         type: 'POST',
                                         dataType: 'json',
-                                        data:{arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, disciplines: disciplines, title: title, url_link: link,
+                                        data:{id_p:id_publication, arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
@@ -643,8 +569,4 @@ var token = $("#token").val();
         
     
 });
-
-
-
-
 

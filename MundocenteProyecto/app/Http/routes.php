@@ -114,9 +114,13 @@ Route::post('editar-solicitud', 'HomeController@editarSolicitud');
 //crear publicaciones
 
 Route::post('add-announcement', 'PublicationsController@agregarConvocatoria');
+Route::post('edit-announcement', 'PublicationsController@editarConvocatoria');
 Route::post('add-evento', 'PublicationsController@agregarEvento');
+Route::post('edit-event', 'PublicationsController@ediatrEvento');
 Route::post('add-revista', 'PublicationsController@agregarRevista');
+Route::post('edit-revista', 'PublicationsController@editarRevista');
 Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
+Route::post('edit-request', 'PublicationsController@editarSolicitud');
 
 
 

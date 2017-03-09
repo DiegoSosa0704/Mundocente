@@ -15,7 +15,7 @@
                             <input type="hidden" name="type_filter_search_annoucement" value="1">
                                 <div class="required field">
                                     <label>Gran área</label>
-                                    <select name="large_area_filter_annoucement" id="change_filter_gran_area_annoucement" class="ui search dropdown" >
+                                    <select name="large_area_filter_annoucement" id="change_filter_gran_area_annoucement" class="ui search dropdown required" required="true">
                                         <option value="">Seleccione Gran área</option>
                                         @foreach($gran_areas as $gran_area)
                                         <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>

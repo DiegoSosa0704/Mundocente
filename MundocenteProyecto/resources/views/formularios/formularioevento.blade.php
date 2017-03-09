@@ -288,7 +288,13 @@
                             {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                         </div>
                     </div>
+                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
 
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
 
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
@@ -299,13 +305,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </div>

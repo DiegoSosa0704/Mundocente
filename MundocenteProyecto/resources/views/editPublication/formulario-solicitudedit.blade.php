@@ -41,7 +41,18 @@
                             <select name="country" class="ui search dropdown" id="selectMVinculation">
                                 <option value="{{$publication_uni->id_institution}}" selected="true">{{$publication_uni->name_institution}}</option>
                                 @foreach($institucionesVinvulado as $inst_vin)
-                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @if($inst_vin->state_institution=='nuevo')
+                                        <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} -
+                                            (Institución no verificada)
+                                        </option>
+                                    @else
+                                        @if($publication_uni->id_institution==$inst_vin->id_institution)
+                                            <option value="{{$inst_vin->id_institution}}" selected="true"> {{$inst_vin->name_institution}}</option>
+                                        @else
+                                            <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @endif
+                                        
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -79,7 +90,7 @@
                                 <label>Tipo de invitación</label>
                                 <div class="field">
 
-                                    @if($publication_uni->type_solicitud=='investigador')
+                                    @if($publication_uni->id_type_publication=='4')
                                     <div class="ui radio checkbox checked">
                                         <input type="radio" name="request" id="radiooptionrequestproyect"
                                                checked="true">
@@ -94,7 +105,7 @@
                                     
                                 </div>
                                 <div class="field">
-                                @if($publication_uni->type_solicitud=='evaluador')
+                                @if($publication_uni->id_type_publication=='5')
                                 <div class="ui radio checkbox checked">
                                         <input type="radio" name="request" id="radiooptionrequestevaluator" checked="true">
                                         <label>Ser evaluador de un proyecto</label>
@@ -241,6 +252,14 @@
                         </div>
                     </div>
 
+                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
+
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
+                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
 
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
@@ -252,13 +271,7 @@
                     </div>
                     <br>
 
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                    
 
 
                     <div class="ui error message"></div>

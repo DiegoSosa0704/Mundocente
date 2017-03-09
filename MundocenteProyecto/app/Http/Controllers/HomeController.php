@@ -25,6 +25,13 @@ class HomeController extends Controller
 
 
     public function __construct(){
+
+        if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+            if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+                return Redirect::to('publicaciones');
+            }
+        }
+
         $this->middleware('auth', ['only' => ['editarmiperfil', 'publicarconvocatoria', 'publicarrevista' ,'publicarinvitacion', 'publicarevento','verdetallesConvocatoria', 'verdetallesEvento', 'verdetallesrevista', 'verdetallesSolicitud', 'mostrarmiperfil', 'mostrarmispublicacionesfavoritas', 'mostrarinteresados' ,'mostrarmiperfildeUsuario', 'editarConvocatoria', 'editarEvento' ,'editarRevista', 'editarSolicitud']]);
 
     }
@@ -557,14 +564,6 @@ $areas_all = DB::table('temas')->where('type_theme', 'gran_area')->get();
     public function login()
     {
 
-
-    	if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
-    		if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
-    			return Redirect::to('publicaciones');
-    		}
-    	}
-
-
         if (Auth::check()) {
             return Redirect::to('publicaciones');
         }else{
@@ -595,13 +594,30 @@ $areas_all = DB::table('temas')->where('type_theme', 'gran_area')->get();
 
 //obtiene el país de la ciudad de la publicación
 public function getCountryPublicationLugar($id_city){
-    return DB::select('select DISTINCT p.id_lugar, p.name_lugar, c.type_lugar from lugars p, lugars c where p.id_lugar=c.id_lugar_fk and  p.id_lugar='.$id_city);
+    return DB::select('select DISTINCT p.id_lugar, p.name_lugar, c.type_lugar from lugars p, lugars c where c.id_lugar_fk=p.id_lugar and  c.id_lugar='.$id_city);
 }
 
 
 
 
+public function getIndexPaper($id_pub, $id_index){
+    $esIndex = DB::table('revista_nivels')->where('id_publications_fk', $id_pub)->where('id_level_fk', $id_index)->count();
+    if($esIndex>0){
+        return 1;
+    }else{
+        return 0;
+    }
+}
 
+
+
+public function returnIndexPublicationPaper($id_publicatin){
+
+    $listIndexClasification = DB::table('revista_nivels')
+        ->where('id_publications_fk', $id_publicatin)
+        ->count();
+        return $listIndexClasification;
+}
 
 
 
@@ -620,7 +636,7 @@ public function getCountryPublicationLugar($id_city){
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $request['id_convocatoria_edit'])
-                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                        ->select('publicacions.*', 'institucions.*',  'lugars.id_lugar', 'lugars.name_lugar')
                         ->get();
 
         $listThemesPub = DB::table('areas_publicacions')
@@ -641,13 +657,29 @@ public function getCountryPublicationLugar($id_city){
     public function editarRevista(Request $request){
         //return "editando revista ".$request['id_revista_edit'];
         
-            $institucionesVinvulado = $this->callInstitutionMy();
+        $institucionesVinvulado = $this->callInstitutionMy();
         $gran_areas = $this->callLargesAreasTheme();
         $lugares = $this->callLocationCountry();
         $indexpaper = DB::table('indices')->get();
         $clasificationpaper = DB::table('nivels')->get();
         $quantityIndex = DB::table('indices')->count();
-        return view('editPublication.formulariorevistaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'indexpaper', 'clasificationpaper'), ['quantityIndex' => $quantityIndex]);
+
+       $publication_unique = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.id_publication', $request['id_revista_edit'])
+                        ->select('publicacions.*', 'institucions.*',  'lugars.id_lugar', 'lugars.name_lugar')
+                        ->get();
+
+        $listThemesPub = DB::table('areas_publicacions')
+                ->join('publicacions', 'areas_publicacions.id_publication_fk', '=', 'publicacions.id_publication')
+                ->join('temas', 'areas_publicacions.id_theme_fk', '=', 'temas.id_tema')
+                ->where('publicacions.id_publication', $request['id_revista_edit'])
+                ->select('temas.*')
+                ->get();
+
+        return view('editPublication.formulariorevistaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'indexpaper', 'clasificationpaper', 'publication_unique', 'listThemesPub'), ['quantityIndex' => $quantityIndex]);
       
         
     }
@@ -659,12 +691,13 @@ public function getCountryPublicationLugar($id_city){
         $institucionesVinvulado = $this->callInstitutionMy();
         $gran_areas = $this->callLargesAreasTheme();
         $lugares = $this->callLocationCountry();
+        
         $publication_unique = DB::table('publicacions')
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $request['id_event_edit'])
-                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                        ->select('publicacions.*', 'institucions.*',  'lugars.id_lugar', 'lugars.name_lugar')
                         ->get();
 
         $listThemesPub = DB::table('areas_publicacions')
@@ -690,7 +723,7 @@ public function getCountryPublicationLugar($id_city){
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $request['id_request_edit'])
-                        ->select('publicacions.*', 'institucions.*',  'lugars.*')
+                        ->select('publicacions.*', 'institucions.*',  'lugars.id_lugar', 'lugars.name_lugar')
                         ->get();
 
         $listThemesPub = DB::table('areas_publicacions')
@@ -703,6 +736,7 @@ public function getCountryPublicationLugar($id_city){
 
         return view('editPublication.formulario-solicitudedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'listThemesPub', 'publication_unique'));
     }
+
 
 
 

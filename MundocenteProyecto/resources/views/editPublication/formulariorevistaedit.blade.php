@@ -26,8 +26,12 @@
                 </div>
             </div>
         </div>
+
+@inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')  
+
         <div class="ui center aligned container">
             <div class="ui padded raised left aligned segment">
+            @foreach($publication_unique as $publication_uni)
                 <div class="ui form" id="form">
 
 
@@ -36,9 +40,20 @@
                     <div class="field">
                         <div class="ui large horizontal label">Institución que publica la revista:
                             <select name="country" class="ui search dropdown" id="selectMVinculation">
-                                <option value="">Seleccione Institución</option>
+                                
                                 @foreach($institucionesVinvulado as $inst_vin)
-                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                     @if($inst_vin->state_institution=='nuevo')
+                                        <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} -
+                                            (Institución no verificada)
+                                        </option>
+                                    @else
+                                        @if($publication_uni->id_institution==$inst_vin->id_institution)
+                                            <option value="{{$inst_vin->id_institution}}" selected="true"> {{$inst_vin->name_institution}}</option>
+                                        @else
+                                            <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @endif
+                                        
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -49,15 +64,19 @@
 
                     <div class="field">
                     <div class="ui inverted large horizontal label color_2">
-                            <div class="detail" id="name_country_title"></div>
+                            <div class="detail" id="name_country_title">País: 
+                                @foreach($call_methods_theme->getCountryPublicationLugar($publication_uni->id_lugar_fk) as $pais_edit)
+                                        {{$pais_edit->name_lugar}}
+                                @endforeach
+                            </div>
                         </div>
                          <div class="ui inverted large horizontal label color_3">
-                            <div class="detail" id="name_city_title"></div>
+                            <div class="detail" id="name_city_title">Ciudad: {{$publication_uni->name_lugar}}</div>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui inverted large horizontal label color_2">
-                            <div class="detail" id="name_institute_title_select"></div>
+                            <div class="detail" id="name_institute_title_select">Institución: {{$publication_uni->name_institution}}</div>
                         </div>
                     </div>
 
@@ -74,7 +93,10 @@
                         <div class="required field">
                             <select class="ui search dropdown" name="country" disabled="true"
                                     placeholder="seleccione país de la convocatoria" id="selectCountry">
-                                <option value="">Seleccione país</option>
+                                 @foreach($call_methods_theme->getCountryPublicationLugar($publication_uni->id_lugar_fk) as $pais_edit)
+                                        <option value="{{$pais_edit->id_lugar}}" selected="true">{{$pais_edit->name_lugar}}</option>
+                                @endforeach
+
                                 @foreach($lugares as $lugar)
 
                                     <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
@@ -84,7 +106,7 @@
                         <div class="required field" id="cityChange">
                             <select class="ui search dropdown" name="city" disabled="true"
                                     placeholder="Seleccione Ciudad" id="selectCity">
-                                <option value="">Seleccione ciudad</option>
+                                <option value="{{$publication_uni->id_lugar_fk}}" selected="true"  id="enwcityselectedselect">{{$publication_uni->name_lugar}}</option>
                             </select>
                         </div>
                     </div>
@@ -92,23 +114,78 @@
 
                     <div class="required field">
                         <label>Título</label>
-                        {!!Form::text('title', null, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
+                        {!!Form::text('title', $publication_uni->title_publication, ['type' => 'text', 'placeholder' => 'Ejemplo: Docente de tiempo completo área matemáticas.', 'id'=>'titleid'])!!}
                     </div>
 
 
                     <label><b>¿La revista se encuentra indexada?</b></label>
-                    <div class="inline field">
-                        <label>
-                            No
-                        </label>
-                        <div class="ui toggle checkbox" onclick="showAdvancedSearch()">
-                            <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden"
-                                   id="checkpaperindex">
+                    
+
+@if($call_methods_theme->returnIndexPublicationPaper($publication_uni->id_publication) > 0)
+<div class="inline field">
+    <input type="hidden" id="id_type_publication{{$publication_uni->id_publication}}" value="1">
+     <label>
+        No
+    </label>
+    <div class="ui toggle checkbox checked" onclick="showAdvancedSearch()">
+        <input type="checkbox" name="indexed_paper" checked="true" tabindex="0" class="hidden"
+               id="checkpaperindex">
+    </div>
+    <label>
+        Si
+    </label>
+<p>(indexada)</p>
+    </div>
+
+                    <!--Datos de indexación-->
+                    <div id="indexing-data" class="ui " style="display: block;">
+                        <h4 class="ui dividing header" style="padding-top: 10px">Datos de indexación</h4>
+                        <div class=" field">
+
+                            @foreach($indexpaper as $index)
+
+                                <div class="two fields">
+                                    <label style="padding-top: 12px;">{{$index->name_index}}</label>
+                                    <div class="field">
+                                        <select name="name" class="ui fluid dropdown"
+                                                id="selectpaperindex{{$index->id_index}}">
+                                            @foreach($clasificationpaper as $clasification)
+                                                <option value="">Clasficación</option>
+                                                @if($clasification->id_index_fk==$index->id_index)
+                                                    @if($call_methods_theme->getIndexPaper($publication_uni->id_publication, $clasification->id_level)==1)
+                                                    <option value="{{$clasification->id_level}}" selected="true">{{$clasification->value_level}}</option>
+                                                    @else
+                                                    <option value="{{$clasification->id_level}}">{{$clasification->value_level}}</option>
+                                                    @endif
+
+
+                                                    
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <label>
-                            Si
-                        </label>
+
+
                     </div>
+@elseif($call_methods_theme->returnIndexPublicationPaper($publication_uni->id_publication) == 0)
+<div class="inline field">
+         <input type="hidden" id="id_type_publication{{$publication_uni->id_publication}}" value="1">
+     <label>
+        No
+    </label>
+    <div class="ui toggle checkbox" onclick="showAdvancedSearch()">
+        <input type="checkbox" name="indexed_paper" tabindex="0" class="hidden"
+               id="checkpaperindex">
+    </div>
+    <label>
+        Si
+    </label>
+    <p>(No indexada)</p>
+    </div>
+
                     <!--Datos de indexación-->
                     <div id="indexing-data" class="ui " style="display: none;">
                         <h4 class="ui dividing header" style="padding-top: 10px">Datos de indexación</h4>
@@ -135,8 +212,9 @@
 
 
                     </div>
-
-
+@endif
+                       
+               
                     <input type="hidden" name="quantityindexlevel" id="idquantitypaperindex" value="{{$quantityIndex}}">
 
 
@@ -158,9 +236,6 @@
 
 
 
-
-
-@inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')
                     <!--Areas de conocimiento-->
                     <h4 class="ui dividing header">Áreas de conocimiento</h4>
                     <div class="field" id="contentSelectArea">
@@ -181,6 +256,10 @@
                                         </table>
 
 <select class="ui fluid search dropdown multiple" multiple="true" id="select_disciplina_formacion">
+
+@foreach($listThemesPub as $theme_pub)
+    <option value="{{$theme_pub->id_tema}}" selected="true"> {{$theme_pub->name_theme}} - {{$theme_pub->type_theme}}</option>
+@endforeach
 
 @foreach($gran_areas as $gran_area)
 
@@ -209,6 +288,28 @@
                         <br>
                         <label>Imagen o portada de la revista</label>
                         <br>
+                      
+                    @if($publication_uni->url_photo_publication != NULL)
+                          <div class="field">
+                        <label>Imagen o logo del evento</label>
+                        <img class="ui middle aligned medium rounded image" src="{{$publication_uni->url_photo_publication}}"
+                             id="imageNewShow">
+                        <span>
+                    <input type="hidden" name="imaTemp" id="imageAuxTemp" value="{{$publication_uni->url_photo_publication}}">
+                        <label for="file" class="ui blue button button_load">
+                            Cargar
+                            
+                             <form method="post" id="formularioimage" enctype="multipart/form-data">
+                                 <input type="file" name="file" id="file" accept="image/*" required
+                                        style="display:none">
+                                 
+                            </form>
+                        </label>
+                    </span>
+                    </div>
+                    @else
+                        <div class="field">
+                        <label>Imagen o logo del evento</label>
                         <img class="ui middle aligned medium rounded image" src="images/public-image.png"
                              id="imageNewShow">
                         <span>
@@ -224,6 +325,8 @@
                         </label>
                     </span>
                     </div>
+                    @endif
+                    </div>
 
 
                     <h4 class="ui dividing header">Información de contacto</h4>
@@ -235,16 +338,16 @@
                         <div class="required field">
                             <label>Enlace</label>
 
-                            {!!Form::text('link', null, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
+                            {!!Form::text('link', $publication_uni->url_publication, ['type' => 'text', 'placeholder' => 'URL', 'id'=>'url_publication'])!!}
                         </div>
                         <div class="required field">
                             <label>Datos de contacto </label>
 
-                            {!!Form::text('contact_data', null, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
+                            {!!Form::text('contact_data', $publication_uni->contact_pubication, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                         </div>
                     </div>
 
-
+                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a type="submit" form="form" class="ui inverted submit button button_submit"
@@ -262,6 +365,7 @@
                         </ul>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -297,11 +401,6 @@
                 ;
             });
 
-
-        $('#optionMainAnnouncement').removeClass('active');
-        $('#optionMainPaper').addClass('active');
-        $('#optionMainEvent').removeClass('active');
-        $('#optionMainRequest').removeClass('active');
 
         $('#check_area_all').click(function () {
             var checkAl = $('#valueCheckallArea').val();

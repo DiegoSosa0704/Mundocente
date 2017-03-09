@@ -21,7 +21,7 @@ class PublicationsController extends Controller
 
 
      public function __construct(){
-        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia']]);
+        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia', 'ediatrEvento', 'editarConvocatoria', 'editarSolicitud']]);
 
     }
 
@@ -138,19 +138,13 @@ class PublicationsController extends Controller
     {
            if($request->ajax()){
                 
-                $institutionTable = DB::table('institucions')->where('id_institution', $request['id_institute'])->select('setor_institution')->get();
-                $sectorInstitution = '';
-                foreach ($institutionTable as $ins) {
-                    $sectorInstitution = $ins->setor_institution;
-                }
-                
                 $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
                 $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
                 
                  Publicacion::create([
                     'title_publication' => $request['title'],
                     'description_publication' => $request['description'],
-                    'sector_publication' => $sectorInstitution,
+                    'sector_publication' => $request['sector_request'],
                     'url_publication' => $request['url_link'],
                     'date_start' => "".$fecha_inicio,
                     'date_end' => "".$fecha_fin,
@@ -167,13 +161,13 @@ class PublicationsController extends Controller
                 $publication_last= Publicacion::all();
                 $last_id_publication = $publication_last->last()->id_publication;
                 
-                echo "menaje array: ".count($request['disciplines']);
+                
                 if ($request['allArea']=='1') {
 
                       if (!empty($request['disciplines'])) {
-                        echo "<br>entró a id";
+                        
                         for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
-                            echo "for ----> "+$request['disciplines'][$i];
+                            
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
                                 'id_theme_fk' => $request['disciplines'][$i],
@@ -190,6 +184,12 @@ class PublicationsController extends Controller
         $cero = 0;
         return  $cero;
     }
+
+
+
+
+
+
 
 
 
@@ -232,9 +232,9 @@ class PublicationsController extends Controller
                 
                 if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
-                        echo "<br>entró a id";
+                        
                         for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
-                            echo "for ----> "+$request['disciplines'][$i];
+                            
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
                                 'id_theme_fk' => $request['disciplines'][$i],
@@ -257,6 +257,10 @@ class PublicationsController extends Controller
            
         }
     }
+
+
+
+
 
 
     /**
@@ -287,7 +291,7 @@ class PublicationsController extends Controller
                 
                 if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
-                        echo "<br>entró a id";
+                        
                         for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
                             
                              AreasPublicacion::create([
@@ -315,10 +319,6 @@ class PublicationsController extends Controller
                     }
                 }
                 
-              
-                
-                
-               
                return  0;
            
         }
@@ -359,9 +359,9 @@ class PublicationsController extends Controller
                 
                 if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
-                        echo "<br>entró a id";
+                        
                         for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
-                            echo "for ----> "+$request['disciplines'][$i];
+                            
                              AreasPublicacion::create([
                                 'id_publication_fk' => $last_id_publication,
                                 'id_theme_fk' => $request['disciplines'][$i],
@@ -381,13 +381,298 @@ class PublicationsController extends Controller
                 
                 
                
-                echo "<br>";
+                
                return  0;
                return  0;
            
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+     * Método que sirve para editaruna convocatoria
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editarConvocatoria(Request $request)
+    {
+           if($request->ajax()){
+
+        
+                
+                $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
+                $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
+             
+                 DB::table('publicacions')
+                ->where('id_publication', $request['id_p'])
+                ->update([
+                    'title_publication' => $request['title'],
+                    'description_publication' => $request['description'],
+                    'sector_publication' =>  $request['sector_request'],
+                    'url_publication' => $request['url_link'],
+                    'date_start' => "".$fecha_inicio,
+                    'date_end' => "".$fecha_fin,
+                    'contact_pubication' => $request['contact'],
+                    'state_publication' => 'activo',
+                    'id_type_publication' => 1,
+                    'id_institution_fk' => $request['id_institute'],
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+
+                ]);
+
+                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+
+                if ($request['allArea']=='1') {
+
+                      if (!empty($request['disciplines'])) {
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
+                        }
+                     }
+                }else{
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => 1,
+                            ]);
+                }
+        }
+        $cero = 0;
+        return  $cero;
+    }
+
+
+
+    
+
+    /**
+     * Método que sirve para editar un Evento
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ediatrEvento(Request $request)
+    {
+           if($request->ajax()){
+                   
+                $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
+                $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
+                
+                 DB::table('publicacions')
+                ->where('id_publication', $request['id_p'])
+                ->update([
+                    'title_publication' => $request['title'],
+                    'description_publication' => $request['description'],
+                    'sector_publication' => $request['sector_request'],
+                    'url_publication' => $request['url_link'],
+                    'url_photo_publication' => $request['url_image'],
+                    'date_start' => "".$fecha_inicio,
+                    'date_end' => "".$fecha_fin,
+                    'hour_start' => $request['hour_i'],
+                    'hour_end' => $request['hour_f'],
+                    'id_institution_fk' => $request['id_institute'],
+                    'contact_pubication' => $request['contact'],
+                    'state_publication' => 'activo',
+                    'id_type_publication' => 3,
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+
+                ]);
+
+
+
+                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                
+                if ($request['allArea']=='1') {
+                      if (!empty($request['disciplines'])) {
+                        
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
+                        }
+                     }
+                       
+
+                }else{
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => 1,
+                            ]);
+                }
+                
+              
+                
+                
+               return  0;
+           
+        }
+    }
+
+
+
+
+
+
+/**
+     * Método que sirve para editar Solicitud
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editarSolicitud(Request $request)
+    {
+           if($request->ajax()){
+                 
+
+               
+                $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
+                $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
+                
+                DB::table('publicacions')
+                ->where('id_publication', $request['id_p'])
+                ->update([
+                    'title_publication' => $request['title'],
+                    'description_publication' => $request['description'],
+                    'date_start' => "".$fecha_inicio,
+                    'date_end' => "".$fecha_fin,
+                    'contact_pubication' => $request['contact'],
+                    'sector_publication' => $request['sector_request'],
+                    'state_publication' => 'activo',
+                    'id_institution_fk' => $request['id_institute'],
+                    'id_type_publication' => $request['type_request'],
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+                ]);
+
+                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                
+                if ($request['allArea']=='1') {
+                      if (!empty($request['disciplines'])) {
+                        
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
+                        }
+                     }
+                }else{
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => 1,
+                            ]);
+                }
+                
+               return  0;
+           
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+     /**
+     * Método que sirve para editar Revista
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editarRevista(Request $request)
+    {
+           if($request->ajax()){
+                
+                 DB::table('publicacions')
+                ->where('id_publication', $request['id_p'])
+                ->update([
+                    'title_publication' => $request['title'],
+                    'url_publication' => $request['url_link'],
+                    'url_photo_publication' => $request['url_image'],
+                    'contact_pubication' => $request['contact'],
+                    'state_publication' => 'activo',
+                    'id_type_publication' => 2,
+                    'id_institution_fk' => $request['id_institute'],
+                    'id_user_fk' => Auth::user()->id,
+                    'id_lugar_fk' => $request['id_city'],
+
+                ]);
+
+
+                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                
+                if ($request['allArea']=='1') {
+                      if (!empty($request['disciplines'])) {
+                        
+                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                            
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => $request['disciplines'][$i],
+                            ]);
+                        }
+                     }
+                      
+
+                }else{
+                             AreasPublicacion::create([
+                                'id_publication_fk' => $request['id_p'],
+                                'id_theme_fk' => 1,
+                            ]);
+                }
+
+                DB::table('revista_nivels')->where('id_publications_fk', $request['id_p'])->delete();
+
+
+                if (!empty($request['arraylevels'])) {
+                    for ($i=0; $i < count($request['arraylevels']); $i++) { 
+                        RevistaNivel::create([
+                            'id_publications_fk' => $request['id_p'],
+                            'id_level_fk' => $request['arraylevels'][$i],
+                            ]);
+                    }
+                }
+                
+               return  0;
+           
+        }
+    }
 
 
 

@@ -135,7 +135,7 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
 
 <!--            Animación para cargado progress -->
 
-<div class="ui indicating progress fixed" data-value="1" data-total="200" id="progressloadfixed" style="background-color: #DFDADD;
+<div class="ui indicating progress fixed" data-value="1" data-total="250" id="progressloadfixed" style="background-color: #DFDADD;
 height: 3px;padding-top: 1px;width: 150%;top: -16px;">
               <div class="bar" style="background: #AD5691;height: 3px;left: -28px;"></div>
 </div>
@@ -218,6 +218,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 {!!Html::script('js/action-publication.js')!!}
 {!!Html::script('js/loadscroll.js')!!}
 {!!Html::script('js/action-filter.js')!!}
+{!!Html::script('js/editPublication.js')!!}
 
 </body>
 </html>

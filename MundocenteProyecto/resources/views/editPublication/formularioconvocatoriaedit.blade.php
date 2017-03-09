@@ -57,14 +57,20 @@
                         <div class="ui  large horizontal label">Institución con la que realizará la
                             convocatoria:
                             <select name="institution" class="ui search dropdown" id="selectMVinculation">
-                                <option value="{{$publication_uni->id_institution}}" selected="true">{{$publication_uni->name_institution}}</option>
+                                
                                 @foreach($institucionesVinvulado as $inst_vin)
+
                                     @if($inst_vin->state_institution=='nuevo')
                                         <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} -
                                             (Institución no verificada)
                                         </option>
                                     @else
-                                        <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @if($publication_uni->id_institution==$inst_vin->id_institution)
+                                            <option value="{{$inst_vin->id_institution}}" selected="true"> {{$inst_vin->name_institution}}</option>
+                                        @else
+                                            <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @endif
+                                        
                                     @endif
                                 @endforeach
                             </select>
@@ -124,14 +130,19 @@
                             <label >País</label>
                             <select class="ui search dropdown" name="country"
                                     placeholder="seleccione país de la convocatoria" id="selectCountry">
-                                    @foreach($call_methods_theme->getCountryPublicationLugar($publication_uni->id_lugar_fk) as $pais_edit)
-                                        <option value="{{$pais_edit->id_lugar}}" selected="true">{{$pais_edit->name_lugar}}</option>
-                                    @endforeach
-
+                                   
+                                
                                 @foreach($lugares as $lugar)
-
-                                    <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                    @foreach($call_methods_theme->getCountryPublicationLugar($publication_uni->id_lugar_fk) as $pais_edit)
+                                        @if($lugar->id_lugar==$pais_edit->id_lugar)
+                                        <option value="{{$pais_edit->id_lugar}}" selected="true">{{$pais_edit->name_lugar}}</option>
+                                        @else
+                                            <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                        @endif
+                                    @endforeach
                                 @endforeach
+
+                                
                             </select>
 
 
@@ -317,6 +328,15 @@
                             {!!Form::text('contact_data', $publication_uni->contact_pubication, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                         </div>
                     </div>
+                    
+                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
+
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
+                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a form="form" id="editAnnouncement"
@@ -327,13 +347,6 @@
                     </div>
                     <br>
 
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
 
 
                 </div>

@@ -78,6 +78,8 @@
                 ;
             })
         ;
+
+
     </script>
 </head>
 <body>
@@ -144,5 +146,14 @@
     </div>
 </div>
 </body>
+
+<script type="text/javascript">
+    
+      $('.ui.checkbox')
+          .checkbox()
+        ;
+        
+        
+</script>
 
 </html>

@@ -199,7 +199,13 @@
                         </div>
                     </div>
 
+                     <div class="ui message error" style="display: none;" id="messageErrorpublication">
 
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a form="form" id="addRequestbutton"
@@ -210,13 +216,7 @@
                     </div>
                     <br>
 
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                   
 
 
                     <div class="ui error message"></div>

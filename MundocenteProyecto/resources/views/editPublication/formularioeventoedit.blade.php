@@ -37,7 +37,18 @@
                             <select name="country" class="ui search dropdown" id="selectMVinculation">
                                 <option value="{{$publication_uni->id_institution}}" selected="true">{{$publication_uni->name_institution}}</option>
                                 @foreach($institucionesVinvulado as $inst_vin)
-                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @if($inst_vin->state_institution=='nuevo')
+                                        <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} -
+                                            (Institución no verificada)
+                                        </option>
+                                    @else
+                                        @if($publication_uni->id_institution==$inst_vin->id_institution)
+                                            <option value="{{$inst_vin->id_institution}}" selected="true"> {{$inst_vin->name_institution}}</option>
+                                        @else
+                                            <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        @endif
+                                        
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -104,12 +115,14 @@
                             <label >País</label>
                             <select class="ui search dropdown" name="country"
                                     placeholder="seleccione país de la convocatoria" id="selectCountry">
-                                 @foreach($call_methods_theme->getCountryPublicationLugar($publication_uni->id_lugar_fk) as $pais_edit)
+                                @foreach($call_methods_theme->getCountryPublicationLugar($publication_uni->id_lugar_fk) as $pais_edit)
+                                    @foreach($lugares as $lugar)
+                                        @if($lugar->id_lugar==$pais_edit->id_lugar)
                                         <option value="{{$pais_edit->id_lugar}}" selected="true">{{$pais_edit->name_lugar}}</option>
-                                @endforeach
-                                @foreach($lugares as $lugar)
-
-                                    <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                        @else
+                                            <option value="{{$lugar->id_lugar}}"> {{$lugar->name_lugar}}</option>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </select>
 
@@ -276,7 +289,7 @@
                         <img class="ui middle aligned medium rounded image" src="{{$publication_uni->url_photo_publication}}"
                              id="imageNewShow">
                         <span>
-                    <input type="hidden" name="imaTemp" id="imageAuxTemp" value="">
+                    <input type="hidden" name="imaTemp" id="imageAuxTemp" value="{{$publication_uni->url_photo_publication}}">
                         <label for="file" class="ui blue button button_load">
                             Cargar
                             
@@ -335,8 +348,16 @@
                             {!!Form::text('contact_data', $publication_uni->contact_pubication, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                         </div>
                     </div>
+                    
+                     <div class="ui message error" style="display: none;" id="messageErrorpublication">
 
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
 
+                        </ul>
+                    </div>
+
+                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a type="submit" form="form" class="ui submit inverted button button_submit"
@@ -346,13 +367,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                   
                 </div>
                 @endforeach
             </div>
