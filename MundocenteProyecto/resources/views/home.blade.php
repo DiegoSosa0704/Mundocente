@@ -137,7 +137,7 @@
             {{--Convocatoria--}}
             <div class="row" style="background-color: #EEEEEE">
                 <div class="column">
-                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                    <img src="images/worker.png" width="230" class="scrollme animateme ui image centered"
                          data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-100">
                 </div>
                 <div class="column left aligned" style="margin: auto 0 auto 0">
@@ -162,14 +162,14 @@
                     </h2>
                 </div>
                 <div class="column">
-                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                    <img src="images/certificate.png" width="230" class="scrollme animateme ui image centered"
                          data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="100">
                 </div>
             </div>
             {{--Eventos--}}
             <div class="row" style="background-color: #EEEEEE">
                 <div class="column">
-                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                    <img src="images/calendar.png" width="230" class="scrollme animateme ui image centered"
                          data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="-100">
                 </div>
                 <div class="column left aligned" style="margin: auto 0 auto 0">
@@ -195,7 +195,7 @@
                     </h2>
                 </div>
                 <div class="column">
-                    <img src="images/workspace.png" class="scrollme animateme ui small image centered"
+                    <img src="images/add.png" width="230" class="scrollme animateme ui image centered"
                          data-when="enter" data-from="0.75" data-to="0" data-opacity="0" data-translatex="100">
                 </div>
             </div>
@@ -464,7 +464,7 @@
 </body>
 
 <script type="text/javascript">
-    $(document)
+    /*$(document)
         .ready(function() {
             // fix menu when passed
             $('.message-info')
@@ -483,7 +483,7 @@
             ;
 
         })
-    ;
+    ;*/
 
 
     $('.ui.form')
