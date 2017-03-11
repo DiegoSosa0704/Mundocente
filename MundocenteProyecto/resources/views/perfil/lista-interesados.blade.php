@@ -18,11 +18,29 @@
 
             <div class="ui grid stackable equal width">
                 <div class="column">
-                    <div class="ui card" style="height: 100%">
+                    <div class="ui raised card" style="height: 100%">
                         <div class="header" style="padding: 10px 10px">
                             <h2>Interesados en publicaciones</h2>
                         </div>
                         <div class="content">
+                            <div class="ui feed">
+                                <div class="event">
+                                    <div class="label">
+                                        <img src="/images/user.png">
+                                    </div>
+                                    <div class="content">
+                                        <div class="summary">
+                                            <a class="user">
+                                                Alexander Sosa
+                                            </a> está interesado en la publicación:
+                                            <a>Publicación</a>
+                                            <div class="date">
+                                                1 Hour Ago
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="ui list">
                                 @foreach($lista_interesados as $usersInterest)
                                     <div class="item">
