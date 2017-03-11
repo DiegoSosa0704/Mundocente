@@ -120,6 +120,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
                         <div class="field">
                             <div class=" grouped fields">
                                 <label>Sector educativo</label>
@@ -259,7 +260,7 @@
 
                         </ul>
                     </div>
-                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
+                    
 
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">

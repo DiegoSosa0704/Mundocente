@@ -163,7 +163,7 @@
                         
 
 
-
+<input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
 
 
 
@@ -336,7 +336,7 @@
 
                         </ul>
                     </div>
-                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
+                    
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a form="form" id="editAnnouncement"

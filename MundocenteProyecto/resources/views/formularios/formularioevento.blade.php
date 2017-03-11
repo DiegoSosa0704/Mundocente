@@ -40,7 +40,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
+                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Institución...</a>
                     </div>
 
 
@@ -191,16 +191,7 @@
                         </div>
                     </div>
 
-                    <select class="ui dropdown">
-                        <optgroup label="team 1">
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </optgroup>
-                        <label label="team 2">
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                        </label>
-                    </select>
+                   
 
 
 @inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')
@@ -299,7 +290,14 @@
                         </div>
                     </div>
 
+                     <div class="ui message error" style="display: none;" id="messageErrorpublication">
 
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
+                    
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a type="submit" form="form" class="ui submit inverted button button_submit"
@@ -309,13 +307,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                   
                 </div>
             </div>
         </div>

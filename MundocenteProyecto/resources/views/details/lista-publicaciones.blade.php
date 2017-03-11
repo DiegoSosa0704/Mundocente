@@ -173,11 +173,80 @@
 
 
                         @if(count($listPublications)==0)
-                        <h2>No se encontraron resultados</h2>
+                        <h2 style="color: #B6B5B5;">No se encontraron resultados</h2>
                         @endif
                     </div>
 
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+  $recomendaciones = DB::table('recomendaciones')
+                ->join('temas', 'recomendaciones.id_theme_fk', '=', 'temas.id_tema')
+                ->where('id_user_fk', Auth::user()->id)
+                ->take(5)
+                ->distinct()
+                ->orderBy('recomendaciones.value_recomendation', 'desc')
+                ->get();
+?>
+<input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+<div class="ui five wide column">
+<div class="ui card">
+  <div class="content">
+    <div class="header">Temas sugeridos</div>
+  </div>
+    <div class="content">
+      <div class="ui middle aligned divided list">
+          @foreach($recomendaciones as $recomen)
+          <div class="item" id="item_recomendation_themes{{$recomen->id_theme_fk}}">
+            <div class="right floated content">
+                <div class="ui button" style="background: #AD5691;color: #fff;" onclick="addThemeFavorite({{$recomen->id_theme_fk}})">+</div>
+              </div>
+              <div class="content">
+                {{$recomen->name_theme}}
+              </div>
+          </div>
+          @endforeach
+         
+    </div>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

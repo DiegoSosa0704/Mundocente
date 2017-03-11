@@ -42,7 +42,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
+                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Institución...</a>
                     </div>
 
 
@@ -236,6 +236,14 @@
                     </div>
 
 
+                      <div class="ui message error" style="display: none;" id="messageErrorpublication">
+
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
+                    
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a type="submit" form="form" class="ui inverted submit button button_submit"
@@ -245,13 +253,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                  
                 </div>
             </div>
         </div>

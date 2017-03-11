@@ -21,6 +21,11 @@ class PublicationsController extends Controller
 
 
      public function __construct(){
+         if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+            if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+                return Redirect::to('publicaciones');
+            }
+        }
         $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia', 'ediatrEvento', 'editarConvocatoria', 'editarSolicitud']]);
 
     }
@@ -482,7 +487,7 @@ class PublicationsController extends Controller
     public function ediatrEvento(Request $request)
     {
            if($request->ajax()){
-                   
+                  
                 $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
                 $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
                 

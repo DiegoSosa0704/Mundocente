@@ -10,20 +10,15 @@
     <!--Contenido-->
     <div class="pusher pusher-start" style="background-color: #EEEEEE;">
         <div class="ui container start-container">
+
+
+
+
             <div class="ui stackable grid">
 
-
-
-            @include('details.lista-publicaciones')
-
-
-
-
-
-
-            <div class="ui five wide column">
+                    <div class="ui five wide column">
             <div class="ui card">
-			  <div class="content">
+              <div class="content">
               <p></p>
             @foreach($user_perfil as $user_peril)
 
@@ -31,29 +26,39 @@
                                         <br>
                                          <br>
                                          <br>
-			    <div class="header">{{$user_peril->name}}</div>
-			    
+                <div class="header">{{$user_peril->name}}</div>
+                
 
-			    <div class="meta">
-			      <span>{{$user_peril->email}}</span>
-			      
-			    </div>
+                <div class="meta">
+                  <span>{{$user_peril->email}}</span>
+                  
+                </div>
                  <br>
                 <span>Nombre de usuario</span>
                 <div class="meta">
                   <span>{{$user_peril->last_name}}</span>
                   
                 </div>
-			    <br>
-			    <span>Link de mi Currículo</span>
-			    <a href="{{$user_peril->curriculo_url}}">{{$user_peril->curriculo_url}}</a>
-			    <br>
-			    <br>
-			    <span>Nivel de formación</span>
-			    <div class="meta">
-			      <span>{{$user_peril->nivel_formacion}}</span>
-			      
-			    </div>
+                <br>
+                <span>Link de mi Currículo</span>
+                <a href="{{$user_peril->curriculo_url}}">{{$user_peril->curriculo_url}}</a>
+                <br>
+                <br>
+                <span>Nivel de formación</span>
+                <div class="meta">
+                     @if($user_peril->nivel_formacion=='universitario')
+                <span>Universitario</span>
+                @elseif($user_peril->nivel_formacion=='especializacion')
+                <span>Especialización</span>
+                @elseif($user_peril->nivel_formacion=='maestria')
+                <span>Maestría</span>
+                @elseif($user_peril->nivel_formacion=='doctorado')
+                <span>Doctorado</span>
+                @elseif($user_peril->nivel_formacion=='post_doctorado')
+                <span>Postdoctorado</span>
+                @endif
+                  
+                </div>
                 <?php
                 $esmiperfil = 0;
                 ?>
@@ -63,13 +68,8 @@
                 
                 @endif
                 @endforeach
-
-
-			    <br>
-			    
-
-                                    
-                                        <label><b>Estoy viculado en:</b></label>
+                <br>
+                    <label><b>Está vinculado con:</b></label>
                                         <div class="ui divided list " id="listadeinstitutosvinculados">
                                             @foreach($institucionesVinvulado as $institu)
                                                 <div class="item" id="institutionList{{$institu->id_institution}}">
@@ -81,15 +81,51 @@
                                                 </div>
                                             @endforeach
                                         </div>
+
+                                        <br>
+                                        <?php  
+                                        $area_formcion_usuario = DB::table('areas_formacions')
+                                                                ->join('temas', 'areas_formacions.id_theme_fk', '=', 'temas.id_tema')
+                                                                ->where('id_user_fk', $user_peril->id)
+                                                                ->get();
+                                        ?>
+                                         <label><b>Área de formación:</b></label>
+                                        <div class="ui divided list " >
+                                            @foreach($area_formcion_usuario as $area_f)
+                                                <div class="item">
+                                                    <div class="right floated content">
+                                                    </div>
+                                                    <div class="content">
+                                                        {{$area_f->name_theme}} 
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                <br>
+                
+
+                                    
+
+
                                     
                  <br>
                  <br>
-			    @if($esmiperfil==1)
+                @if($esmiperfil==1)
                 <a href="editando-perfil">Editar perfil</a>
                 @endif
-			  </div>
-			</div>
+              </div>
             </div>
+            </div>
+
+            @include('details.lista-publicaciones')
+
+
+
+
+
+
+          
 
             </div>
 

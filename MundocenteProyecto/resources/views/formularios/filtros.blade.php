@@ -1,11 +1,26 @@
+<div class="ui long modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Búsqueda Avanzada
+  </div>
+  <div class="image content">
+        
+     
+      
+
+
+
+
+
+
 <?php
-$gran_areas = DB::table('temas')->where('type_theme', 'gran_area')->get();
+$gran_areas = DB::table('temas')->where('type_theme', 'gran_area')->where('id_tema', '!=','1')->get();
 $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
 ?>
-<div class="ui five wide form column">
+<div class="ui">
 
 
-    <div id="filter_announcement" class="ui raised padded fixed sticky sticky-filter segment" style="display: none;">
+    <div id="filter_announcement" class="ui segment" style="display: none;">
         <div class="ui blue top left attached label">Filtro de Convocatorias</div>
 
 
@@ -18,7 +33,13 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                         class="ui search dropdown">
                     <option value="">Seleccione Gran área</option>
                     @foreach($gran_areas as $gran_area)
-                        <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
+                        @if($gran_area->id_tema!=1)
+                         
+                            
+                            
+                                <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>    
+                            
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -63,7 +84,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <option value="">Ciudad</option>
             </select>
         </div>
-        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;">
+        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
             <i class="search icon"></i>
             Buscar
         </button>
@@ -74,7 +95,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
     </div>
 
 
-    <div id="filter_paper" class="ui padded fixed sticky sticky-filter segment">
+    <div id="filter_paper" class="ui segment">
         <div class="ui green top left attached label">Filtro de Revistas</div>
         {!!Form::open(['url'=>'resultados-revistas', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
         <div class="field">
@@ -84,7 +105,13 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <select name="large_area_filter_paper" class="ui search dropdown" id="change_filter_gran_area_paper">
                     <option value="">Seleccione Gran área</option>
                     @foreach($gran_areas as $gran_area)
-                        <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
+                        @if($gran_area->id_tema!=1)
+                         
+                            
+                            
+                                <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>    
+                            
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -148,7 +175,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
             </div>
 
         </div>
-        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;">
+        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
             <i class="search icon"></i>
             Buscar
         </button>
@@ -156,7 +183,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
     </div>
 
 
-    <div id="filter_event" class="ui padded fixed sticky sticky-filter segment" style="display: none;">
+    <div id="filter_event" class="ui segment" style="display: none;">
         <div class="ui red top left attached label">Filtro de Eventos</div>
         {!!Form::open(['url'=>'resultados-eventos', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
         <div class="field">
@@ -165,8 +192,14 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <label>Seleccione Gran área</label>
                 <select name="large_area_event_filter" class="ui search dropdown" id="change_filter_gran_area_event">
                     <option value="">Gran área</option>
-                    @foreach($gran_areas as $gran_area)
-                        <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
+                   @foreach($gran_areas as $gran_area)
+                        @if($gran_area->id_tema!=1)
+                         
+                            
+                            
+                                <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>    
+                            
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -208,7 +241,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <option value="">Ciudad</option>
             </select>
         </div>
-        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;">
+        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
             <i class="search icon"></i>
             Buscar
         </button>
@@ -216,7 +249,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
     </div>
 
 
-    <div id="filter_request_investigator" class="ui padded fixed sticky sticky-filter segment" style="display: none;">
+    <div id="filter_request_investigator" class="ui segment" style="display: none;">
         <div class="ui orange top left attached label">Filtro de Solicitud a investigadores</div>
         {!!Form::open(['url'=>'solicitud-proyectos', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
         <div class="field">
@@ -226,8 +259,14 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <select name="large_area_request_inve_filter" class="ui search dropdown"
                         id="change_filter_gran_area_inve">
                     <option value="">Seleccione Gran área</option>
-                    @foreach($gran_areas as $gran_area)
-                        <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
+                   @foreach($gran_areas as $gran_area)
+                        @if($gran_area->id_tema!=1)
+                         
+                            
+                            
+                                <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>    
+                            
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -269,7 +308,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <option value="">Ciudad</option>
             </select>
         </div>
-        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;">
+        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
             <i class="search icon"></i>
             Buscar
         </button>
@@ -277,7 +316,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
     </div>
 
 
-    <div id="filter_request_evaluator" class="ui padded fixed sticky sticky-filter segment" style="display: none;">
+    <div id="filter_request_evaluator" class="ui segment" style="display: none;">
         <div class="ui orange top left attached label">Filtro de Solicitud a evaluadores</div>
         {!!Form::open(['url'=>'solicitud-evaluadores', 'method'=> 'POST', 'class'=>'ui small form', 'style'=>'width: 200%'])!!}
         <div class="field">
@@ -287,8 +326,14 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <select name="large_area_request_eva_filter" class="ui search dropdown"
                         id="change_filter_gran_area_eva">
                     <option value="">Seleccione Gran área</option>
-                    @foreach($gran_areas as $gran_area)
-                        <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
+                   @foreach($gran_areas as $gran_area)
+                        @if($gran_area->id_tema!=1)
+                         
+                            
+                            
+                                <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>    
+                            
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -330,7 +375,7 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
                 <option value="">Ciudad</option>
             </select>
         </div>
-        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;">
+        <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
             <i class="search icon"></i>
             Buscar
         </button>
@@ -339,3 +384,17 @@ $countrys = DB::table('lugars')->where('type_lugar', 'country')->get();
 
 
 </div>
+
+
+
+
+
+
+
+  </div>
+  
+</div>
+
+
+
+
