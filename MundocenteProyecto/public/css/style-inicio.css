@@ -228,6 +228,16 @@ body.pushable>.pusher.pusher-start {
     border-radius: 5px;
 }*/
 
+/*Administrador*/
+
+.ui.container.admin-container {
+    margin-top: 80px;
+}
+
+.ui.container.admin-container .ui.grid table.table {
+    font-size: 1.14em;
+}
+
 /* Mobile */
 @media only screen and (max-width: 767px) {
     div.pusher {

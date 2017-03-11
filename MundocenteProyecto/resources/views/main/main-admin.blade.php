@@ -20,67 +20,24 @@
     {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/calendar.js')!!}
 
-    <style type="text/css">
-        body {
-            background-color: #FFFFFF;
-        }
-
-        .ui.menu .item img.logo {
-            margin-right: 1.5em;
-        }
-
-        .main.container {
-            margin-top: 7em;
-        }
-
-        .ui.footer.segment {
-            margin: 5em 0 0;
-            padding: 5em 0;
-        }
-    </style>
-
 </head>
 <body>
 
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a href="#" class="header item">
-            <img class="ui logo small image" src="images/logo.png">
-            Name Admin
+        <a href="#" class="header">
+            <img class="ui logo image"  style="height: 60px; padding: 5px 0" src="images/logo.png">
         </a>
+        <a href="lugares-administrador" class="item">Lugares</a>
+        <a href="indices-administrador" class="item">Indíces</a>
+        <a href="instituciones-administrador" class="item">Instituciones</a>
+        <a href="publicaciones-administrador" class="item">Publicaciones</a>
+        <a href="usuarios-administrador" class="item">Usuarios</a>
     </div>
 </div>
 
-<div class="ui main container">
-    <h1 class="ui header">Administración</h1>
-    <div class="ui top attached tabular menu">
-        <a class="item" data-tab="places">Lugares</a>
-        <a class="item" data-tab="indices">Indíces</a>
-        <a class="item" data-tab="institutions">Instituciones</a>
-        <a class="item active" data-tab="publications">Publicaciones</a>
-        <a class="item" data-tab="users">Usuarios</a>
-    </div>
-    {{--Places--}}
-    <div class="ui bottom attached tab segment" data-tab="places">
-        @include('admin.lugares-administracion')
-    </div>
-    {{--Indices--}}
-    <div class="ui bottom attached tab segment" data-tab="indices">
-        @include('admin.indices-administracion')
-    </div>
-    {{--Institutions--}}
-    <div class="ui bottom attached tab segment" data-tab="institutions">
-        @include('admin.instituciones-administracion')
-    </div>
-    {{--publications--}}
-    <div class="ui bottom attached tab segment active" data-tab="publications">
-        @include('admin.publicaciones-administracion')
-    </div>
-    {{--Users--}}
-    <div class="ui bottom attached tab segment" data-tab="users">
-        @include('admin.usuarios-administracion')
-    </div>
-</div>
+
+@yield('content')
 
 <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
@@ -94,26 +51,6 @@
     </div>
 </div>
 </body>
-
-{{--Lugares--}}
-@include('modals.modalAddPlaces')
-@include('modals.modalEditPlaces')
-
-{{--Índices--}}
-@include('modals.modalAddIndice')
-@include('modals.modalEditIndice')
-
-{{--Instituciones--}}
-@include('modals.modalAddInstitution')
-@include('modals.modalEditInstitution')
-
-{{--Publicaciones--}}
-@include('modals.modalAddPublication')
-@include('modals.modalEditPublication')
-
-{{--User--}}
-@include('modals.modalAddUser')
-@include('modals.modalEditUser')
 
 <script>
     $('.menu .item')
