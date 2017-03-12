@@ -3,7 +3,7 @@
 @section('content')
 
     <!--Contenido-->
-    <div class="pusher pusher-start" style="background-color: #EEEEEE;">
+    <div class="pusher pusher-start">
         <div class="ui container start-container">
             <div class="ui stackable grid" id="list-publication-main-index">
                <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
@@ -20,11 +20,7 @@
 
 
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        
+
     </div>
 
 
