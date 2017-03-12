@@ -16,6 +16,11 @@ class FilternnouceentController extends Controller
 
 
     public function __construct(){
+        if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+            if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+                return Redirect::to('publicaciones');
+            }
+        }
         $this->middleware('auth', ['only' => ['index','searchLargeAreasFilter', 'buscarconocatorias']]);
         global $porciones;
     }
@@ -39,38 +44,54 @@ class FilternnouceentController extends Controller
 //buscar por convocatoria
 
 public function searchLargeAreasFilter($id_gra_area){
-    $tableLargeAreas = DB::table('temas')->where('id_tema_area',$id_gra_area)->get();
-    $listareas = array();
-    foreach ($tableLargeAreas as $gra_area) {
-         $lista_gra_area = DB::table('temas')
-            ->where('id_tema_area', $gra_area->id_tema)
-            ->distinct()
-            ->get();
-        $listareas = array_merge($lista_gra_area, $listareas);
-    }
+        $listaTotal = array();
+        $listRepeat = array();
 
-    $listDisciplines = array();
-    $listRepeat = array();
-    
-    foreach ($listareas as $area) {
-         $lista_area = DB::table('areas_publicacions')
-            ->where('id_theme_fk', $area->id_tema)
+         $lista_gran_area = DB::table('areas_publicacions')
+            ->where('id_theme_fk', $id_gra_area)
             ->select('id_publication_fk')
             ->distinct()
             ->get();
 
-            $listDisciplines = array_merge($lista_area, $listDisciplines);           
-    }
+            $listaTotal = array_merge($lista_gran_area, $listaTotal);
 
+        $lista_areas = DB::select('select a.id_tema from temas g, temas a where a.id_tema_area=g.id_tema and g.id_tema='.$id_gra_area);
 
-    $arrayFinishResults = array();
+        
+        foreach ($lista_areas as $areas) {
+             $lista_area = DB::table('areas_publicacions')
+            ->where('id_theme_fk', $areas->id_tema)
+            ->select('id_publication_fk')
+            ->distinct()
+            ->get();
 
-    foreach ($listDisciplines as $disci) {
+            $listaTotal = array_merge($lista_area, $listaTotal);
+        }
+
+        $lista_disci = DB::select('select distinct d.id_tema from temas g, temas a, temas d where a.id_tema_area=g.id_tema and d.id_tema_area=a.id_tema and g.id_tema='.$id_gra_area);
+        
+        
+        foreach ($lista_disci as $disc) {
+             $lista_disciplina = DB::table('areas_publicacions')
+            ->where('id_theme_fk', $disc->id_tema)
+            ->select('id_publication_fk')
+            ->distinct()
+            ->get();
+
+            $listaTotal = array_merge($lista_disciplina, $listaTotal);
+        }
+
+            
+
+$arrayFinishResults = array();
+
+    foreach ($listaTotal as $disci) {
             if(!in_array($disci->id_publication_fk, $listRepeat)){
                 array_push($listRepeat, $disci->id_publication_fk);
                 array_push($arrayFinishResults, $disci);
             }
     }
+    //dd($arrayFinishResults);
 
     return $arrayFinishResults;
 }

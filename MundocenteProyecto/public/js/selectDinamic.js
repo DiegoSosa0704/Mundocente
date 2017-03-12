@@ -274,7 +274,7 @@ $("#addInstituteNew").click(function(){
 				success:function(info){
 					console.log('Se agregó ');
 					$('#messageNewInstitutioneror').css('display', 'block');
-					$("#listadeinstitutosvinculados").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'>Se ha enviado la solicitud para agregar una nueva universidad - ("+name_new+") está por el momento inactiva </div> </div>");
+					$("#listadeinstitutosvinculados").append("<div class='item'>  <div class='right floated content'></div>   <div class='content'> "+name_new+" </div> </div>");
 					$('#messageNewInstitutioneror').removeClass('error');
 					$('#messageNewInstitutioneror').addClass('green');
 					$('#exitNewUniversity').html('Se Agregó la institución correctamente para ser verificada');

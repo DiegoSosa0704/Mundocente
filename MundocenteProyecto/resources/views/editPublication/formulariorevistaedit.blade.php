@@ -217,25 +217,7 @@
                
                     <input type="hidden" name="quantityindexlevel" id="idquantitypaperindex" value="{{$quantityIndex}}">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
                     <!--Areas de conocimiento-->
                     <h4 class="ui dividing header">Áreas de conocimiento</h4>
                     <div class="field" id="contentSelectArea">
@@ -346,8 +328,14 @@
                             {!!Form::text('contact_data', $publication_uni->contact_pubication, ['type' => 'text', 'placeholder' => 'Nombre, e-mail y/o teléfono', 'id'=>'cantactsid'])!!}
                         </div>
                     </div>
+                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
 
-                    <input type="hidden" id="id_publication_edit" value="{{$publication_uni->id_publication}}">
+                        <ul class="list">
+                            <li id="idpmessageerrorpublications"></li>
+
+                        </ul>
+                    </div>
+                    
                     <div class="ui right aligned stackable grid">
                         <div class="sixteen wide column">
                             <a type="submit" form="form" class="ui inverted submit button button_submit"
@@ -357,13 +345,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="ui message error" style="display: none;" id="messageErrorpublication">
-
-                        <ul class="list">
-                            <li id="idpmessageerrorpublications"></li>
-
-                        </ul>
-                    </div>
+                    
                 </div>
                 @endforeach
             </div>

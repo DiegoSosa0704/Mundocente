@@ -111,6 +111,10 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
         </button>
         {!!Form::close()!!}
 
+           <button class="ui blue basic button" onclick="showModalFilter()" style="margin-left: 10px;"> <p style="font-size: 13px;"> Filtros</p></button>
+
+        
+
     </div>
 
     <div class="right menu" style="padding-right: 30px">
@@ -149,6 +153,15 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 
 
 <script>
+
+function showModalFilter(){
+    $('.ui.long.modal')
+  .modal('show')
+;    
+}
+
+
+
     $('.dropdown')
         .dropdown({
             transition: 'scale',
@@ -197,13 +210,10 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
                         $('#filter_request_investigator').toggle(false);
                         break;
                     default:
-
                 }
             }
         })
     ;
-
-
 </script>
 {!!Html::script('js/animationsload.js')!!}
 {!!Html::script('js/selectDinamic.js')!!}

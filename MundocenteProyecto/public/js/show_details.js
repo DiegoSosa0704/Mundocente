@@ -21,7 +21,15 @@ function showDetailsPublication(id_publication) {
 			$.get('areas-all/'+response[i].id_tema+ "" , function(response_all, ciudad){
 				
 					for (var i = 0 ; i < response_all.length; i++) {
-						$('#add_temas_formation_details').append("<tr><td>"+response_all[i].name_tema_gran+"</td><td>"+response_all[i].name_tema_area+"</td><td>"+response_all[i].name_tema_disciplina+" </td> </tr>");
+						console.log("prueba "+response_all[i].name_tema_area);
+						if(response_all[i].name_tema_area != undefined && response_all[i].name_tema_disciplina != undefined){
+							$('#add_temas_formation_details').append("<tr><td>"+response_all[i].name_tema_gran+"</td><td>"+response_all[i].name_tema_area+"</td><td>"+response_all[i].name_tema_disciplina+" </td> </tr>");	
+						}else if(response_all[i].name_tema_area == undefined && response_all[i].name_tema_disciplina == undefined){
+							$('#add_temas_formation_details').append("<tr><td>"+response_all[i].name_tema_gran+"</td><td> - </td><td> - </td> </tr>");	
+						}else if(response_all[i].name_tema_area != undefined && response_all[i].name_tema_disciplina == undefined){
+							$('#add_temas_formation_details').append("<tr><td>"+response_all[i].name_tema_gran+"</td><td> "+response_all[i].name_tema_area+" </td><td> - </td> </tr>");	
+						}
+						
 					}
 						
 				

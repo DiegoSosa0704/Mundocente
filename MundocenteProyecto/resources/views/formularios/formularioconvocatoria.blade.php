@@ -64,7 +64,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Instituto...</a>
+                        <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Institución...</a>
                     </div>
 
 

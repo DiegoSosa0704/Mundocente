@@ -154,7 +154,7 @@
 
 
 
-
+@inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')
 
 
     <div class="ui third coupled modal">
@@ -163,8 +163,17 @@
             <div class="field">
                                   <select class="ui fluid search dropdown" id="select_areas_general_search_interest">
                                                 <option value="">Ingrese sus áreas de interés</option>
-                                                @foreach($areas_all as $area) 
-                                                    <option value="{{$area->id_tema}}"> {{$area->name_theme}}</option>
+                                                @foreach($areas_all as $gran_area)
+                                                    <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
+                                                    @foreach($call_methods_theme->call_areas($gran_area->id_tema) as $area)
+                                                        <option value="{{$area->id_tema}}"> {{$gran_area->name_theme}}
+                                                            - {{$area->name_theme}}</option>
+                                                        @foreach($call_methods_theme->call_disciplines($area->id_tema) as $disci)
+                                                            <option value="{{$disci->id_tema}}">{{$gran_area->name_theme}}
+                                                                - {{$area->name_theme}} - {{$disci->name_theme}}</option>
+                                                        @endforeach
+                                                    @endforeach
+
                                                 @endforeach
                                             </select>
                                             <br>

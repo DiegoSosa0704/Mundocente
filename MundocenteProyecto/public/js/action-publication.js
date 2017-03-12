@@ -91,3 +91,26 @@ function addIReportPublication(id_publication){
 	});
 	
 }
+
+
+
+
+function addThemeFavorite(id_theme){
+	console.log("mensaje");
+		var ruta = "addNewLargeAreaInterest";
+		var token = $("#token").val();
+
+		$.ajax({
+		url: ruta,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{id_area_interest_add: id_theme},
+		success:function(info){
+			$('#item_recomendation_themes'+id_theme).toggle('fast');
+			
+			}
+		});
+					
+	
+}

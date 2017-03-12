@@ -647,11 +647,24 @@ public function returnIndexPublicationPaper($id_publicatin){
                 ->get();
         //dd($listThemesPub);
 
+        
 
-        return view('editPublication.formularioconvocatoriaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'publication_unique', 'listThemesPub'));
-     
+        foreach ($publication_unique as $user) {
+            if ($user->id_user_fk==Auth::user()->id || Auth::user()->rol=='admin') {
+                 return view('editPublication.formularioconvocatoriaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'publication_unique', 'listThemesPub'));
+                
+            }else{
+                return Redirect::to('publicaciones');
+            }
+        }
 
+
+
+       
     }
+
+
+
 
 //método para editar revista
     public function editarRevista(Request $request){
@@ -679,7 +692,16 @@ public function returnIndexPublicationPaper($id_publicatin){
                 ->select('temas.*')
                 ->get();
 
-        return view('editPublication.formulariorevistaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'indexpaper', 'clasificationpaper', 'publication_unique', 'listThemesPub'), ['quantityIndex' => $quantityIndex]);
+          foreach ($publication_unique as $user) {
+            if ($user->id_user_fk==Auth::user()->id || Auth::user()->rol=='admin') {
+                 return view('editPublication.formulariorevistaedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'indexpaper', 'clasificationpaper', 'publication_unique', 'listThemesPub'), ['quantityIndex' => $quantityIndex]);
+                
+            }else{
+                return Redirect::to('publicaciones');
+            }
+        }
+
+        
       
         
     }
@@ -707,7 +729,17 @@ public function returnIndexPublicationPaper($id_publicatin){
                 ->select('temas.*')
                 ->get();
         //dd($listThemesPub);
-        return view('editPublication.formularioeventoedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'publication_unique', 'listThemesPub'));
+
+    foreach ($publication_unique as $user) {
+        if ($user->id_user_fk==Auth::user()->id || Auth::user()->rol=='admin') {
+             return view('editPublication.formularioeventoedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'publication_unique', 'listThemesPub'));
+            
+            }else{
+                return Redirect::to('publicaciones');
+            }
+        }
+
+       
     }
 
 
@@ -734,7 +766,16 @@ public function returnIndexPublicationPaper($id_publicatin){
                 ->get();
         //dd($listThemesPub);
 
-        return view('editPublication.formulario-solicitudedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'listThemesPub', 'publication_unique'));
+     foreach ($publication_unique as $user) {
+        if ($user->id_user_fk==Auth::user()->id || Auth::user()->rol=='admin') {
+             return view('editPublication.formulario-solicitudedit', compact('lugares', 'institucionesVinvulado', 'gran_areas', 'listThemesPub', 'publication_unique'));
+            
+            }else{
+                return Redirect::to('publicaciones');
+            }
+        }
+
+        
     }
 
 

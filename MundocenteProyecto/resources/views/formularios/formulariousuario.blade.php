@@ -203,7 +203,7 @@
                     </div>
                     @if(Auth::user()->recibe_not=='si')
                         <?php $id_notification_exist = 0; ?>
-                        <div class="ui notification_type raised segment" id="notification_type">
+                        <div class="ui notification_type" id="notification_type">
                             <div class="required grouped fields">
                                 <label>Notificaciones de: </label>
 
@@ -330,7 +330,7 @@
                             <div class="ui raised card">
                                 <div class="content">
                                     <div class="header">
-                                        <div>Viculado a:</div>
+                                        <div>Viculado con:</div>
                                     </div>
                                     <div class="description">
                                         <div class="ui divided list " id="listadeinstitutosvinculados">
@@ -341,8 +341,7 @@
                                                            onclick="delete_institution_vinul({{$institu->id_institution}})" style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</div>
                                                     </div>
                                                     <div class="content">
-                                                        {{$institu->name_institution}} -
-                                                        ({{$institu->state_institution}})
+                                                        {{$institu->name_institution}} 
                                                     </div>
                                                 </div>
                                             @endforeach

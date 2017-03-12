@@ -31,6 +31,11 @@ class UserController extends Controller
 {
 
      public function __construct(){
+        if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
+            if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
+                return Redirect::to('publicaciones');
+            }
+        }
         $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest']]);
         
     }
@@ -136,7 +141,7 @@ public function callLargesAreasTheme(){
         $gran_areas = $this->callLargesAreasTheme();
 
 
-        $areas_all = DB::table('temas')->where('type_theme', 'disciplina')->get();
+        $areas_all = DB::table('temas')->get();
         
 
         $institucionesVinvulado = DB::table('vinculacions')
@@ -391,18 +396,108 @@ public function uploadPhotoPerfil(Request $request){
         if($request->ajax()){
 
             $listRecomendations = DB::table('recomendaciones')->where('id_user_fk', Auth::user()->id)->where('id_theme_fk', $request['id_area_interest_add'])->delete();
-            
-             $quantityThemes = DB::table('areas_interes')
-                ->where('id_user_fk', Auth::user()->id)
-                ->where('id_theme_fk', $request['id_area_interest_add'])
-                ->count();
 
-                if ($quantityThemes==0) {
-                     AreasInteres::create([
-                       'id_user_fk' => Auth::user()->id,
-                        'id_theme_fk' =>  $request['id_area_interest_add'],
-                    ]);
+
+
+            $type_theme_save = DB::table('temas')->where('id_tema', $request['id_area_interest_add'])->get();
+
+            
+
+            foreach ($type_theme_save as $type_t) {
+                if ($type_t->type_theme=='gran_area') {
+                    $quantityThemes = DB::table('areas_interes')
+                        ->where('id_user_fk', Auth::user()->id)
+                        ->where('id_theme_fk', $type_t->id_tema)
+                        ->count();
+
+                        if ($quantityThemes==0) {
+                             AreasInteres::create([
+                               'id_user_fk' => Auth::user()->id,
+                                'id_theme_fk' =>  $type_t->id_tema,
+                            ]);
+                        }
+                }else if($type_t->type_theme=='area'){
+                        $quantityThemes = DB::table('areas_interes')
+                        ->where('id_user_fk', Auth::user()->id)
+                        ->where('id_theme_fk', $type_t->id_tema)
+                        ->count();
+
+                        if ($quantityThemes==0) {
+                             AreasInteres::create([
+                               'id_user_fk' => Auth::user()->id,
+                                'id_theme_fk' =>  $type_t->id_tema,
+                            ]);
+                        }
+
+                        $listGranArea = DB::select('select g.id_tema from temas g, temas a where g.id_tema=a.id_tema_area and a.id_tema='.$type_t->id_tema);
+                        foreach ($listGranArea as $list_the) {
+                             $quantityThemeGran = DB::table('areas_interes')
+                                ->where('id_user_fk', Auth::user()->id)
+                                ->where('id_theme_fk', $list_the->id_tema)
+                                ->count();
+
+                                if ($quantityThemeGran==0) {
+                                     AreasInteres::create([
+                                       'id_user_fk' => Auth::user()->id,
+                                        'id_theme_fk' =>  $list_the->id_tema,
+                                    ]);
+                                }
+                        }
+                }else{
+                     $quantityThemes = DB::table('areas_interes')
+                        ->where('id_user_fk', Auth::user()->id)
+                        ->where('id_theme_fk', $type_t->id_tema)
+                        ->count();
+
+                        if ($quantityThemes==0) {
+                             AreasInteres::create([
+                               'id_user_fk' => Auth::user()->id,
+                                'id_theme_fk' =>  $type_t->id_tema,
+                            ]);
+                        }
+
+                        $listGranArea = DB::select('select g.id_tema from temas g, temas a where g.id_tema=a.id_tema_area and a.id_tema='.$type_t->id_tema);
+                        foreach ($listGranArea as $list_the) {
+                             $quantityThemeGran = DB::table('areas_interes')
+                                ->where('id_user_fk', Auth::user()->id)
+                                ->where('id_theme_fk', $list_the->id_tema)
+                                ->count();
+
+                                if ($quantityThemeGran==0) {
+                                     AreasInteres::create([
+                                       'id_user_fk' => Auth::user()->id,
+                                        'id_theme_fk' =>  $list_the->id_tema,
+                                    ]);
+                                }
+
+                                 $listGranArea_disci = DB::select('select g.id_tema from temas g, temas a, temas d where g.id_tema=a.id_tema_area and d.id_tema_area=a.id_tema and a.id_tema='.$list_the->id_tema);
+                        foreach ($listGranArea_disci as $list_the_disc) {
+                             $quantityThemeGran = DB::table('areas_interes')
+                                ->where('id_user_fk', Auth::user()->id)
+                                ->where('id_theme_fk', $list_the_disc->id_tema)
+                                ->count();
+
+                                if ($quantityThemeGran==0) {
+                                     AreasInteres::create([
+                                       'id_user_fk' => Auth::user()->id,
+                                        'id_theme_fk' =>  $list_the_disc->id_tema,
+                                    ]);
+                                }
+                        }
+
+                        }
+
+                        
+
                 }
+            }
+            
+             
+
+
+
+
+
 
                  $gran_area_formacion =  DB::table('areas_interes')
                     ->join('temas', 'areas_interes.id_theme_fk', '=', 'temas.id_tema')
