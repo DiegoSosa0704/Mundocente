@@ -19,7 +19,7 @@
 
 </head>
 
-<body id="inicio">
+<body id="inicio" onload="nobackbutton();">
 
 <div class="ui large borderless fixed navbar-fixed menu"
      style="background-color: #EEEEEE;">
@@ -544,5 +544,18 @@
     ;
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
+
+
+
+function nobackbutton(){
+    
+   window.location.hash="no-back-button";
+    
+   window.location.hash="Again-No-back-button" //chrome
+    
+   window.onhashchange=function(){window.location.hash="";}
+    
+}
+
 </script>
 </html>

@@ -189,8 +189,6 @@ $("#agregaInstitutomodel").click(function(){
 	
 	if(id_instituto==null || id_instituto==0){
 		
-		
-		
 		if($('#messageSaveVinculationerrormodel').is(":visible")){
                 
             }else{

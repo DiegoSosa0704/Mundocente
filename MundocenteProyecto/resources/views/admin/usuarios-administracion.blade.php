@@ -1,4 +1,8 @@
 @extends('main.main-admin')
+@section('content_admin')
+
+@if(Auth::user()->rol=='admin')
+
 
 <div class="ui container admin-container">
     <h1 class="ui header center aligned">Administración De Usuarios</h1>
@@ -116,3 +120,20 @@
 {{--User--}}
 @include('modals.modalAddUser')
 @include('modals.modalEditUser')
+
+
+@else
+
+<div class="ui segment" style="margin-top: 100px;margin-bottom: 500px;">
+    <h1 style="color: #B6B5B5;">No tiene permisos de administrador</h1>
+</div>
+
+@endif
+
+
+<script type="text/javascript">
+    $('#admin_users_menu').addClass('active');
+</script>
+
+
+@stop

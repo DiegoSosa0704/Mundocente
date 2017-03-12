@@ -1,10 +1,13 @@
 @extends('main.main-admin')
-
+@section('content_admin')
 <?php
 $niveles = DB::table('nivels')
         ->join('indices','nivels.id_index_fk','=','indices.id_index')
         ->paginate(20);
 ?>
+
+
+@if(Auth::user()->rol=='admin')
 
 <div class="ui container admin-container">
     <h1 class="ui header center aligned">Administración De Índices De Revistas</h1>
@@ -57,3 +60,19 @@ $niveles = DB::table('nivels')
 {{--Índices--}}
 @include('modals.modalAddIndice')
 @include('modals.modalEditIndice')
+
+@else
+
+<div class="ui segment" style="margin-top: 100px;margin-bottom: 500px;">
+    <h1 style="color: #B6B5B5;">No tiene permisos de administrador</h1>
+</div>
+
+@endif
+
+
+
+<script type="text/javascript">
+    $('#admin_index_paper_menu').addClass('active');
+</script>
+
+@stop

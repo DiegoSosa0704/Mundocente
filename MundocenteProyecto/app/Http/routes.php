@@ -192,7 +192,19 @@ Route::get('usuarios-administrador', 'AdminController@administradorusuarios');
 Route::get('publicaciones-administrador', 'AdminController@administradorpublicaciones');
 
 
-Route::get('administration', 'AdminController@mainAdmin');
+Route::post('add-new-country', 'AdminController@agregarNuevoLugarPais');
+Route::post('add-new-city', 'AdminController@agregarNuevoLugarCiudad');
+
+
+Route::post('edit-new-country', 'AdminController@editarNuevoLugarPais');
+Route::post('edit-new-city', 'AdminController@editarNuevoLugarCiudad');
+
+Route::post('add-new-institution-admin', 'AdminController@agregarNuevaInstitucion');
+
+Route::get('get-country-edit/{id_city}', 'AdminController@obtienePaisEditar');
+
+
+
 
 
 

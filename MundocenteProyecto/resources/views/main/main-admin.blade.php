@@ -3,8 +3,10 @@
 <head>
     <!-- Standard Meta -->
     <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="images/icono.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="refresh" content="120">
 
     <!-- Site Properties -->
     <title>Administrador - Mundocente</title>
@@ -19,25 +21,26 @@
     {!!Html::script('js/init.js')!!}
     {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/calendar.js')!!}
+    
 
 </head>
-<body>
+<body onload="nobackbutton();">
 
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a href="#" class="header">
+        <a  class="header" href="publicaciones" title="Volver a inicio">
             <img class="ui logo image"  style="height: 60px; padding: 5px 0" src="images/logo.png">
         </a>
-        <a href="lugares-administrador" class="item">Lugares</a>
-        <a href="indices-administrador" class="item">Indíces</a>
-        <a href="instituciones-administrador" class="item">Instituciones</a>
-        <a href="publicaciones-administrador" class="item">Publicaciones</a>
-        <a href="usuarios-administrador" class="item">Usuarios</a>
+        <a href="lugares-administrador" class="item" id="admin_lugres_menu">Lugares</a>
+        <a href="instituciones-administrador" class="item" id="admin_institutions_menu">Instituciones</a>
+        <a href="publicaciones-administrador" class="item" id="admin_publicacions_menu">Publicaciones</a>
+        <a href="indices-administrador" class="item" id="admin_index_paper_menu">Índices</a>
+        <a href="usuarios-administrador" class="item" id="admin_users_menu">Usuarios</a>
     </div>
 </div>
 
 
-@yield('content')
+@yield('content_admin')
 
 <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
@@ -128,4 +131,9 @@
 
     $('.table').tablesort().data('tablesort');;
 </script>
+
+{!!Html::script('js/alug.js')!!}
+{!!Html::script('js/ains.js')!!}
+{!!Html::script('js/selectDinamic.js')!!}
+
 </html>

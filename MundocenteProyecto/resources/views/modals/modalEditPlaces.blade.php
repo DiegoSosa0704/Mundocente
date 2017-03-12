@@ -5,26 +5,32 @@
     </div>
     <div class="content">
         <div class="ui form">
+        <div class="field">
+                <label for="name">Nombre</label>
+                <input type="text" id="nombre_lugar_edit_admin" placeholder="Nombre del lugar" value="">
+            </div>
             <div class="field">
-                <label>Tipo</label>
-                <select class="ui dropdown">
-                    <option value="">Tipo</option>
-                    <option value="1">1</option>
-                    <option value="0">2</option>
+                <label id="label_title_type_edit_place">Tipo</label>
+                <select class="ui dropdown" id="edit_select_data_admin_place">
+                    <option value="">Seleccione Tipo</option>
+                    
                 </select>
             </div>
-            <div class="field">
-                <label for="country">País</label>
-                <input type="text" id="type" placeholder="País">
+            <input type="hidden" id="id_lugar_edit_admin" value="">
+            <div class="field" id="showNewPlaceAdminEdit" style="display: none;">
+            <label id="label_countr_dit_place_dmin">País</label>
+             <select class="ui search dropdown" id="select_country_edit_admin">
+                    <option value="">Seleccione País</option>
+                    @foreach($paises as $pais)
+                    <option value="{{$pais->id_lugar}}">{{$pais->name_lugar}}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="field">
-                <label for="city">City</label>
-                <input type="text" id="type" placeholder="City">
-            </div>
+            
         </div>
     </div>
     <div class="actions">
-        <div class="ui cancel color_1 button">Cancelar</div>
-        <div class="ui ok color_3 button">Editar</div>
+        <div class="ui cancel color_1 button">Salir</div>
+        <button class="ui ok color_3 button" id="save_change_places_edit_admin">Guardar</button>
     </div>
 </div>

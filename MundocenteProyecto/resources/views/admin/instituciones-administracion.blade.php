@@ -1,10 +1,16 @@
 @extends('main.main-admin')
-
+@section('content_admin')
 <?php
 $instituciones = DB::table('institucions')
         ->join('lugars', 'institucions.id_lugar_fk','=','lugars.id_lugar')
+        ->orderBy('institucions.name_institution', 'asc')
         ->paginate(20);
 ?>
+
+
+@if(Auth::user()->rol=='admin')
+
+
 <div class="ui container admin-container">
     <h1 class="ui header center aligned">Administración De Instituciones</h1>
     <div class="ui stackable equal width padded grid container">
@@ -21,6 +27,7 @@ $instituciones = DB::table('institucions')
                 </div>
             </div>
         </div>
+        <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
         <div class="column">
             <table class="ui sortable celled unstackable table">
                 <thead class="full-width">
@@ -33,6 +40,9 @@ $instituciones = DB::table('institucions')
                     <th>Acción</th>
                 </tr>
                 </thead>
+                <tbody id="tbody_new_istitution_admin">
+                    
+                </tbody>
                 <tbody>
 
                 @foreach($instituciones as $institution)
@@ -47,9 +57,9 @@ $instituciones = DB::table('institucions')
                         <td>{{$institution->name_lugar}}</td>
                         <td>{{$institution->state_institution}}</td>
                         <td class="collapsing">
-                            <div class="ui right floated small  labeled icon button-edit-institution color_3 color_3 button">
+                            <button class="ui right floated small  labeled icon button-edit-institution color_3 color_3 button" disabled="true">
                                 <i class="edit icon"></i> Editar
-                            </div>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -68,3 +78,21 @@ $instituciones = DB::table('institucions')
 {{--Instituciones--}}
 @include('modals.modalAddInstitution')
 @include('modals.modalEditInstitution')
+
+@else
+
+<div class="ui segment" style="margin-top: 100px;margin-bottom: 500px;">
+    <h1 style="color: #B6B5B5;">No tiene permisos de administrador</h1>
+</div>
+
+@endif
+
+
+
+<script type="text/javascript">
+    $('#admin_institutions_menu').addClass('active');
+</script>
+
+
+
+@stop

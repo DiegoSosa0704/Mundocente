@@ -7,24 +7,29 @@
         <div class="ui form">
             <div class="field">
                 <label>Tipo</label>
-                <select class="ui dropdown">
-                    <option value="">Tipo</option>
-                    <option value="1">1</option>
-                    <option value="0">2</option>
+                <select class="ui dropdown" name="editLugar" id="selectnuevolugaradmnistracion">
+                    <option value="country" id="select_new_country">País</option>
+                    <option value="city" id="select_new_city" selected="true">Ciudad</option>
                 </select>
             </div>
-            <div class="field">
-                <label for="country">País</label>
-                <input type="text" id="type" placeholder="País">
+            <div class="field" id="showNewPlaceAdmin">
+            <label>País</label>
+             <select class="ui search dropdown" id="select_country_new_admin_change">
+                    <option value="">Seleccione País</option>
+                    @foreach($paises as $pais)
+                    <option value="{{$pais->id_lugar}}" selected="true" ">{{$pais->name_lugar}}</option>
+                    @endforeach
+                </select>
             </div>
+
             <div class="field">
-                <label for="city">City</label>
-                <input type="text" id="type" placeholder="City">
+                <label for="city">Nombre</label>
+                <input type="text" id="name_place_new" placeholder="Nombre del lugar">
             </div>
         </div>
     </div>
     <div class="actions">
-        <div class="ui cancel color_1 button">Cancelar</div>
-        <div class="ui ok color_3 button">Nuevo</div>
+        <div class="ui cancel color_1 button">Salir</div>
+        <button class="ui ok color_3 button" id="save_new_place_admin">Guardar</button>
     </div>
 </div>
