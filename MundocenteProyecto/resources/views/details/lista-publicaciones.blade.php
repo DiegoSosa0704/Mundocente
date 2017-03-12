@@ -1,6 +1,5 @@
   @inject('call_methods','Mundocente\Http\Controllers\ResultController')
 
-
                 <div class="ui eleven wide column">
                   
                     <div class="ui cards">
