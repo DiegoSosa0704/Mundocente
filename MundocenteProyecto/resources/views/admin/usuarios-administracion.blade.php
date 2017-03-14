@@ -8,24 +8,27 @@
     <h1 class="ui header center aligned">Administración De Usuarios</h1>
     <div class="ui stackable equal width padded grid container">
         <div class="row">
-            <div class="left floated column">
-                <div class="ui action input">
-                    <input type="text" placeholder="Usuario...">
-                    <button class="ui color_2 button">Buscar</button>
+        <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+            {!!Form::open(['url'=>'usuarios-administrador-filtro' , 'method'=>'POST'])!!}
+            
+             <div class="ui action input">
+                    <input type="text" name="palabra" placeholder="Ingrese nombre o correo...">
+                    <button class="ui color_2 button" type="submit">Buscar</button>
                 </div>
-            </div>
-            <div class="right floated column">
+            {!!Form::close()!!}
+            {{--<div class="right floated column">
                 <div class="ui right floated  labeled icon button-user color_1 button">
                     <i class="add icon"></i> Nuevo Usuario
                 </div>
-            </div>
+            </div>--}}
         </div>
         <div class="column">
             <table class="ui sortable celled unstackable table">
                 <thead class="full-width">
                 <tr class="center aligned">
-                    <th>Id</th>
+                    
                     <th>Nombre</th>
+                    <th>Nombre Usuairio</th>
                     <th>E-mail</th>
                     <th>Rol</th>
                     <th>Estado</th>
@@ -33,93 +36,71 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="center aligned">
-                    <td>John Lilki</td>
-                    <td>September 14, 2013</td>
-                    <td>jhlilk22@yahoo.com</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td class="collapsing">
-                        <div class="ui right floated small  labeled icon button-edit-user color_3  color_3 button">
-                            <i class="edit icon"></i> Editar
-                        </div>
+              @foreach($users as $user)
+                 <tr class="center aligned" id="tr_edit_toggle_user_admin{{$user->id}}">
+                    <td>
+                    <div class="ui message error" style="display: none;" id="id_messagge_edit_user_name_admin{{$user->id}}">
+                        <ul class="list">
+                            <li id="id_messagge_error_p_edit_user_admin_name{{$user->id}}"></li>
+                        </ul>
+                    </div>
+                        <input type="text" id="id_name_user_admin_edit{{$user->id}}" value="{{$user->name}}" style="border: none;">
                     </td>
-                </tr>
-                <tr class="center aligned">
-                    <td>John Lilki</td>
-                    <td>September 14, 2013</td>
-                    <td>jhlilk22@yahoo.com</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td class="collapsing">
-                        <div class="ui right floated small  labeled icon button-edit-user color_3  color_3 button">
-                            <i class="edit icon"></i> Editar
-                        </div>
+                    <td>
+                    <input type="text" id="id_username_admin_edit{{$user->id}}" value="{{$user->last_name}}" style="border: none;" disabled="true">
                     </td>
-                </tr>
-                <tr class="center aligned">
-                    <td>John Lilki</td>
-                    <td>September 14, 2013</td>
-                    <td>jhlilk22@yahoo.com</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td class="collapsing">
-                        <div class="ui right floated small  labeled icon button-edit-user color_3  color_3 button">
-                            <i class="edit icon"></i> Editar
-                        </div>
+                    <td>
+                     <div class="ui message error" style="display: none;" id="id_messagge_edit_user_email_admin{{$user->id}}">
+                        <ul class="list">
+                            <li id="id_messagge_error_p_edit_user_admin_email{{$user->id}}"></li>
+                        </ul>
+                    </div>
+                    <input type="text" id="id_email_admin_edit{{$user->id}}" value="{{$user->email}}" style="border: none;">
                     </td>
-                </tr>
-                <tr class="center aligned">
-                    <td>John Lilki</td>
-                    <td>September 14, 2013</td>
-                    <td>jhlilk22@yahoo.com</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td class="collapsing">
-                        <div class="ui right floated small  labeled icon button-edit-user color_3  color_3 button">
-                            <i class="edit icon"></i> Editar
-                        </div>
+                    <td>
+                    <select class="ui dropdown" id="select_admin_edit_user_rol{{$user->id}}">
+                        @if($user->rol=='admin')
+                        <option value="admin" selected="true">Administrador</option>
+                        <option value="seeker">Publicador</option>
+                        @else
+                        <option value="admin" >Administrador</option>
+                        <option value="seeker" selected="true">Publicador</option>
+                        @endif
+                    </select>
                     </td>
-                </tr>
-                <tr class="center aligned">
-                    <td>John Lilki</td>
-                    <td>September 14, 2013</td>
-                    <td>jhlilk22@yahoo.com</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td class="collapsing">
-                        <div class="ui right floated small  labeled icon button-edit-user color_3  color_3 button">
-                            <i class="edit icon"></i> Editar
-                        </div>
+                    <td>
+                        <select class="ui dropdown" id="select_admin_edit_active{{$user->id}}">
+                             @if($user->state_user=='activo')
+                            <option value="activo" selected="true">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                            @else
+                            <option value="activo" >Activo</option>
+                            <option value="inactivo" selected="true">Inactivo</option>
+                            @endif
+                        </select>
                     </td>
+        <td class="collapsing">
+            <button class="ui right floated small  labeled icon button-edit-user color_3  color_3 button" onclick="ediituuuriuakkjkjsa({{$user->id}})">
+                <i class="edit icon"></i> Editar
+            </buton>
+        </td>
                 </tr>
+              @endforeach
                 </tbody>
-                <tfoot class="full-width">
-                <tr>
-                    <th colspan="5">
-                        <div class="ui right floated pagination menu">
-                            <a class="icon item">
-                                <i class="left chevron icon"></i>
-                            </a>
-                            <a class="item">1</a>
-                            <a class="item">2</a>
-                            <a class="item">3</a>
-                            <a class="item">4</a>
-                            <a class="icon item">
-                                <i class="right chevron icon"></i>
-                            </a>
-                        </div>
-                    </th>
-                </tr>
-                </tfoot>
+
+      
             </table>
         </div>
+
     </div>
+    <div>{!!$users->render()!!}</div>
+    <br>
+    <br>
 </div>
 
 {{--User--}}
-@include('modals.modalAddUser')
-@include('modals.modalEditUser')
+
+
 
 
 @else

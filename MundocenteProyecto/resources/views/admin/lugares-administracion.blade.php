@@ -9,12 +9,13 @@
     <h1 class="ui header center aligned">Administración De Lugares</h1>
     <div class="ui stackable equal width padded grid container">
         <div class="row">
-            <div class="left floated column">
-                <div class="ui action input">
-                    <input type="text" placeholder="Lugar...">
-                    <button class="ui color_2 button">Buscar</button>
+            {!!Form::open(['url'=>'lugares-administrador-filtro' , 'method'=>'POST'])!!}
+            
+             <div class="ui action input">
+                    <input type="text" name="palabra" placeholder="Ingrese nombre del lugar...">
+                    <button class="ui color_2 button" type="submit">Buscar</button>
                 </div>
-            </div>
+            {!!Form::close()!!}
             <div class="right floated column" >
                 <div class="ui right floated  labeled icon button-places color_1 button" >
                     <i class="add icon"></i> Nuevo Lugar

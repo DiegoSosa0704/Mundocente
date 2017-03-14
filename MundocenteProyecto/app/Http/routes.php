@@ -123,6 +123,7 @@ Route::post('add-solicitud', 'PublicationsController@agregarSolicitud');
 Route::post('edit-request', 'PublicationsController@editarSolicitud');
 
 
+Route::post('delete-pulication-all','PublicationsController@eliminarPublicacion');
 
 
 
@@ -186,17 +187,29 @@ Route::get('resultados-revistas', 'ResultController@publications');
 // --------------------------------------------------- acciones para el administrador
 
 Route::get('lugares-administrador', 'AdminController@administradorlugares');
+Route::post('lugares-administrador-filtro', 'AdminController@administradorPalabraClaveLugar');
+
 Route::get('instituciones-administrador', 'AdminController@administradorinstituciones');
+Route::post('institucion-administrador-filtro', 'AdminController@adminsitradorInstitucionesFiltros');
+
 Route::get('indices-administrador', 'AdminController@administradorindices');
+
 Route::get('usuarios-administrador', 'AdminController@administradorusuarios');
+Route::post('usuarios-administrador-filtro', 'AdminController@administradorPalabraClaveUsuario');
 
 Route::get('publicaciones-administrador', 'AdminController@administradorpublicaciones');
 Route::post('publicaciones-administrador-filtro', 'AdminController@adminsitradorPublicacionesFiltros');
 
 
 
+
+
+Route::post('edit-user-admin', 'UserController@editarUsuarioDesdeAdmin');
+
 Route::post('add-new-country', 'AdminController@agregarNuevoLugarPais');
 Route::post('add-new-city', 'AdminController@agregarNuevoLugarCiudad');
+
+Route::post('edit-index-admin', 'AdminController@editar_indice');
 
 
 Route::post('edit-new-country', 'AdminController@editarNuevoLugarPais');

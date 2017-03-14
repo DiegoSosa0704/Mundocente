@@ -10,6 +10,7 @@ use Mundocente\Publicacion;
 use Mundocente\AreasPublicacion;
 use Auth;
 use DB;
+use Redirect;
 use Mundocente\RevistaNivel;
 use Mundocente\Favorito;
 use Mundocente\Guardado;
@@ -26,7 +27,7 @@ class PublicationsController extends Controller
                 return Redirect::to('publicaciones');
             }
         }
-        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia', 'ediatrEvento', 'editarConvocatoria', 'editarSolicitud', 'activarPublicacion','desactivarPublicacion']]);
+        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia', 'ediatrEvento', 'editarConvocatoria', 'editarSolicitud', 'activarPublicacion','desactivarPublicacion', 'eliminarPublicacion']]);
 
     }
 
@@ -860,6 +861,25 @@ public function agregarDenuncia(Request $request){
         return 0;
     }
 
+
+
+    //elimina publicación
+    public function eliminarPublicacion(Request $request){
+        
+      $countMy = DB::table('publicacions')->where('id_publication', $request['id_p'])->where('id_user_fk', Auth::user()->id)->count();
+
+
+        if ($countMy==1 || Auth::user()->rol=='admin') {
+          DB::table('revista_nivels')->where('id_publications_fk', $request['id_p'])->delete();
+          DB::table('interesados')->where('id_publication_fk', $request['id_p'])->delete();
+          DB::table('favoritos')->where('id_publication_fk', $request['id_p'])->delete();
+          DB::table('denuncias')->where('id_publication_fk', $request['id_p'])->delete();
+          DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+          DB::table('publicacions')->where('id_publication', $request['id_p'])->delete();
+          
+        }
+      return Redirect::to('mi-peril');
+    }
 
     /**
      * Show the form for creating a new resource.

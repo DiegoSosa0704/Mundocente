@@ -295,6 +295,11 @@
                     </div>
                     <br>
 
+                    {!!Form::open(['url'=>'delete-pulication-all' , 'method'=>'POST'])!!}
+                    <input type="hidden" name="id_p" value="{{$publication_uni->id_publication}}">
+                    <input type="hidden" name="id_u" value="{{$publication_uni->id_user_fk}}">
+                    <button class="ui red button" type="submit">Eliminar</button>
+                    {!!Form::close()!!}
                     
 
 

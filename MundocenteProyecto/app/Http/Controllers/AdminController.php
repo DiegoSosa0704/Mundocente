@@ -16,10 +16,6 @@ use Mundocente\Http\Controllers\Controller;
 class AdminController extends Controller
 {
 
-
-
-
-
     public function __construct(){
          if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
             if(Auth::attempt(['email'=>$_COOKIE["email_cookie"], 'password'=> $_COOKIE["pass_cookie"]])){
@@ -56,34 +52,60 @@ class AdminController extends Controller
         return view('admin.lugares-administracion', compact('lugares', 'paises'));
     }
 
+      //con paabra clave institución
+    public function administradorPalabraClaveLugar(Request $request){
+        $lugares = DB::table('lugars')
+                ->where('lugars.name_lugar', 'like', '%'.$request['palabra'].'%')
+                ->orderBy('name_lugar', 'asc')
+                ->paginate(20);
+
+        $paises = DB::table('lugars')->where('type_lugar', 'country')->get();
+        return view('admin.lugares-administracion', compact('lugares', 'paises'));
+    }
+
 
     public function administradorinstituciones(){
         $instituciones = DB::table('institucions')
         ->orderBy('name_institution', 'asc')
         ->paginate(20);
-        $ciudades = DB::table('lugars')->where('type_lugar', 'city')->get();
+        $ciudades = DB::table('lugars')->where('type_lugar', 'city')->orderBy('name_lugar','asc')->get();
+        return view('admin.instituciones-administracion', compact('instituciones', 'ciudades'));
+    }
+
+    //con paabra clave institución
+    public function adminsitradorInstitucionesFiltros(Request $request){
+        $instituciones = DB::table('institucions')
+        ->where('institucions.name_institution', 'like', '%'.$request['palabra'].'%')
+        ->orderBy('name_institution', 'asc')
+        ->paginate(20);
+        $ciudades = DB::table('lugars')->where('type_lugar', 'city')->orderBy('name_lugar','asc')->get();
         return view('admin.instituciones-administracion', compact('instituciones', 'ciudades'));
     }
 
 
     public function administradorindices(){
         $niveles = DB::table('nivels')
-        ->join('indices','nivels.id_index_fk','=','indices.id_index')
-        ->paginate(20);
-        return view('admin.indices-administracion', compact('niveles'));
+            ->join('indices','nivels.id_index_fk','=','indices.id_index')
+            ->paginate(20);
+        $index = DB::table('indices')
+            ->get();
+        return view('admin.indices-administracion', compact('niveles', 'index'));
     }
 
 
     public function administradorusuarios(){
-        return view('admin.usuarios-administracion');
+        $users = DB::table('users')->orderBy('name', 'asc')->paginate(30);
+        return view('admin.usuarios-administracion', compact('users'));
     }
 
-
-
-
-
-
-
+     public function administradorPalabraClaveUsuario(Request $request){
+        $users = DB::table('users')
+                    ->where('name', 'like', '%'.$request['palabra'].'%')
+                    ->orWhere('email', 'like', '%'.$request['palabra'].'%')
+                    ->orderBy('name', 'asc')
+                    ->paginate(30);
+        return view('admin.usuarios-administracion', compact('users'));
+    }
 
 
 
@@ -248,6 +270,20 @@ public function adminsitradorPublicacionesFiltros(Request $request){
         }
     }
 
+
+
+    //edita nivel de ínice
+    public function editar_indice(Request $request){
+        if ($request->ajax()) {
+             DB::table('nivels')
+                ->where('id_level', $request['id_l'])
+                ->update([
+                'value_level' => $request['value_l'],
+                'id_index_fk' => $request['index_l'],
+            ]);
+        }
+        return 0;
+    }
 
 
 

@@ -136,6 +136,8 @@
 {!!Html::script('js/alug.js')!!}
 {!!Html::script('js/ains.js')!!}
 {!!Html::script('js/apub.js')!!}
+{!!Html::script('js/aus.js')!!}
 {!!Html::script('js/selectDinamic.js')!!}
+
 
 </html>

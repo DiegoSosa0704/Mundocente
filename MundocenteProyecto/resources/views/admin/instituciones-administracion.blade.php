@@ -10,12 +10,13 @@
     <h1 class="ui header center aligned">Administración De Instituciones</h1>
     <div class="ui stackable equal width padded grid container">
         <div class="row">
-            <div class="left floated column">
-                <div class="ui action input">
-                    <input type="text" placeholder="Institución...">
-                    <button class="ui color_2 button">Buscar</button>
+             {!!Form::open(['url'=>'institucion-administrador-filtro' , 'method'=>'POST'])!!}
+            
+             <div class="ui action input">
+                    <input type="text" name="palabra" placeholder="Ingrese nombre de institución...">
+                    <button class="ui color_2 button" type="submit">Buscar</button>
                 </div>
-            </div>
+            {!!Form::close()!!}
             <div class="right floated column">
                 <div class="ui right floated  labeled icon button-institution color_1 button">
                     <i class="add icon"></i> Nueva Institución

@@ -9,17 +9,19 @@
     <h1 class="ui header center aligned">Administración De Índices De Revistas</h1>
     <div class="ui stackable equal width padded grid container">
         <div class="row">
-            <div class="left floated column">
+        <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+            {{--<div class="left floated column">
                 <div class="ui action input">
                     <input type="text" placeholder="Índice...">
                     <button class="ui color_2 button">Buscar</button>
                 </div>
-            </div>
+            </div>--}}
+            {{--
             <div class="right floated column">
                 <div class="ui right floated  labeled icon button-indice color_1 button">
                     <i class="add icon"></i> Nuevo Índice
                 </div>
-            </div>
+            </div>--}}
         </div>
         <div class="column">
             <table class="ui sortable celled unstackable table">
@@ -32,14 +34,32 @@
                 </thead>
                 <tbody>
 
-                @foreach($niveles as $index)
-                    <tr class="center aligned">
-                        <td>{{$index->name_index}}</td>
-                        <td>{{$index->value_level}}</td>
+                     @foreach($niveles as $index_g)
+                    <tr class="center aligned" id="id_level_aadmin_edit{{$index_g->id_level}}">
+                        <td>
+                            <select class="ui dropdown" id="indice_admin_edit{{$index_g->id_level}}">
+                            @foreach($index as $ind)
+                                @if($index_g->id_index==$ind->id_index)
+                                    <option value="{{$ind->id_index}}" selected="true">{{$ind->name_index}}</option>
+                                @else
+                                    <option value="{{$ind->id_index}}">{{$ind->name_index}}</option>
+                                @endif
+                            @endforeach
+                                
+                            </select>
+                        </td>
+                        <td>
+                   <div class="ui message error" style="display: none;" id="id_messagge_edit_index{{$index_g->id_level}}">
+                        <ul class="list">
+                            <li id="id_messagge_error_p_edit_index{{$index_g->id_level}}"></li>
+                        </ul>
+                    </div>
+                        <input type="text" id="value_level_index_paper_admin{{$index_g->id_level}}" value="{{$index_g->value_level}}" style="border: none;">
+                        </td>
                         <td class="collapsing">
-                            <div class="ui right floated small  labeled icon button-edit-indice color_3  color_3 button">
-                                <i class="edit icon"></i> Editar
-                            </div>
+                            <button class="ui right floated small  labeled icon color_3  color_3 button" onclick="edit_index_paper_admin({{$index_g->id_level}})">
+                                <i class="edit icon"></i> Guardar
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -55,7 +75,7 @@
 
 {{--Índices--}}
 @include('modals.modalAddIndice')
-@include('modals.modalEditIndice')
+
 
 @else
 

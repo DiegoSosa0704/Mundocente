@@ -36,7 +36,7 @@ class UserController extends Controller
                 return Redirect::to('publicaciones');
             }
         }
-        $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest','desactivarUsuario']]);
+        $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest','desactivarUsuario', 'editarUsuarioDesdeAdmin']]);
         
     }
 
@@ -598,6 +598,24 @@ public function uploadPhotoPerfil(Request $request){
         }
         return 0;
     }
+
+
+
+
+    //método que edita un usuario
+    public function editarUsuarioDesdeAdmin(Request $request){
+        if ($request->ajax()) {
+            DB::table('users')
+                ->where('id', $request['id_us'])
+                ->update(['name' => $request['name'],
+                    'email' => $request['email'],
+                    'rol' => $request['rol'],
+                    'state_user' => $request['state'],
+                    ]);
+        }
+        return 0;
+    }
+
 
     /**
      * Display the specified resource.
