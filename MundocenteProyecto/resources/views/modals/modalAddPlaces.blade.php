@@ -27,9 +27,14 @@
                 <input type="text" id="name_place_new" placeholder="Nombre del lugar">
             </div>
         </div>
+        <div class="ui message error" style="display: none;" id="id_messagge_add_institution">
+        <ul class="list">
+            <li id="id_messagge_error_p_add_istitution"></li>
+        </ul>
+    </div>
     </div>
     <div class="actions">
         <div class="ui cancel color_1 button">Salir</div>
-        <button class="ui ok color_3 button" id="save_new_place_admin">Guardar</button>
+        <button class="ui color_3 button" id="save_new_place_admin">Guardar</button>
     </div>
 </div>

@@ -1,11 +1,6 @@
 @extends('main.main-admin')
 @section('content_admin')
-<?php
-$instituciones = DB::table('institucions')
-        ->join('lugars', 'institucions.id_lugar_fk','=','lugars.id_lugar')
-        ->orderBy('institucions.name_institution', 'asc')
-        ->paginate(20);
-?>
+
 
 
 @if(Auth::user()->rol=='admin')
@@ -46,19 +41,65 @@ $instituciones = DB::table('institucions')
                 <tbody>
 
                 @foreach($instituciones as $institution)
-                    <tr class="center aligned">
-                        <td>{{$institution->name_institution}}</td>
-                        @if($institution->setor_institution=='universitario')
-                            <td>Universitario</td>
-                        @else
-                            <td>Preescolar, Básica y Media</td>
-                        @endif
-                        <td>{{$institution->telephone_institution}}</td>
-                        <td>{{$institution->name_lugar}}</td>
-                        <td>{{$institution->state_institution}}</td>
+                    <tr class="center aligned" id="item_tr_edit_institu_admin{{$institution->id_institution}}">
+                        
+                        <td>
+                           <div class="ui message error" style="display: none;" id="id_messagge_edit_institution{{$institution->id_institution}}">
+                                <ul class="list">
+                                    <li id="id_messagge_error_p_edit_istitution{{$institution->id_institution}}"></li>
+                                </ul>
+                            </div>
+                        <input type="text" class="ui input" value="{{$institution->name_institution}}" placeholder="Nombre de la institución" id="name_institution_admin_edit{{$institution->id_institution}}" style="border: none;">
+                        </td>
+                        <td>
+                        <select  class="ui dropdown" id="selec_edit_admin_sector{{$institution->id_institution}}">
+                            @if($institution->setor_institution=='universitario')
+                            <option selected="true" value="universitario">Universitario</option>
+                            <option value="preescolar">Preescolar, Básica y Media</option>
+                            @else
+                                <option value="universitario">Universitario</option>
+                            <option value="preescolar" selected="true" >Preescolar, Básica y Media</option>
+                            @endif
+                        </select>
+                        </td>
+
+                         <td>
+                        <input type="text" class="ui input" value="{{$institution->telephone_institution}}" placeholder="Teléfono" id="name_telephone_amin_edit{{$institution->id_institution}}" style="border: none;">
+                        
+                        <td>
+                        <select class="ui" id="value_city_institution_select_edit_admin{{$institution->id_institution}}">
+                        @foreach($ciudades as $ciudad)
+
+                            @if($institution->id_lugar_fk!=$ciudad->id_lugar)
+                                <option value="{{$ciudad->id_lugar}}">{{$ciudad->name_lugar}}</option>
+                            @else
+                                <option value="{{$ciudad->id_lugar}}" selected="true">{{$ciudad->name_lugar}}</option>
+                            @endif
+                        @endforeach
+                        </select>
+                        </td>                      
+
+                        <td>
+                        <select class="ui dropdown" id="inactive_institution_admin{{$institution->id_institution}}">
+                            @if($institution->state_institution=='activo')
+                            <option selected="true" value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                            <option value="nuevo">Nuevo</option>
+                            @elseif($institution->state_institution=='inactivo')
+                            <option value="activo">Activo</option>
+                            <option selected="true" value="inactivo">Inactivo</option>
+                            <option value="nuevo">Nuevo</option>
+                            @else
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                            <option selected="true" value="nuevo">Nuevo</option>
+                            @endif
+                        </select>
+                        </td>
+
                         <td class="collapsing">
-                            <button class="ui right floated small  labeled icon button-edit-institution color_3 color_3 button" disabled="true">
-                                <i class="edit icon"></i> Editar
+                            <button class="ui right floated small  labeled icon color_3 color_3 button" onclick="editInstitutionAdmin({{$institution->id_institution}})">
+                                <i class="edit icon"></i> Guardar
                             </button>
                         </td>
                     </tr>
@@ -77,7 +118,7 @@ $instituciones = DB::table('institucions')
 
 {{--Instituciones--}}
 @include('modals.modalAddInstitution')
-@include('modals.modalEditInstitution')
+
 
 @else
 

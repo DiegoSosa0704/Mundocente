@@ -31,11 +31,12 @@
         <a  class="header" href="publicaciones" title="Volver a inicio">
             <img class="ui logo image"  style="height: 60px; padding: 5px 0" src="images/logo.png">
         </a>
+        <a href="publicaciones-administrador" class="item" id="admin_publicacions_menu">Publicaciones</a>
         <a href="lugares-administrador" class="item" id="admin_lugres_menu">Lugares</a>
         <a href="instituciones-administrador" class="item" id="admin_institutions_menu">Instituciones</a>
-        <a href="publicaciones-administrador" class="item" id="admin_publicacions_menu">Publicaciones</a>
-        <a href="indices-administrador" class="item" id="admin_index_paper_menu">Índices</a>
         <a href="usuarios-administrador" class="item" id="admin_users_menu">Usuarios</a>
+        <a href="indices-administrador" class="item" id="admin_index_paper_menu">Índices</a>
+
     </div>
 </div>
 
@@ -134,6 +135,7 @@
 
 {!!Html::script('js/alug.js')!!}
 {!!Html::script('js/ains.js')!!}
+{!!Html::script('js/apub.js')!!}
 {!!Html::script('js/selectDinamic.js')!!}
 
 </html>

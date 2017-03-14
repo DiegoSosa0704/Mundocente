@@ -1,7 +1,7 @@
 @extends('main.main')
 
 @section('content')
-
+@if(Auth::user()->state_user=='activo')
     <div class="pusher">
         <div class="segment-title">
             <div class="ui container">
@@ -19,9 +19,35 @@
                         <div class="ui  large horizontal label">Institución que publica el evento:
                             <select name="country" class="ui search dropdown" id="selectMVinculation">
                                 <option value="">Seleccione Institución</option>
-                                @foreach($institucionesVinvulado as $inst_vin)
-                                    <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                
+
+                                 @if(Auth::user()->rol=='admin')
+                                                <?php
+                                                    $listInstitu = DB::table('institucions')->get();
+                                                ?>
+                                    @foreach($listInstitu as $inst_vin)
+
+                                        @if($inst_vin->state_institution=='nuevo')
+                                            <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} -
+                                                (Institución no verificada)
+                                            </option>
+                                        @else
+                                                <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                        
+
+                                    @endif
                                 @endforeach
+                                    @else
+                                     @foreach($institucionesVinvulado as $inst_vin)
+                                    @if($inst_vin->state_institution=='nuevo')
+                                        <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}} -
+                                            (Institución no verificada)
+                                        </option>
+                                    @else
+                                        <option value="{{$inst_vin->id_institution}}"> {{$inst_vin->name_institution}}</option>
+                                    @endif
+                                @endforeach
+                                    @endif
                             </select>
                         </div>
                         <a href="#" id="id_add_new_institute" style="text-decoration: underline">Aregar Institución...</a>
@@ -365,5 +391,9 @@
             .sidebar('attach events', '.menu.fixed .launch.item')
         ;
     </script>
+
+    @else
+<h2 style="color: #B6B5B5;font-size: 50px;padding-top: 20px;padding-left: 300px;">Usuario inactivo</h2>
+@endif
 
 @stop

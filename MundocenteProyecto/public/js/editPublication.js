@@ -26,6 +26,8 @@ var disciplines = $('#select_disciplina_formacion').val();
 var checkSelectedAllArea = $('#valueCheckallArea').val();
 
 
+
+
 var id_publication = $('#id_publication_edit').val();
 
 if($("#sectorUniversityCheck").is(':checked')) {  
@@ -58,7 +60,7 @@ var token = $("#token").val();
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
-                                            console.log('entró 1 '+info);
+                                            
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
                                         }
@@ -76,7 +78,7 @@ var token = $("#token").val();
                                             dateStart: dateStart,sector_request: sector, dateFinis:dateFinish,disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
-                                            console.log('entró 2 '+info);
+                                            
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
                                             
@@ -207,7 +209,7 @@ var token = $("#token").val();
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
@@ -226,7 +228,7 @@ var token = $("#token").val();
                                              disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
@@ -369,7 +371,7 @@ var token = $("#token").val();
                                             dateStart: dateStart, dateFinis:dateFinish, title: title, 
                                             contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
@@ -388,7 +390,7 @@ var token = $("#token").val();
                                              disciplines: disciplines, title: title, contact: contacts,
                                              description: description, allArea: '1'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
@@ -514,7 +516,7 @@ var token = $("#token").val();
                                         data:{id_p:id_publication, arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, 
                                               title: title, url_link: link, contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');
@@ -531,7 +533,7 @@ var token = $("#token").val();
                                         data:{id_p:id_publication, arraylevels:levelValidate, url_image:imagePublication, id_institute: institution, id_country: country, id_city: city, disciplines: disciplines, title: title, url_link: link,
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
-                                            console.log('entró '+info);
+                                            
                                             $('#messageErrorpublication').addClass('green');
                                             $('#idpmessageerrorpublications').html('Se publicó con éxito');
                                             $('#messageErrorpublication').css('display', 'block');

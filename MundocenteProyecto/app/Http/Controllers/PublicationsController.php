@@ -26,7 +26,7 @@ class PublicationsController extends Controller
                 return Redirect::to('publicaciones');
             }
         }
-        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia', 'ediatrEvento', 'editarConvocatoria', 'editarSolicitud']]);
+        $this->middleware('auth', ['only' => ['uploadImagePublication', 'agregarConvocatoria', 'agregarEvento','agregarRevista','agregarSolicitud', 'obtienetablaareas', 'agregarafavoritos', 'agregaraainteresados', 'agregarDenuncia', 'ediatrEvento', 'editarConvocatoria', 'editarSolicitud', 'activarPublicacion','desactivarPublicacion']]);
 
     }
 
@@ -429,7 +429,6 @@ class PublicationsController extends Controller
            if($request->ajax()){
 
         
-                
                 $fecha_inicio = PublicationsController::converterToDateMysql($request['dateStart']);
                 $fecha_fin = PublicationsController::converterToDateMysql($request['dateFinis']);
              
@@ -446,7 +445,6 @@ class PublicationsController extends Controller
                     'state_publication' => 'activo',
                     'id_type_publication' => 1,
                     'id_institution_fk' => $request['id_institute'],
-                    'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
 
                 ]);
@@ -507,7 +505,6 @@ class PublicationsController extends Controller
                     'contact_pubication' => $request['contact'],
                     'state_publication' => 'activo',
                     'id_type_publication' => 3,
-                    'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
 
                 ]);
@@ -575,7 +572,6 @@ class PublicationsController extends Controller
                     'state_publication' => 'activo',
                     'id_institution_fk' => $request['id_institute'],
                     'id_type_publication' => $request['type_request'],
-                    'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
                 ]);
 
@@ -634,7 +630,6 @@ class PublicationsController extends Controller
                     'state_publication' => 'activo',
                     'id_type_publication' => 2,
                     'id_institution_fk' => $request['id_institute'],
-                    'id_user_fk' => Auth::user()->id,
                     'id_lugar_fk' => $request['id_city'],
 
                 ]);
@@ -835,6 +830,35 @@ public function agregarDenuncia(Request $request){
         }
 }
 
+
+
+
+
+
+
+
+//desabilitar pulicación
+    public function desactivarPublicacion(Request $request){
+        if ($request->ajax()) {
+
+            DB::table('publicacions')
+                ->where('id_publication', $request['id_p'])
+                ->update(['state_publication' => 'inactivo']);
+        }
+        return 0;
+    }
+
+
+    //activar publicación
+    public function activarPublicacion(Request $request){
+        if ($request->ajax()) {
+            
+            DB::table('publicacions')
+                ->where('id_publication', $request['id_p'])
+                ->update(['state_publication' => 'activo']);
+        }
+        return 0;
+    }
 
 
     /**

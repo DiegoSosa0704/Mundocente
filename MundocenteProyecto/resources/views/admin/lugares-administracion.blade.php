@@ -1,14 +1,7 @@
 @extends('main.main-admin')
 @section('content_admin')
 
-<?php
-$lugares = DB::table('lugars')
-                ->orderBy('name_lugar', 'asc')
-                ->paginate(20);
 
-$paises = DB::table('lugars')->where('type_lugar', 'country')->get();
-
-?>
 
 @if(Auth::user()->rol=='admin')
 

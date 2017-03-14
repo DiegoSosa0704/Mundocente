@@ -26,7 +26,7 @@ class AdminController extends Controller
                 return Redirect::to('publicaciones');
             }
         }
-        $this->middleware('auth', ['only' => ['index','mainAdmin', 'administradorlugares', 'administradorinstituciones', 'administradorindices', 'administradorusuarios', 'administradorpublicaciones', 'agregarNuevoLugarPais', 'agregarNuevoLugarCiudad', 'editarNuevoLugarPais', 'editarNuevoLugarCiudad', 'obtienePaisEditar', 'agregarNuevaInstitucion']]);
+        $this->middleware('auth', ['only' => ['index','mainAdmin', 'administradorlugares', 'administradorinstituciones', 'administradorindices', 'administradorusuarios', 'administradorpublicaciones', 'agregarNuevoLugarPais', 'agregarNuevoLugarCiudad', 'editarNuevoLugarPais', 'editarNuevoLugarCiudad', 'obtienePaisEditar', 'agregarNuevaInstitucion', 'editarInstitucion']]);
         global $porciones;
     }
 
@@ -48,17 +48,29 @@ class AdminController extends Controller
     }
 
     public function administradorlugares(){
-        return view('admin.lugares-administracion');
+        $lugares = DB::table('lugars')
+                ->orderBy('name_lugar', 'asc')
+                ->paginate(20);
+
+        $paises = DB::table('lugars')->where('type_lugar', 'country')->get();
+        return view('admin.lugares-administracion', compact('lugares', 'paises'));
     }
 
 
     public function administradorinstituciones(){
-        return view('admin.instituciones-administracion');
+        $instituciones = DB::table('institucions')
+        ->orderBy('name_institution', 'asc')
+        ->paginate(20);
+        $ciudades = DB::table('lugars')->where('type_lugar', 'city')->get();
+        return view('admin.instituciones-administracion', compact('instituciones', 'ciudades'));
     }
 
 
     public function administradorindices(){
-        return view('admin.indices-administracion');
+        $niveles = DB::table('nivels')
+        ->join('indices','nivels.id_index_fk','=','indices.id_index')
+        ->paginate(20);
+        return view('admin.indices-administracion', compact('niveles'));
     }
 
 
@@ -66,9 +78,51 @@ class AdminController extends Controller
         return view('admin.usuarios-administracion');
     }
 
+
+
+
+
+
+
+
+
+
     public function administradorpublicaciones(){
-        return view('admin.publicaciones-administracion');
+        $publication_recomendation = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('users', 'publicacions.id_user_fk', '=', 'users.id')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*', 'users.*')
+                        ->distinct()
+                        ->paginate(30);
+        return view('admin.publicaciones-administracion', compact('publication_recomendation'));
     }
+
+
+public function adminsitradorPublicacionesFiltros(Request $request){
+       $publication_recomendation = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('users', 'publicacions.id_user_fk', '=', 'users.id')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.title_publication', 'like', '%'.$request['palabra'].'%')
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*', 'users.*')
+                        ->distinct()
+                        ->paginate(30);
+        return view('admin.publicaciones-administracion', compact('publication_recomendation'));
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
     function obtienePaisEditar($id_city){
@@ -157,7 +211,7 @@ class AdminController extends Controller
         if($request->ajax()){
             Institucion::create([
                 'name_institution' => $request['nombre_i'],
-                'sector_institution' => $request['sector_i'],
+                'setor_institution' => $request['sector_i'],
                 'telephone_institution' =>  $request['tele_i'],
                 'id_lugar_fk' =>  $request['id_l'],
                 'state_institution' =>  'activo',
@@ -173,6 +227,24 @@ class AdminController extends Controller
            
 
             return $institution;
+        }
+    }
+
+
+
+    //método que edita una institución
+    public function editarInstitucion(Request $request){
+        if($request->ajax()){
+             DB::table('institucions')
+                ->where('id_institution', $request['id_i'])
+                ->update([
+                'name_institution' => $request['name_i'],
+                'id_lugar_fk' => $request['id_lugar'],
+                'setor_institution' =>  $request['sector_in'],
+                'telephone_institution' =>  $request['phone_i'],
+                'state_institution' =>  $request['state_i'],
+            ]);
+                return 0;
         }
     }
 

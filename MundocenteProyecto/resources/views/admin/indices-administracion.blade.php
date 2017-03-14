@@ -1,10 +1,6 @@
 @extends('main.main-admin')
 @section('content_admin')
-<?php
-$niveles = DB::table('nivels')
-        ->join('indices','nivels.id_index_fk','=','indices.id_index')
-        ->paginate(20);
-?>
+
 
 
 @if(Auth::user()->rol=='admin')

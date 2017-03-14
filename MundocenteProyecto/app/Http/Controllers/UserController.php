@@ -36,7 +36,7 @@ class UserController extends Controller
                 return Redirect::to('publicaciones');
             }
         }
-        $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest']]);
+        $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest','desactivarUsuario']]);
         
     }
 
@@ -573,6 +573,31 @@ public function uploadPhotoPerfil(Request $request){
 
 
 
+
+
+
+//desabilitar usuario
+    public function desactivarUsuario(Request $request){
+        if ($request->ajax()) {
+
+            DB::table('users')
+                ->where('id', $request['id_u'])
+                ->update(['state_user' => 'inactivo']);
+        }
+        return 0;
+    }
+
+
+    //activar usuario
+    public function activarUsuario(Request $request){
+        if ($request->ajax()) {
+            
+            DB::table('users')
+                ->where('id', $request['id_u'])
+                ->update(['state_user' => 'activo']);
+        }
+        return 0;
+    }
 
     /**
      * Display the specified resource.

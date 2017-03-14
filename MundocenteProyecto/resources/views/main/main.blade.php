@@ -83,7 +83,7 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
 </a>
 
 @if(Auth::user()->rol=='admin')
- <a class=" item" href="lugares-administrador" target="_black">
+ <a class=" item" href="publicaciones-administrador" target="_black">
             <div><i class="privacy icon"></i> Administrador</div>
 </a>
 @endif

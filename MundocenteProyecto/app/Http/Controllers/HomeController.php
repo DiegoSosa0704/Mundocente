@@ -85,6 +85,7 @@ class HomeController extends Controller
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('id_user_fk', Auth::user()->id)
+                        ->where('publicacions.state_publication', 'activo')
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.created_at', 'desc')
                         ->paginate(30);
@@ -116,6 +117,7 @@ class HomeController extends Controller
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.state_publication', 'activo')
                         ->where('id_user_fk', $id_user)
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->orderBy('publicacions.created_at', 'desc')
@@ -176,6 +178,7 @@ class HomeController extends Controller
                         ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_publication', $id_publi->id_publication_fk)
+                        ->where('publicacions.state_publication', 'activo')
                         ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*')
                         ->distinct()
                         ->get();
@@ -225,6 +228,7 @@ class HomeController extends Controller
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_user_fk', Auth::user()->id)
+                        ->where('publicacions.state_publication', 'activo')
                         ->select('publicacions.*', 'users.name', 'users.photo_url', 'users.id', 'users.last_name', 'institucions.name_institution',  'lugars.name_lugar')
                         ->orderBy('interesados.created_at', 'desc')
                         ->paginate(20);
@@ -235,6 +239,7 @@ class HomeController extends Controller
                         ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                         ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
                         ->where('publicacions.id_user_fk', Auth::user()->id)
+                        ->where('publicacions.state_publication', 'activo')
                         ->select('publicacions.*', 'users.name', 'users.photo_url', 'users.id', 'users.last_name', 'institucions.name_institution',  'lugars.name_lugar')
                         ->orderBy('denuncias.created_at', 'desc')
                         ->paginate(20);
@@ -273,6 +278,7 @@ public function verdetallesConvocatoria(Request $request){
                             ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
                             ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
                             ->where('publicacions.id_publication', $request['id_publication_details'])
+                            ->where('publicacions.state_publication', 'activo')
                             ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*')
                             ->get();
         return view('details.detalles-convocatoria', compact('publication_interest'));

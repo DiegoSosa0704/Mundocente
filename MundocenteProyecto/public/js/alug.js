@@ -26,6 +26,7 @@ $('#edit_select_data_admin_place').change(function(event){
 		$('#label_title_type_edit_place').html('Tipo: País');
 		tipo_edit_lugar=1;
 	}
+	$('#id_messagge_edit_lugar_error').css('display', 'none');
 
 });
 
@@ -39,8 +40,11 @@ $('#save_new_place_admin').click(function(){
 	var nombre_lugar_nuevo = $('#name_place_new').val();
 	
 	var token = $("#token").val();
+	$('#id_messagge_edit_lugar_error').css('display', 'none');
+	$('#id_messagge_error_p_edit_lugar_error').html("Cargando");
 
-	if (tipoLugar==1) {
+	if(nombre_lugar_nuevo != ''){
+		if (tipoLugar==1) {
 		var ruta = "add-new-country";
 
 		$.ajax({
@@ -50,6 +54,9 @@ $('#save_new_place_admin').click(function(){
 		dataType: 'json',
 		data:{nombre_lugar_nuevo: nombre_lugar_nuevo},
 		success:function(info){
+			$('#id_messagge_add_institution').addClass('green');
+			$('#id_messagge_add_institution').css('display', 'block');
+			$('#id_messagge_error_p_add_istitution').html("País guardada correctamente");
 			$('#tabla_de_lugares_administrador1').append('<tr class="center aligned"><td>'+info.nombre+'</td> <td>'+info.tipo+'</td>  <td class="collapsing"> -  </td></tr>');
 		}
 	});
@@ -64,10 +71,20 @@ $('#save_new_place_admin').click(function(){
 		dataType: 'json',
 		data:{nombre_lugar_nuevo: nombre_lugar_nuevo, id_country_new: id_country_n},
 			success:function(info){
+				$('#id_messagge_add_institution').addClass('green');
+				$('#id_messagge_add_institution').css('display', 'block');
+				$('#id_messagge_error_p_add_istitution').html("Ciudad guardada correctamente");
 				$('#tabla_de_lugares_administrador1').append('<tr class="center aligned"><td>'+info.nombre+'</td> <td>'+info.tipo+'</td> <td class="collapsing"> </td></tr>');
 			}
 		});
 	}
+	}else{
+		$('#id_messagge_add_institution').addClass('error');
+		$('#id_messagge_add_institution').css('display', 'block');
+		$('#id_messagge_error_p_add_istitution').html("Favor ingresar el nombre");
+	}
+
+	
 
 	
 });
@@ -135,8 +152,11 @@ $('#save_change_places_edit_admin').click(function(){
 	var tipo_change = $('#edit_select_data_admin_place').val();
 	var id_lug = $('#id_lugar_edit_admin').val();	
 	var token = $("#token").val();
+	$('#id_messagge_edit_lugar_error').css('display', 'none');
+	$('#id_messagge_error_p_edit_lugar_error').html("Cargando");
 
-	if (tipo_change=='country') {
+	if(nombre_lugar_nuevo!= ''){
+if (tipo_change=='country') {
 		var ruta = "edit-new-country";
 
 		$.ajax({
@@ -146,6 +166,10 @@ $('#save_change_places_edit_admin').click(function(){
 		dataType: 'json',
 		data:{id_l:id_lug, nombre_lugar_nuevo: nombre_lugar_nuevo},
 		success:function(info){
+			$('#id_messagge_edit_lugar_error').removeClass('error');
+			$('#id_messagge_edit_lugar_error').addClass('green');
+			$('#id_messagge_edit_lugar_error').css('display', 'block');
+			$('#id_messagge_error_p_edit_lugar_error').html("País guardada correctamente");
 			$('#name_place_list_admin'+id_lug).html(nombre_lugar_nuevo);
 			$('#name_lugar_edit_show_dmin'+id_lug).val(nombre_lugar_nuevo);
 			$('#type_place_edit'+id_lug).val(tipo_change);
@@ -165,6 +189,10 @@ $('#save_change_places_edit_admin').click(function(){
 		dataType: 'json',
 		data:{id_l:id_lug,nombre_lugar_nuevo: nombre_lugar_nuevo, id_country_new: country_change},
 			success:function(info){
+				$('#id_messagge_edit_lugar_error').removeClass('error');
+				$('#id_messagge_edit_lugar_error').addClass('green');
+				$('#id_messagge_edit_lugar_error').css('display', 'block');
+				$('#id_messagge_error_p_edit_lugar_error').html("Ciudad guardada correctamente");
 				$('#name_place_list_admin'+id_lug).html(nombre_lugar_nuevo);
 				$('#name_lugar_edit_show_dmin'+id_lug).val(nombre_lugar_nuevo);
 				$('#type_place_edit'+id_lug).val(tipo_change);
@@ -173,6 +201,14 @@ $('#save_change_places_edit_admin').click(function(){
 			}
 		});
 	}
+	}else{
+		$('#id_messagge_edit_lugar_error').removeClass('green');
+		$('#id_messagge_edit_lugar_error').addClass('error');
+		$('#id_messagge_edit_lugar_error').css('display', 'block');
+		$('#id_messagge_error_p_edit_lugar_error').html("Favor ingresar el nombre");
+	}
+
+	
 
 	
 });
