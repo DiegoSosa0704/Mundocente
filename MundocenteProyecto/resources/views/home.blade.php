@@ -284,22 +284,44 @@
 <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
         <div class="ui stackable inverted divided grid">
-            <div class="column">
-                <h4 class="ui inverted header">Iniciativa apoyada por: </h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            <div class="sixteen wide column">
+                <h2 class="ui inverted header">Iniciativa apoyada por: </h2>
+            </div>
+            <div class="row">
+                <div class="four wide column">
+                    <div class="content" style="background-color: #E0E0E0; border-radius: 15px;">
+                        <img src="/images/apps.png" class="ui image centered medium">
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <img src="/images/mintic.png" class="ui image centered medium">
+                </div>
+                <div class="four wide column">
+                    <img src="/images/vivide-digital.png" class="ui image centered medium">
+                </div>
+                <div class="four wide column">
+                    <img src="/images/unab.png" class="ui image centered medium">
+                </div>
             </div>
         </div>
         <div class="ui inverted section divider"></div>
-        <img src="images/iconop.png" class="ui centered image">
+        <img src="images/logo.png" class="ui centered  medium image">
         <div class="ui horizontal inverted small divided link list">
-            <a class="item" href="#">Site Map</a>
-            <a class="item" href="#">Contact Us</a>
-            <a class="item" href="#">Terms and Conditions</a>
-            <a class="item" href="#">Privacy Policy</a>
+            <a class="item" href="#">Contacto</a>
+            <a class="item" href="#">Terminos y condiciones</a>
+            <a class="item" href="#">Copyright 2017</a>
         </div>
     </div>
 </div>
 
+<style>
+    .ui.footer .ui.grid .four.wide.column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
 
 
 
