@@ -99,10 +99,6 @@
 
 
 
-
-
-
-
                     <div id="details_edit_institution_selected" style="display: none;">
                         <div class="field">
                         <div class="grouped fields">

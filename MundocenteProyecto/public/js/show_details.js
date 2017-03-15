@@ -15,13 +15,14 @@ function showDetailsPublication(id_publication) {
 
 	
 	document.getElementById('add_temas_formation_details').innerHTML='';
+	
 	$.get('obtener-areas-pulicacion/'+id_publication, function(response, ciudad){
 		for (var i = 0 ; i < response.length; i++) {
 			
 			$.get('areas-all/'+response[i].id_tema+ "" , function(response_all, ciudad){
 				
 					for (var i = 0 ; i < response_all.length; i++) {
-						console.log("prueba "+response_all[i].name_tema_area);
+						
 						if(response_all[i].name_tema_area != undefined && response_all[i].name_tema_disciplina != undefined){
 							$('#add_temas_formation_details').append("<tr><td>"+response_all[i].name_tema_gran+"</td><td>"+response_all[i].name_tema_area+"</td><td>"+response_all[i].name_tema_disciplina+" </td> </tr>");	
 						}else if(response_all[i].name_tema_area == undefined && response_all[i].name_tema_disciplina == undefined){
@@ -119,11 +120,11 @@ $('#div_data_index_clasification').append("<label>"+indices[k].name_index+":    
     ;
 
     var routAddTehemInteres = "add-value-theme-interest-user";
-	var token = $("#token").val();
+	var tokend = $("#token").val();
 
     $.ajax({
 			url: routAddTehemInteres,
-			headers: {'X-CSRF-TOKEN': token},
+			headers: {'X-CSRF-TOKEN': tokend},
 			type: 'POST',
 			dataType: 'json',
 			data:{id_publication_fk: id_publication},

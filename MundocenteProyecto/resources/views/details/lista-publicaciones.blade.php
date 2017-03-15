@@ -1,9 +1,10 @@
+  <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
   @inject('call_methods','Mundocente\Http\Controllers\ResultController')
 
                 <div class="ui eleven wide column">
                   
                     <div class="ui cards">
-                        <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+                        
                         @foreach($listPublications as $publication)
                             <div class="ui violet raised card">
                                 <div class="content">
@@ -84,6 +85,7 @@
                                 </div>
                                 <div class="extra content">
                                 <div class="right floated">
+
                                 @if($publication->id_type_publication==1)
                                 <a class="ui blue right ribbon label" onclick="showDetailsPublication({{$publication->id_publication}})"><i class="linkify icon"></i> Convocatoria</a>
                                 @elseif($publication->id_type_publication==2)
@@ -203,13 +205,32 @@
                 ->distinct()
                 ->orderBy('recomendaciones.value_recomendation', 'desc')
                 ->get();
+
+$publicacionesFechaPasada = DB::table('publicacions')->get();
+
+foreach ($publicacionesFechaPasada as $pub) {
+  
+  if (Date("Y-m-d")>$pub->date_end) {
+      DB::table('revista_nivels')->where('id_publications_fk', $pub->id_publication)->delete();
+          DB::table('interesados')->where('id_publication_fk', $pub->id_publication)->delete();
+          DB::table('favoritos')->where('id_publication_fk', $pub->id_publication)->delete();
+          DB::table('denuncias')->where('id_publication_fk', $pub->id_publication)->delete();
+          DB::table('areas_publicacions')->where('id_publication_fk', $pub->id_publication)->delete();
+          DB::table('publicacions')->where('id_publication', $pub->id_publication)->delete();
+  }
+  
+}
+
+
+
 ?>
-<input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+
 <div class="ui five wide column">
 <div class="ui card">
   <div class="content">
     <div class="header">Temas sugeridos</div>
   </div>
+  <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="tokenrecomen">
     <div class="content">
       <div class="ui middle aligned divided list">
           @foreach($recomendaciones as $recomen)

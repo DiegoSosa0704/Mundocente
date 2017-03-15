@@ -227,7 +227,7 @@ Route::post('abilite-publication', 'PublicationsController@activarPublicacion');
 Route::get('get-country-edit/{id_city}', 'AdminController@obtienePaisEditar');
 
 
-
+Route::get('publicaciones-denunciadas','AdminController@mostrarPublicacionesDenunciadas');
 
 
 

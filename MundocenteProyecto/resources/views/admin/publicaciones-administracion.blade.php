@@ -11,11 +11,9 @@
 <br>
     <h1 class="ui header center aligned">Administración De Publicaciones</h1>
     <div class="ui stackable equal width padded grid container">
-       <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+       
         <div class="row">
-            
-
-            
+            <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
             <div class="right floated column">
                 <a class="ui right floated  labeled icon button-publication blue button" target="_black" href="publicar-convocatoria" >
                     <i class="add icon"></i> Nueva convocatoria
@@ -44,6 +42,11 @@
         </div>
 
         <div class="column">
+        <div class="right floated column">
+                <a class="ui right floated  labeled icon button-publication red button" target="_black" href="publicaciones-denunciadas" >
+                    <i class="add icon"></i> Denunciadas
+                </a>
+            </div>
         <div class="left floated column">
             {!!Form::open(['url'=>'publicaciones-administrador-filtro' , 'method'=>'POST'])!!}
             
@@ -56,6 +59,7 @@
             </div>
             <br>
             
+
             <div class="ui tab active" data-tab="publication" >
                 <table class="ui sortable celled unstackable table">
                     <thead class="full-width">

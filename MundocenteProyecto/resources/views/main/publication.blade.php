@@ -6,10 +6,10 @@
     <div class="pusher pusher-start">
         <div class="ui container start-container">
             <div class="ui stackable grid" id="list-publication-main-index">
-               <input type="hidden" name="_token" , value="{{ csrf_token() }}" id="token">
+               
                 @include('formularios.filtros')
-
-            
+                
+                
                  @include('details.lista-publicaciones')
             
             

@@ -98,7 +98,7 @@ function addIReportPublication(id_publication){
 function addThemeFavorite(id_theme){
 	console.log("mensaje");
 		var ruta = "addNewLargeAreaInterest";
-		var token = $("#token").val();
+		var token = $("#tokenrecomen").val();
 
 		$.ajax({
 		url: ruta,

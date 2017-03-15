@@ -7,6 +7,7 @@
             <br>
         </div>
     </div>
+    
     <div class="content">
         <div class="ui equals width stackable form grid">
             <div class="three column row">

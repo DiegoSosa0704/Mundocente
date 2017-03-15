@@ -450,7 +450,7 @@ class PublicationsController extends Controller
 
                 ]);
 
-                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                $deleteP = DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
 
                 if ($request['allArea']=='1') {
 
@@ -512,12 +512,12 @@ class PublicationsController extends Controller
 
 
 
-                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                //$deleteP = DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
                 
                 if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
                         
-                        for ($i = count($request['disciplines']) - 1; $i >= 0; $i--) {
+                        for ($i = 0 ; $i < count($request['disciplines']); $i++) {
                             
                              AreasPublicacion::create([
                                 'id_publication_fk' => $request['id_p'],
@@ -576,7 +576,7 @@ class PublicationsController extends Controller
                     'id_lugar_fk' => $request['id_city'],
                 ]);
 
-                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                $deleteP = DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
                 
                 if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
@@ -636,7 +636,7 @@ class PublicationsController extends Controller
                 ]);
 
 
-                DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
+                $deleteP = DB::table('areas_publicacions')->where('id_publication_fk', $request['id_p'])->delete();
                 
                 if ($request['allArea']=='1') {
                       if (!empty($request['disciplines'])) {
@@ -823,10 +823,14 @@ public function agregarDenuncia(Request $request){
                    'id_user_notification' =>$id_p->id_user_fk,
                 ]);
              }
-            Denuncia::create([
+             $existe = DB::table('denuncias')->where('id_user_fk', Auth::user()->id)->where('id_publication_fk',$request['id_publication'])->count();
+            if ($existe==0) {
+              Denuncia::create([
                    'id_user_fk' => Auth::user()->id,
                     'id_publication_fk' =>  $request['id_publication'],
                 ]);
+            }
+            
             return 0;
         }
 }

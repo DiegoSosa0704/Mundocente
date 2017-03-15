@@ -41,7 +41,7 @@
                                                 está interesado en tu publicación:
                                                 <a onclick="showDetailsPublication({{$usersInterest->id_publication}})">{{$usersInterest->title_publication}}</a>
                                                 <div class="date">
-                                                    1 Hour Ago
+                                                    {{$usersInterest->created_at}}
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@
                                                 </a> ha denunciado tu publicación:
                                                 <a onclick="showDetailsPublication({{$usersInterest->id_publication}})">{{$usersInterest->title_publication}}</a>
                                                 <div class="date">
-                                                    1 Hour Ago
+                                                    {{$usersInterest->created_at}}
                                                 </div>
                                             </div>
                                         </div>

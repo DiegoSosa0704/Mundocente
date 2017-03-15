@@ -12,6 +12,9 @@ use Auth;
 
 use Mundocente\Http\Requests;
 use Mundocente\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class AdminController extends Controller
 {
@@ -22,7 +25,7 @@ class AdminController extends Controller
                 return Redirect::to('publicaciones');
             }
         }
-        $this->middleware('auth', ['only' => ['index','mainAdmin', 'administradorlugares', 'administradorinstituciones', 'administradorindices', 'administradorusuarios', 'administradorpublicaciones', 'agregarNuevoLugarPais', 'agregarNuevoLugarCiudad', 'editarNuevoLugarPais', 'editarNuevoLugarCiudad', 'obtienePaisEditar', 'agregarNuevaInstitucion', 'editarInstitucion']]);
+        $this->middleware('auth', ['only' => ['index','mainAdmin', 'administradorlugares', 'administradorinstituciones', 'administradorindices', 'administradorusuarios', 'administradorpublicaciones', 'agregarNuevoLugarPais', 'agregarNuevoLugarCiudad', 'editarNuevoLugarPais', 'editarNuevoLugarCiudad', 'obtienePaisEditar', 'agregarNuevaInstitucion', 'editarInstitucion', 'mostrarPublicacionesDenunciadas']]);
         global $porciones;
     }
 
@@ -133,6 +136,50 @@ public function adminsitradorPublicacionesFiltros(Request $request){
                         ->distinct()
                         ->paginate(30);
         return view('admin.publicaciones-administracion', compact('publication_recomendation'));
+}
+
+public function mostrarPublicacionesDenunciadas(){
+     $publication_denunci = DB::table('denuncias')
+                        ->join('publicacions', 'denuncias.id_publication_fk', '=', 'publicacions.id_publication')
+                        ->select('denuncias.*')
+                        ->paginate(20);
+
+
+        $listResultArray = array();
+       foreach ($publication_denunci as $pub) {
+            $publication_unique = DB::table('publicacions')
+                        ->join('institucions', 'publicacions.id_institution_fk', '=', 'institucions.id_institution')
+                        ->join('users', 'publicacions.id_user_fk', '=', 'users.id')
+                        ->join('tema__notificacions', 'publicacions.id_type_publication', '=', 'tema__notificacions.id_type_publications')
+                        ->join('lugars', 'publicacions.id_lugar_fk', '=', 'lugars.id_lugar')
+                        ->where('publicacions.id_publication', $pub->id_publication_fk)
+                        ->select('publicacions.*', 'institucions.*', 'tema__notificacions.*', 'lugars.*', 'users.*')
+                        ->distinct()
+                        ->get();
+                        $listResultArray = array_merge($publication_unique, $listResultArray);
+       }
+        
+        $collectionRes = collect($listResultArray);
+        
+        $publication_sinRepetir = $collectionRes->unique();
+
+
+        $currentPageSearch = LengthAwarePaginator::resolveCurrentPage();
+            $collectionSearch = new Collection($publication_sinRepetir);
+            $perPage = 1000;        
+            $currentPageSearchResultsSearch = $collectionSearch->slice(($currentPageSearch - 1) * $perPage, $perPage)->all();
+            $publication_recomendation = new LengthAwarePaginator(
+            $currentPageSearchResultsSearch,
+            count($collectionSearch),
+            $perPage,
+            Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]
+            );
+
+            
+
+                        
+    return view('admin.publicaciones-administracion', compact('publication_recomendation'));   
 }
 
 
