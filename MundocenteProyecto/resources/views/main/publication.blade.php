@@ -6,10 +6,7 @@
     <div class="pusher pusher-start">
         <div class="ui container start-container">
             <div class="ui stackable grid" id="list-publication-main-index">
-               
-                @include('formularios.filtros')
-                
-                
+
                  @include('details.lista-publicaciones')
             
             

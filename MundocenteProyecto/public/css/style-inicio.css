@@ -242,7 +242,7 @@ body.pushable>.pusher.pusher-start .ui.container{
 @media only screen and (max-width: 767px) {
     div.pusher {
         background-color: #EEEEEE;
-        margin-top: 50px;
+        margin-top: 45px;
     }
 
     .ui.fixed.sticky.menu,
@@ -260,7 +260,7 @@ body.pushable>.pusher.pusher-start .ui.container{
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     div.pusher {
         background-color: #EEEEEE;
-        margin-top: 50px;
+        margin-top: 45px;
     }
 
     .ui.fixed.sticky.menu,
@@ -275,7 +275,7 @@ body.pushable>.pusher.pusher-start .ui.container{
     div.pusher {
         background-color: #EEEEEE;
         margin-left: 18rem;
-        margin-top: 63px;
+        margin-top: 45px;
     }
 
     .pusher .ui.container {
@@ -295,7 +295,7 @@ body.pushable>.pusher.pusher-start .ui.container{
     div.pusher {
         background-color: #EEEEEE;
         margin-left: 18rem;
-        margin-top: 63px;
+        margin-top: 45px;
     }
 
     .pusher .ui.container {
@@ -315,7 +315,7 @@ body.pushable>.pusher.pusher-start .ui.container{
     div.pusher {
         background-color: #EEEEEE;
         margin-left: 18rem;
-        margin-top: 63px;
+        margin-top: 45px;
     }
 
     .ui.modal .content.content-modal{

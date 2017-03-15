@@ -22,7 +22,7 @@
 
 
                     <div class="field">
-                        <div class="ui  large horizontal label color_1">Institución que publica la solicitud:
+                        <div class="ui  large horizontal label">Institución que publica la solicitud:
                             <select name="country" class="ui search dropdown" id="selectMVinculation">
                                 <option value="">Seleccione Institución</option>
                                 

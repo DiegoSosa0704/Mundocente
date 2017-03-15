@@ -27,6 +27,8 @@
 $cuanqityNotifications = DB::table('notifications')->where('id_user_notification', Auth::user()->id)->count();
 ?>
 
+@include('formularios.filtros')
+
 <!--Menu Sidebar -->
 <div class="ui left sidebar inverted vertical menu">
 
@@ -54,8 +56,9 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
 
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
-        <div class="ui aligned center inverted tiny header"><a href="mi-peril"
-                                                               style="color: #fff;">{!!Auth::user()->name!!} </a></div>
+        <div class="ui aligned center inverted tiny header">
+            <a href="mi-peril" style="color: #fff;">{!!Auth::user()->name!!} </a>
+        </div>
     </div>
     <a class=" item" href="publicaciones" id="optionMainHome" onclick="loadLine()">
         <i class="grid layout icon"></i> Inicio
@@ -78,15 +81,15 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
             <div class="floating ui red label">{{$cuanqityNotifications}}</div>
         @else
             <div><i class="alarm icon"></i> Notificaciones</div>
-@endif
+        @endif
 
-</a>
+    </a>
 
-@if(Auth::user()->rol=='admin')
- <a class=" item" href="publicaciones-administrador" target="_black">
+    @if(Auth::user()->rol=='admin')
+        <a class=" item" href="publicaciones-administrador" target="_black">
             <div><i class="privacy icon"></i> Administrador</div>
-</a>
-@endif
+        </a>
+    @endif
 </div>
 
 
@@ -116,14 +119,12 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
             Buscar
         </button>
         {!!Form::close()!!}
-
-           <button class="ui blue basic button" onclick="showModalFilter()" style="margin-left: 10px;"> <p style="font-size: 13px;"> Filtros</p></button>
-
-        
-
+    </div>
+    <div class="item" style="padding: 0; margin: 0;">
+        <a href="#" class="top-sidebar" ><p style="font-size: 13px;">Filtros</p></a>
     </div>
 
-    <div class="right menu" style="padding-right: 30px">
+    <div class="right menu" style="margin-right: 30px">
         <div class="item">
             <div class="ui floating right labeled icon dropdown teal button" style="background-color: #AD5691;">
                 <span>{!!Auth::user()->name!!}</span>
@@ -160,13 +161,7 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
 
 <script>
 
-function showModalFilter(){
-    $('.ui.long.modal')
-  .modal('show')
-;    
-}
-
-
+    $('.ui.top.sidebar').sidebar('attach events', '.ui.top.fixed.menu .item .top-sidebar');
 
     $('.dropdown')
         .dropdown({

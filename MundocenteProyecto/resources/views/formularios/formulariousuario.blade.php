@@ -84,13 +84,13 @@
                                 <div class="ui dimmer">
                                     <div class="content">
                                         <div class="center">
-                                                <span>
-                                                    <label for="file-input" class="ui blue button">
-                                                        <input type="file" name="file-input" accept="image/*"
-                                                               id="file-input" style="display:none">
-                                                        Cargar Foto
-                                                    </label>
-                                                </span>
+                                            <span>
+                                                <label for="file-input" class="ui blue button">
+                                                    <input type="file" name="file-input" accept="image/*"
+                                                           id="file-input" style="display:none">
+                                                    Cargar Foto
+                                                </label>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -673,7 +673,7 @@
 
 
 
-    <div class="ui small modal">
+    <div class="ui small modal change-photo">
         <h2 class="ui center aligned header">Cambia tu foto de perfil</h2>
         <div class="content">
             <div class="ui equals center aligned width grid">
@@ -700,10 +700,6 @@
             ;
         });
 
-
-        $('#buttonChangePhoto').on('click', function () {
-            $('.ui.modal').modal('show');
-        });
         function showNotificationType() {
             if ($('#notification_type').is(":visible")) {
                 $('#notification_type').toggle("fast");
@@ -756,7 +752,7 @@
             }
         }
         $("#file-input").change(function () {
-            $('.ui.modal').modal('show');
+            $('.ui.modal.change-photo').modal('show');
             readURL(this);
         });
         function editPhoto() {
