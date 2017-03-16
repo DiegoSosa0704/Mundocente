@@ -59,11 +59,11 @@
                                 rules: [
                                     {
                                         type: 'empty',
-                                        prompt: 'Please enter your e-mail'
+                                        prompt: 'El correo es obligatorio'
                                     },
                                     {
                                         type: 'email',
-                                        prompt: 'Please enter a valid e-mail'
+                                        prompt: 'El correo no es válido'
                                     }
                                 ]
                             },
@@ -72,11 +72,11 @@
                                 rules: [
                                     {
                                         type: 'empty',
-                                        prompt: 'Please enter your password'
+                                        prompt: 'Ingresar contraseña'
                                     },
                                     {
                                         type: 'length[6]',
-                                        prompt: 'Your password must be at least 6 characters'
+                                        prompt: 'La contraseña debe tener mínimo 6 caracteres'
                                     }
                                 ]
                             }

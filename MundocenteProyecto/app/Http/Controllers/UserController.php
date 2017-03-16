@@ -8,6 +8,7 @@ use Mundocente\Http\Requests;
 use DB;
 use Auth;
 use Redirect;
+use Mail;
 use Mundocente\Http\Controllers\Controller;
 
 use Mundocente\User;
@@ -29,6 +30,7 @@ use Hash;
 
 class UserController extends Controller
 {
+    public static $emailGlobal = '';
 
      public function __construct(){
         if((isset($_COOKIE["email_cookie"]))||(isset($_COOKIE["pass_cookie"]))){
@@ -37,6 +39,7 @@ class UserController extends Controller
             }
         }
         $this->middleware('auth', ['only' => ['editarusuario', 'agregarUniversidad', 'agregarUniversidadNueva', 'eliminarVinculacion', 'agregarGranAreaDeInterest','desactivarUsuario', 'editarUsuarioDesdeAdmin']]);
+        
         
     }
 
@@ -104,6 +107,16 @@ public function callLargesAreasTheme(){
                 'state_user' => 'activo',
 
             ]);
+            $arrayData = [
+                "nombre" => $request['username'],
+            ];
+           $GLOBALS["email_global"]=$request['email'];
+            global $email_global;
+            
+            Mail::send('emails.welcome',$arrayData, function($mensaje){
+                    $mensaje->subject('Bienvenido a Mundocente');
+                    $mensaje->to($GLOBALS["email_global"]);
+                });
              
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
                 $emailAuth = Auth::user()->email;
@@ -111,7 +124,8 @@ public function callLargesAreasTheme(){
                 DB::table('users')
                 ->where('id', Auth::user()->id)
                 ->update(['last_name' => $emailUser.''.Auth::user()->id]);
-                return Redirect::to('registration');
+
+                 return Redirect::to('registration');
 
             }
         }

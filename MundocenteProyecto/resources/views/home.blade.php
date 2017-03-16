@@ -19,7 +19,7 @@
 
 </head>
 
-<body id="inicio" onload="nobackbutton();">
+<body id="inicio" >
 
 <div class="ui large borderless fixed navbar-fixed menu"
      style="background-color: #EEEEEE;">
@@ -111,8 +111,8 @@
 </div>
 
 <!-- Servicios -->
-
-<div id="services" class="services scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
+<div id="services" class="services"></div>
+<div  class="services scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
     <div class="ui container center aligned inverted">
         <h1 class="ui header" style="font-size: 3.7em">Servicios</h1>
         <div>
@@ -211,8 +211,10 @@
 </div>
 
 <!-- Contacto -->
-
-<div id="contact" class="contact scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
+<div id="contact" class="contact scrollme animateme" >
+    
+</div>
+<div  class="contact scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
     <div class="ui center aligned container">
         <h1 class="ui header">Contacto</h1>
         <div>
@@ -231,32 +233,30 @@
         </div>
         <div class="ui two column left aligned stackable grid">
             <div class="column">
-                <form class="ui form">
+                  {!!Form::open(['url'=>'send-email-contact', 'method'=> 'POST', 'class'=>'ui form'])!!}
                     <h2 class="ui dividing header">Información</h2>
                     <div class="field">
-                        <label>Nombre</label>
-                        <div class="two fields">
+                        <label>Nombres</label>
+                        <div class="field">
                             <div class="field">
-                                <input type="text" name="shipping[nombres]" placeholder="Nombres">
+                            {!!Form::text('name_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su nombre completo', 'required'=>'true'])!!}
+                            </div>                        
                             </div>
-                            <div class="field">
-                                <input type="text" name="shipping[apellidos]" placeholder="Apellidos">
-                            </div>
-                        </div>
                     </div>
                     <div class="field">
                         <label>Correo</label>
-                        <input type="email" placeholder="Correo electrónico">
+                        {!!Form::text('email_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su correo', 'required'=>'true'])!!}
                     </div>
                     <div class="field">
                         <label>Mensaje</label>
-                        <textarea rows="2"></textarea>
+                        {!!Form::textarea('message_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su nombre completo', 'rows' => '2', 'required'=>'true'])!!}
+                        
                     </div>
-                    <button class="ui large active button" style="background-color: #96407A; color: #F2EDE4;">
+                    <button class="ui large active button" type="submit" style="background-color: #96407A; color: #F2EDE4;">
                         <i class="send icon"></i>
                         Enviar
                     </button>
-                </form>
+                {!!Form::close()!!}
             </div>
             <div class="column">
                 <div class="info-contact">
@@ -309,7 +309,7 @@
         <div class="ui horizontal inverted small divided link list">
             <a class="item" href="#">Contacto</a>
             <a class="item" href="#">Terminos y condiciones</a>
-            <a class="item" href="#">Copyright 2017</a>
+            <a class="item" href="#">Copyright &copy; 2017</a>
         </div>
     </div>
 </div>

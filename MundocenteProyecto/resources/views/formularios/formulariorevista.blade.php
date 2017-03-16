@@ -143,26 +143,6 @@
                     <input type="hidden" name="quantityindexlevel" id="idquantitypaperindex" value="{{$quantityIndex}}">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @inject('call_methods_theme','Mundocente\Http\Controllers\HomeController')
                     <!--Areas de conocimiento-->
                     <h4 class="ui dividing header">Áreas de conocimiento</h4>
@@ -273,21 +253,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
 @include('modals.modal_institute_vinculate')
-
-
-
-
-
 
 
     <script type="text/javascript">

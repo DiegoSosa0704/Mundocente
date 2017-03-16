@@ -174,13 +174,7 @@ Route::get('resultados-revistas', 'ResultController@publications');
 
 
 
-
-
-
-
-
-
-
+Route::post('send-email-contact','EmailsController@enviarCorreoContactor');
 
 
 

@@ -11,6 +11,7 @@ use Mundocente\AreasPublicacion;
 use Auth;
 use DB;
 use Redirect;
+use Mail;
 use Mundocente\RevistaNivel;
 use Mundocente\Favorito;
 use Mundocente\Guardado;
@@ -187,6 +188,34 @@ class PublicationsController extends Controller
                             ]);
                 }
         }
+
+
+        $listaNotificacionesCorreso = DB::table('tema_notificacion_usuarios')
+                      ->join('users', 'tema_notificacion_usuarios.id_user_fk', '=', 'users.id')
+                      ->get();
+
+        foreach ($listaNotificacionesCorreso as $listaNotif) {
+           if($listaNotif->id_type_notifications_fk==1 || $listaNotif->id_type_notifications_fk==6){
+              $GLOBALS["email_global"]=$listaNotif->email;
+                global $email_global;
+
+            $arrayData = [
+                    "nombre" => $listaNotif->name,
+                    "tipo" => 'Convocatoria',
+                    "titulo" => $request['title'],
+                ];
+                
+            Mail::send('emails.notification',$arrayData, function($mensaje){
+                    $mensaje->subject('Hay nuevas publicaciones en mundocente de tu interés');
+                    $mensaje->to($GLOBALS["email_global"]);
+                });
+            
+            }
+           }
+      
+                
+       
+
         $cero = 0;
         return  $cero;
     }
@@ -255,6 +284,30 @@ class PublicationsController extends Controller
                                 'id_theme_fk' => 1,
                             ]);
                 }
+
+
+                   $listaNotificacionesCorreso = DB::table('tema_notificacion_usuarios')
+                      ->join('users', 'tema_notificacion_usuarios.id_user_fk', '=', 'users.id')
+                      ->get();
+
+         foreach ($listaNotificacionesCorreso as $listaNotif) {
+           if($listaNotif->id_type_notifications_fk==3 || $listaNotif->id_type_notifications_fk==6){
+              $GLOBALS["email_global"]=$listaNotif->email;
+                global $email_global;
+
+            $arrayData = [
+                    "nombre" => $listaNotif->name,
+                    "tipo" => 'Evento',
+                    "titulo" => $request['title'],
+                ];
+                
+            Mail::send('emails.notification',$arrayData, function($mensaje){
+                    $mensaje->subject('Hay nuevas publicaciones en mundocente de tu interés');
+                    $mensaje->to($GLOBALS["email_global"]);
+                });
+            
+            }
+           }
                 
               
                 
@@ -324,6 +377,28 @@ class PublicationsController extends Controller
                             ]);
                     }
                 }
+                   $listaNotificacionesCorreso = DB::table('tema_notificacion_usuarios')
+                      ->join('users', 'tema_notificacion_usuarios.id_user_fk', '=', 'users.id')
+                      ->get();
+
+          foreach ($listaNotificacionesCorreso as $listaNotif) {
+           if($listaNotif->id_type_notifications_fk==2 || $listaNotif->id_type_notifications_fk==6){
+              $GLOBALS["email_global"]=$listaNotif->email;
+                global $email_global;
+
+            $arrayData = [
+                    "nombre" => $listaNotif->name,
+                    "tipo" => 'Revista',
+                    "titulo" => $request['title'],
+                ];
+                
+            Mail::send('emails.notification',$arrayData, function($mensaje){
+                    $mensaje->subject('Hay nuevas publicaciones en mundocente de tu interés');
+                    $mensaje->to($GLOBALS["email_global"]);
+                });
+            
+            }
+           }
                 
                return  0;
            
@@ -385,10 +460,31 @@ class PublicationsController extends Controller
                 
               
                 
+                   $listaNotificacionesCorreso = DB::table('tema_notificacion_usuarios')
+                      ->join('users', 'tema_notificacion_usuarios.id_user_fk', '=', 'users.id')
+                      ->get();
+
+         foreach ($listaNotificacionesCorreso as $listaNotif) {
+           if($listaNotif->id_type_notifications_fk==4 || $listaNotif->id_type_notifications_fk==5 || $listaNotif->id_type_notifications_fk==6){
+              $GLOBALS["email_global"]=$listaNotif->email;
+                global $email_global;
+
+            $arrayData = [
+                    "nombre" => $listaNotif->name,
+                    "tipo" => 'Solicitud',
+                    "titulo" => $request['title'],
+                ];
                 
+            Mail::send('emails.notification',$arrayData, function($mensaje){
+                    $mensaje->subject('Hay nuevas publicaciones en mundocente de tu interés');
+                    $mensaje->to($GLOBALS["email_global"]);
+                });
+            
+            }
+           }
                
                 
-               return  0;
+               
                return  0;
            
         }

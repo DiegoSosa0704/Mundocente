@@ -211,8 +211,8 @@ $recomendaciones = DB::table('recomendaciones')
 $publicacionesFechaPasada = DB::table('publicacions')->get();
 
 foreach ($publicacionesFechaPasada as $pub) {
-
-    if (Date("Y-m-d") > $pub->date_end) {
+if ($pub->id_type_publication!=2) {
+        if (Date("Y-m-d") > $pub->date_end) {
         DB::table('revista_nivels')->where('id_publications_fk', $pub->id_publication)->delete();
         DB::table('interesados')->where('id_publication_fk', $pub->id_publication)->delete();
         DB::table('favoritos')->where('id_publication_fk', $pub->id_publication)->delete();
@@ -220,6 +220,8 @@ foreach ($publicacionesFechaPasada as $pub) {
         DB::table('areas_publicacions')->where('id_publication_fk', $pub->id_publication)->delete();
         DB::table('publicacions')->where('id_publication', $pub->id_publication)->delete();
     }
+}
+
 
 }
 

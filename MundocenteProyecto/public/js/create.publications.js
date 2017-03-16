@@ -71,11 +71,12 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró 1 '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                            
                                         }
                                     });
+                                    $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                     loadLine();
                                     
                                 }else{
@@ -90,12 +91,13 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró 2 '+info);
-                                             $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                             
                                             
                                         }
                                     });
+                                    $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                    loadLine();
                                    
                                 }
@@ -248,11 +250,12 @@ var token = $("#token").val();
                                             contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                            
                                         }
                                     });
+                                    $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                     loadLine();
                                 }else{
                                     deleteInputText();
@@ -267,11 +270,12 @@ var token = $("#token").val();
                                              description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                            
                                         }
                                     });
+                                    $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                     loadLine();
                                    
                                 }
@@ -431,12 +435,13 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                           
                                             
                                         }
                                     });
+                                     $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                     loadLine();
                                 }else{
                                     deleteInputText();
@@ -451,13 +456,13 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                            
                                             
                                         }
                                     });
-                                    
+                                    $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                    loadLine();
                                 }
                             }else{
@@ -589,11 +594,12 @@ var token = $("#token").val();
                                               title: title, url_link: link, contact: contacts, description: description, allArea: '2'},
                                         success:function(info){
                                             console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                           
                                         }
                                     });
+                                     $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                     loadLine();
                                 }else{
                                     deleteInputText();
@@ -606,11 +612,12 @@ var token = $("#token").val();
                                              contact: contacts, description: description, allArea: '1'},
                                         success:function(info){
                                             console.log('entró '+info);
-                                            $('#messageErrorpublication').addClass('green');
-                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
-                                            $('#messageErrorpublication').css('display', 'block');
+                                            
                                         }
                                     });
+                                    $('#messageErrorpublication').addClass('green');
+                                            $('#idpmessageerrorpublications').html('Se publicó con éxito');
+                                            $('#messageErrorpublication').css('display', 'block');
                                    loadLine();
                                 }
                             }else{

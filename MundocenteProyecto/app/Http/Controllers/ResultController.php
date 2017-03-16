@@ -345,8 +345,6 @@ public function listPublicationsInterestRecomendation(){
 //  Retorna lista de intrés y recomendaciones
 
 public function returnListInterest(){
-  
-   
 
     $listResultArrayUnionIntRecom = array();
 
@@ -354,13 +352,18 @@ public function returnListInterest(){
      $listaUniono = DB::table('areas_publicacions')
             ->join('areas_interes', 'areas_publicacions.id_theme_fk', '=', 'areas_interes.id_theme_fk')
             ->where('areas_interes.id_user_fk', Auth::user()->id)
-            ->select('areas_publicacions.id_publication_fk')
+            ->select('areas_publicacions.id_theme_fk', 'areas_publicacions.id_publication_fk')
             ->orderBy('areas_interes.value_interest', 'asc')
             ->distinct()
             ->get();
+            
+        
+$listResultArrayUnionIntRecom = array_merge($listaUniono, $listResultArrayUnionIntRecom);
+//dd($listResultArrayUnionIntRecom);
+        
 
-
-        $listResultArrayUnionIntRecom = array_merge($listaUniono, $listResultArrayUnionIntRecom);
+       
+        
 
 
         $listaUnionoRecom = DB::table('areas_publicacions')
@@ -385,6 +388,7 @@ public function returnListInterest(){
             //dd($listaUnionoTodosTheme);
 
         $listResultArrayUnionIntRecom = array_merge($listaUnionoTodosTheme, $listResultArrayUnionIntRecom);
+       
 
 
         $collectionSearch = collect($listResultArrayUnionIntRecom);
@@ -413,8 +417,11 @@ public function returnListPublications(){
                         ->where('publicacions.id_publication', $id_publi->id_publication_fk)
                         ->select('publicacions.*', 'institucions.*',  'lugars.*')
                         ->get();
+                        
                 $listResultArray = array_merge($publication_interest, $listResultArray);
         }
+
+        
         
         
         

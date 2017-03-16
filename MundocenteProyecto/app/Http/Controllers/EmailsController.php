@@ -4,6 +4,10 @@ namespace Mundocente\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use Redirect;
+use Mail;
+
 use Mundocente\Http\Requests;
 use Mundocente\Http\Controllers\Controller;
 
@@ -17,6 +21,18 @@ class EmailsController extends Controller
     public function index()
     {
         //
+    }
+
+
+
+    //método que envía correo de home
+    public function enviarCorreoContactor(Request $request){
+        Mail::send('emails.contact', $request->all(), function($mensaje){
+            $mensaje->subject('Correo en Contacto');
+            $mensaje->to('info@mundocente.co');
+        });
+        return Redirect::to('/');
+
     }
 
     /**
