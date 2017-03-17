@@ -2,21 +2,13 @@
 @inject('call_methods','Mundocente\Http\Controllers\ResultController')
 
 <div class="ui eleven wide column">
-
     <div class="ui cards">
-
         @foreach($listPublications as $publication)
             <div class="ui violet raised card">
                 <div class="content">
-
-
                     <div class="header ">
-
                         <!--  Si la publicación es mía sale Editar-->
                         @if(Auth::user()->id==$publication->id_user_fk)
-
-
-
                             @if($publication->id_type_publication==1)
                                 {!!Form::open(['url'=>'editar-convocatoria' , 'method'=>'POST'])!!}
                                 <input type="hidden" name="id_convocatoria_edit"
@@ -43,18 +35,11 @@
                                             class="edit icon"> </i></button>
                             {!!Form::close()!!}
                         @endif
-
-
                     @endif
-
                     <!--  Si la publicación es mía sale Editar   Fin -->
-
                         <a onclick="showDetailsPublication({{$publication->id_publication}})"
                            class="ui header"><b>{{$publication->title_publication}}</b></a>
-
-
                     </div>
-
                     @if($call_methods->returnIndexPublicationPaper($publication->id_publication) > 0 && $publication->id_type_publication == 2)
                         <input type="hidden" id="id_type_publication{{$publication->id_publication}}"
                                value="1">
@@ -64,9 +49,7 @@
                                value="0">
                         <p>(No indexada)</p>
                     @endif
-
                 </div>
-
                 @if($publication->url_photo_publication != '')
                     <div class="ui large centered image landscape">
                         <img src="{{$publication->url_photo_publication}}">
@@ -85,11 +68,9 @@
                             <span><b>Hasta: </b> {{$publication->date_end}}</span>
                         </div>
                     @endif
-
                 </div>
                 <div class="extra content">
                     <div class="right floated">
-
                         @if($publication->id_type_publication==1)
                             <a class="ui blue right ribbon label"
                                onclick="showDetailsPublication({{$publication->id_publication}})"><i
@@ -108,9 +89,7 @@
                                         class="linkify icon"></i> Solicitud</a>
                         @endif
                     </div>
-
                     <span>
-
                                     @if($call_methods->verifyFavorite($publication->id_publication)==1)
                             <a onclick="addFavoritePublication({{$publication->id_publication}})"
                                style="color: #D6DB47;" title="Eliminar de mis favoritos"
@@ -125,12 +104,8 @@
                                 {{$call_methods->returnPublicationFavorite($publication->id_publication) }} Favorito
                                     </a>
                         @endif
-
                         <br>
-
                         @if($publication->id_type_publication!=2)
-
-
                             @if($call_methods->verifyInterest($publication->id_publication)==1)
                                 <a style="color: #DD0D29;" title="Ya no me interesa"
                                    onclick="addInterestPublication({{$publication->id_publication}})"
@@ -146,11 +121,8 @@
                                     {{$call_methods->returnPublicationSave($publication->id_publication)}} Me interesa
                                     </a>
                             @endif
-
                         @endif
-                                    
                                 </span>
-
                     <input type="hidden" id="title_publication{{$publication->id_publication}}"
                            value="{{$publication->title_publication}}">
                     <input type="hidden" id="sector_publication{{$publication->id_publication}}"
@@ -183,22 +155,15 @@
                            value="{{$call_methods->returnPublicationReport($publication->id_publication)}}">
                 </div>
             </div>
-
         @endforeach
-
-
         <br>
         <br>
-
-
         @if(count($listPublications)==0)
             <h2 style="color: #B6B5B5;">No se encontraron resultados</h2>
         @endif
     </div>
 
 </div>
-
-
 <?php
 $recomendaciones = DB::table('recomendaciones')
     ->join('temas', 'recomendaciones.id_theme_fk', '=', 'temas.id_tema')
@@ -211,22 +176,17 @@ $recomendaciones = DB::table('recomendaciones')
 $publicacionesFechaPasada = DB::table('publicacions')->get();
 
 foreach ($publicacionesFechaPasada as $pub) {
-if ($pub->id_type_publication!=2) {
+    if ($pub->id_type_publication != 2) {
         if (Date("Y-m-d") > $pub->date_end) {
-        DB::table('revista_nivels')->where('id_publications_fk', $pub->id_publication)->delete();
-        DB::table('interesados')->where('id_publication_fk', $pub->id_publication)->delete();
-        DB::table('favoritos')->where('id_publication_fk', $pub->id_publication)->delete();
-        DB::table('denuncias')->where('id_publication_fk', $pub->id_publication)->delete();
-        DB::table('areas_publicacions')->where('id_publication_fk', $pub->id_publication)->delete();
-        DB::table('publicacions')->where('id_publication', $pub->id_publication)->delete();
+            DB::table('revista_nivels')->where('id_publications_fk', $pub->id_publication)->delete();
+            DB::table('interesados')->where('id_publication_fk', $pub->id_publication)->delete();
+            DB::table('favoritos')->where('id_publication_fk', $pub->id_publication)->delete();
+            DB::table('denuncias')->where('id_publication_fk', $pub->id_publication)->delete();
+            DB::table('areas_publicacions')->where('id_publication_fk', $pub->id_publication)->delete();
+            DB::table('publicacions')->where('id_publication', $pub->id_publication)->delete();
+        }
     }
 }
-
-
-}
-
-
-
 ?>
 
 <div class="ui five wide column">
@@ -254,8 +214,6 @@ if ($pub->id_type_publication!=2) {
             </div>
         </div>
     </div>
-
-
 </div>
 
 

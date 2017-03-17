@@ -34,32 +34,7 @@
             min-height: 100px;
         }
 
-
-        .ui.action.input .ui.dropdown:first-child {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .ui.action.input .ui.dropdown:last-child {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        .padre {
-            background: yellow;
-            height: 150px;
-            /*IMPORTANTE*/
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hijo {
-            background: red;
-            width: 120px;
-        }
     </style>
-
     <!--Contenido-->
     <div class="pusher">
         <div class="segment-title">
@@ -95,7 +70,6 @@
                                     </div>
                                 </div>
                                 <img src="{!!Auth::user()->photo_url!!}" id="newimageperfil">
-
                             </div>
                         </div>
                     </div>
@@ -221,8 +195,6 @@
                                             </div>
                                         @else
 
-
-
                                         @endif
                                     @endforeach
 
@@ -235,11 +207,7 @@
                                             </div>
                                         </div>
                                     @endif
-
-
                                 @endforeach
-
-
                             </div>
                         </div>
                     @else
@@ -275,7 +243,6 @@
                     <div class="ui error message"></div>
                     {!!Form::close()!!}
                 </div>
-
 
                 {{--Vinculación laboral--}}
                 <div class="title">
@@ -315,16 +282,14 @@
                                         <option value="">Seleccione institución</option>
                                     </select>
                                     <div class="ui horizontal divider">
-                                        <div class="ui right float color_1 label button" id="agregaInstituto" style="color: #EEEEEE;">Agregar Institución</div>
+                                        <div class="ui right float color_1 label button" id="agregaInstituto"
+                                             style="color: #EEEEEE;">Agregar Institución
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="four wide field" style="margin: auto">
-                                    <a href="#" id="id_add_new_institute" style="text-decoration: underline;">Agregar otra Institución...</a>
-                                    {{--<label>Otra</label>
-                                    <div class="ui action input">
-                                        <input placeholder="Nombre" id="otherInstitute" type="text" value="">
-                                        <div class="ui color_1 button" id="addInstituteNew">Nueva Institución</div>
-                                    </div>--}}
+                                    <a href="#" id="id_add_new_institute" style="text-decoration: underline;">Agregar
+                                        otra Institución...</a>
                                 </div>
                             </div>
                             <div class="ui raised card">
@@ -338,10 +303,12 @@
                                                 <div class="item" id="institutionList{{$institu->id_institution}}">
                                                     <div class="right floated content">
                                                         <div class="ui label button color_3"
-                                                           onclick="delete_institution_vinul({{$institu->id_institution}})" style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</div>
+                                                             onclick="delete_institution_vinul({{$institu->id_institution}})"
+                                                             style="color: #EEEEEE"><i class="trash icon"></i>Eliminar
+                                                        </div>
                                                     </div>
                                                     <div class="content">
-                                                        {{$institu->name_institution}} 
+                                                        {{$institu->name_institution}}
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -422,8 +389,11 @@
                                                 <td> {{$disciplina_formacion->name_tema_gran}} </td>
                                                 <td>{{$disciplina_formacion->name_tema_area}} </td>
                                                 <td> {{$disciplina_formacion->name_tema_disciplina}} </td>
-                                                <td><div class='ui label button color_3'
-                                                       onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_disciplina}})' style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</div>
+                                                <td>
+                                                    <div class='ui label button color_3'
+                                                         onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_disciplina}})'
+                                                         style="color: #EEEEEE"><i class="trash icon"></i>Eliminar
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @elseif($disciplina_formacion->type_theme=='area')
@@ -431,8 +401,11 @@
                                                 <td> {{$disciplina_formacion->name_tema_gran}} </td>
                                                 <td>{{$disciplina_formacion->name_tema_area}} </td>
                                                 <td> -</td>
-                                                <td><div class='ui label button color_3'
-                                                       onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_area}})' style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</div>
+                                                <td>
+                                                    <div class='ui label button color_3'
+                                                         onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_area}})'
+                                                         style="color: #EEEEEE"><i class="trash icon"></i>Eliminar
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @else
@@ -440,8 +413,11 @@
                                                 <td> {{$disciplina_formacion->name_tema_gran}} </td>
                                                 <td> -</td>
                                                 <td> -</td>
-                                                <td><div class='ui label button color_3'
-                                                       onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_gran}})' style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</div>
+                                                <td>
+                                                    <div class='ui label button color_3'
+                                                         onclick='deleteDisciplineAreaTraining({{$disciplina_formacion->id_tema_gran}})'
+                                                         style="color: #EEEEEE"><i class="trash icon"></i>Eliminar
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endif
@@ -453,8 +429,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 {{--Áreas de interés--}}
                 <div class="title">
                     <i class="dropdown icon"></i>
@@ -464,10 +438,7 @@
                     <div class="transition hidden">
                         <div class="ui form">
                             <div class="field">
-
-
                                 <select class="ui fluid search dropdown " id="select_areas_general_search_interest">
-
                                     @foreach($areas_all as $gran_area)
 
                                         <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
@@ -502,7 +473,8 @@
                                                 <td>{{$disciplina_interest->name_tema_area}} </td>
                                                 <td> {{$disciplina_interest->name_tema_disciplina}} </td>
                                                 <td><a class='ui label button color_3'
-                                                       onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_disciplina}})' style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</a>
+                                                       onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_disciplina}})'
+                                                       style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</a>
                                                 </td>
                                             </tr>
                                         @elseif($disciplina_interest->type_theme=='area')
@@ -511,7 +483,8 @@
                                                 <td>{{$disciplina_interest->name_tema_area}} </td>
                                                 <td> -</td>
                                                 <td><a class='ui label button color_3'
-                                                       onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_area}})' style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</a>
+                                                       onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_area}})'
+                                                       style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</a>
                                                 </td>
                                             </tr>
                                         @else
@@ -520,7 +493,8 @@
                                                 <td> -</td>
                                                 <td> -</td>
                                                 <td><a class='ui label button color_3'
-                                                       onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_gran}})' style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</a>
+                                                       onclick='deleteDisciplineAreaInterest({{$disciplina_interest->id_tema_gran}})'
+                                                       style="color: #EEEEEE"><i class="trash icon"></i>Eliminar</a>
                                                 </td>
                                             </tr>
                                         @endif
@@ -532,8 +506,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 {{--Configuración general de cuenta--}}
                 <div class="title">
                     <i class="dropdown icon"></i>
@@ -543,9 +515,7 @@
                     <div class="transition hidden">
                         @if(Auth::user()->password != 'NULL')
                             <div class="ui form">
-
                                 <div class="equal width fields">
-
                                     <div class="required field">
                                         <label>Correo electrónico</label>
                                         <input type="text" name="email" value="{!!Auth::user()->email!!}"
@@ -568,11 +538,10 @@
                                     </div>
 
                                 </div>
-
                                 <div class="ui right aligned stackable grid">
                                     <div class="sixteen wide column">
                                         <div form="form" class="ui submit button color_1"
-                                           id="buttonChangePassword">
+                                             id="buttonChangePassword">
                                             Guardar contraseña
                                         </div>
                                     </div>
@@ -585,12 +554,8 @@
                                         <p id="errorsChangePasswordp">Errores</p>
                                     </div>
                                     <ul class="list">
-
-
                                     </ul>
                                 </div>
-
-
                             </div>
                         @endif
                     </div>
@@ -604,7 +569,6 @@
                 <div class="content">
                     <div class="transition hidden">
                         <div class="ui form">
-
                             <div class="grouped fields">
                                 <label>Cuenta</label>
                                 <div class="field">
@@ -617,7 +581,6 @@
                                             <input type="radio" id="activacion_cuenta" name="accountActivate"
                                                    value="1">
                                         @endif
-
                                         <label>Activa</label>
                                     </div>
                                 </div>
@@ -641,38 +604,24 @@
                             <div class="ui right aligned stackable grid">
                                 <div class="sixteen wide column">
                                     <div form="form" class="ui submit  button color_1"
-                                       id="changeAccountActive">
+                                         id="changeAccountActive">
                                         Aceptar
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="ui info green message" style="display: none;" id="messageActivateAccount">
-
                                 <div class="header">
-
                                 </div>
                                 <ul class="list">
                                     <li id="idmensaje_p_activteAccount"></li>
-
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
-
-
-
-
-
-
     <div class="ui small modal change-photo">
         <h2 class="ui center aligned header">Cambia tu foto de perfil</h2>
         <div class="content">
@@ -689,9 +638,7 @@
             <div class="ui cancel button color_2">Salir</div>
         </div>
     </div>
-
     @include('modals.modalAddOtherInstitution')
-
     <script type="text/javascript">
 
         $('#id_add_new_institute').on('click', function () {
@@ -699,7 +646,6 @@
                 .modal('show')
             ;
         });
-
         function showNotificationType() {
             if ($('#notification_type').is(":visible")) {
                 $('#notification_type').toggle("fast");

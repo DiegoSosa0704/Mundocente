@@ -18,24 +18,18 @@
     {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/calendar.js')!!}
 
-
 </head>
 <body>
-
-
 <?php
 $cuanqityNotifications = DB::table('notifications')->where('id_user_notification', Auth::user()->id)->count();
 ?>
-
 @include('formularios.filtros')
 
 <!--Menu Sidebar -->
 <div class="ui left sidebar inverted vertical menu">
-
     <div class="item">
         <img src="images/nombre.png" style="height: 38px">
     </div>
-
     <a class="item">
         <i class="search icon"></i> Búsqueda
     </a>
@@ -48,12 +42,10 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
             <a class="item">Invitación</a>
         </div>
     </div>
-
 </div>
 
 <!--Menu visible-->
 <div class="ui vertical inverted large fixed pointing sticky menu">
-
     <div class="item item_profile">
         <img class="ui tiny centered circular image" src="{!!Auth::user()->photo_url!!}" id="photo-perfil-main">
         <div class="ui aligned center inverted tiny header">
@@ -63,7 +55,6 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
     <a class=" item" href="publicaciones" id="optionMainHome" onclick="loadLine()">
         <i class="grid layout icon"></i> Inicio
     </a>
-
     <div class="item">
         <i class="write icon"></i>
         <div class="header">Publicar</div>
@@ -82,27 +73,19 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
         @else
             <div><i class="alarm icon"></i> Notificaciones</div>
         @endif
-
     </a>
-
     @if(Auth::user()->rol=='admin')
         <a class=" item" href="publicaciones-administrador" target="_black">
             <div><i class="privacy icon"></i> Administrador</div>
         </a>
     @endif
 </div>
-
-
 <!--Top menu fixed-->
 <div class="ui secondary raised top fixed menu" style="height: 63px;">
-
-
     <div class="item item_logo">
         <img src="../images/logo.png" class="ui centered image" style="height: 46px">
     </div>
-
     <div class="item" style="width:60%;">
-
         {!!Form::open(['url'=>'publicaciones-resultados', 'method'=> 'POST', 'class'=>'ui action input', 'style'=>'width: 200%'])!!}
         {!!Form::text('text_search', null, ['type' => 'text', 'placeholder' => 'Ingrese título de publicación', 'autocomplete'=>'false', 'required'=>'true'])!!}
         <select class="ui selection dropdown" name="search_type_publication">
@@ -113,7 +96,6 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
             <option value="4">Solicitudes de investigadores</option>
             <option value="5">Solicitudes de evaluadores</option>
         </select>
-
         <button type="submit" onclick="loadLine()"
                 class="ui submit button button_submit" style="background-color: #AD5691;color: #fff;">
             Buscar
@@ -121,9 +103,8 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
         {!!Form::close()!!}
     </div>
     <div class="item" style="padding: 0; margin: 0;">
-        <a href="#" class="top-sidebar" ><p style="font-size: 13px;">Filtros</p></a>
+        <a href="#" class="top-sidebar"><p style="font-size: 13px;">Filtros</p></a>
     </div>
-
     <div class="right menu" style="margin-right: 30px">
         <div class="item">
             <div class="ui floating right labeled icon dropdown teal button" style="background-color: #AD5691;">
@@ -142,11 +123,7 @@ $cuanqityNotifications = DB::table('notifications')->where('id_user_notification
             </div>
         </div>
     </div>
-
-
 </div>
-
-
 <!--            Animación para cargado progress -->
 
 <div class="ui indicating progress fixed" data-value="1" data-total="250" id="progressloadfixed" style="background-color: #DFDADD;
@@ -154,13 +131,9 @@ height: 3px;padding-top: 1px;width: 150%;top: -16px;">
     <div class="bar" style="background: #AD5691;height: 3px;left: -28px;"></div>
 </div>
 
-
 <!--   Aquí está todo el contenido de publication.blade.php-->
 @yield('content')
-
-
 <script>
-
     $('.ui.top.sidebar').sidebar('attach events', '.ui.top.fixed.menu .item .top-sidebar');
 
     $('.dropdown')

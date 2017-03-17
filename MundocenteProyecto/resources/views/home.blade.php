@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="images/icono.png" />
+    <link rel="icon" type="image/png" href="images/icono.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Mundocente</title>
@@ -19,7 +19,7 @@
 
 </head>
 
-<body id="inicio" >
+<body id="inicio">
 
 <div class="ui large borderless fixed navbar-fixed menu"
      style="background-color: #EEEEEE;">
@@ -100,7 +100,8 @@
             <div class="title">
                 <h1 class="ui header inverted" style="font-size: 4em; color: #F2EDE4;">
                     Mundocente
-                    <div class="sub header" style="color: #CC4452; font-size: 0.45em;">En construcción, La Web de los docentes
+                    <div class="sub header" style="color: #CC4452; font-size: 0.45em;">En construcción, La Web de los
+                        docentes
                         investigadores
                     </div>
                 </h1>
@@ -112,7 +113,7 @@
 
 <!-- Servicios -->
 <div id="services" class="services"></div>
-<div  class="services scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
+<div class="services scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
     <div class="ui container center aligned inverted">
         <h1 class="ui header" style="font-size: 3.7em">Servicios</h1>
         <div>
@@ -203,18 +204,21 @@
     </div>
 </div>
 
-<div class="message-info" id="message-info" style="/*background: url(../images/banner3.jpg) no-repeat 0 0%/cover;*/ background-color: #242533;">
+<div class="message-info" id="message-info"
+     style="/*background: url(../images/banner3.jpg) no-repeat 0 0%/cover;*/ background-color: #242533;">
     <div class="ui center aligned container">
-        <div class="ui header text" style=" color: #AD5691 ;width: 500px; margin: 0 auto 0 auto; padding: 3em 0">Mundocente también le ofrece la oportunidad de recibir notificaciones sobre información
-            relevante de acuerdo con sus intereses profesionales y laborales.</div>
+        <div class="ui header text" style=" color: #AD5691 ;width: 500px; margin: 0 auto 0 auto; padding: 3em 0">
+            Mundocente también le ofrece la oportunidad de recibir notificaciones sobre información
+            relevante de acuerdo con sus intereses profesionales y laborales.
+        </div>
     </div>
 </div>
 
 <!-- Contacto -->
-<div id="contact" class="contact scrollme animateme" >
-    
+<div id="contact" class="contact scrollme animateme">
+
 </div>
-<div  class="contact scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
+<div class="contact scrollme animateme" data-when="view" data-from="0.5" data-to="0" data-opacity="0.3">
     <div class="ui center aligned container">
         <h1 class="ui header">Contacto</h1>
         <div>
@@ -233,29 +237,29 @@
         </div>
         <div class="ui two column left aligned stackable grid">
             <div class="column">
-                  {!!Form::open(['url'=>'send-email-contact', 'method'=> 'POST', 'class'=>'ui form'])!!}
-                    <h2 class="ui dividing header">Información</h2>
+                {!!Form::open(['url'=>'send-email-contact', 'method'=> 'POST', 'class'=>'ui form'])!!}
+                <h2 class="ui dividing header">Información</h2>
+                <div class="field">
+                    <label>Nombres</label>
                     <div class="field">
-                        <label>Nombres</label>
                         <div class="field">
-                            <div class="field">
                             {!!Form::text('name_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su nombre completo', 'required'=>'true'])!!}
-                            </div>                        
-                            </div>
+                        </div>
                     </div>
-                    <div class="field">
-                        <label>Correo</label>
-                        {!!Form::text('email_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su correo', 'required'=>'true'])!!}
-                    </div>
-                    <div class="field">
-                        <label>Mensaje</label>
-                        {!!Form::textarea('message_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su nombre completo', 'rows' => '2', 'required'=>'true'])!!}
-                        
-                    </div>
-                    <button class="ui large active button" type="submit" style="background-color: #96407A; color: #F2EDE4;">
-                        <i class="send icon"></i>
-                        Enviar
-                    </button>
+                </div>
+                <div class="field">
+                    <label>Correo</label>
+                    {!!Form::text('email_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su correo', 'required'=>'true'])!!}
+                </div>
+                <div class="field">
+                    <label>Mensaje</label>
+                    {!!Form::textarea('message_contact', null, ['type' => 'text', 'placeholder' => 'Ingrese su nombre completo', 'rows' => '2', 'required'=>'true'])!!}
+
+                </div>
+                <button class="ui large active button" type="submit" style="background-color: #96407A; color: #F2EDE4;">
+                    <i class="send icon"></i>
+                    Enviar
+                </button>
                 {!!Form::close()!!}
             </div>
             <div class="column">
@@ -323,22 +327,6 @@
 
 </style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--**************************  model login -->
 <div class="ui tiny modal login">
     <i class="close icon"></i>
@@ -359,8 +347,8 @@
         </div>
         <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox" tabindex="0" class="hidden" name="checkboxrememberpassword">
-              <label>Recordar contraseña</label>
+                <input type="checkbox" tabindex="0" class="hidden" name="checkboxrememberpassword">
+                <label>Recordar contraseña</label>
             </div>
         </div>
 
@@ -396,26 +384,6 @@
         ¿No está registrado? <a href="signup">Registrarse</a>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--**************************  model registro -->
 <div class="ui tiny modal registro">
     <i class="close icon"></i>
@@ -473,40 +441,9 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
 </body>
 
 <script type="text/javascript">
-    /*$(document)
-        .ready(function() {
-            // fix menu when passed
-            $('.message-info')
-                .visibility({
-                    once: false,
-                    onBottomPassed: function() {
-                        console.log("onBottomPassed");
-                    },
-                    onTopVisible: function() {
-                        console.log("onTopVisible");
-                        $('.ui.header.text')
-                            .transition('pulse')
-                        ;
-                    }
-                })
-            ;
-
-        })
-    ;*/
-
 
     $('.ui.form')
         .form({
@@ -562,22 +499,23 @@
         ;
     });
     $('.ui.checkbox')
-      .checkbox()
+        .checkbox()
     ;
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
 
 
+    function nobackbutton() {
 
-function nobackbutton(){
-    
-   window.location.hash="no-back-button";
-    
-   window.location.hash="Again-No-back-button" //chrome
-    
-   window.onhashchange=function(){window.location.hash="";}
-    
-}
+        window.location.hash = "no-back-button";
+
+        window.location.hash = "Again-No-back-button" //chrome
+
+        window.onhashchange = function () {
+            window.location.hash = "";
+        }
+
+    }
 
 </script>
 </html>

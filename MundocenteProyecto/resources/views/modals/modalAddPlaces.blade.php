@@ -13,11 +13,11 @@
                 </select>
             </div>
             <div class="field" id="showNewPlaceAdmin">
-            <label>País</label>
-             <select class="ui search dropdown" id="select_country_new_admin_change">
+                <label>País</label>
+                <select class="ui search dropdown" id="select_country_new_admin_change">
                     <option value="">Seleccione País</option>
                     @foreach($paises as $pais)
-                    <option value="{{$pais->id_lugar}}" selected="true" ">{{$pais->name_lugar}}</option>
+                        <option value="{{$pais->id_lugar}}" selected="true" ">{{$pais->name_lugar}}</option>
                     @endforeach
                 </select>
             </div>
@@ -28,10 +28,10 @@
             </div>
         </div>
         <div class="ui message error" style="display: none;" id="id_messagge_add_institution">
-        <ul class="list">
-            <li id="id_messagge_error_p_add_istitution"></li>
-        </ul>
-    </div>
+            <ul class="list">
+                <li id="id_messagge_error_p_add_istitution"></li>
+            </ul>
+        </div>
     </div>
     <div class="actions">
         <div class="ui cancel color_1 button">Salir</div>

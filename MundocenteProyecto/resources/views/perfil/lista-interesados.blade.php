@@ -1,10 +1,7 @@
 @extends('main.main')
 
 @section('content')
-
-
     @inject('call_methods','Mundocente\Http\Controllers\ResultController')
-
     <style>
         body {
             background-color: #EEEEEE;
@@ -14,7 +11,6 @@
             margin-top: 5em;
         }
     </style>
-
     <!--Contenido-->
     <div class="pusher pusher-start" style="background-color: #EEEEEE;">
         <div class="ui container">
@@ -80,7 +76,6 @@
                             @endforeach
                             {!! $lista_interesados->render() !!}
 
-                         
                         </div>
                     </div>
                 </div>
@@ -143,23 +138,11 @@
                                        value="{{$call_methods->returnPublicationReport($usersInterest->id_publication)}}">
                             @endforeach
                             {!! $lista_denuncias->render() !!}
-
-                           
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-
         @include('details.detalles')
-
-
     </div>
-
-
-
 @stop

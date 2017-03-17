@@ -7,11 +7,9 @@
             <br>
         </div>
     </div>
-    
     <div class="content">
         <div class="ui equals width stackable form grid">
             <div class="three column row">
-
                 <div class="column">
                     <div class="field">
                         <label>Institución: </label>
@@ -31,21 +29,15 @@
                     </div>
                 </div>
                 <div class="column" id="space_image_modal_details">
-                    
-                        <br>
-
-                        <div class="field">
-                            <img class="ui centered medium image" src="images/public-image.png" alt=""
-                                 id="image_modal_publication" >
-                        </div>
-                    
+                    <br>
+                    <div class="field">
+                        <img class="ui centered medium image" src="images/public-image.png" alt=""
+                             id="image_modal_publication">
+                    </div>
                 </div>
-
             </div>
         </div>
         <div class="ui form">
-
-
             <br>
             <!--Datos de indexación-->
             <div id="indexing-data-modal-details" class="ui segment" style="display: none;">
@@ -55,28 +47,24 @@
 
                 </div>
             </div>
-
             <div class="field">
                 <h5 class="ui header"><b>Áreas de conocimiento</b></h5>
-                
-                   
-                                    <table class="ui celled table" id="table_areas_formation_details">
-                                          <thead>
-                                            <tr><th>Gran Área</th>
-                                            <th>Área</th>
-                                            <th>Disciplina</th>
-                                            
-                                          </tr></thead>
-                                          <tbody id="add_temas_formation_details">
-                                             
-                                                    <tr>
-                                                       <td>  </td>
-                                                       <td></td>
-                                                       <td> </td> 
-                                                    </tr>
-                                                    
-                                          </tbody>
-                                        </table>
+                <table class="ui celled table" id="table_areas_formation_details">
+                    <thead>
+                    <tr>
+                        <th>Gran Área</th>
+                        <th>Área</th>
+                        <th>Disciplina</th>
+                    </tr>
+                    </thead>
+                    <tbody id="add_temas_formation_details">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="field">
                 <h5 class="ui header"><b>Detalles</b></h5>
@@ -86,8 +74,6 @@
                     <span><b>Para más información: </b></span>
                     <a class="ui teal tag label" id="link_modal_announcement" target="_black">Enlace a convocatoria</a>
                     <p id="contact_modal_announcement"></p>
-
-
                     <div class="field">
                         <br>
                         <label>Fecha:</label>
@@ -106,15 +92,12 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
     <div class="actions">
-        
-        <button class="ui button red" id="button_report_details" >Denunciar publicación</button>
+        <button class="ui button red" id="button_report_details">Denunciar publicación</button>
     </div>
 </div>
 

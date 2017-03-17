@@ -13,15 +13,15 @@
                     <option value="preescolar">Preescolar, Básica y Media</option>
                 </select>
             </div>
-            <?php 
-                $paises = DB::table('lugars')->where('type_lugar', 'country')->orderBy('name_lugar', 'asc')->get();
+            <?php
+            $paises = DB::table('lugars')->where('type_lugar', 'country')->orderBy('name_lugar', 'asc')->get();
             ?>
             <div class="field required">
                 <label for="country">País</label>
                 <select class="ui search dropdown" id="selectCountry">
                     <option value="">Seleccione País</option>
                     @foreach($paises as $pais)
-                    <option value="{{$pais->id_lugar}}">{{$pais->name_lugar}}</option>
+                        <option value="{{$pais->id_lugar}}">{{$pais->name_lugar}}</option>
                     @endforeach
                 </select>
             </div>
@@ -35,11 +35,11 @@
                 <label for="name">Nombre Institución</label>
                 <input type="text" id="name_institution_new_admin" placeholder="Nombre">
             </div>
-             <div class="field">
+            <div class="field">
                 <label for="name">Teléfono</label>
                 <input type="text" id="telephone_insttucion_new_admin" placeholder="Ingrese teléfono de la institución">
             </div>
-          
+
         </div>
     </div>
 

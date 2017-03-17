@@ -21,15 +21,15 @@
     {!!Html::script('js/init.js')!!}
     {!!Html::script('semantic/out/semantic.js')!!}
     {!!Html::script('js/calendar.js')!!}
-    
+
 
 </head>
 <body onload="nobackbutton();">
 
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a  class="header" href="publicaciones" title="Volver a inicio">
-            <img class="ui logo image"  style="height: 60px; padding: 5px 0" src="images/logo.png">
+        <a class="header" href="publicaciones" title="Volver a inicio">
+            <img class="ui logo image" style="height: 60px; padding: 5px 0" src="images/logo.png">
         </a>
         <a href="publicaciones-administrador" class="item" id="admin_publicacions_menu">Publicaciones</a>
         <a href="lugares-administrador" class="item" id="admin_lugres_menu">Lugares</a>
@@ -130,7 +130,8 @@
         .dropdown()
     ;
 
-    $('.table').tablesort().data('tablesort');;
+    $('.table').tablesort().data('tablesort');
+    ;
 </script>
 
 {!!Html::script('js/alug.js')!!}

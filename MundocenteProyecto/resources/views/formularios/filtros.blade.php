@@ -1,5 +1,3 @@
-
-
 <div class="ui top sidebar segment overlay" style="background-color: #EEEEEE">
     <div class="ui center aligned page grid">
         <div class="row">
@@ -27,13 +25,12 @@
                                 <input type="hidden" name="type_filter_search_annoucement" value="1">
                                 <div class="field">
                                     <label>Gran área</label>
-                                    <select name="large_area_filter_annoucement" id="change_filter_gran_area_annoucement"
+                                    <select name="large_area_filter_annoucement"
+                                            id="change_filter_gran_area_annoucement"
                                             class="ui search dropdown">
                                         <option value="">Seleccione Gran área</option>
                                         @foreach($gran_areas as $gran_area)
                                             @if($gran_area->id_tema!=1)
-
-
 
                                                 <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
 
@@ -88,7 +85,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
+                    <button class="ui button"
+                            style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
                         <i class="search icon"></i>
                         Buscar
                     </button>
@@ -111,8 +109,6 @@
                                         @foreach($gran_areas as $gran_area)
                                             @if($gran_area->id_tema!=1)
 
-
-
                                                 <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
 
                                             @endif
@@ -121,13 +117,15 @@
                                 </div>
                                 <div class="field" id="change_filter_paper_div">
                                     <label>Área</label>
-                                    <select name="area_paper_filter" class="ui search dropdown" id="chanfe_filter_paper_area">
+                                    <select name="area_paper_filter" class="ui search dropdown"
+                                            id="chanfe_filter_paper_area">
                                         <option value="">Seleccione Área</option>
                                     </select>
                                 </div>
                                 <div class="field" id="div_change_disscipline_paper">
                                     <label>Disciplina</label>
-                                    <select name="discipline_paper_filter" class="ui search dropdown" id="discipline_filter_paper">
+                                    <select name="discipline_paper_filter" class="ui search dropdown"
+                                            id="discipline_filter_paper">
                                         <option value="">Seleccione Disciplina</option>
                                     </select>
                                 </div>
@@ -149,7 +147,8 @@
                             </div>
                             <div class="field" id="cityChange_div_paper">
                                 <label>Ciudad</label>
-                                <select name="city_filter_city_paper" class="ui search dropdown" id="selectCity_filter_paper">
+                                <select name="city_filter_city_paper" class="ui search dropdown"
+                                        id="selectCity_filter_paper">
                                     <option value="">Ciudad</option>
                                 </select>
                             </div>
@@ -185,11 +184,11 @@
                                         <label>No</label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                    <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
+                    <button class="ui button"
+                            style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
                         <i class="search icon"></i>
                         Buscar
                     </button>
@@ -212,8 +211,6 @@
                                         @foreach($gran_areas as $gran_area)
                                             @if($gran_area->id_tema!=1)
 
-
-
                                                 <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
 
                                             @endif
@@ -222,13 +219,15 @@
                                 </div>
                                 <div class="field" id="change_filter_event_div">
                                     <label>Área</label>
-                                    <select name="area_event_filter" class="ui search dropdown" id="chanfe_filter_event_area">
+                                    <select name="area_event_filter" class="ui search dropdown"
+                                            id="chanfe_filter_event_area">
                                         <option value="">Área</option>
                                     </select>
                                 </div>
                                 <div class="field" id="div_change_disscipline_event">
                                     <label>Disciplina</label>
-                                    <select name="discipline_event_filter" class="ui search dropdown" id="discipline_filter_event">
+                                    <select name="discipline_event_filter" class="ui search dropdown"
+                                            id="discipline_filter_event">
                                         <option value="">Disciplina</option>
                                     </select>
                                 </div>
@@ -250,7 +249,8 @@
                             </div>
                             <div class="field" id="cityChange_div_event">
                                 <label>Ciudad</label>
-                                <select name="city_filter_city_event" class="ui search dropdown" id="selectCity_filter_event">
+                                <select name="city_filter_city_event" class="ui search dropdown"
+                                        id="selectCity_filter_event">
                                     <option value="">Ciudad</option>
                                 </select>
                             </div>
@@ -263,7 +263,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
+                    <button class="ui button"
+                            style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
                         <i class="search icon"></i>
                         Buscar
                     </button>
@@ -286,8 +287,6 @@
                                         @foreach($gran_areas as $gran_area)
                                             @if($gran_area->id_tema!=1)
 
-
-
                                                 <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
 
                                             @endif
@@ -296,7 +295,8 @@
                                 </div>
                                 <div class="field" id="change_filter_inve_div">
                                     <label>Área</label>
-                                    <select name="area_request_inve_filter" class="ui search dropdown" id="chanfe_filter_inve_area">
+                                    <select name="area_request_inve_filter" class="ui search dropdown"
+                                            id="chanfe_filter_inve_area">
                                         <option value="">Seleccione Área</option>
                                     </select>
                                 </div>
@@ -325,7 +325,8 @@
                             </div>
                             <div class="field" id="cityChange_div_inve">
                                 <label>Ciudad</label>
-                                <select name="city_filter_city_inve" class="ui search dropdown" id="selectCity_filter_inve">
+                                <select name="city_filter_city_inve" class="ui search dropdown"
+                                        id="selectCity_filter_inve">
                                     <option value="">Ciudad</option>
                                 </select>
                             </div>
@@ -338,7 +339,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
+                    <button class="ui button"
+                            style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
                         <i class="search icon"></i>
                         Buscar
                     </button>
@@ -361,8 +363,6 @@
                                         @foreach($gran_areas as $gran_area)
                                             @if($gran_area->id_tema!=1)
 
-
-
                                                 <option value="{{$gran_area->id_tema}}">{{$gran_area->name_theme}}</option>
 
                                             @endif
@@ -371,7 +371,8 @@
                                 </div>
                                 <div class="field" id="change_filter_eva_div">
                                     <label>Área</label>
-                                    <select name="area_request_eva_filter" class="ui search dropdown" id="chanfe_filter_eva_area">
+                                    <select name="area_request_eva_filter" class="ui search dropdown"
+                                            id="chanfe_filter_eva_area">
                                         <option value="">Seleccione Área</option>
                                     </select>
                                 </div>
@@ -390,7 +391,8 @@
                             </h5>
                             <div class="field">
                                 <label>País</label>
-                                <select name="country_filter_country_eva" class="ui search dropdown" id="select_country_filter_eva">
+                                <select name="country_filter_country_eva" class="ui search dropdown"
+                                        id="select_country_filter_eva">
                                     <option value="">País</option>
                                     @foreach($countrys as $country)
                                         <option value="{{$country->id_lugar}}">{{$country->name_lugar}}</option>
@@ -399,7 +401,8 @@
                             </div>
                             <div class="field" id="cityChange_div_eva">
                                 <label>Ciudad</label>
-                                <select name="city_filter_city_eva" class="ui search dropdown" id="selectCity_filter_eva">
+                                <select name="city_filter_city_eva" class="ui search dropdown"
+                                        id="selectCity_filter_eva">
                                     <option value="">Ciudad</option>
                                 </select>
                             </div>
@@ -412,7 +415,8 @@
                             </div>
                         </div>
                     </div>
-                    <button class="ui button" style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
+                    <button class="ui button"
+                            style="background-color: #AD5691;color: #fff;float: right;margin-top: 30px;">
                         <i class="search icon"></i>
                         Buscar
                     </button>
